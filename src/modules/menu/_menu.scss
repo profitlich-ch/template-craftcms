@@ -35,7 +35,7 @@
     $layout: smartphone;
 
     .menu {
-        @include marginPadding($layout, padding, alle, 0, 26, 0, 26);
+        @include marginPadding($layout, padding, all, 0, 26, 0, 26);
         background-color: map.get($colors, hellbraun);
         display: none;
         height: calc(var(--vh, 1vh) * 100);
@@ -57,7 +57,7 @@
             $hamburger-color: black;
             $hamburger-color-active: black;
             @include hamburger($hamburger-width, $hamburger-height, $hamburger-stroke-weight, $hamburger-color, $hamburger-color-active);
-            @include marginPadding($layout, padding, alle, 10, 10, 10, 10);
+            @include marginPadding($layout, padding, all, 10, 10, 10, 10);
             background-color: transparent;
             position: fixed;
             right: size($layout, 26 - 10);

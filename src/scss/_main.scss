@@ -11,7 +11,7 @@
     $layout: smartphone;
 
     .main {
-        @include marginPadding($layout, padding, alle, 90, 0, 0, 0);
+        @include marginPadding($layout, padding, all, 90, 0, 0, 0);
     }
 }
 
@@ -20,6 +20,6 @@
     $layout: desktop;
 
     .main {
-        @include marginPadding($layout, padding, alle, 0, 0, 0, 0);
+        @include marginPadding($layout, padding, all, 0, 0, 0, 0);
     }
 }
