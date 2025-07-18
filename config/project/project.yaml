@@ -1,4 +1,4 @@
-dateModified: 1750338477
+dateModified: 1752864545
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -58,7 +58,7 @@ system:
   edition: pro
   live: true
   name: 'Profitlich DEV'
-  schemaVersion: 5.7.0.3
+  schemaVersion: 5.8.0.3
   timeZone: America/Los_Angeles
 users:
   allowPublicRegistration: false

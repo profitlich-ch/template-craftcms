@@ -1,5 +1,5 @@
 /*M!999999\- enable the sandbox mode */ 
--- MariaDB dump 10.19  Distrib 10.11.10-MariaDB, for debian-linux-gnu (aarch64)
+-- MariaDB dump 10.19  Distrib 10.11.11-MariaDB, for debian-linux-gnu (aarch64)
 --
 -- Host: db    Database: db
 -- ------------------------------------------------------
@@ -22,7 +22,7 @@
 
 DROP TABLE IF EXISTS `addresses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `addresses` (
   `id` int(11) NOT NULL,
   `primaryOwnerId` int(11) DEFAULT NULL,
@@ -67,7 +67,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `announcements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `announcements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -101,7 +101,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `assetindexdata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `assetindexdata` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` int(11) NOT NULL,
@@ -140,7 +140,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `assetindexingsessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `assetindexingsessions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `indexedVolumes` text DEFAULT NULL,
@@ -173,13 +173,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `assets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `assets` (
   `id` int(11) NOT NULL,
   `volumeId` int(11) DEFAULT NULL,
   `folderId` int(11) NOT NULL,
   `uploaderId` int(11) DEFAULT NULL,
   `filename` varchar(255) NOT NULL,
+  `mimeType` varchar(255) DEFAULT NULL,
   `kind` varchar(50) NOT NULL DEFAULT 'unknown',
   `alt` text DEFAULT NULL,
   `width` int(11) unsigned DEFAULT NULL,
@@ -210,17 +211,17 @@ CREATE TABLE `assets` (
 LOCK TABLES `assets` WRITE;
 /*!40000 ALTER TABLE `assets` DISABLE KEYS */;
 INSERT INTO `assets` VALUES
-(34,NULL,3,1,'asset633af76982e267.12846520.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 14:53:29','2022-10-03 14:53:29','2022-10-03 14:53:29'),
-(35,NULL,3,1,'asset633af7a5885197.88769114.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 14:54:29','2022-10-03 14:54:29','2022-10-03 14:54:29'),
-(36,NULL,3,1,'asset633af7bce79232.95857633.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 14:54:53','2022-10-03 14:54:53','2022-10-03 14:54:53'),
-(37,NULL,3,1,'asset633af806260545.50558061.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 14:56:06','2022-10-03 14:56:06','2022-10-03 14:56:06'),
-(38,NULL,3,1,'asset633afa46ce7523.62900012.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 15:05:42','2022-10-03 15:05:42','2022-10-03 15:05:42'),
-(39,NULL,3,1,'asset633afc5d72c2f9.98811315.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 15:14:37','2022-10-03 15:14:37','2022-10-03 15:14:37'),
-(40,NULL,3,1,'asset633b00237c7d68.06510024.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 15:30:43','2022-10-03 15:30:43','2022-10-03 15:30:43'),
-(43,NULL,3,1,'asset633b172abcc216.55844537.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 17:08:58','2022-10-03 17:08:58','2022-10-03 17:08:58'),
-(44,NULL,3,1,'asset633b182e4157c9.63276740.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 17:13:18','2022-10-03 17:13:18','2022-10-03 17:13:18'),
-(45,NULL,3,1,'asset633b183a643535.13439729.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 17:13:30','2022-10-03 17:13:30','2022-10-03 17:13:30'),
-(50,2,4,1,'Ts_paralax_191_Ts_a.jpg','image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 17:32:42','2022-10-03 17:32:42','2022-10-04 15:30:54');
+(34,NULL,3,1,'asset633af76982e267.12846520.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 14:53:29','2022-10-03 14:53:29','2022-10-03 14:53:29'),
+(35,NULL,3,1,'asset633af7a5885197.88769114.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 14:54:29','2022-10-03 14:54:29','2022-10-03 14:54:29'),
+(36,NULL,3,1,'asset633af7bce79232.95857633.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 14:54:53','2022-10-03 14:54:53','2022-10-03 14:54:53'),
+(37,NULL,3,1,'asset633af806260545.50558061.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 14:56:06','2022-10-03 14:56:06','2022-10-03 14:56:06'),
+(38,NULL,3,1,'asset633afa46ce7523.62900012.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 15:05:42','2022-10-03 15:05:42','2022-10-03 15:05:42'),
+(39,NULL,3,1,'asset633afc5d72c2f9.98811315.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 15:14:37','2022-10-03 15:14:37','2022-10-03 15:14:37'),
+(40,NULL,3,1,'asset633b00237c7d68.06510024.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 15:30:43','2022-10-03 15:30:43','2022-10-03 15:30:43'),
+(43,NULL,3,1,'asset633b172abcc216.55844537.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 17:08:58','2022-10-03 17:08:58','2022-10-03 17:08:58'),
+(44,NULL,3,1,'asset633b182e4157c9.63276740.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 17:13:18','2022-10-03 17:13:18','2022-10-03 17:13:18'),
+(45,NULL,3,1,'asset633b183a643535.13439729.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 17:13:30','2022-10-03 17:13:30','2022-10-03 17:13:30'),
+(50,2,4,1,'Ts_paralax_191_Ts_a.jpg',NULL,'image',NULL,1707,2560,1012766,NULL,NULL,NULL,'2022-10-03 17:32:42','2022-10-03 17:32:42','2022-10-04 15:30:54');
 /*!40000 ALTER TABLE `assets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +231,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `assets_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `assets_sites` (
   `assetId` int(11) NOT NULL,
   `siteId` int(11) NOT NULL,
@@ -257,7 +258,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `authenticator`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `authenticator` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -281,12 +282,38 @@ LOCK TABLES `authenticator` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `bulkopevents`
+--
+
+DROP TABLE IF EXISTS `bulkopevents`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bulkopevents` (
+  `key` char(10) NOT NULL,
+  `senderClass` varchar(255) NOT NULL,
+  `eventName` varchar(255) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  PRIMARY KEY (`key`,`senderClass`,`eventName`),
+  KEY `idx_kkimwahbomlfcbvfpeaxrealmxjoigaorkaq` (`timestamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bulkopevents`
+--
+
+LOCK TABLES `bulkopevents` WRITE;
+/*!40000 ALTER TABLE `bulkopevents` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bulkopevents` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categories`
 --
 
 DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
@@ -318,7 +345,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `categorygroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categorygroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `structureId` int(11) NOT NULL,
@@ -356,7 +383,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `categorygroups_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categorygroups_sites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groupId` int(11) NOT NULL,
@@ -390,7 +417,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `changedattributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `changedattributes` (
   `elementId` int(11) NOT NULL,
   `siteId` int(11) NOT NULL,
@@ -415,7 +442,9 @@ CREATE TABLE `changedattributes` (
 LOCK TABLES `changedattributes` WRITE;
 /*!40000 ALTER TABLE `changedattributes` DISABLE KEYS */;
 INSERT INTO `changedattributes` VALUES
-(1,1,'fullName','2022-09-30 11:48:11',0,1),
+(1,1,'fullName','2025-07-18 18:46:55',0,1),
+(1,1,'lastPasswordChangeDate','2025-07-18 18:46:55',0,1),
+(1,1,'password','2025-07-18 18:46:55',0,1),
 (2,1,'title','2022-09-28 12:25:04',0,1);
 /*!40000 ALTER TABLE `changedattributes` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -426,7 +455,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `changedfields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `changedfields` (
   `elementId` int(11) NOT NULL,
   `siteId` int(11) NOT NULL,
@@ -467,7 +496,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `content`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `content` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `elementId` int(11) NOT NULL,
@@ -508,12 +537,41 @@ INSERT INTO `content` VALUES
 UNLOCK TABLES;
 
 --
+-- Table structure for table `contentblocks`
+--
+
+DROP TABLE IF EXISTS `contentblocks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contentblocks` (
+  `id` int(11) NOT NULL,
+  `primaryOwnerId` int(11) DEFAULT NULL,
+  `fieldId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_lvcxkvqrdemfdzyxuqjopqpryyynxgxxdwaw` (`primaryOwnerId`),
+  KEY `idx_ifruahdkultxtsbuvxhycwomkpqqescdksqz` (`fieldId`),
+  CONSTRAINT `fk_rfbvlyddrunrznhidcdssckufywpxaodqnbt` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_uwpftvxsvdtkgqhbpiouyufklvlahktdgqsg` FOREIGN KEY (`id`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_xrbwttvxuwukvbwimkexgssifyucbkoqyhnn` FOREIGN KEY (`primaryOwnerId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contentblocks`
+--
+
+LOCK TABLES `contentblocks` WRITE;
+/*!40000 ALTER TABLE `contentblocks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contentblocks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `craftidtokens`
 --
 
 DROP TABLE IF EXISTS `craftidtokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `craftidtokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -543,7 +601,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `deprecationerrors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `deprecationerrors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL,
@@ -576,7 +634,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `drafts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `drafts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `canonicalId` int(11) DEFAULT NULL,
@@ -611,7 +669,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elementactivity`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `elementactivity` (
   `elementId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
@@ -638,6 +696,7 @@ CREATE TABLE `elementactivity` (
 LOCK TABLES `elementactivity` WRITE;
 /*!40000 ALTER TABLE `elementactivity` DISABLE KEYS */;
 INSERT INTO `elementactivity` VALUES
+(1,1,1,NULL,'view','2025-07-18 18:45:46'),
 (2,1,1,NULL,'edit','2024-11-02 09:16:40'),
 (2,1,1,NULL,'save','2024-11-02 09:16:40'),
 (2,1,1,NULL,'view','2024-11-02 09:16:41');
@@ -650,7 +709,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `elements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `canonicalId` int(11) DEFAULT NULL,
@@ -691,7 +750,7 @@ CREATE TABLE `elements` (
 LOCK TABLES `elements` WRITE;
 /*!40000 ALTER TABLE `elements` DISABLE KEYS */;
 INSERT INTO `elements` VALUES
-(1,NULL,NULL,NULL,NULL,'craft\\elements\\User',1,0,'2022-09-28 08:08:17','2022-09-30 11:48:11',NULL,NULL,NULL,'93ff1eae-a809-48c5-8c5c-102b24b5db0b'),
+(1,NULL,NULL,NULL,NULL,'craft\\elements\\User',1,0,'2022-09-28 08:08:17','2025-07-18 18:46:54',NULL,NULL,NULL,'93ff1eae-a809-48c5-8c5c-102b24b5db0b'),
 (2,NULL,NULL,NULL,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2024-11-02 09:16:40',NULL,NULL,NULL,'439cd31e-c532-45b2-8bc3-453ad109657b'),
 (3,2,NULL,1,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2022-09-28 12:24:30',NULL,NULL,NULL,'b9f4b01d-79e6-4ee8-8065-bb8aaf430f02'),
 (4,2,NULL,2,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2022-09-28 12:24:30',NULL,NULL,NULL,'a4bbb624-ee50-4e42-87e2-3122257bfa20'),
@@ -756,7 +815,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elements_bulkops`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `elements_bulkops` (
   `elementId` int(11) NOT NULL,
   `key` char(10) NOT NULL,
@@ -781,7 +840,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elements_owners`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `elements_owners` (
   `elementId` int(11) NOT NULL,
   `ownerId` int(11) NOT NULL,
@@ -808,7 +867,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elements_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `elements_sites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `elementId` int(11) NOT NULL,
@@ -905,7 +964,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `entries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entries` (
   `id` int(11) NOT NULL,
   `sectionId` int(11) DEFAULT NULL,
@@ -915,6 +974,7 @@ CREATE TABLE `entries` (
   `typeId` int(11) NOT NULL,
   `postDate` datetime DEFAULT NULL,
   `expiryDate` datetime DEFAULT NULL,
+  `status` enum('live','pending','expired') NOT NULL DEFAULT 'live',
   `deletedWithEntryType` tinyint(1) DEFAULT NULL,
   `deletedWithSection` tinyint(1) DEFAULT NULL,
   `dateCreated` datetime NOT NULL,
@@ -927,6 +987,7 @@ CREATE TABLE `entries` (
   KEY `fk_loemjlsvmbbuexjmatcjrxrcetvokouetlkw` (`parentId`),
   KEY `idx_ejabkdhzpuivppjazqluormzngtuhhrtxuwm` (`primaryOwnerId`),
   KEY `idx_rkgtffpezqsvtlbmabnpeupkbijibebivbwu` (`fieldId`),
+  KEY `idx_gbkfucqrwqwzbvbmkiaekucnluodxwvmchmf` (`status`),
   CONSTRAINT `fk_igesgyrjmrocgutezkgvryijhfkzpvxrhkwu` FOREIGN KEY (`typeId`) REFERENCES `entrytypes` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_kcgybmsoyahhblrzoshlmaldkfrcmbamdrvl` FOREIGN KEY (`id`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_loemjlsvmbbuexjmatcjrxrcetvokouetlkw` FOREIGN KEY (`parentId`) REFERENCES `entries` (`id`) ON DELETE SET NULL,
@@ -943,50 +1004,50 @@ CREATE TABLE `entries` (
 LOCK TABLES `entries` WRITE;
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
 INSERT INTO `entries` VALUES
-(2,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
-(3,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
-(4,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
-(5,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
-(7,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:24:56','2022-09-28 12:24:56'),
-(8,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:25:04','2022-09-28 12:25:04'),
-(9,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:27:24','2022-09-28 12:27:24'),
-(10,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:27:24','2022-09-28 12:27:24'),
-(11,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:27:24','2022-09-28 12:27:24'),
-(12,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:27:24','2022-09-28 12:27:24'),
-(14,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:56:27','2022-09-28 12:56:27'),
-(16,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-28 12:57:03','2022-09-28 12:57:03'),
-(17,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 09:53:37','2022-09-29 09:53:37'),
-(18,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 09:53:50','2022-09-29 09:53:50'),
-(19,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 09:54:19','2022-09-29 09:54:19'),
-(20,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 10:18:02','2022-09-29 10:18:02'),
-(22,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 10:18:16','2022-09-29 10:18:16'),
-(23,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 12:26:47','2022-09-29 12:26:47'),
-(24,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 12:26:47','2022-09-29 12:26:47'),
-(25,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 12:27:49','2022-09-29 12:27:49'),
-(27,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 12:30:31','2022-09-29 12:30:31'),
-(28,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 12:30:55','2022-09-29 12:30:55'),
-(30,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 12:31:04','2022-09-29 12:31:04'),
-(31,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 12:38:02','2022-09-29 12:38:02'),
-(32,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-09-29 12:38:02','2022-09-29 12:38:02'),
-(33,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-10-03 14:52:57','2022-10-03 14:52:57'),
-(41,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-10-03 16:18:58','2022-10-03 16:18:58'),
-(42,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-10-03 16:19:08','2022-10-03 16:19:08'),
-(52,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-10-03 21:37:42','2022-10-03 21:37:42'),
-(53,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-10-04 09:51:59','2022-10-04 09:51:59'),
-(54,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-10-04 09:55:54','2022-10-04 09:55:54'),
-(55,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-10-04 15:30:56','2022-10-04 15:30:56'),
-(57,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2022-10-04 15:45:57','2022-10-04 15:45:57'),
-(58,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-07-17 16:33:23','2024-07-17 16:33:23'),
-(59,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-07-17 16:33:23','2024-07-17 16:33:23'),
-(60,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-07-17 16:33:23','2024-07-17 16:33:23'),
-(61,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-07-17 16:33:23','2024-07-17 16:33:23'),
-(62,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-07-17 17:02:03','2024-07-17 17:02:03'),
-(63,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-07-17 17:05:05','2024-07-17 17:05:05'),
-(65,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-10-06 07:59:03','2024-10-06 07:59:03'),
-(67,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-11-02 09:12:42','2024-11-02 09:12:42'),
-(68,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-11-02 09:12:51','2024-11-02 09:12:51'),
-(70,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-11-02 09:15:27','2024-11-02 09:15:27'),
-(72,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,NULL,NULL,'2024-11-02 09:16:40','2024-11-02 09:16:40');
+(2,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
+(3,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
+(4,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
+(5,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
+(7,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:56','2022-09-28 12:24:56'),
+(8,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:25:04','2022-09-28 12:25:04'),
+(9,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:27:24','2022-09-28 12:27:24'),
+(10,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:27:24','2022-09-28 12:27:24'),
+(11,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:27:24','2022-09-28 12:27:24'),
+(12,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:27:24','2022-09-28 12:27:24'),
+(14,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:56:27','2022-09-28 12:56:27'),
+(16,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:57:03','2022-09-28 12:57:03'),
+(17,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 09:53:37','2022-09-29 09:53:37'),
+(18,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 09:53:50','2022-09-29 09:53:50'),
+(19,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 09:54:19','2022-09-29 09:54:19'),
+(20,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 10:18:02','2022-09-29 10:18:02'),
+(22,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 10:18:16','2022-09-29 10:18:16'),
+(23,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 12:26:47','2022-09-29 12:26:47'),
+(24,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 12:26:47','2022-09-29 12:26:47'),
+(25,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 12:27:49','2022-09-29 12:27:49'),
+(27,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 12:30:31','2022-09-29 12:30:31'),
+(28,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 12:30:55','2022-09-29 12:30:55'),
+(30,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 12:31:04','2022-09-29 12:31:04'),
+(31,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 12:38:02','2022-09-29 12:38:02'),
+(32,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-29 12:38:02','2022-09-29 12:38:02'),
+(33,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-10-03 14:52:57','2022-10-03 14:52:57'),
+(41,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-10-03 16:18:58','2022-10-03 16:18:58'),
+(42,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-10-03 16:19:08','2022-10-03 16:19:08'),
+(52,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-10-03 21:37:42','2022-10-03 21:37:42'),
+(53,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-10-04 09:51:59','2022-10-04 09:51:59'),
+(54,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-10-04 09:55:54','2022-10-04 09:55:54'),
+(55,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-10-04 15:30:56','2022-10-04 15:30:56'),
+(57,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-10-04 15:45:57','2022-10-04 15:45:57'),
+(58,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-07-17 16:33:23','2024-07-17 16:33:23'),
+(59,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-07-17 16:33:23','2024-07-17 16:33:23'),
+(60,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-07-17 16:33:23','2024-07-17 16:33:23'),
+(61,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-07-17 16:33:23','2024-07-17 16:33:23'),
+(62,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-07-17 17:02:03','2024-07-17 17:02:03'),
+(63,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-07-17 17:05:05','2024-07-17 17:05:05'),
+(65,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-10-06 07:59:03','2024-10-06 07:59:03'),
+(67,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:12:42','2024-11-02 09:12:42'),
+(68,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:12:51','2024-11-02 09:12:51'),
+(70,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:15:27','2024-11-02 09:15:27'),
+(72,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:16:40','2024-11-02 09:16:40');
 /*!40000 ALTER TABLE `entries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -996,7 +1057,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `entries_authors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entries_authors` (
   `entryId` int(11) NOT NULL,
   `authorId` int(11) NOT NULL,
@@ -1024,12 +1085,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `entrytypes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entrytypes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldLayoutId` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `handle` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
   `hasTitleField` tinyint(1) NOT NULL DEFAULT 1,
@@ -1058,7 +1120,7 @@ CREATE TABLE `entrytypes` (
 LOCK TABLES `entrytypes` WRITE;
 /*!40000 ALTER TABLE `entrytypes` DISABLE KEYS */;
 INSERT INTO `entrytypes` VALUES
-(1,1,'Startseite','startseite','',NULL,1,'site',NULL,'',1,'site',NULL,1,'2022-09-28 12:24:11','2024-10-04 19:32:56',NULL,'0e793c4c-3298-4c14-a50e-fe050eeaee18');
+(1,1,'Startseite','startseite',NULL,'',NULL,1,'site',NULL,'',1,'site',NULL,1,'2022-09-28 12:24:11','2024-10-04 19:32:56',NULL,'0e793c4c-3298-4c14-a50e-fe050eeaee18');
 /*!40000 ALTER TABLE `entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1068,7 +1130,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `fieldlayouts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fieldlayouts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -1102,7 +1164,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `fields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
@@ -1153,7 +1215,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_emailtemplates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_emailtemplates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1183,7 +1245,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_forms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_forms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `handle` varchar(64) NOT NULL,
@@ -1230,7 +1292,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_formtemplates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_formtemplates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1270,7 +1332,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_integrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_integrations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1304,7 +1366,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_nested`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_nested` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldId` int(11) NOT NULL,
@@ -1335,7 +1397,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_nestedfieldrows`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_nestedfieldrows` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ownerId` int(11) NOT NULL,
@@ -1370,7 +1432,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_notifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `formId` int(11) NOT NULL,
@@ -1423,7 +1485,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_pagesettings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_pagesettings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldLayoutId` int(11) NOT NULL,
@@ -1454,7 +1516,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_payments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_payments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `integrationId` int(11) NOT NULL,
@@ -1500,7 +1562,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_payments_plans`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_payments_plans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `integrationId` int(11) NOT NULL,
@@ -1538,7 +1600,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_payments_subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_payments_subscriptions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `integrationId` int(11) DEFAULT NULL,
@@ -1590,7 +1652,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_pdftemplates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_pdftemplates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1621,7 +1683,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_relations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_relations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -1657,7 +1719,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_rows`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_rows` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldLayoutId` int(11) NOT NULL,
@@ -1688,7 +1750,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_sentnotifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_sentnotifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
@@ -1738,7 +1800,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_statuses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1772,7 +1834,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_stencils`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_stencils` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1811,7 +1873,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_submissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_submissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -1853,7 +1915,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_syncfields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_syncfields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `syncId` int(11) NOT NULL,
@@ -1884,7 +1946,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_syncs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_syncs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dateCreated` datetime NOT NULL,
@@ -1909,7 +1971,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `formie_tokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -1939,7 +2001,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `globalsets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `globalsets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1974,7 +2036,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `gqlschemas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `gqlschemas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -2002,7 +2064,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `gqltokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `gqltokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -2037,7 +2099,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `imagetransformindex`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `imagetransformindex` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `assetId` int(11) NOT NULL,
@@ -2097,8 +2159,8 @@ INSERT INTO `imagetransformindex` VALUES
 (31,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_300x300_crop_center-center_none',1,0,0,'2022-10-03 21:38:29','2022-10-03 21:38:29','2022-10-03 21:41:49','5cf06df9-c1f8-4ba2-b0be-780e228832ba'),
 (32,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_666x1000_crop_center-center_none',1,0,0,'2022-10-04 15:15:09','2022-10-04 15:15:09','2022-10-04 15:15:09','1795a88d-e2cd-44f4-aaaf-4deaa8dc22f1'),
 (33,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_300xAUTO_crop_center-center_none',1,0,0,'2022-10-04 15:49:41','2022-10-04 15:49:41','2022-10-04 15:49:41','e5bc1e1d-09dc-4e1b-be58-8385286f0a26'),
-(34,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_20x30_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2024-12-15 16:08:39','36b1d84c-39d1-42c3-88df-3a6d4a46e7a3'),
-(35,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_40x60_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2024-12-15 16:08:39','502eeba7-2b68-4938-97dc-7cdc7de98593');
+(34,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_20x30_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2025-07-18 18:45:45','36b1d84c-39d1-42c3-88df-3a6d4a46e7a3'),
+(35,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_40x60_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2025-07-18 18:45:45','502eeba7-2b68-4938-97dc-7cdc7de98593');
 /*!40000 ALTER TABLE `imagetransformindex` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2108,7 +2170,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `imagetransforms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `imagetransforms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -2147,7 +2209,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(50) NOT NULL,
@@ -2169,7 +2231,7 @@ CREATE TABLE `info` (
 LOCK TABLES `info` WRITE;
 /*!40000 ALTER TABLE `info` DISABLE KEYS */;
 INSERT INTO `info` VALUES
-(1,'5.5.6.1','5.5.0.0',0,'nwbcbclyzuhz','3@qcgnfgfxgn','2022-09-28 08:08:17','2024-12-15 16:08:30','7e6daab9-2991-4d5f-bb87-ffbee2fc0cc5');
+(1,'5.8.8','5.8.0.3',0,'hlnfrxzzczgp','3@qcgnfgfxgn','2022-09-28 08:08:17','2025-07-18 18:49:30','7e6daab9-2991-4d5f-bb87-ffbee2fc0cc5');
 /*!40000 ALTER TABLE `info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2179,7 +2241,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `track` varchar(255) NOT NULL,
@@ -2190,7 +2252,7 @@ CREATE TABLE `migrations` (
   `uid` char(36) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_uvdmqkcsluyfebluxvoxsgkdjswwdqoihest` (`track`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2264,7 +2326,18 @@ INSERT INTO `migrations` VALUES
 (64,'craft','m240805_154041_sso_identities','2024-10-04 17:42:11','2024-10-04 17:42:11','2024-10-04 17:42:11','12eeb666-b0ee-436e-9fdf-a174a1c62a08'),
 (66,'plugin:ckeditor','Install','2024-10-04 19:59:35','2024-10-04 19:59:35','2024-10-04 19:59:35','6a1fa6ad-6288-43d0-bf1e-26c9c1f3a659'),
 (67,'plugin:ckeditor','m230408_163704_v3_upgrade','2024-10-04 19:59:35','2024-10-04 19:59:35','2024-10-04 19:59:35','3f1f1856-e3cb-43f3-ab89-2e7be98aa465'),
-(68,'craft','m240926_202248_track_entries_deleted_with_section','2024-12-10 22:38:27','2024-12-10 22:38:27','2024-12-10 22:38:27','8260309d-49a3-47ad-b90d-9013c17f9602');
+(68,'craft','m240926_202248_track_entries_deleted_with_section','2024-12-10 22:38:27','2024-12-10 22:38:27','2024-12-10 22:38:27','8260309d-49a3-47ad-b90d-9013c17f9602'),
+(69,'craft','m241120_190905_user_affiliated_sites','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','c336dec2-c9e8-4031-96dd-cb89548a4584'),
+(70,'craft','m241125_122914_add_viewUsers_permission','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','5724eb90-d231-4beb-b8e3-11fe20aa1bbe'),
+(71,'craft','m250119_135304_entry_type_overrides','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','c912afd3-824d-4afb-a928-9d59a71d81c0'),
+(72,'craft','m250206_135036_search_index_queue','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','5bbeea95-9810-4d56-9613-f7ce1a98e72c'),
+(73,'craft','m250207_172349_bulkop_events','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','7d26d0d6-9495-45e5-9a03-fa671a174691'),
+(74,'craft','m250315_131608_unlimited_authors','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','4e452c4b-d2f7-4097-9932-ca05b21ddb46'),
+(75,'craft','m250403_171253_static_statuses','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','9d523478-de19-4a0d-a4d4-ebe662d38f5d'),
+(76,'craft','m250512_164202_asset_mime_types','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','7cfa85fd-a602-429d-9a7a-e2cb86963ca9'),
+(77,'craft','m250522_090843_add_deleteEntriesForSite_and_deletePeerEntriesForSite_permissions','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','355d0d55-eaca-4a3f-ba06-c66837351a43'),
+(78,'craft','m250531_183058_content_blocks','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','d86d8cac-2d9e-402b-b1fe-3b1534d33af5'),
+(79,'craft','m250623_105031_entry_type_descriptions','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','854e446e-36fa-42e9-a16b-70a60b43b6ea');
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2274,7 +2347,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `plugins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `plugins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `handle` varchar(255) NOT NULL,
@@ -2286,7 +2359,7 @@ CREATE TABLE `plugins` (
   `uid` char(36) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_ddsqzsroivbxuxdmttstlobprwfbcdrgbzrg` (`handle`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2298,8 +2371,9 @@ LOCK TABLES `plugins` WRITE;
 INSERT INTO `plugins` VALUES
 (1,'password-policy','5.0.0-beta1','1.0.0','2022-09-28 12:22:49','2022-09-28 12:22:49','2024-10-04 17:42:05','d3414302-d559-47bd-ac22-135357cb9204'),
 (7,'content-security-policy','3.0.0','1.0.0','2024-10-04 19:57:43','2024-10-04 19:57:43','2024-10-04 19:57:43','186e1270-6c17-4a5c-b230-27cc4b8fdd15'),
-(8,'ckeditor','4.4.0','3.0.0.0','2024-10-04 19:59:35','2024-10-04 19:59:35','2024-12-10 22:38:24','0e2d0533-8a79-4601-ab08-def7bfd38e07'),
-(9,'obfuscator','1.2.0','1.0.0','2024-10-06 07:56:12','2024-10-06 07:56:12','2024-10-06 07:56:12','8502b7fb-7387-45d0-b73f-32189c958484');
+(8,'ckeditor','4.9.0','3.0.0.0','2024-10-04 19:59:35','2024-10-04 19:59:35','2025-07-18 18:41:00','0e2d0533-8a79-4601-ab08-def7bfd38e07'),
+(9,'obfuscator','1.2.0','1.0.0','2024-10-06 07:56:12','2024-10-06 07:56:12','2024-10-06 07:56:12','8502b7fb-7387-45d0-b73f-32189c958484'),
+(10,'vite','5.0.1','1.0.0','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','504498a2-8678-420c-a846-64a119d5ca44');
 /*!40000 ALTER TABLE `plugins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2309,7 +2383,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `projectconfig`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `projectconfig` (
   `path` varchar(255) NOT NULL,
   `value` text NOT NULL,
@@ -2336,7 +2410,7 @@ INSERT INTO `projectconfig` VALUES
 ('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.2','\"bold\"'),
 ('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.3','\"italic\"'),
 ('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.4','\"link\"'),
-('dateModified','1733870307'),
+('dateModified','1752864545'),
 ('email.fromEmail','\"dev@profitlich.ch\"'),
 ('email.fromName','\"Profitlich DEV\"'),
 ('email.transportType','\"craft\\\\mail\\\\transportadapters\\\\Sendmail\"'),
@@ -2528,10 +2602,14 @@ INSERT INTO `projectconfig` VALUES
 ('plugins.password-policy.settings.numbers','true'),
 ('plugins.password-policy.settings.showStrengthIndicator','true'),
 ('plugins.password-policy.settings.symbols','true'),
+('plugins.vite.edition','\"standard\"'),
+('plugins.vite.enabled','true'),
+('plugins.vite.schemaVersion','\"1.0.0\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.defaultPlacement','\"end\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.enableVersioning','true'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.entryTypes.0','\"0e793c4c-3298-4c14-a50e-fe050eeaee18\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.handle','\"startseite\"'),
+('sections.10120e23-43ba-494f-ba6c-7241058df713.maxAuthors','1'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.name','\"Startseite\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.__assoc__.0.0','\"label\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.__assoc__.0.1','\"Primäre eintrag Seite\"'),
@@ -2558,7 +2636,7 @@ INSERT INTO `projectconfig` VALUES
 ('system.edition','\"pro\"'),
 ('system.live','true'),
 ('system.name','\"Profitlich DEV\"'),
-('system.schemaVersion','\"5.5.0.0\"'),
+('system.schemaVersion','\"5.8.0.3\"'),
 ('system.timeZone','\"America/Los_Angeles\"'),
 ('users.allowPublicRegistration','false'),
 ('users.defaultGroup','null'),
@@ -2623,7 +2701,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `queue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `queue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `channel` varchar(255) NOT NULL DEFAULT 'queue',
@@ -2644,7 +2722,7 @@ CREATE TABLE `queue` (
   PRIMARY KEY (`id`),
   KEY `idx_sziryarwktdtumewknzytfdmynnofogwczsp` (`channel`,`fail`,`timeUpdated`,`timePushed`),
   KEY `idx_adrmfafzrwbdpodfkvzdiwxjkqdwqersigyh` (`channel`,`fail`,`timeUpdated`,`delay`)
-) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=376 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2662,7 +2740,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `recoverycodes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `recoverycodes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -2690,7 +2768,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `relations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `relations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldId` int(11) NOT NULL,
@@ -2745,7 +2823,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `resourcepaths`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `resourcepaths` (
   `hash` varchar(255) NOT NULL,
   `path` varchar(255) NOT NULL,
@@ -2764,6 +2842,7 @@ INSERT INTO `resourcepaths` VALUES
 ('119f7c1a','@craft/web/assets/elementresizedetector/dist'),
 ('12111b52','@craft/web/assets/datepickeri18n/dist'),
 ('1246b350','@craft/web/assets/cp/dist'),
+('127b461a','@craft/web/assets/xregexp/dist'),
 ('12c7352f','@craft/web/assets/datepickeri18n/dist'),
 ('12f43057','@bower/jquery/dist'),
 ('13231297','@craft/web/assets/tailwindreset/dist'),
@@ -2784,8 +2863,10 @@ INSERT INTO `resourcepaths` VALUES
 ('191bab3a','@craft/web/assets/tailwindreset/dist'),
 ('195bbe5f','@craft/web/assets/velocity/dist'),
 ('198d9022','@craft/web/assets/velocity/dist'),
+('19c3fb1a','@craft/web/assets/picturefill/dist'),
 ('1b973935','@craft/web/assets/jquerytouchevents/dist'),
 ('1bc4e657','@craft/web/assets/jquerypayment/dist'),
+('1bf4d6b6','@craft/web/assets/garnish/dist'),
 ('1c1a9295','@craft/web/assets/jquerypayment/dist'),
 ('1c494df7','@craft/web/assets/jquerytouchevents/dist'),
 ('1c9f638a','@craft/web/assets/jquerytouchevents/dist'),
@@ -2795,19 +2876,24 @@ INSERT INTO `resourcepaths` VALUES
 ('1d62b016','@craft/web/assets/jquerypayment/dist'),
 ('1e0e1118','@craft/web/assets/selectize/dist'),
 ('1e53e4e0','@craft/web/assets/velocity/dist'),
+('1e66ceb','@craft/web/assets/craftsupport/dist'),
 ('1e727351','@craft/web/assets/fileupload/dist'),
 ('1e98f3e4','@craft/web/assets/jqueryui/dist'),
 ('1eb76f02','@craft/web/assets/updateswidget/dist'),
 ('1efc90da','@craft/web/assets/d3/dist'),
 ('200d2d6c','@craft/web/assets/recententries/dist'),
 ('200d36c','@craft/web/assets/updateswidget/dist'),
+('200f2373','@craft/web/assets/velocity/dist'),
 ('2021f168','@craft/web/assets/plugins/dist'),
 ('2041484b','@craft/web/assets/picturefill/dist'),
 ('20976636','@craft/web/assets/picturefill/dist'),
 ('21396ac8','@craft/web/assets/picturefill/dist'),
 ('223df65c','@craft/web/assets/fileupload/dist'),
+('236c779f','@craft/web/assets/utilities/dist'),
 ('244f045b','@craft/web/assets/axios/dist'),
 ('24b2cb4','@craft/web/assets/d3/dist'),
+('259821c4','@craft/web/assets/jquerypayment/dist'),
+('25cbfea6','@craft/web/assets/jquerytouchevents/dist'),
 ('26a05d25','@craft/web/assets/vue/dist'),
 ('2764aa1b','@craft/web/assets/d3/dist'),
 ('279f3c89','@craft/web/assets/picturefill/dist'),
@@ -2817,6 +2903,7 @@ INSERT INTO `resourcepaths` VALUES
 ('2a0fefea','@craft/web/assets/updates/dist'),
 ('2a81d7c8','@craft/web/assets/xregexp/dist'),
 ('2b2fdb36','@craft/web/assets/xregexp/dist'),
+('2b93a803','@craft/web/assets/datepickeri18n/dist'),
 ('2bf9f54b','@craft/web/assets/xregexp/dist'),
 ('2c05a3ac','@craft/web/assets/iframeresizer/dist'),
 ('2c278189','@craft/web/assets/xregexp/dist'),
@@ -2828,20 +2915,27 @@ INSERT INTO `resourcepaths` VALUES
 ('310063af','@craft/web/assets/dashboard/dist'),
 ('31192e1a','@craft/web/assets/selectize/dist'),
 ('3129cae','@craft/web/assets/iframeresizer/dist'),
+('31f6de46','@craft/web/assets/velocity/dist'),
 ('3280857e','@craft/web/assets/velocity/dist'),
 ('3341af09','@craft/web/assets/elementresizedetector/dist'),
+('3346e1a1','@craft/web/assets/fabric/dist'),
+('34320393','@craft/web/assets/jquerytouchevents/dist'),
+('3461dcf1','@craft/web/assets/jquerypayment/dist'),
 ('360c9438','@craft/web/assets/tailwindreset/dist'),
 ('36a1b0e1','@bower/jquery/dist'),
 ('371787c9','@craft/web/assets/jquerypayment/dist'),
 ('374458ab','@craft/web/assets/jquerytouchevents/dist'),
 ('3767c8f8','@craftpulse/passwordpolicy/assetbundles/PasswordPolicy/dist'),
 ('378b300a','@craft/web/assets/dashboard/dist'),
+('382bb2f','@craft/web/assets/xregexp/dist'),
 ('38f8b835','@craft/web/assets/axios/dist'),
 ('391c0e0e','@craft/web/assets/datepickeri18n/dist'),
+('3a6a5536','@craft/web/assets/datepickeri18n/dist'),
 ('3c4620f7','@craft/web/assets/jqueryui/dist'),
 ('3cba9102','@craft/web/assets/recententries/dist'),
 ('3d518c52','@craft/web/assets/cp/dist'),
 ('3d850a97','@craft/web/assets/feed/dist'),
+('3ef351af','@craft/web/assets/feed/dist'),
 ('3f9a4b70','@craft/web/assets/admintable/dist'),
 ('40363324','@craft/web/assets/selectize/dist'),
 ('4053a94b','@craft/web/assets/jqueryui/dist'),
@@ -2853,15 +2947,18 @@ INSERT INTO `resourcepaths` VALUES
 ('440944fd','@craft/web/assets/jquerytouchevents/dist'),
 ('445a9b9f','@craft/web/assets/jquerypayment/dist'),
 ('44c62c5c','@craft/web/assets/dashboard/dist'),
+('45af41f3','@craft/web/assets/axios/dist'),
 ('47238906','@craft/web/assets/tailwindreset/dist'),
 ('4746ca8d','@craft/web/assets/velocity/dist'),
 ('478ddd89','@craft/web/assets/jqueryui/dist'),
+('47b07764','@craft/web/assets/dashboard/dist'),
 ('48434564','@craft/web/assets/feed/dist'),
 ('488a5277','@craft/web/assets/elementresizedetector/dist'),
 ('4a511258','@craft/web/assets/datepickeri18n/dist'),
 ('4a621720','@bower/jquery/dist'),
 ('4ab4395d','@bower/jquery/dist'),
 ('4bcc1bde','@bower/jquery/dist'),
+('4c0f410c','@craft/web/assets/animationblocker/dist'),
 ('4c7e916c','@craft/web/assets/cp/dist'),
 ('4c9b693','@craft/web/assets/cp/dist'),
 ('4cda41fd','@craft/web/assets/datepickeri18n/dist'),
@@ -2889,6 +2986,7 @@ INSERT INTO `resourcepaths` VALUES
 ('5c409e24','@craft/web/assets/jquerypayment/dist'),
 ('5c54c1f7','@craft/web/assets/picturefill/dist'),
 ('5d2abe92','@craft/web/assets/iframeresizer/dist'),
+('5df6bc39','@craft/web/assets/animationblocker/dist'),
 ('5e287fe0','@craft/web/assets/fileupload/dist'),
 ('5e3b8e59','@craft/web/assets/utilities/dist'),
 ('5efe519d','@craft/web/assets/fileupload/dist'),
@@ -2900,33 +2998,49 @@ INSERT INTO `resourcepaths` VALUES
 ('605cc44b','@craft/web/assets/jquerytouchevents/dist'),
 ('6083cfe6','@spicyweb/embeddedassets/assets/main/dist'),
 ('61b92c01','@bower/jquery/dist'),
+('62cf7739','@bower/jquery/dist'),
+('63ab691c','@craft/web/assets/d3/dist'),
 ('645933e9','@craft/web/assets/elementresizedetector/dist'),
 ('6598199e','@craft/web/assets/velocity/dist'),
 ('66876ea','@craft/web/assets/fileupload/dist'),
 ('66a32f70','@craft/web/assets/garnish/dist'),
 ('67a3b498','@craft/web/assets/utilities/dist'),
+('67aaccb1','@craft/web/assets/fileupload/dist'),
+('6828e72f','@craft/web/assets/jqueryui/dist'),
+('68ca60ab','@craft/web/assets/iframeresizer/dist'),
 ('69c72e3e','@craft/web/assets/craftsupport/dist'),
 ('6a63f98','@craft/web/assets/fabric/dist'),
 ('6b3d62c7','@craft/web/assets/conditionbuilder/dist'),
 ('6b5ebc17','@craft/web/assets/jqueryui/dist'),
+('6b683519','@craft/web/assets/theme/dist'),
 ('6ba3f9fa','@craft/web/assets/xregexp/dist'),
 ('6e0492ee','@craft/web/assets/datepickeri18n/dist'),
 ('6f1d177d','@craft/web/assets/dashboard/dist'),
+('6f98d507','@craft/web/assets/updates/dist'),
 ('6fcb3900','@craft/web/assets/dashboard/dist'),
 ('702c2ab3','@craft/web/assets/garnish/dist'),
 ('704f9fca','@craft/web/assets/axios/dist'),
 ('71dd2b85','@craft/web/assets/craftsupport/dist'),
+('72c3573f','@craft/web/assets/tailwindreset/dist'),
+('73368a0c','@bower/jquery/dist'),
 ('73b9fc41','@craft/web/assets/xregexp/dist'),
 ('74cc3a73','@craft/web/assets/edituser/dist'),
 ('75256abc','@craft/web/assets/fileupload/dist'),
 ('7532afe4','@craft/web/assets/xregexp/dist'),
+('75d6ed1d','@craft/web/assets/selectize/dist'),
+('76533184','@craft/web/assets/fileupload/dist'),
 ('77567820','@craft/web/assets/craftsupport/dist'),
 ('778922a6','@craft/web/assets/fabric/dist'),
 ('78014141','@craft/web/assets/picturefill/dist'),
+('799e4f55','@craft/web/assets/cp/dist'),
+('79d11a1a','@craft/web/assets/jqueryui/dist'),
 ('7a14931e','@craft/web/assets/garnish/dist'),
 ('7b1dbb8f','@craft/web/assets/htmx/dist'),
+('7ddb12ed','@craft/web/assets/prismjs/dist'),
+('7e612832','@craft/web/assets/updates/dist'),
 ('7e8a12e4','@craft/web/assets/picturefill/dist'),
 ('7ead49d5','@craft/web/assets/prismjs/dist'),
+('80054dd5','@craft/web/assets/axios/dist'),
 ('805cf94c','@craft/web/assets/fabric/dist'),
 ('819c4f93','@craft/web/assets/vue/dist'),
 ('8297a0d6','@craft/web/assets/datepickeri18n/dist'),
@@ -2935,6 +3049,7 @@ INSERT INTO `resourcepaths` VALUES
 ('8372f7df','@craft/web/assets/fieldsettings/dist'),
 ('837316ed','@craft/web/assets/axios/dist'),
 ('837852a2','@craftpulse/passwordpolicy/assetbundles/PasswordPolicy/dist'),
+('83a062f','@craft/web/assets/picturefill/dist'),
 ('83a4d9a2','@craft/web/assets/fieldsettings/dist'),
 ('8463006a','@craft/web/assets/iframeresizer/dist'),
 ('851b22e9','@craft/web/assets/iframeresizer/dist'),
@@ -2966,6 +3081,7 @@ INSERT INTO `resourcepaths` VALUES
 ('903fab4f','@craft/web/assets/sites/dist'),
 ('90766f72','@craft/web/assets/utilities/dist'),
 ('90784a1d','@craft/web/assets/jquerytouchevents/dist'),
+('91fcb0e0','@craft/web/assets/axios/dist'),
 ('9245c5eb','@craft/web/assets/updater/dist'),
 ('9285a526','@bower/jquery/dist'),
 ('92a2503','@craft/web/assets/iframeresizer/dist'),
@@ -2979,9 +3095,11 @@ INSERT INTO `resourcepaths` VALUES
 ('96d1b769','@spicyweb/embeddedassets/resources'),
 ('96fd3cd7','@craft/web/assets/utilities/dist'),
 ('9807af5f','@craft/web/assets/selectize/dist'),
+('985cb01f','@craft/web/assets/animationblocker/dist'),
 ('98623530','@craft/web/assets/jqueryui/dist'),
 ('98cc61bf','@craft/web/assets/tailwindreset/dist'),
 ('98d18122','@craft/web/assets/selectize/dist'),
+('98f0d88c','@craft/web/assets/recententries/dist'),
 ('997f8ddc','@craft/web/assets/selectize/dist'),
 ('9a132cd2','@craft/web/assets/jquerypayment/dist'),
 ('9a40f3b0','@craft/web/assets/jquerytouchevents/dist'),
@@ -2996,6 +3114,7 @@ INSERT INTO `resourcepaths` VALUES
 ('9f842e65','@craft/web/assets/velocity/dist'),
 ('9fc43b00','@craft/web/assets/tailwindreset/dist'),
 ('9fd9db9d','@craft/web/assets/selectize/dist'),
+('a1851c0e','@craft/web/assets/selectize/dist'),
 ('a2326571','@craft/web/assets/plugins/dist'),
 ('a24d4dd6','@craft/ckeditor/web/assets/ckeditor/dist'),
 ('a2822a5f','@craft/web/assets/fabric/dist'),
@@ -3005,8 +3124,12 @@ INSERT INTO `resourcepaths` VALUES
 ('a54c6b7','@craft/web/assets/plugins/dist'),
 ('a5773e02','@craft/web/assets/d3/dist'),
 ('a5ac2565','@craft/web/assets/craftsupport/dist'),
+('a601653a','@craft/web/assets/d3/dist'),
 ('a648f60c','@craft/web/assets/picturefill/dist'),
+('a64a9ae2','@craft/web/assets/updateswidget/dist'),
+('a690a62c','@craft/web/assets/tailwindreset/dist'),
 ('a733cbb','@craft/web/assets/vue/dist'),
+('a7657b1f','@bower/jquery/dist'),
 ('a7c8f2a1','@craft/web/assets/xregexp/dist'),
 ('a87e03b1','@craft/web/assets/axios/dist'),
 ('a8a82dcc','@craft/web/assets/axios/dist'),
@@ -3014,12 +3137,17 @@ INSERT INTO `resourcepaths` VALUES
 ('a9062132','@craft/web/assets/axios/dist'),
 ('aa5511c8','@nystudio107/codeeditor/web/assets/dist'),
 ('ac704fa1','@craft/web/assets/picturefill/dist'),
+('ad606c8d','@craft/web/assets/iframeresizer/dist'),
+('ad82eb09','@craft/web/assets/jqueryui/dist'),
+('adcdbe46','@craft/web/assets/cp/dist'),
 ('adf04b0c','@craft/web/assets/xregexp/dist'),
 ('ae1637b5','@craft/web/assets/iframeresizer/dist'),
 ('ae659dfe','@craft/web/assets/garnish/dist'),
+('aec2393f','@craft/web/assets/theme/dist'),
 ('aee35ec','@bower/jquery/dist'),
 ('afa07773','@craft/web/assets/axios/dist'),
 ('b05db895','@craft/web/assets/recententries/dist'),
+('b07ce13b','@craft/web/assets/selectize/dist'),
 ('b08b96e8','@craft/web/assets/recententries/dist'),
 ('b0931167','@craft/web/assets/velocity/dist'),
 ('b0c7f3cf','@craft/web/assets/picturefill/dist'),
@@ -3028,6 +3156,7 @@ INSERT INTO `resourcepaths` VALUES
 ('b30aba03','@craft/web/assets/selectize/dist'),
 ('b30cfebc','@craft/web/assets/conditionbuilder/dist'),
 ('b37c2e82','@spicyweb/embeddedassets/resources'),
+('b3f93da2','@craft/web/assets/fileupload/dist'),
 ('b41f0021','@craft/web/assets/tailwindreset/dist'),
 ('b44c4415','@spicyweb/embeddedassets/resources'),
 ('b4c5d17','@craft/web/assets/picturefill/dist'),
@@ -3036,11 +3165,17 @@ INSERT INTO `resourcepaths` VALUES
 ('b6392836','@craft/web/assets/pluginstore/dist'),
 ('b67f9845','@craft/web/assets/garnish/dist'),
 ('b6edbc3','@spicyweb/embeddedassets/assets/main/dist'),
+('b7695b19','@craft/web/assets/tailwindreset/dist'),
+('b7f8980f','@craft/web/assets/d3/dist'),
 ('b91b990b','@craft/web/assets/craftsupport/dist'),
 ('b948d0b7','@craft/web/assets/updater/dist'),
 ('bb0f9a17','@craft/web/assets/datepickeri18n/dist'),
 ('bb7f4ecf','@craft/web/assets/xregexp/dist'),
+('bbcb2414','@craft/web/assets/updates/dist'),
+('bc344373','@craft/web/assets/cp/dist'),
 ('bc598eb0','@craft/ckeditor/web/assets/ckeconfig/dist'),
+('bc9991b8','@craft/web/assets/iframeresizer/dist'),
+('bf3bc40a','@craft/web/assets/theme/dist'),
 ('bf42184b','@craft/web/assets/cp/dist'),
 ('c047a655','@craft/web/assets/selectize/dist'),
 ('c1bc0c59','@craft/web/assets/velocity/dist'),
@@ -3050,6 +3185,7 @@ INSERT INTO `resourcepaths` VALUES
 ('c478d18c','@craft/web/assets/jquerytouchevents/dist'),
 ('c526e70d','@craft/web/assets/prismjs/dist'),
 ('c5412e58','@craft/web/assets/iframeresizer/dist'),
+('c628b709','@craft/web/assets/xregexp/dist'),
 ('c65a170c','@craft/web/assets/jqueryui/dist'),
 ('c6853eb7','@bower/jquery/dist'),
 ('c69cddd2','@craft/web/assets/updates/dist'),
@@ -3063,11 +3199,13 @@ INSERT INTO `resourcepaths` VALUES
 ('cc62aea1','@craft/web/assets/jqueryui/dist'),
 ('cca6c257','@craft/web/assets/admintable/dist'),
 ('ccbd871a','@bower/jquery/dist'),
+('cd900a09','@craft/web/assets/picturefill/dist'),
 ('ce2027ef','@craft/web/assets/d3/dist'),
 ('ce6b1ba0','@craft/web/assets/utilities/dist'),
 ('ce6bd837','@craft/web/assets/updateswidget/dist'),
 ('ceaec464','@craft/web/assets/fileupload/dist'),
 ('cebd35dd','@craft/web/assets/utilities/dist'),
+('cfa727a5','@craft/web/assets/garnish/dist'),
 ('cfc5175e','@craft/web/assets/utilities/dist'),
 ('d065a7fe','@craft/web/assets/sites/dist'),
 ('d0b171f1','@craft/web/assets/d3/dist'),
@@ -3091,10 +3229,12 @@ INSERT INTO `resourcepaths` VALUES
 ('da3282d9','@bower/jquery/dist'),
 ('dad4879','@craft/web/assets/vue/dist'),
 ('dbd07846','@craft/web/assets/iframeresizer/dist'),
+('dbdb540','@craft/web/assets/authmethodsetup/dist'),
 ('dd2881a8','@craft/web/assets/garnish/dist'),
 ('dd5b2be3','@craft/web/assets/iframeresizer/dist'),
 ('dd6e31db','@craft/web/assets/pluginstore/dist'),
 ('de418d9e','@craft/web/assets/fabric/dist'),
+('de5eda90','@craft/web/assets/garnish/dist'),
 ('de97a3e3','@craft/web/assets/fabric/dist'),
 ('df4819cc','@craft/web/assets/tailwindreset/dist'),
 ('df5b826','@craft/web/assets/editsection/dist'),
@@ -3108,6 +3248,8 @@ INSERT INTO `resourcepaths` VALUES
 ('e41226e3','@craft/web/assets/selectize/dist'),
 ('e5a6f5c','@craft/web/assets/updates/dist'),
 ('e64aa7f0','@craft/web/assets/elementresizedetector/dist'),
+('e6c67bb9','@craft/web/assets/utilities/dist'),
+('e71510b2','@craft/web/assets/fabric/dist'),
 ('e77df976','@craft/web/assets/admintable/dist'),
 ('e8240f00','@craft/web/assets/axios/dist'),
 ('e85a84ab','@craft/web/assets/cp/dist'),
@@ -3119,22 +3261,28 @@ INSERT INTO `resourcepaths` VALUES
 ('f03e0abb','@craft/web/assets/axios/dist'),
 ('f0d19a59','@craft/web/assets/recententries/dist'),
 ('f0e2a04','@craft/web/assets/elementresizedetector/dist'),
+('f1980fb5','@craft/web/assets/jquerytouchevents/dist'),
+('f1cbd0d7','@craft/web/assets/jquerypayment/dist'),
 ('f1fbe036','@craft/web/assets/garnish/dist'),
 ('f26fa2e2','@craft/web/assets/d3/dist'),
 ('f3c86930','@craft/web/assets/xregexp/dist'),
+('f45cd260','@craft/web/assets/velocity/dist'),
 ('f4e017','@craft/web/assets/xregexp/dist'),
 ('f59ab6bf','@craft/web/assets/fabric/dist'),
 ('f62594f4','@craft/web/assets/garnish/dist'),
 ('f6b5591e','@craft/web/assets/axios/dist'),
+('f6eced87','@craft/web/assets/fabric/dist'),
 ('f6f3ba89','@craft/web/assets/garnish/dist'),
 ('f736fea5','@craft/web/assets/fileupload/dist'),
+('f73f868c','@craft/web/assets/utilities/dist'),
 ('f75db677','@craft/web/assets/garnish/dist'),
 ('f870d430','@craft/web/assets/picturefill/dist'),
 ('f90eab55','@craft/web/assets/iframeresizer/dist'),
 ('f912dc06','@craft/web/assets/updater/dist'),
 ('f94aef9','@craft/web/assets/tailwindreset/dist'),
 ('ff04e713','@craft/web/assets/updates/dist'),
-('ff4d8284','@craft/web/assets/dashboard/dist');
+('ff4d8284','@craft/web/assets/dashboard/dist'),
+('ffc05910','@craft/web/assets/datepickeri18n/dist');
 /*!40000 ALTER TABLE `resourcepaths` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3144,7 +3292,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `revisions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `revisions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `canonicalId` int(11) NOT NULL,
@@ -3218,7 +3366,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `searchindex`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `searchindex` (
   `elementId` int(11) NOT NULL,
   `attribute` varchar(25) NOT NULL,
@@ -3304,12 +3452,64 @@ INSERT INTO `searchindex` VALUES
 UNLOCK TABLES;
 
 --
+-- Table structure for table `searchindexqueue`
+--
+
+DROP TABLE IF EXISTS `searchindexqueue`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `searchindexqueue` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `elementId` int(11) NOT NULL,
+  `siteId` int(11) NOT NULL,
+  `reserved` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `idx_eutllkzdkpucsthmoejaphnhgjeadjqmtfkv` (`elementId`,`siteId`,`reserved`),
+  CONSTRAINT `fk_zjjidpefpdfmlhpcjcdaozkfnqjvsegucncj` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `searchindexqueue`
+--
+
+LOCK TABLES `searchindexqueue` WRITE;
+/*!40000 ALTER TABLE `searchindexqueue` DISABLE KEYS */;
+/*!40000 ALTER TABLE `searchindexqueue` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `searchindexqueue_fields`
+--
+
+DROP TABLE IF EXISTS `searchindexqueue_fields`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `searchindexqueue_fields` (
+  `jobId` int(11) NOT NULL,
+  `fieldHandle` varchar(255) NOT NULL,
+  PRIMARY KEY (`jobId`,`fieldHandle`),
+  UNIQUE KEY `idx_hhlcezqminmjclkdzijzwnetvjjrrpbfzlfv` (`jobId`,`fieldHandle`),
+  CONSTRAINT `fk_fvtrkrtgbrrealoewsprbtjjldgbxbmbeoai` FOREIGN KEY (`jobId`) REFERENCES `searchindexqueue` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `searchindexqueue_fields`
+--
+
+LOCK TABLES `searchindexqueue_fields` WRITE;
+/*!40000 ALTER TABLE `searchindexqueue_fields` DISABLE KEYS */;
+/*!40000 ALTER TABLE `searchindexqueue_fields` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sections`
 --
 
 DROP TABLE IF EXISTS `sections`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sections` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `structureId` int(11) DEFAULT NULL,
@@ -3317,7 +3517,7 @@ CREATE TABLE `sections` (
   `handle` varchar(255) NOT NULL,
   `type` enum('single','channel','structure') NOT NULL DEFAULT 'channel',
   `enableVersioning` tinyint(1) NOT NULL DEFAULT 0,
-  `maxAuthors` smallint(6) unsigned NOT NULL DEFAULT 1,
+  `maxAuthors` smallint(6) unsigned DEFAULT NULL,
   `propagationMethod` varchar(255) NOT NULL DEFAULT 'all',
   `defaultPlacement` enum('beginning','end') NOT NULL DEFAULT 'end',
   `previewTargets` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`previewTargets`)),
@@ -3351,11 +3551,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sections_entrytypes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sections_entrytypes` (
   `sectionId` int(11) NOT NULL,
   `typeId` int(11) NOT NULL,
   `sortOrder` smallint(6) unsigned NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `handle` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   PRIMARY KEY (`sectionId`,`typeId`),
   KEY `fk_ffijdvqmnvnxyrwrxcktskvkvntkkxytandx` (`typeId`),
   CONSTRAINT `fk_ffijdvqmnvnxyrwrxcktskvkvntkkxytandx` FOREIGN KEY (`typeId`) REFERENCES `entrytypes` (`id`) ON DELETE CASCADE,
@@ -3370,7 +3573,7 @@ CREATE TABLE `sections_entrytypes` (
 LOCK TABLES `sections_entrytypes` WRITE;
 /*!40000 ALTER TABLE `sections_entrytypes` DISABLE KEYS */;
 INSERT INTO `sections_entrytypes` VALUES
-(1,1,1);
+(1,1,1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sections_entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3380,7 +3583,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sections_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sections_sites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sectionId` int(11) NOT NULL,
@@ -3417,7 +3620,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sequences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sequences` (
   `name` varchar(255) NOT NULL,
   `next` int(11) unsigned NOT NULL DEFAULT 1,
@@ -3440,7 +3643,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sessions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -3454,7 +3657,7 @@ CREATE TABLE `sessions` (
   KEY `idx_cslgbqqcglkcjkvoqwyagkwzmuyibtyozqsu` (`dateUpdated`),
   KEY `idx_elfaknonyntxharvevkxelqijvgawxsfbezy` (`userId`),
   CONSTRAINT `fk_oevoxpcummfcdwyqehbkqpmiynnxmilnpcjt` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3464,17 +3667,7 @@ CREATE TABLE `sessions` (
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` VALUES
-(1,1,'NSf1Pro1GkxshNDC_BuVT4gmAx6UTGEvSfW3_5vBNaDe0oDESUMmcvkIvMMw4szKPkWU5tZ-3xEI2EPU0mgzGHXBRbMkpXBcsl8N','2022-09-28 12:12:59','2022-09-28 12:27:25','926eac7c-fc35-4f0e-bf14-e25348be794b'),
-(2,1,'19MBL7O79-1xspw7XqnXAjTVYHNwMnSaitOC1IuPBKT6V2s4wuKd5tLQuINi8z2PGrOvr3Em8HV9anfkwXt3waeDLe9rglkWLy9o','2022-09-28 12:56:15','2022-09-28 13:34:04','ae1b911f-78bc-42fd-9208-207797f05743'),
-(3,1,'Y9OFts-mfN1BArreeSMNARZS8OxQIQKhpv7YQ1FQy0MchK54RRhjUguy6j2CVRNSK9gJH677oBG2xgQihLjjcRqtQKb7Vce7lDny','2022-09-29 09:53:10','2022-09-29 10:31:06','60048f38-2e74-4359-9b98-96332fa7eacf'),
-(13,1,'VcIWAI0VoO_nU1Bp_aH6uOAZsUAmT4DzuMB4X1_zHMIie58cNKaRt_CLlg7D-jMrtM25dF9JhQPbSHpWFJAHfdzjSrIeRmJZ_w2T','2024-07-17 16:48:46','2024-07-17 16:53:20','6eac660e-70ae-4de3-9832-f73349efa42e'),
-(14,1,'ckFEnPFH_C04J7AQhvADaiT06hFEli7OGEBhe_wal_YUH3sLshKuieNAsnEkofOEF5ETAIl10KEFRcov050kaUdsolDm_aokqInx','2024-07-17 16:53:20','2024-07-17 16:54:29','f5f36d5a-fd2b-4fbe-8d6c-d45acf88c8c6'),
-(15,1,'zOE1VNU71fNXAmnI3j5ftcZwqh2wQpmVrcq_itm4Wnos0cyd0R138JLqq7VuNP0tc7eQbgk56Q3NupQmrJ7uipL_fBO9hxxUhdjW','2024-07-17 16:56:44','2024-07-17 17:06:39','71882460-0747-42c2-8a29-4c89a19caf37'),
-(16,1,'UBm-r4Gp42JuI9Zp0M6Mriww18feHdeGtHg-Vieuf2oKp7L9AWoYQDBETUrKzxpEuX0BM0EcVUGBOGBd4kDXOeA3UEWNW-Ftg28L','2024-07-18 10:35:36','2024-07-18 10:43:28','2b43427b-202d-46f7-acd1-5f4e795d0eda'),
-(19,1,'bCmzgGdMwx38MY7lFat9pC4vKwg-IedET1qu0x-qA9QdcCioALkD_yWk2nKnIQVV2jphqlqXVckOSTZCq9Ka2clQ8H5il186PbP-','2024-10-06 07:56:00','2024-10-06 09:07:29','63cfb4b4-16f9-4cbf-82a9-976f2670150d'),
-(20,1,'huZlzf7QZ2GNZh7QKWT0vgHQfp5d-KCQ1oRF1k2ci19uew_43F0tIzzcbtFR_EVbuKn_tlZDU7L6e7r2GSIyi_VWHOcH834ScArr','2024-10-06 09:07:29','2024-10-06 09:11:01','c30972e5-7098-42cf-869e-fce090414b93'),
-(23,1,'Cn_LHLddehUvOZhzRJk3O0leksp_a-qEguig1mtKcvv3G-pppffJCXHzHVZW2NHpryZmulE_yfyafPKNSciKKKWtcdH3Hmg8yV00','2024-12-10 22:37:30','2024-12-10 22:39:43','a3d398fe-bc7b-4057-9d27-45179ea05c9c'),
-(24,1,'UmjBDS8JB1x0Eg8HkIHskfVna-abKCHm4zr3Nrx5CDYKp0Rut9V5Yj7EaNa_3OS_A8UEsA3SOERhdPaB5iRgKI3IugaGaCvU_h8V','2024-12-15 16:08:38','2024-12-15 16:08:46','bd75d024-19e3-4fb0-bfa8-0706212b3e99');
+(26,1,'UAoiPjM2DyrN26l3-Z6-mqJaBXgR9U_izIGdSiPBv6iZ5BcSqGvI2ZoTbVPlH2Hib9LmxfVDw6P-MymxqGMIxeLLe5kSIaCf8Kq_','2025-07-18 18:47:02','2025-07-18 18:49:32','ee10de44-601d-490c-a8a7-6d15c79993d2');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3484,7 +3677,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `shunnedmessages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shunnedmessages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -3514,7 +3707,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sitegroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sitegroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -3544,7 +3737,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groupId` int(11) NOT NULL,
@@ -3586,7 +3779,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sso_identities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sso_identities` (
   `provider` varchar(255) NOT NULL,
   `identityId` varchar(255) NOT NULL,
@@ -3614,7 +3807,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `structureelements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `structureelements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `structureId` int(11) NOT NULL,
@@ -3652,7 +3845,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `structures`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `structures` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `maxLevels` smallint(6) unsigned DEFAULT NULL,
@@ -3680,7 +3873,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `systemmessages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `systemmessages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `language` varchar(255) NOT NULL,
@@ -3711,7 +3904,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `taggroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `taggroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -3745,7 +3938,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tags` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
@@ -3774,7 +3967,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token` char(32) NOT NULL,
@@ -3806,7 +3999,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usergroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usergroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -3836,7 +4029,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usergroups_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usergroups_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groupId` int(11) NOT NULL,
@@ -3867,7 +4060,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `userpermissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `userpermissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -3894,7 +4087,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `userpermissions_usergroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `userpermissions_usergroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `permissionId` int(11) NOT NULL,
@@ -3925,7 +4118,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `userpermissions_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `userpermissions_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `permissionId` int(11) NOT NULL,
@@ -3956,7 +4149,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `userpreferences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `userpreferences` (
   `userId` int(11) NOT NULL AUTO_INCREMENT,
   `preferences` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`preferences`)),
@@ -3982,10 +4175,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `photoId` int(11) DEFAULT NULL,
+  `affiliatedSiteId` int(11) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 0,
   `pending` tinyint(1) NOT NULL DEFAULT 0,
   `locked` tinyint(1) NOT NULL DEFAULT 0,
@@ -4020,6 +4214,8 @@ CREATE TABLE `users` (
   KEY `idx_phqmhcxycaneheqfhwtibvivtebsraklhzgc` (`email`),
   KEY `idx_ujypcurnvjujjkviwcdvvtirbxruevnobpqa` (`username`),
   KEY `fk_lwvifrrtpczqftvywgfnocbgyvpambvkjwvw` (`photoId`),
+  KEY `fk_lelkoofzjkdpirixwrevurpzxaeudplstptu` (`affiliatedSiteId`),
+  CONSTRAINT `fk_lelkoofzjkdpirixwrevurpzxaeudplstptu` FOREIGN KEY (`affiliatedSiteId`) REFERENCES `sites` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_lwvifrrtpczqftvywgfnocbgyvpambvkjwvw` FOREIGN KEY (`photoId`) REFERENCES `assets` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_uivnxbgvxwmsjbkvfzifdzgpkbyohlkgzgwu` FOREIGN KEY (`id`) REFERENCES `elements` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -4032,7 +4228,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,NULL,1,0,0,0,1,'pro-dev-admin','',NULL,NULL,'dev@profitlich.ch','$2y$13$oBBJ1H9/Py3nN6/0EVDZd.FEgoTk4mQLApI5iqR2ISdlY1Af5j7f2','2024-12-15 16:08:38',NULL,NULL,NULL,'2022-09-28 12:08:05',NULL,1,NULL,NULL,NULL,0,'2022-09-28 08:08:18','2022-09-28 08:08:18','2024-12-15 16:08:38');
+(1,NULL,NULL,1,0,0,0,1,'pro-dev-admin',NULL,NULL,NULL,'dev@profitlich.ch','$2y$13$Ly9i8Z0Ck3/PSL9RAYiMyOLXhYpWAPArHkAQpzKgjTtptLO1/OsOm','2025-07-18 18:47:02',NULL,NULL,NULL,'2022-09-28 12:08:05',NULL,1,NULL,NULL,NULL,0,'2025-07-18 18:46:55','2022-09-28 08:08:18','2025-07-18 18:47:02');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4042,7 +4238,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `volumefolders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `volumefolders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) DEFAULT NULL,
@@ -4081,7 +4277,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `volumes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `volumes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldLayoutId` int(11) DEFAULT NULL,
@@ -4127,7 +4323,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `webauthn`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `webauthn` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -4159,7 +4355,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `widgets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `widgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -4200,4 +4396,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-15 17:09:02
+-- Dump completed on 2025-07-18 21:49:49
