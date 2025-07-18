@@ -44,7 +44,7 @@
         "desktop": 9
     },
 
-    "column-gap": {
+    "gutter": {
         "smartphone": 1,
         "desktop": 16
     }

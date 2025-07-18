@@ -96,7 +96,7 @@ $mediaqueries: (
 // $shift is for adding a value to the result, for example a margin
 // $inverse is for calculating the width as a negative number, for example for a negative shift in a stage system
 @function columns($layout, $columns, $columnsBasis, $columnGapsAddedBasis:0, $columnGapsAdditional:0, $margin:0, $shift:0, $invers:false) {
-    $columnGap: size($layout, map.get(config.$column-gaps, $layout) );
+    $columnGap: size($layout, map.get(config.$gutter, $layout) );
     $margin: size($layout, $margin);
     $shift: size($layout, $shift);
     @if ( $invers == false ) {

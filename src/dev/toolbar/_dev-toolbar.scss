@@ -9,9 +9,9 @@ $color--dev-grid-ribbons: rgba(191, 255, 254, 0.5);
 $color--dev-grid-center: rgba(0, 0, 0, 0.2);
 
 
-@mixin dev-toolbar-grid($layout, $columns, $column-gap, $margin-left, $margin-right) {
+@mixin dev-toolbar-grid($layout, $columns, $gutter, $margin-left, $margin-right) {
 
-    $column-gap: size($layout, $column-gap);
+    $gutter: size($layout, $gutter);
     $margin-left: size($layout, $margin-left);
     $margin-right: size($layout, $margin-right);
     
@@ -19,11 +19,11 @@ $color--dev-grid-center: rgba(0, 0, 0, 0.2);
         .dev-toolbar__grid::after {
             // the grid is made through repition
             // 'important' because background settings are more specific than the grid settings
-            background-size: calc((100% - ($columns * $column-gap)) * calc(1 / $columns) + $column-gap) 1px !important;
-            margin: 0 ($margin-right - calc($column-gap / 2)) 0 ($margin-left - calc($column-gap / 2));
+            background-size: calc((100% - ($columns * $gutter)) * calc(1 / $columns) + $gutter) 1px !important;
+            margin: 0 ($margin-right - calc($gutter / 2)) 0 ($margin-left - calc($gutter / 2));
             // The grid is calculated starting from the middle 
             // Thats why its necessary to add the half of the column gap to the left and right side
-            width: calc(100% - $margin-right + calc($column-gap / 2) - $margin-left + calc($column-gap / 2));
+            width: calc(100% - $margin-right + calc($gutter / 2) - $margin-left + calc($gutter / 2));
         }
     }
     
@@ -34,9 +34,9 @@ $color--dev-grid-center: rgba(0, 0, 0, 0.2);
                 linear-gradient(90deg, transparent 0.5px, transparent 0.5px) 0 0,
                 // Left column line
                 // position: from the column spacing center to the right by half a column spacing
-                linear-gradient(90deg, $color--dev-grid 0.5px, transparent 0.5px) calc($column-gap / 2) 0,
+                linear-gradient(90deg, $color--dev-grid 0.5px, transparent 0.5px) calc($gutter / 2) 0,
                 // right column line
-                linear-gradient(90deg, $color--dev-grid 0.5px, transparent 0.5px) calc($column-gap / 2 * -1) 0;
+                linear-gradient(90deg, $color--dev-grid 0.5px, transparent 0.5px) calc($gutter / 2 * -1) 0;
         }
     }
     
@@ -45,7 +45,7 @@ $color--dev-grid-center: rgba(0, 0, 0, 0.2);
             background:
                 // ceft column ribbon
                 // position: from the column spacing center to the right by half a column spacing
-                linear-gradient(90deg, $color--dev-grid-ribbons calc(100% - $column-gap), transparent 0.5px) calc($column-gap / 2) 0,
+                linear-gradient(90deg, $color--dev-grid-ribbons calc(100% - $gutter), transparent 0.5px) calc($gutter / 2) 0,
         }
     }
 }
@@ -94,6 +94,6 @@ $color--dev-grid-center: rgba(0, 0, 0, 0.2);
 
 @each $layout, $breite in $layouts {
     @include mediaquery($layout) {
-        @include dev-toolbar-grid($layout, map.get($columns, $layout), map.get($column-gap, $layout), map-deep-get.map-deep-get($margins, $layout, 'left'), map-deep-get.map-deep-get($margins, $layout, 'right'));
+        @include dev-toolbar-grid($layout, map.get($columns, $layout), map.get($gutter, $layout), map-deep-get.map-deep-get($margins, $layout, 'left'), map-deep-get.map-deep-get($margins, $layout, 'right'));
     }
 }
