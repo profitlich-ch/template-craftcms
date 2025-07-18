@@ -1,6 +1,7 @@
 @use "decimal";
 @use "sass:map";
 @use "sass:meta";
+@use "sass:math";
 
 @use "../config";
 
@@ -141,17 +142,56 @@ $mediaqueries: (
 // Size
 // converts a number to a size in px or vw
 // depending on the unit set for the layout
-@function size($layout, $number) {
-    $number: $number;
-    $width: false;
-    $width: map.get(config.$layouts, $layout);
+// accepts single value or a list of values
+@function size($layout, $numbers) {
+    // Check whether second argument is a number or a list
+    @if (meta.type-of($numbers) == 'list') {
+        $result-list: (); // Empty list to store results
 
-    @if ( map.get(config.$units, $layout) == 'px' ) {
-        @return $number * 1px;
+        // Iterate over each element in the list
+        @each $number in $numbers {
+            // Test if the current element is a number
+            @if (meta.type-of($number) == 'number') {
+                // add calculated value to the result list
+                $result-list: list.append($result-list, _calculate-single-size($number, $layout));
+            } @else {
+                // Error if the current element is not a number
+                @error "Listenelement '#{$number}' übergeben an size() ist keine Zahl. Alle Elemente müssen Zahlen sein.";
+            }
+        }
+        @return $result-list; // Return the list of calculated sizes
+    } @else if (meta.type-of($numbers) == 'number') {
+        // If second argument is a single number, calculate and return the size
+        @return _calculate-single-size($numbers, $layout);
     } @else {
-        @return decimal.decimal-round( calc($number / $width) * 100, 2) * 1vw;
+        // Error if the second argument is neither a number nor a list
+        @error "Das zweite Argument der Funktion size() muss eine Zahl oder eine Liste von Zahlen sein. Empfangen: #{type-of($numbers)} '#{$numbers}'.";
+    }
+}
+
+// Helper function to calculate a single size value (px or vw)
+// This function is used by the main size() function
+@function _calculate-single-size($number, $layout) {
+    // Get the width and unit type from the config
+    $width: map.get(config.$layouts, $layout);
+    $unit-type: map.get(config.$units, $layout);
+
+    // Error handling for missing width or unit type
+    @if ($width == null) {
+        @error "Layout '#{$layout}' ist nicht in 'config.$layouts' definiert.";
+    }
+    @if ($unit-type == null) {
+        @error "Der Einheitentyp für Layout '#{$layout}' ist nicht in 'config.$units' definiert.";
     }
 
+
+    @if ($unit-type == 'px') {
+        @return $number * 1px;
+    } @else if ($unit-type == 'vw') {
+        @return decimal.decimal-round(math.div($number, $width) * 100, 2) * 1vw;
+    } @else {
+        @error "Nicht unterstützter Einheitstyp '#{$unit-type}' für Layout '#{$layout}'. Nur 'px' oder 'vw' werden unterstützt.";
+    }
 }
 
 
