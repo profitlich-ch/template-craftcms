@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0fe4e264577c439c1d5f3860770175f",
+    "content-hash": "612b1a6382389a1505e40d2680ffbbcd",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2595,56 +2595,6 @@
                 "parser"
             ],
             "time": "2023-11-29T20:28:41+00:00"
-        },
-        {
-            "name": "ostark/craft-async-queue",
-            "version": "4.0.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ostark/craft-async-queue/zipball/df8669950320802fec313125e85a11c7ae7cd64d",
-                "reference": "df8669950320802fec313125e85a11c7ae7cd64d",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^5.0",
-                "php": "^8.0",
-                "symfony/process": "^5.0|^6.0"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "name": "AsyncQueue",
-                "handle": "async-queue",
-                "hasCpSettings": false,
-                "hasCpSection": false,
-                "changelogUrl": "https://raw.githubusercontent.com/ostark/craft-async-queue/master/CHANGELOG.md"
-            },
-            "autoload": {
-                "psr-4": {
-                    "ostark\\AsyncQueue\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Oliver Stark",
-                    "homepage": "https://www.fortrabbit.com"
-                }
-            ],
-            "description": "A queue handler that moves queue execution to a non-blocking background process",
-            "keywords": [
-                "cms",
-                "craft",
-                "craft-plugin",
-                "craftcms",
-                "queue"
-            ],
-            "support": {
-                "docs": "https://github.com/ostark/craft-async-queue/blob/master/README.md",
-                "issues": "https://github.com/ostark/craft-async-queue/issues"
-            },
-            "time": "2024-04-19T07:36:53+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",

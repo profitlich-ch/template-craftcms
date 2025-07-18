@@ -51,9 +51,17 @@ return GeneralConfig::create()
         '@assetBasePath' => craft\helpers\App::env('ASSETS_BASE_PATH'),
     ])
 
-    // Craft will always return a successful response in the "forgot password" flow, making it difficult to enumerate users
-    ->preventUserEnumeration(true)
+    // Deactivate automatic queue running. Instead the queue is called by a cronjob every 1 minute set up in the hosting.
+    -> runQueueAutomatically($isDev)
+
+    // Blitz does the caching, that’s why Craft’s own caching through {% cache %} is disabled
+    // ->enableTemplateCaching(false)
+
+    // Generate images before page load so hat they are ready when a page is called
+    -> generateTransformsBeforePageLoad(true)
 
     // For security do no send CMS information in the HTTP header
     ->sendPoweredByHeader(false)
+    // Craft will always return a successful response in the "forgot password" flow, making it difficult to enumerate users
+    ->preventUserEnumeration(true)
 ;

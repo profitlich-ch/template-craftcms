@@ -5,7 +5,6 @@
     "craftcms/cms": "^5.0.0",
     "miranj/craft-obfuscator": "^1.2",
     "nystudio107/craft-vite": "^5.0",
-    "ostark/craft-async-queue": "^4.0.0",
     "ramsey/uuid": "^4.8",
     "spicyweb/craft-embedded-assets": "^5.1.0",
     "vlucas/phpdotenv": "^5.4.0"
