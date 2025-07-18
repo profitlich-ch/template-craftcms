@@ -1,0 +1,27 @@
+@use "..//forward" as *;
+@use "sass:map";
+
+:root {
+    --vw: 1vw;
+}
+
+@include mediaquery(smartphone) {
+    $layout: smartphone;
+
+    :root {
+    }
+}
+
+@include mediaquery(tablet) {
+    $layout: tablet;
+
+    :root {
+    }
+}
+
+@include mediaquery(desktop) {   
+    $layout: desktop;
+
+    :root {
+   }
+}

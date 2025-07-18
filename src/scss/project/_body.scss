@@ -1,0 +1,29 @@
+@use "./forward" as *;
+@use "../functions/map-deep-get";
+@use "sass:map";
+
+body {
+    font-family: "fontname";
+    font-weight: 400;
+}
+
+@include mediaquery(smartphone) {
+    $layout: smartphone;
+
+    body {
+    }
+}
+
+@include mediaquery(tablet) {
+    $layout: tablet;
+
+    body {        
+    }
+}
+
+@include mediaquery(desktop) {   
+    $layout: desktop;
+
+    body {
+    }
+}

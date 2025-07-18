@@ -13,5 +13,15 @@
 // macros
 @use "../macros-functions/macros-functions";
 
-// other
-@use "main";
+// fonts
+@use "project/fonts";
+
+// variables and mixins
+@use "project/variables";
+@use "project/mixins";
+
+// main
+@use "project/main";
+
+// body
+@use "project/body";

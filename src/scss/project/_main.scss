@@ -5,21 +5,23 @@
     position: relative;
 }
 
-
 @include mediaquery(smartphone) {
-
     $layout: smartphone;
 
     .main {
-        @include marginPadding($layout, padding, all, 90, 0, 0, 0);
     }
 }
 
-@include mediaquery(desktop) {
-    
+@include mediaquery(tablet) {
+    $layout: tablet;
+
+    .main {
+    }
+}
+
+@include mediaquery(desktop) {   
     $layout: desktop;
 
     .main {
-        @include marginPadding($layout, padding, all, 0, 0, 0, 0);
     }
 }
