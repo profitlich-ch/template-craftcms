@@ -1,12 +1,11 @@
 {
   "require": {
-    "born05/craft-csp": "^3.0.0",
+    "cloudgrayau/csp": "1.3.0",
     "craftcms/ckeditor": "^4.1.0",
     "craftcms/cms": "^5.0.0",
     "miranj/craft-obfuscator": "^1.2",
     "nystudio107/craft-vite": "^5.0",
     "ramsey/uuid": "^4.8",
-    "spicyweb/craft-embedded-assets": "^5.1.0",
     "vlucas/phpdotenv": "^5.4.0"
   },
   "require-dev": {
