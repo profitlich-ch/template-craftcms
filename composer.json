@@ -6,6 +6,7 @@
     "miranj/craft-obfuscator": "^1.2",
     "nystudio107/craft-vite": "^5.0",
     "ramsey/uuid": "^4.8",
+    "spacecatninja/imager-x": "5.1.5",
     "vlucas/phpdotenv": "^5.4.0"
   },
   "require-dev": {
