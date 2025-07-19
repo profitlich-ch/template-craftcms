@@ -1,4 +1,4 @@
-dateModified: 1752914034
+dateModified: 1752914981
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -35,6 +35,172 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.1
+    settings:
+      baseUri:
+        -
+          - "'self'"
+      connectSrc:
+        -
+          - "'self'"
+      cspEnabled: true
+      cspMode: header
+      cspOptions:
+        - defaultSrc
+        - scriptSrc
+        - styleSrc
+        - styleSrcAttr
+        - styleSrcElem
+        - imgSrc
+        - connectSrc
+        - fontSrc
+        - frameSrc
+        - formAction
+        - baseUri
+      defaultSrc:
+        -
+          - "'none'"
+      fontSrc:
+        -
+          - "'self'"
+      formAction:
+        -
+          - "'self'"
+      headerProtection:
+        -
+          - Referrer-Policy
+          - strict-origin-when-cross-origin
+        -
+          - Strict-Transport-Security
+          - max-age=31536000;includeSubDomains;preload
+        -
+          - X-Content-Type-Options
+          - nosniff
+        -
+          - X-Frame-Options
+          - SAMEORIGIN
+        -
+          - X-Xss-Protection
+          - '1; mode=block'
+      imgSrc:
+        -
+          - "'self'"
+      modeOptions:
+        -
+          __assoc__:
+            -
+              - label
+              - 'Response Headers'
+            -
+              - value
+              - header
+        -
+          __assoc__:
+            -
+              - label
+              - 'Meta Tags'
+            -
+              - value
+              - tag
+        -
+          __assoc__:
+            -
+              - label
+              - 'Report Only'
+            -
+              - value
+              - report
+      policyOptions:
+        __assoc__:
+          -
+            - defaultSrc
+            - default-src
+          -
+            - scriptSrc
+            - script-src
+          -
+            - scriptSrcAttr
+            - script-src-attr
+          -
+            - scriptSrcElem
+            - script-src-elem
+          -
+            - styleSrc
+            - style-src
+          -
+            - styleSrcAttr
+            - style-src-attr
+          -
+            - styleSrcElem
+            - style-src-elem
+          -
+            - imgSrc
+            - img-src
+          -
+            - connectSrc
+            - connect-src
+          -
+            - fontSrc
+            - font-src
+          -
+            - objectSrc
+            - object-src
+          -
+            - mediaSrc
+            - media-src
+          -
+            - frameSrc
+            - frame-src
+          -
+            - sandbox
+            - sandbox
+          -
+            - reportUri
+            - report-uri
+          -
+            - childSrc
+            - child-src
+          -
+            - formAction
+            - form-action
+          -
+            - frameAncestors
+            - frame-ancestors
+          -
+            - pluginTypes
+            - plugin-types
+          -
+            - baseUri
+            - base-uri
+          -
+            - reportTo
+            - report-to
+          -
+            - workerSrc
+            - worker-src
+          -
+            - manifestSrc
+            - manifest-src
+          -
+            - prefetchSrc
+            - prefetch-src
+          -
+            - navigateTo
+            - navigate-to
+      protectionEnabled: true
+      scriptSrc:
+        -
+          - "'self'"
+      styleSrc:
+        -
+          - "'self'"
+      styleSrcAttr:
+        -
+          - "'self'"
+        -
+          - ''
+      styleSrcElem:
+        -
+          - "'self'"
   obfuscator:
     edition: standard
     enabled: true

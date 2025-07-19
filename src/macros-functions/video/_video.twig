@@ -26,7 +26,7 @@
 
 
 <div class="{{ class ~ '-video' ~ ' macro-video' }}" id="macro-video--{{ uniqueId }}"></div>
-    <style nonce="{{ cspNonce('style-src') }}">
+    <style nonce="{{ csp('style-src') }}">
         #macro-video--{{ uniqueId }} {
             {{ style | join(';') }}
         }
@@ -44,7 +44,7 @@
         <iframe class="macro-video__iframe" id="macro-video__iframe--{{ uniqueId }}" src="" title="{{ title }}" allow="autoplay" autoplay loading="lazy" width="{{ videoAsset.width }}" height="{{ videoAsset.height }}" frameborder="0"></iframe>
         {# The src needs to be set by script, otherwise setting random videos (page reload) is impossible #}
         {# Firefox has a bug: content of an iframe is taken from the cache even if the src has changed #}
-        <script nonce="{{ cspNonce('script-src') }}">
+        <script nonce="{{ csp('script-src') }}">
             iframe = document.getElementById('macro-video__iframe--{{ uniqueId }}');
             src = decodeURIComponent("{{ videoSrc | url_encode }}");
             iframe.src = src;

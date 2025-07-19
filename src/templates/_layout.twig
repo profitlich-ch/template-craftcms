@@ -17,7 +17,7 @@
         {# 
             Alle CSS und JS Dateien erhalten eine Versionsnummer, damit sicher die neuste geladen wird, nicht die aus dem Cache.            
             Die Variable staticAssetsVersion wird bei allen CSS und JS Dateien vor die Dateiendung gesetzt:
-            <link rel="stylesheet" href="/css/xxx.{{ staticAssetsVersion }}.css" nonce="{{ cspNonce('style-src') }}">
+            <link rel="stylesheet" href="/css/xxx.{{ staticAssetsVersion }}.css" nonce="{{ csp('style-src') }}">
          #}
         {% set staticAssetsVersion = craft.app.config.custom.staticAssetsVersion %}
 
@@ -31,26 +31,26 @@
         <link rel="manifest" href="/favicon/site.webmanifest">
         
         {# https://web.dev/defer-non-critical-css/ #}
-        <link rel="preload" href="/css/style.{{ staticAssetsVersion }}.css" as="style" nonce="{{ cspNonce('style-src') }}">
-        <link id="cssOnload" rel="stylesheet" href="/css/style.{{ staticAssetsVersion }}.css" media="print" nonce="{{ cspNonce('style-src') }}">
-        <script nonce="{{ cspNonce('script-src') }}">
+        <link rel="preload" href="/css/style.{{ staticAssetsVersion }}.css" as="style" nonce="{{ csp('style-src') }}">
+        <link id="cssOnload" rel="stylesheet" href="/css/style.{{ staticAssetsVersion }}.css" media="print" nonce="{{ csp('style-src') }}">
+        <script nonce="{{ csp('script-src') }}">
             cssOnload = document.getElementById('cssOnload');
             cssOnload.onload = function() {
                 cssOnload.setAttribute('media', 'all');
             };
         </script>
-        <noscript><link rel="stylesheet" href="/css/style.{{ staticAssetsVersion }}.css" nonce="{{ cspNonce('style-src') }}"></noscript>
+        <noscript><link rel="stylesheet" href="/css/style.{{ staticAssetsVersion }}.css" nonce="{{ csp('style-src') }}"></noscript>
 
         {# JS #}
-        {{ craft.vite.script("src/app.ts") }}     
+        {{ craft.vite.script("src/app.ts", false, { 'nonce': csp('script-src') } ) }}
         
         {# dev Mode CSS und JS #}
         {% if devMode %}
-            <link rel="stylesheet" href="/css/dev.{{ staticAssetsVersion }}.css" nonce="{{ cspNonce('style-src') }}">
-            <script src="/js/dev.{{ staticAssetsVersion }}.js" defer nonce="{{ cspNonce('script-src') }}"></script>
+            <link rel="stylesheet" href="/css/dev.{{ staticAssetsVersion }}.css" nonce="{{ csp('style-src') }}">
+            <script src="/js/dev.{{ staticAssetsVersion }}.js" defer nonce="{{ csp('script-src') }}"></script>
         {% endif %}
 
-        <style nonce="{{ cspNonce('style-src') }}">
+        <style nonce="{{ csp('style-src') }}">
             {# FOUC #}
             {# https://www.primative.net/blog/how-to-get-rid-of-the-flash-of-unstyled-content/ #}
             .no-js {
@@ -86,10 +86,10 @@
     no-js" {{ attr(bodyDataTags) }}>
 
         {# Firefox hack against FOUC: https://www.primative.net/blog/how-to-get-rid-of-the-flash-of-unstyled-content/ #}
-        <script nonce="{{ cspNonce('script-src') }}">0</script>
+        <script nonce="{{ csp('script-src') }}">0</script>
 
         {# FOUC #}
-        <script nonce="{{ cspNonce('script-src') }}">
+        <script nonce="{{ csp('script-src') }}">
             document.querySelector('body').classList.remove('no-js');
         </script>
         <div class="seite" id="seite">
@@ -98,7 +98,7 @@
             </header>
             <main class="main">{% block content %}{% endblock %}</main>
         </div>
-        <script nonce="{{ cspNonce('script-src') }}">
+        <script nonce="{{ csp('script-src') }}">
             {# FOUC #}
             let domReady = (cb) => {
             document.readyState === 'interactive' || document.readyState === 'complete'
