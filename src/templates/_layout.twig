@@ -32,27 +32,20 @@
         
         {# https://web.dev/defer-non-critical-css/ #}
         <link rel="preload" href="/css/style.{{ staticAssetsVersion }}.css" as="style" nonce="{{ csp('style-src') }}">
-        <link id="cssOnload" rel="stylesheet" href="/css/style.{{ staticAssetsVersion }}.css" media="print" nonce="{{ csp('style-src') }}">
-        <script nonce="{{ csp('script-src') }}">
-            cssOnload = document.getElementById('cssOnload');
-            cssOnload.onload = function() {
-                cssOnload.setAttribute('media', 'all');
-            };
-        </script>
-        <noscript><link rel="stylesheet" href="/css/style.{{ staticAssetsVersion }}.css" nonce="{{ csp('style-src') }}"></noscript>
+       {% do craft.app.view.registerCssFile('@web/css/style.' ~ staticAssetsVersion ~ '.css', { nonce: csp('style-src') }) %}
 
         {# JS #}
         {{ craft.vite.script("src/app.ts", false, { 'nonce': csp('script-src') } ) }}
         
         {# dev Mode CSS und JS #}
         {% if devMode %}
-            <link rel="stylesheet" href="/css/dev.{{ staticAssetsVersion }}.css" nonce="{{ csp('style-src') }}">
-            <script src="/js/dev.{{ staticAssetsVersion }}.js" defer nonce="{{ csp('script-src') }}"></script>
+            {% do craft.app.view.registerCssFile('@web/css/dev.' ~ staticAssetsVersion ~ '.css', { nonce: csp('style-src') }) %}
+            {% do craft.app.view.registerJsFile('@web/js/dev.' ~ staticAssetsVersion ~ '.js', { nonce: csp('style-src') }) %}
         {% endif %}
 
-        <style nonce="{{ csp('style-src') }}">
-            {# FOUC #}
-            {# https://www.primative.net/blog/how-to-get-rid-of-the-flash-of-unstyled-content/ #}
+        {# FOUC #}
+        {# https://medium.com/@fbnlsr/how-to-get-rid-of-the-flash-of-unstyled-content-d6b79bf5d75f #}
+        {% set css %}
             .no-js {
                 visibility: visible;
             }
@@ -60,11 +53,12 @@
             body[data-preloading="true"] * {
                 transition: transform 0s !important;
             }
-            /* hide body until full html is loaded */
+            {# hide body until full html is loaded #}
             body {
                 visibility: hidden;
             }
-        </style>
+        {% endset %}
+        {% do craft.app.view.registerCss(css, { nonce: csp('style-src') }) %}
     </head>
     {% if not craft.app.request.segment(1) %}
         {% set pagename = 'home' %}

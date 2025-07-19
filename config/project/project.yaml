@@ -1,4 +1,4 @@
-dateModified: 1752914981
+dateModified: 1752922750
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -42,8 +42,14 @@ plugins:
       connectSrc:
         -
           - "'self'"
+        -
+          - 'https://*.googleapis.com'
+        -
+          - '*.google.com'
+        -
+          - 'https://*.gstatic.com'
       cspEnabled: true
-      cspMode: header
+      cspMode: tag
       cspOptions:
         - defaultSrc
         - scriptSrc
@@ -62,9 +68,14 @@ plugins:
       fontSrc:
         -
           - "'self'"
+        -
+          - 'https://fonts.gstatic.com'
       formAction:
         -
           - "'self'"
+      frameSrc:
+        -
+          - '*.google.com'
       headerProtection:
         -
           - Referrer-Policy
@@ -84,6 +95,14 @@ plugins:
       imgSrc:
         -
           - "'self'"
+        -
+          - 'https://*.googleapis.com'
+        -
+          - 'https://*.gstatic.com'
+        -
+          - '*.google.com'
+        -
+          - '*.googleusercontent.com'
       modeOptions:
         -
           __assoc__:
@@ -193,14 +212,23 @@ plugins:
       styleSrc:
         -
           - "'self'"
+        -
+          - 'https://fonts.googleapis.com'
       styleSrcAttr:
         -
           - "'self'"
         -
-          - ''
+          - "'unsafe-inline'"
       styleSrcElem:
         -
           - "'self'"
+        -
+          - "'unsafe-inline'"
+  imager-x:
+    edition: pro
+    enabled: true
+    licenseKey: 1YV4073KECMD8IACSOWJQDNV
+    schemaVersion: 4.0.0
   obfuscator:
     edition: standard
     enabled: true

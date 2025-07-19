@@ -1,2 +1,8 @@
-{% import "_macros-functions/image/_image.twig" as macroImage %}
-{% import "_macros-functions/video/_video.twig" as macroVideo %}
+{% set image = entry.projektbilder.one() %}
+{% if image.kind == 'image' %}
+	{% set transforms = craft.imagerx.transformImage(image, 'projects') %}
+	{% set aspectRatio = image.getWidth() / image.getHeight() %}
+	<div class="angebot__image">
+		<img src="{{ transforms|first.url }}" srcset="{% for transform in transforms %}{{ transform.url }} {{ transform.width }}w{% if not loop.last %}, {% endif %}{% endfor %}" alt="{{ image.title }}" style="aspect-ratio: {{ aspectRatio }}" loading="lazy">
+	</div>
+{% endif %}
