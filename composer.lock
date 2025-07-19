@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "612b1a6382389a1505e40d2680ffbbcd",
+    "content-hash": "8b777bf8e2e42ae6f6395481a5cf277b",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -43,56 +43,6 @@
             "description": "BaconQrCode is a QR code generator for PHP.",
             "homepage": "https://github.com/Bacon/BaconQrCode",
             "time": "2022-12-07T17:46:57+00:00"
-        },
-        {
-            "name": "born05/craft-csp",
-            "version": "3.0.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/born05/craft-csp/zipball/90cd48ec40b7dcec67b187041055435726ff786b",
-                "reference": "90cd48ec40b7dcec67b187041055435726ff786b",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^4.0.0-alpha|^5.0.0-beta.1",
-                "php": "^8.0.2"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "name": "Content Security Policy",
-                "handle": "content-security-policy",
-                "hasCpSettings": false,
-                "hasCpSection": false,
-                "changelogUrl": "https://raw.githubusercontent.com/born05/craft-csp/craft4/CHANGELOG.md"
-            },
-            "autoload": {
-                "psr-4": {
-                    "born05\\contentsecuritypolicy\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Born05",
-                    "homepage": "https://www.born05.com/"
-                }
-            ],
-            "description": "Content Security Policy (or CSP) generator using nonces.",
-            "keywords": [
-                "cms",
-                "content security policy",
-                "craft",
-                "craft-plugin",
-                "craftcms",
-                "csp"
-            ],
-            "support": {
-                "docs": "https://github.com/born05/craft-csp/blob/craft4/README.md",
-                "issues": "https://github.com/born05/craft-csp/issues"
-            },
-            "time": "2024-08-20T11:44:50+00:00"
         },
         {
             "name": "brick/math",
@@ -202,6 +152,90 @@
                 "markdown-extra"
             ],
             "time": "2018-03-26T11:24:36+00:00"
+        },
+        {
+            "name": "cloudgrayau/csp",
+            "version": "1.3.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudgrayau/csp/zipball/4ae765680c766c4f92599f0c551cd1c25217089f",
+                "reference": "4ae765680c766c4f92599f0c551cd1c25217089f",
+                "shasum": ""
+            },
+            "require": {
+                "cloudgrayau/utils": "^1.1",
+                "craftcms/cms": "^4.0|^5.0",
+                "php": "^8.0|^8.2"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "CSP",
+                "handle": "csp",
+                "developer": "Cloud Gray Pty Ltd",
+                "developerUrl": "https://cloudgray.com.au/",
+                "documentationUrl": "https://github.com/cloudgrayau/csp/blob/craft4/README.md",
+                "changelogUrl": "https://raw.githubusercontent.com/cloudgrayau/csp/craft4/CHANGELOG.md",
+                "class": "cloudgrayau\\csp\\Csp"
+            },
+            "autoload": {
+                "psr-4": {
+                    "cloudgrayau\\csp\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloud Gray Pty Ltd",
+                    "homepage": "https://cloudgray.com.au/"
+                }
+            ],
+            "description": "Content Security Policy manager for Craft CMS",
+            "keywords": [
+                "cms",
+                "content-security-policy",
+                "craft",
+                "craft-plugin",
+                "craftcms",
+                "csp"
+            ],
+            "support": {
+                "docs": "https://github.com/cloudgrayau/csp",
+                "issues": "https://github.com/cloudgrayau/csp/issues"
+            },
+            "time": "2024-09-17T12:25:23+00:00"
+        },
+        {
+            "name": "cloudgrayau/utils",
+            "version": "1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudgrayau/utils/zipball/c602aed90f5b31df2416dd34c23781d830968ee0",
+                "reference": "c602aed90f5b31df2416dd34c23781d830968ee0",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^4.0|^5.0",
+                "php": "^8.0|^8.2"
+            },
+            "type": "yii-module",
+            "autoload": {
+                "psr-4": {
+                    "cloudgrayau\\utils\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloud Gray Pty Ltd",
+                    "homepage": "https://cloudgray.com.au/"
+                }
+            ],
+            "description": "Base plugin utilities for Craft CMS.",
+            "time": "2024-01-25T00:23:16+00:00"
         },
         {
             "name": "commerceguys/addressing",
@@ -434,11 +468,6 @@
         {
             "name": "craftcms/cms",
             "version": "5.8.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/craftcms/cms.git",
-                "reference": "93d85ce6dae3b8da62a3e1fc3191f495d53db2c8"
-            },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/craftcms/cms/zipball/93d85ce6dae3b8da62a3e1fc3191f495d53db2c8",
@@ -503,22 +532,6 @@
                 "bower-asset/yii2-pjax": "~2.0.1",
                 "yii2tech/ar-softdelete": "1.0.4"
             },
-            "require-dev": {
-                "codeception/codeception": "^5.2.0",
-                "codeception/lib-innerbrowser": "4.0.1",
-                "codeception/module-asserts": "^3.0.0",
-                "codeception/module-datafactory": "^3.0.0",
-                "codeception/module-phpbrowser": "^3.0.0",
-                "codeception/module-rest": "^3.3.2",
-                "codeception/module-yii2": "^1.1.9",
-                "craftcms/ecs": "dev-main",
-                "fakerphp/faker": "^1.19.0",
-                "league/factory-muffin": "^3.3.0",
-                "phpstan/phpstan": "^2.1",
-                "rector/rector": "^2.0",
-                "vlucas/phpdotenv": "^5.4.1",
-                "yiisoft/yii2-redis": "^2.0"
-            },
             "suggest": {
                 "ext-exif": "Adds support for parsing image EXIF data.",
                 "ext-iconv": "Adds support for more character encodings than PHP’s built-in mb_convert_encoding() function, which Craft will take advantage of when converting strings to UTF-8.",
@@ -531,7 +544,6 @@
                     "yii2tech\\ar\\softdelete\\": "lib/ar-softdelete/src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -549,12 +561,12 @@
                 "yii2"
             ],
             "support": {
-                "docs": "https://craftcms.com/docs/5.x/",
                 "email": "support@craftcms.com",
-                "forum": "https://craftcms.stackexchange.com/",
                 "issues": "https://github.com/craftcms/cms/issues?state=open",
-                "rss": "https://github.com/craftcms/cms/releases.atom",
-                "source": "https://github.com/craftcms/cms"
+                "forum": "https://craftcms.stackexchange.com/",
+                "source": "https://github.com/craftcms/cms",
+                "docs": "https://craftcms.com/docs/5.x/",
+                "rss": "https://github.com/craftcms/cms/releases.atom"
             },
             "time": "2025-07-18T18:47:52+00:00"
         },
@@ -3720,62 +3732,6 @@
             "time": "2020-12-15T21:32:01+00:00"
         },
         {
-            "name": "spicyweb/craft-embedded-assets",
-            "version": "5.4.3",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spicywebau/craft-embedded-assets/zipball/f86e87403917488ec62e0ceeefd4e38b7582a5bc",
-                "reference": "f86e87403917488ec62e0ceeefd4e38b7582a5bc",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^5.0.0",
-                "embed/embed": "^4.4.10",
-                "php": "^8.0.2"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "handle": "embeddedassets",
-                "name": "Embedded Assets",
-                "schemaVersion": "1.0.0",
-                "class": "spicyweb\\embeddedassets\\Plugin",
-                "changelogUrl": "https://github.com/spicywebau/craft-embedded-assets/blob/5.x/CHANGELOG.md",
-                "downloadUrl": "https://github.com/spicywebau/craft-embedded-assets/archive/5.4.3.zip"
-            },
-            "autoload": {
-                "psr-4": {
-                    "spicyweb\\embeddedassets\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Spicy Web",
-                    "homepage": "https://spicyweb.com.au"
-                }
-            ],
-            "description": "Manage YouTube videos, Instagram photos and more as first class assets",
-            "keywords": [
-                "assets",
-                "cms",
-                "craftcms",
-                "embed",
-                "instagram",
-                "plugin",
-                "vimeo",
-                "youtube"
-            ],
-            "support": {
-                "issues": "https://github.com/spicywebau/craft-embedded-assets/issues",
-                "source": "https://github.com/spicywebau/craft-embedded-assets",
-                "docs": "https://github.com/spicywebau/craft-embedded-assets/blob/5.4.3/README.md",
-                "rss": "https://github.com/spicywebau/craft-embedded-assets/commits/5.x.atom"
-            },
-            "time": "2025-02-11T09:51:55+00:00"
-        },
-        {
             "name": "spomky-labs/cbor-php",
             "version": "3.1.1",
             "source": {
@@ -5536,20 +5492,20 @@
         },
         {
             "name": "symfony/process",
-            "version": "v6.4.20",
+            "version": "v7.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "e2a61c16af36c9a07e5c9906498b73e091949a20"
+                "reference": "40c295f2deb408d5e9d2d32b8ba1dd61e36f05af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/e2a61c16af36c9a07e5c9906498b73e091949a20",
-                "reference": "e2a61c16af36c9a07e5c9906498b73e091949a20",
+                "url": "https://api.github.com/repos/symfony/process/zipball/40c295f2deb408d5e9d2d32b8ba1dd61e36f05af",
+                "reference": "40c295f2deb408d5e9d2d32b8ba1dd61e36f05af",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1"
+                "php": ">=8.2"
             },
             "type": "library",
             "autoload": {
@@ -5577,7 +5533,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v6.4.20"
+                "source": "https://github.com/symfony/process/tree/v7.3.0"
             },
             "funding": [
                 {
@@ -5593,7 +5549,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-03-10T17:11:00+00:00"
+            "time": "2025-04-17T09:11:12+00:00"
         },
         {
             "name": "symfony/property-access",
@@ -7823,11 +7779,11 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.2.2"
     },
