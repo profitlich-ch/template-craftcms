@@ -5,11 +5,9 @@
     "type": "module",
     "main": "gulpfile.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "vite",
         "build": "vite build",
-        "preview": "vite preview",
-        "watch-and-build": "tsc --watch & vite build --watch 2>&1 | tee logs/build.log"
+        "preview": "vite preview"
     },
     "author": "Moritz Profitlich",
     "license": "ISC",
@@ -19,7 +17,7 @@
         "basic-ftp": "^5.0.5",
         "del": "^8.0.0",
         "fancy-log": "^2.0.0",
-        "gulp": "^5.0.0",
+        "gulp": "^5.0.1",
         "gulp-clean-css": "^4.3.0",
         "gulp-concat": "^2.6.1",
         "gulp-dotenv": "^0.2.2",
@@ -31,7 +29,7 @@
         "gulp-json-to-js": "^1.0.2",
         "gulp-postcss": "^10.0.0",
         "gulp-prompt": "^1.2.0",
-        "gulp-rename": "^2.0.0",
+        "gulp-rename": "^2.1.0",
         "gulp-replace": "^1.1.4",
         "gulp-sass": "^6.0.1",
         "gulp-sourcemaps": "^3.0.0",
@@ -39,20 +37,17 @@
         "gulp-svgo": "^2.2.1",
         "gulp-terser": "^2.1.0",
         "npm-run-all": "^4.1.5",
-        "postcss": "^8.5.3",
-        "sass": "^1.86.0",
+        "postcss": "^8.5.6",
+        "sass": "^1.89.2",
         "streamifier": "^0.1.1",
         "through2": "^4.0.2",
-        "vite": "^6.2.3",
-        "vite-plugin-mkcert": "^1.17.8",
-        "vite-plugin-restart": "^0.4.2"
+        "vite": "^7.0.5"
     },
     "dependencies": {
-        "dotenv": "^16.4.7",
+        "dotenv": "^17.2.0",
         "gulp-typescript": "^6.0.0-alpha.1",
         "lazysizes": "^5.3.2",
         "pathe": "^2.0.3",
-        "typescript": "^5.8.2",
-        "vite-plugin-imagemin": "^0.6.1"
+        "typescript": "^5.8.3"
     }
 }
