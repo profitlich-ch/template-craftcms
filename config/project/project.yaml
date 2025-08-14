@@ -1,4 +1,4 @@
-dateModified: 1752922750
+dateModified: 1755201946
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -48,6 +48,8 @@ plugins:
           - '*.google.com'
         -
           - 'https://*.gstatic.com'
+        -
+          - 'wss://*.ddev.site:5173'
       cspEnabled: true
       cspMode: tag
       cspOptions:
@@ -244,6 +246,11 @@ plugins:
       numbers: true
       showStrengthIndicator: true
       symbols: true
+  simplemap:
+    edition: pro
+    enabled: true
+    licenseKey: KW1SS54N2K3A6KBM3H0WKF4E
+    schemaVersion: 3.4.2
   vite:
     edition: standard
     enabled: true

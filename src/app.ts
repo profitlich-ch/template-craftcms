@@ -2,7 +2,8 @@ import 'lazysizes';
 import { MediaQueries } from './utils/MediaQueries.ts';
 import { Vh100 } from './utils/Vh100.ts';
 import { BodyScrolled } from './utils/BodyScrolled.ts';
-import { MenuToggle } from './macros-functions/menu/menu.ts';
+import { MenuToggle } from './macros-functions/menu-toggle/MenuToggle.ts';
+import './app.scss';
 
 class App {
     public mediaQuery: MediaQueries;
@@ -11,19 +12,17 @@ class App {
     public menuToggle: MenuToggle;
 
     constructor() {
-        this.mediaQuery = new MediaQueries();
-        this.vh100 = new Vh100();
-        this.bodyScrolledEvent = new BodyScrolled();
+        this.mediaQuery = MediaQueries.getInstance();
+        this.bodyScrolledEvent = BodyScrolled.getInstance();
+        this.vh100 = Vh100.getInstance();
         
-        const hamburger = document.getElementById('hamburger') as HTMLElement;
-        const menu = document.getElementById('menu') as HTMLElement;
-        this.menuToggle = new MenuToggle(hamburger, menu);
+        this.menuToggle = MenuToggle.getInstance('hamburger', 'menu', '.menu__link');
 
         this.initialize();
     }
 
     private initialize() {
-        console.log('App initialized!');
+        console.info('App initialized.');
     }
 }
 

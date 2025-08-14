@@ -6,16 +6,20 @@
 import config from '../config.json' with { type: "json" };
 
 export class MediaQueries {
-    private layout: keyof typeof config.layouts = 'desktop';
+    private static instance: MediaQueries;
+    public layout: keyof typeof config.layouts = 'desktop';
 
-    constructor() {
+    private constructor() {
         this.layout = 'desktop';
         this.changeLayout();
         this.matchmedia();
     }
 
-    get currentLayout() {
-        return this.layout;
+    public static getInstance(): MediaQueries {
+        if (!MediaQueries.instance) {
+            MediaQueries.instance = new MediaQueries();
+        }
+        return MediaQueries.instance;
     }
 
     private matchmedia() {
