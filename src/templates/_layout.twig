@@ -14,35 +14,15 @@
         <meta name="format-detection" content="telephone=no">
         {% block seoMetaDescription %}{% endblock %}
 
-        {# 
-            Alle CSS und JS Dateien erhalten eine Versionsnummer, damit sicher die neuste geladen wird, nicht die aus dem Cache.            
-            Die Variable staticAssetsVersion wird bei allen CSS und JS Dateien vor die Dateiendung gesetzt:
-            <link rel="stylesheet" href="/css/xxx.{{ staticAssetsVersion }}.css" nonce="{{ csp('style-src') }}">
-         #}
-        {% set staticAssetsVersion = craft.app.config.custom.staticAssetsVersion %}
-
         {# Favicon #}
-        <link rel="icon" type="image/png" href="/favicon/favicon-96x96.{{ staticAssetsVersion }}.png" sizes="96x96">
-        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.{{ staticAssetsVersion }}.svg">
-        <link rel="shortcut icon" href="/favicon/favicon.{{ staticAssetsVersion }}.ico">
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.{{ staticAssetsVersion }}.png">
+        <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+        <link rel="shortcut icon" href="/favicon/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         {# TODO: Website Kurzname anpassen #}
         <meta name="apple-mobile-web-app-title" content="siaa">
         <link rel="manifest" href="/favicon/site.webmanifest">
         
-        {# https://web.dev/defer-non-critical-css/ #}
-        <link rel="preload" href="/css/style.{{ staticAssetsVersion }}.css" as="style" nonce="{{ csp('style-src') }}">
-       {% do craft.app.view.registerCssFile('@web/css/style.' ~ staticAssetsVersion ~ '.css', { nonce: csp('style-src') }) %}
-
-        {# JS #}
-        {{ craft.vite.script("src/app.ts", false, { 'nonce': csp('script-src') } ) }}
-        
-        {# dev Mode CSS und JS #}
-        {% if devMode %}
-            {% do craft.app.view.registerCssFile('@web/css/dev.' ~ staticAssetsVersion ~ '.css', { nonce: csp('style-src') }) %}
-            {% do craft.app.view.registerJsFile('@web/js/dev.' ~ staticAssetsVersion ~ '.js', { nonce: csp('style-src') }) %}
-        {% endif %}
-
         {# FOUC #}
         {# https://medium.com/@fbnlsr/how-to-get-rid-of-the-flash-of-unstyled-content-d6b79bf5d75f #}
         {% set css %}
@@ -74,9 +54,9 @@
         },
     } %}
     <body class="body body--{{ pagename }}
-     {% if entry is not defined or entry is null %}
-        body--404
-    {% endif %}
+        {% if entry is not defined or entry is null %}
+            body--404
+        {% endif %}
     no-js" {{ attr(bodyDataTags) }}>
 
         {# Firefox hack against FOUC: https://www.primative.net/blog/how-to-get-rid-of-the-flash-of-unstyled-content/ #}
@@ -92,6 +72,13 @@
             </header>
             <main class="main">{% block content %}{% endblock %}</main>
         </div>
+
+        {# JS #}
+        {{ craft.vite.script("src/App.ts", false, { 'nonce': csp('script-src') } ) }}
+        {% if devMode %}
+            {{ craft.vite.script("src/Dev.ts", false, { 'nonce': csp('script-src') } ) }}
+        {% endif %}
+        
         <script nonce="{{ csp('script-src') }}">
             {# FOUC #}
             let domReady = (cb) => {

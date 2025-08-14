@@ -1,8 +1,1 @@
-{% set image = entry.projektbilder.one() %}
-{% if image.kind == 'image' %}
-	{% set transforms = craft.imagerx.transformImage(image, 'projects') %}
-	{% set aspectRatio = image.getWidth() / image.getHeight() %}
-	<div class="angebot__image">
-		<img src="{{ transforms|first.url }}" srcset="{% for transform in transforms %}{{ transform.url }} {{ transform.width }}w{% if not loop.last %}, {% endif %}{% endfor %}" alt="{{ image.title }}" style="aspect-ratio: {{ aspectRatio }}" loading="lazy">
-	</div>
-{% endif %}
+{{ craft.vite.script("src/modules/template/Template.ts", false, { 'nonce': csp('script-src') } ) }}

@@ -10,11 +10,6 @@
 			Zufall
 		</h1>
 	</a>
-	<a href="/" aria-label="Startseite" class="menu__logo menu__logo--startseite menu__logo--mobile">
-		{{ svg('@webroot/modules/menu/menu__logo-mobile.svg', sanitize=true, namespace=true) | attr({
-            class: 'menu__logo-svg'
-        }) }}
-	</a>
 	<div class="menu__links">
 		{# {% for item in entries %}
             <a class="menu__link menu__link--{{ item.level }} menu__link--{{ item.slug }}" href="/{{ item.slug }}" {% if item.slug == craft.app.request.getPathInfo() %} data-menu-active="true" {% endif %}>
@@ -26,3 +21,5 @@
 		<a class="menu__link">Drei</a>
 	</div>
 </nav>
+
+{{ craft.vite.script("src/modules/menu/Menu.ts", false, { 'nonce': csp('script-src') } ) }}

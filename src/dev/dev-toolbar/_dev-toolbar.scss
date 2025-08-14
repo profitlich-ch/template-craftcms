@@ -52,7 +52,9 @@ $color--dev-grid-center: rgba(0, 0, 0, 0.2);
 
 .dev-toolbar {
     display: none;
+    font-family: sans-serif;
     font-size: 12px;
+    font-weight: bold;
     left: 0;
     pointer-events: none;
     top: 0;

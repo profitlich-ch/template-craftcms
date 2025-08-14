@@ -1,0 +1,7 @@
+$layouts: ("smartphone": 421, "desktop": 1920);
+$units: ("smartphone": px, "desktop": vw);
+$breakpoints: ("smartphone": 0, "desktop": 800);
+$colors: ("background": white, "red": #E61512);
+$margins: ("smartphone": ("top": 0, "right": 26, "bottom": 0, "left": 26), "desktop": ("top": 0, "right": 140, "bottom": 0, "left": 554));
+$columns: ("smartphone": 1, "desktop": 9);
+$gutter: ("smartphone": 1, "desktop": 16);

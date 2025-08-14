@@ -1,32 +1,28 @@
-@use "../../scss/config";
-@use "../../scss/functions/mediaqueries";
-@use "../../scss/functions/layout";
+@use "../../scss/forward" as *;
 @use "sass:map";
 
-.MODULE {
-
+.TEMPLATE {
 }
 
 
 @include mediaquery(smartphone) {
-
     $layout: smartphone;
 
-    .MODULE {
-        
-   
-
+    .TEMPLATE {
     }
+}
 
+@include mediaquery(tablet) {
+    $layout: smartphone;
+
+    .TEMPLATE {
+    }
 }
 
 
 @include mediaquery(desktop) {
-
     $layout: desktop;
 
-    .MODULE {
-        
+    .TEMPLATE {
     }
-
 }

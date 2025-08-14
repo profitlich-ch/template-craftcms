@@ -16,34 +16,24 @@ const { src, dest, task, series, parallel } = gulp;
 
 import { deleteAsync } from 'del';
 
-import autoprefixer from 'autoprefixer';
-import cleanCSS from 'gulp-clean-css';
 import concat from 'gulp-concat';
 import dartSass from 'sass';
 import dotenv from 'gulp-dotenv';
 import fs from 'fs';
 import ftp from 'basic-ftp';
 import gulp from 'gulp';
-import gulpif from 'gulp-if';
 import gulpSass from 'gulp-sass';
 import injectCSS from 'gulp-inject-css';
-import jsonCss from 'gulp-json-css';
 import jsonToJs from 'gulp-json-to-js';
 import log from 'fancy-log';
 import path from 'path';
-import postcss from 'gulp-postcss';
 import prompt from 'gulp-prompt';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
-import sourcemaps from 'gulp-sourcemaps';
 import streamifier from 'streamifier';
 import svgo from 'gulp-svgo';
 import svgSprite from 'gulp-svg-sprite';
-import terser from 'gulp-terser';
 import through from 'through2';
-
-// Configure gulp-sass with the current Sass version
-const sass = gulpSass(dartSass);
 
 /**
  * CONFIGURATION
@@ -70,16 +60,6 @@ function setFiles() {
         src: {
             src: 'src/**/*.*',
         },
-        // The overall SCSS. Files with underscore are used through imports in non-underscore files automatically
-        scss: {
-            src: 'src/scss/**/*.scss',
-            dest: 'web/css',
-        },
-        // JS for development is always compiled but only included in layout.twig if modus is not production
-        jsDev: {
-            src: 'src/dev/**/*.js',
-            dest: 'web/js',
-        },
         jsConfig: {
             src: 'src/js/config.js',
             dest: 'templates/js',
@@ -105,11 +85,6 @@ function setFiles() {
             src: 'src/macros-functions/**/*.twig',
             dest: 'templates/_macros-functions',
         },
-        // Files used for development only, excluded from git but uploaded onto server
-        mockup: {
-            src: 'src/mockup/**/*.*',
-            dest: 'web/mockup',
-        },
         fonts: {
             src: 'src/fonts/**/*.*',
             dest: 'web/fonts',
@@ -134,6 +109,10 @@ function setFiles() {
             src: 'config/*.php',
             dest: '/config',
         },
+        uploadCronjobs: {
+            src: 'cronjobs/**/*',
+            dest: '/cronjobs',
+        },
     }
 }
 
@@ -147,23 +126,6 @@ function dotenvToJsonTask() {
     .pipe(dotenv())
     .pipe(rename('env.json'))
     .pipe(gulp.dest('.'));
-}
-
-/**
- * 
- * config.json to SCSS
- * All website-specific settings from the config.json are made available as Sass maps
- */
-function configToScssTask() {
-    return src(config.configToScss.src)
-
-    .pipe(jsonCss({
-        keepObjects: true
-    }))
-
-    .pipe(dest
-        (config.configToScss.dest)
-    )   
 }
 
 /**
@@ -235,60 +197,6 @@ function modusConfirmTask() {
  */
 function deleteConfigTask() {
     return deleteAsync(['src/scss/config.scss', 'src/js/config.js', 'env.json']);
-}
-
-// compile SCSS
-function scssTask() {
-    return src(files.scss.src)
-    
-    // initialise sourcemaps
-    .pipe(sourcemaps.init())
-    
-    .pipe(
-        sass.sync()
-        .on('error', sass.logError)
-    )
-    
-    // post-CSS
-    .pipe(postcss([
-        autoprefixer()
-    ]))
-
-    // compress with clean CSS
-    .pipe(cleanCSS({
-        mergeMediaQueries: true
-    }))
-    
-    // write sourcemaps
-    .pipe(sourcemaps.write('.'))
-        
-    // write files
-    .pipe(dest
-        (files.scss.dest)
-    )   
-}
-
-// compile JS dev
-function jsDevTask() {
-    return src(files.jsDev.src)
-
-    // initialise sourcemaps
-    .pipe(sourcemaps.init())
-
-    // combine files into one file
-    .pipe(concat('dev.js'))
-
-    .pipe(dest
-        (files.jsDev.dest)
-    )
-
-    // write sourcemaps
-    .pipe(sourcemaps.write('.'))
-
-    // write files
-    .pipe(dest
-        (files.jsDev.dest)
-    )
 }
 
 // compile JS config
@@ -384,25 +292,8 @@ function macrosFunctionsTask() {
     );
 }
 
-// copy mockup media
-function mockupTask() {
-    if (!fs.existsSync(files.mockup.src)) {
-        return Promise.resolve();
-    }
-
-    return src(files.mockup.src)
-
-    .pipe(dest
-        (files.mockup.dest)
-    );
-}
-
 // copy fonts
 function fontsTask() {
-    if (!fs.existsSync(files.fonts.src)) {
-        return Promise.resolve();
-    }
-
     return src(files.fonts.src)
 
     .pipe(dest
@@ -412,10 +303,6 @@ function fontsTask() {
 
 // copy favicon
 function faviconTask() {
-    if (!fs.existsSync(files.favicon.src)) {
-        return Promise.resolve();
-    }
-
     return src(files.favicon.src)
 
     .pipe(dest
@@ -518,6 +405,27 @@ function uploadCraftConfigTask() {
         return src(files.uploadCraftConfig.src )
     }
 };
+function uploadCronjobs() {
+    if (modus !='dev') {
+        const filesToUpload = [];
+        
+        return src(files.uploadCronjobs.src)
+        .pipe(through.obj(function (file, enc, cb) {
+            if (file.isBuffer()) {
+                // push file to array
+                filesToUpload.push(file);
+            }
+            // return file for next gulp step
+            cb(null, file);
+        }))
+        .on('end', async function () {
+            // start upload after all files are gathered
+            await uploadFilesToFTP(filesToUpload, files.uploadCronjobs.dest);
+        });
+    } else {
+        return src(files.uploadCronjobs.src )
+    }
+};
 
 
 // inject CSS
@@ -527,36 +435,20 @@ function injizierenTask() {
     .pipe(dest('templates'));
 }
 
-// set version number (staticAssetsVersion)
-function staticAssetsVersionTask() {
-    return src(files.craftCustomConfig.src)
-    .pipe(
-        replace(/'staticAssetsVersion' => (\d+),/g, function(match, p1, offset, string) {
-            var unixTime = Math.floor(new Date().getTime() / 1000);
-            log('-> staticAssetsVersion updated to ' + unixTime);
-            return "'staticAssetsVersion' => " + unixTime + ",";
-        })
-    )
-    .pipe(dest
-        (files.craftCustomConfig.dest)
-    );
-}
-
 // monitor changes
 function watchTask() {
     const watchVariable = gulp.watch(
         [files.src.src, '!src/scss/config.scss', '!src/js/config.js'],
         gulp.series(
             dotenvToJsonTask,
-            configToScssTask,
             configToJsTask,
             gulp.parallel(
-                templatesTwigTask, modulesTwigTask, modulesAssetsTask, macrosFunctionsTask, scssTask, jsDevTask, jsConfigTask, mockupTask, fontsTask, faviconTask, spritesTask, staticAssetsVersionTask
+                templatesTwigTask, modulesTwigTask, modulesAssetsTask, macrosFunctionsTask, jsConfigTask, fontsTask, faviconTask, spritesTask
             ),
             injizierenTask,
-            uploadTemplatesTask,
-            uploadWebTask,
-            uploadCraftConfigTask,
+            parallel(
+                uploadTemplatesTask, uploadWebTask, uploadCraftConfigTask, uploadCronjobs
+            ),
             deleteConfigTask
         )
     );
@@ -565,17 +457,16 @@ function watchTask() {
 task('build',
     series(
         dotenvToJsonTask,
-        configToScssTask,
         configToJsTask,
         modusTask,
         modusConfirmTask,
         parallel(
-            templatesTwigTask, modulesTwigTask, modulesAssetsTask, macrosFunctionsTask, scssTask, jsDevTask, jsConfigTask, mockupTask, fontsTask, faviconTask, spritesTask, staticAssetsVersionTask
+            templatesTwigTask, modulesTwigTask, modulesAssetsTask, macrosFunctionsTask, jsConfigTask, fontsTask, faviconTask, spritesTask
         ),
         injizierenTask,
-        uploadTemplatesTask,
-        uploadWebTask,
-        uploadCraftConfigTask,
+        parallel(
+            uploadTemplatesTask, uploadWebTask, uploadCraftConfigTask, uploadCronjobs
+        ),
         deleteConfigTask,
         watchTask
     )
