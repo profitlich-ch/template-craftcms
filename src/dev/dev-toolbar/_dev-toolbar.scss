@@ -99,3 +99,19 @@ $color--dev-grid-center: rgba(0, 0, 0, 0.2);
         @include dev-toolbar-grid($layout, map.get($columns, $layout), map.get($gutter, $layout), map-deep-get.map-deep-get($margins, $layout, 'left'), map-deep-get.map-deep-get($margins, $layout, 'right'));
     }
 }
+
+picture {
+    position: relative;
+
+    &::before{
+        content: attr(data-size);
+        font-family: sans-serif;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: white;
+        font-size: 20px;
+        text-shadow: 0 0 10px black;
+        z-index: 10;
+    }
+}

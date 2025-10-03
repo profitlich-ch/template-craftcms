@@ -9,6 +9,7 @@ export class DevToolbar {
     private grid: 'lines' | 'ribbons' = 'lines';
     private devDiv: HTMLElement | null = null;
     private devDivText: HTMLElement | null = null;
+    private pictureElements: HTMLCollectionOf<HTMLPictureElement> | null = null;
 
     constructor() {
         // Prüfen, ob ein Cookie für die Dev-Tools existiert.
@@ -39,6 +40,8 @@ export class DevToolbar {
         this.devDivText.classList.add('dev-toolbar__text');
         this.devDivText.id = 'dev-toolbar__text';
         this.devDiv.append(this.devDivText);
+        
+        this.pictureElements = document.getElementsByTagName('picture');
 
         const devDivRaster = document.createElement('div');
         devDivRaster.classList.add('dev-toolbar__grid');
@@ -46,10 +49,12 @@ export class DevToolbar {
         this.devDiv.append(devDivRaster);
 
         window.addEventListener('resize', this.updateDevDisplay);
+        window.addEventListener('resize', this.updateImageSize);
 
         this.isDevToolsLoaded = true;
         this.toggleDevTools(true, this.grid);
         this.updateDevDisplay();
+        this.updateImageSize();
     }
 
     /**
@@ -57,9 +62,27 @@ export class DevToolbar {
      */
     private updateDevDisplay = (): void => {
         if (this.isDevToolsShown === true && this.devDivText) {
+
             const windowHeight = window.innerHeight;
             const windowWidth = window.innerWidth;
             this.devDivText.textContent = `${this.mediaQueries.layout} @ ${windowWidth}×${windowHeight}`;
+        }
+    }
+    
+    private updateImageSize = (): void => {
+        if (this.pictureElements) {
+            let pictures = Array.from(this.pictureElements);
+            if (this.isDevToolsShown === true) {
+                const windowWidth = window.innerWidth;
+                pictures.forEach((picture) => {
+                    let pictureWidth = picture.offsetWidth;
+                    picture.setAttribute('data-size', `${Math.round(pictureWidth / windowWidth * 100)}vw`);
+                });
+            } else {
+                pictures.forEach((picture) => {
+                    picture.setAttribute('data-size', '');
+                });
+            }
         }
     }
 
@@ -105,5 +128,6 @@ export class DevToolbar {
         
         this.isDevToolsShown = isOn;
         this.updateDevDisplay();
+        this.updateImageSize();
     }
 }
