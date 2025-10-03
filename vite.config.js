@@ -24,6 +24,7 @@ export default defineConfig(({ command, mode }) => {
             outDir: './web/dist/',
             sourcemap: mode === 'development',
             minify: 'terser',
+            ssMinify: 'lightningcss',
             terserOptions: {
                 compress: {
                     // Entfernt alle console.log-Anweisungen
