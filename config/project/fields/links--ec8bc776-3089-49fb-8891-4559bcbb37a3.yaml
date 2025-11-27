@@ -1,0 +1,45 @@
+columnSuffix: null
+handle: links
+instructions: null
+name: Links
+searchable: false
+settings:
+  advancedFields:
+    - target
+  fullGraphqlData: true
+  maxLength: 255
+  showLabelField: true
+  typeSettings:
+    __assoc__:
+      -
+        - entry
+        -
+          __assoc__:
+            -
+              - sources
+              - '*'
+            -
+              - showUnpermittedSections
+              - ''
+            -
+              - showUnpermittedEntries
+              - ''
+      -
+        - url
+        -
+          __assoc__:
+            -
+              - allowRootRelativeUrls
+              - ''
+            -
+              - allowAnchors
+              - ''
+            -
+              - allowCustomSchemes
+              - ''
+  types:
+    - entry
+    - url
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Link

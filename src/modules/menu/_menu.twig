@@ -16,9 +16,9 @@
                 {{ item.title }}
             </a>
         {% endfor %} #}
-		<a class="menu__link" data-menu-active="true">Eins</a>
-		<a class="menu__link">Zwei</a>
-		<a class="menu__link">Drei</a>
+		{% for navigation in craft.entries.section('navigation').all() %}
+			<a class="menu__link" href="{{ navigation.navigationLink.url }}" data-menu-active="true">{{ navigation.navigationLink.label }}</a>
+		{% endfor %}
 	</div>
 </nav>
 

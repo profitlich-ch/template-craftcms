@@ -1,0 +1,40 @@
+color: null
+description: null
+fieldLayouts:
+  02b6f6dc-4f73-498d-9e93-bec0bec5a61b:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-11-26T19:04:15+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1ce458b1-c5ff-40c2-bad8-2ef7bffa8003 # Text
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b2786315-1fe5-4154-be70-d1b25803fa5f
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: a32cfe7b-a633-4c3e-aaf2-0fe33181f6e6
+        userCondition: null
+handle: text
+hasTitleField: false
+icon: null
+name: Text
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

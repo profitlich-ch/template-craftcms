@@ -1,0 +1,6 @@
+<div class="blocks" style="margin-top: 200px">
+    {% for block in entry.blocks.all() %}
+        {% set blockTyp = block.type.handle %}
+        {% include '_modules/'~ blockTyp ~'/'~ blockTyp ~'.twig' %}
+    {% endfor %}
+</div>

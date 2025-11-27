@@ -1,5 +1,5 @@
-/*M!999999\- enable the sandbox mode */ 
--- MariaDB dump 10.19  Distrib 10.11.11-MariaDB, for debian-linux-gnu (aarch64)
+/*!999999\- enable the sandbox mode */ 
+-- MariaDB dump 10.19  Distrib 10.11.8-MariaDB, for debian-linux-gnu (aarch64)
 --
 -- Host: db    Database: db
 -- ------------------------------------------------------
@@ -22,7 +22,7 @@
 
 DROP TABLE IF EXISTS `addresses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `addresses` (
   `id` int(11) NOT NULL,
   `primaryOwnerId` int(11) DEFAULT NULL,
@@ -67,7 +67,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `announcements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `announcements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -101,7 +101,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `assetindexdata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `assetindexdata` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` int(11) NOT NULL,
@@ -140,7 +140,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `assetindexingsessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `assetindexingsessions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `indexedVolumes` text DEFAULT NULL,
@@ -173,7 +173,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `assets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `assets` (
   `id` int(11) NOT NULL,
   `volumeId` int(11) DEFAULT NULL,
@@ -231,7 +231,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `assets_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `assets_sites` (
   `assetId` int(11) NOT NULL,
   `siteId` int(11) NOT NULL,
@@ -258,7 +258,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `authenticator`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `authenticator` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -287,7 +287,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `bulkopevents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bulkopevents` (
   `key` char(10) NOT NULL,
   `senderClass` varchar(255) NOT NULL,
@@ -313,7 +313,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
@@ -345,7 +345,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `categorygroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categorygroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `structureId` int(11) NOT NULL,
@@ -383,7 +383,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `categorygroups_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categorygroups_sites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groupId` int(11) NOT NULL,
@@ -417,7 +417,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `changedattributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `changedattributes` (
   `elementId` int(11) NOT NULL,
   `siteId` int(11) NOT NULL,
@@ -445,7 +445,44 @@ INSERT INTO `changedattributes` VALUES
 (1,1,'fullName','2025-07-18 18:46:55',0,1),
 (1,1,'lastPasswordChangeDate','2025-07-18 18:46:55',0,1),
 (1,1,'password','2025-07-18 18:46:55',0,1),
-(2,1,'title','2022-09-28 12:25:04',0,1);
+(2,1,'fieldLayoutId','2025-11-26 19:06:42',0,1),
+(2,1,'title','2025-11-26 19:10:21',0,1),
+(2,1,'typeId','2025-11-26 19:06:42',0,1),
+(80,1,'postDate','2025-11-26 19:12:25',0,1),
+(80,1,'slug','2025-11-26 19:12:23',0,1),
+(80,1,'title','2025-11-27 16:03:15',0,1),
+(87,1,'postDate','2025-11-26 19:13:04',0,1),
+(87,1,'slug','2025-11-26 19:13:04',0,1),
+(87,1,'title','2025-11-26 19:13:04',0,1),
+(87,1,'uri','2025-11-26 19:13:04',0,1),
+(89,1,'postDate','2025-11-26 19:13:25',0,1),
+(89,1,'slug','2025-11-26 19:13:23',0,1),
+(89,1,'title','2025-11-26 19:13:23',0,1),
+(89,1,'uri','2025-11-26 19:13:23',0,1),
+(92,1,'postDate','2025-11-26 19:19:57',0,1),
+(92,1,'slug','2025-11-26 19:19:52',0,1),
+(92,1,'title','2025-11-26 19:19:52',0,1),
+(92,1,'uri','2025-11-26 19:19:52',0,1),
+(96,1,'postDate','2025-11-26 19:21:44',0,1),
+(96,1,'slug','2025-11-26 19:21:37',0,1),
+(96,1,'title','2025-11-26 19:21:37',0,1),
+(96,1,'uri','2025-11-26 19:21:37',0,1),
+(113,1,'postDate','2025-11-27 16:02:28',0,1),
+(113,1,'slug','2025-11-27 16:02:18',0,1),
+(113,1,'title','2025-11-27 16:02:18',0,1),
+(116,1,'postDate','2025-11-27 16:03:23',0,1),
+(116,1,'slug','2025-11-27 16:03:23',0,1),
+(116,1,'title','2025-11-27 16:13:18',0,1),
+(119,1,'postDate','2025-11-27 16:06:01',0,1),
+(119,1,'slug','2025-11-27 16:05:55',0,1),
+(119,1,'title','2025-11-27 16:05:55',0,1),
+(119,1,'uri','2025-11-27 16:05:55',0,1),
+(120,1,'postDate','2025-11-27 16:05:58',0,1),
+(120,1,'status','2025-11-27 16:05:58',0,1),
+(120,1,'title','2025-11-27 16:06:01',0,1),
+(123,1,'postDate','2025-11-27 16:06:18',0,1),
+(123,1,'slug','2025-11-27 16:06:09',0,1),
+(123,1,'title','2025-11-27 16:06:09',0,1);
 /*!40000 ALTER TABLE `changedattributes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -455,7 +492,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `changedfields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `changedfields` (
   `elementId` int(11) NOT NULL,
   `siteId` int(11) NOT NULL,
@@ -484,9 +521,21 @@ LOCK TABLES `changedfields` WRITE;
 /*!40000 ALTER TABLE `changedfields` DISABLE KEYS */;
 INSERT INTO `changedfields` VALUES
 (2,1,10,'0','2022-10-04 15:45:57',0,1),
+(2,1,10,'2fef81bc-44ba-4070-967c-51790791d3b6','2025-11-26 18:56:45',0,1),
 (2,1,12,'517fd37a-0de4-4675-abfa-d8b72381c3fa','2024-07-17 17:05:05',0,1),
 (2,1,19,'b824efd1-e9f2-4916-9b35-fc51d38c9020','2024-10-06 07:59:03',0,1),
-(2,1,20,'d2a5becd-cb13-4dfe-85d3-f09c17e34448','2024-11-02 09:16:40',0,1);
+(2,1,20,'d2a5becd-cb13-4dfe-85d3-f09c17e34448','2024-11-02 09:16:40',0,1),
+(2,1,21,'028df4ba-bb51-46e5-98a0-6c9911fecb0d','2025-11-26 19:12:33',0,1),
+(80,1,22,'264473a6-3581-4888-8a0f-5e0b38492335','2025-11-26 19:47:21',0,1),
+(80,1,22,'4057441c-cbfd-4af0-ac7b-efb322042fb1','2025-11-26 19:47:21',0,1),
+(87,1,21,'028df4ba-bb51-46e5-98a0-6c9911fecb0d','2025-11-26 19:51:55',0,1),
+(89,1,21,'028df4ba-bb51-46e5-98a0-6c9911fecb0d','2025-11-26 19:51:43',0,1),
+(92,1,24,'782ddd9a-768e-4add-84d8-6d9f0753c227','2025-11-26 19:21:22',0,1),
+(96,1,24,'782ddd9a-768e-4add-84d8-6d9f0753c227','2025-11-26 19:21:44',0,1),
+(113,1,24,'782ddd9a-768e-4add-84d8-6d9f0753c227','2025-11-27 16:02:27',0,1),
+(119,1,21,'028df4ba-bb51-46e5-98a0-6c9911fecb0d','2025-11-27 16:14:02',0,1),
+(120,1,22,'b2786315-1fe5-4154-be70-d1b25803fa5f','2025-11-27 16:06:01',0,1),
+(123,1,24,'782ddd9a-768e-4add-84d8-6d9f0753c227','2025-11-27 16:06:16',0,1);
 /*!40000 ALTER TABLE `changedfields` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -496,7 +545,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `content`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `content` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `elementId` int(11) NOT NULL,
@@ -542,7 +591,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `contentblocks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contentblocks` (
   `id` int(11) NOT NULL,
   `primaryOwnerId` int(11) DEFAULT NULL,
@@ -571,7 +620,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `craftidtokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `craftidtokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -601,7 +650,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `deprecationerrors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `deprecationerrors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL,
@@ -634,7 +683,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `drafts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `drafts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `canonicalId` int(11) DEFAULT NULL,
@@ -651,7 +700,7 @@ CREATE TABLE `drafts` (
   KEY `fk_rpkptkmdrzagtoikvymtkbjjvyxcthalzhvm` (`canonicalId`),
   CONSTRAINT `fk_jzcdarnqzhwghlweuumfwkhsbrnxeoecqfwj` FOREIGN KEY (`creatorId`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_rpkptkmdrzagtoikvymtkbjjvyxcthalzhvm` FOREIGN KEY (`canonicalId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -660,6 +709,8 @@ CREATE TABLE `drafts` (
 
 LOCK TABLES `drafts` WRITE;
 /*!40000 ALTER TABLE `drafts` DISABLE KEYS */;
+INSERT INTO `drafts` VALUES
+(30,NULL,1,0,'First draft',NULL,0,NULL,0);
 /*!40000 ALTER TABLE `drafts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -669,7 +720,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elementactivity`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `elementactivity` (
   `elementId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
@@ -697,9 +748,33 @@ LOCK TABLES `elementactivity` WRITE;
 /*!40000 ALTER TABLE `elementactivity` DISABLE KEYS */;
 INSERT INTO `elementactivity` VALUES
 (1,1,1,NULL,'view','2025-07-18 18:45:46'),
-(2,1,1,NULL,'edit','2024-11-02 09:16:40'),
-(2,1,1,NULL,'save','2024-11-02 09:16:40'),
-(2,1,1,NULL,'view','2024-11-02 09:16:41');
+(2,1,1,NULL,'edit','2025-11-26 19:12:27'),
+(2,1,1,NULL,'save','2025-11-26 19:41:00'),
+(2,1,1,NULL,'view','2025-11-27 16:04:24'),
+(80,1,1,NULL,'edit','2025-11-26 19:47:21'),
+(80,1,1,NULL,'save','2025-11-27 16:03:15'),
+(80,1,1,NULL,'view','2025-11-27 16:03:15'),
+(87,1,1,NULL,'edit','2025-11-26 19:51:52'),
+(87,1,1,NULL,'save','2025-11-26 19:51:55'),
+(87,1,1,NULL,'view','2025-11-26 20:05:45'),
+(89,1,1,NULL,'edit','2025-11-26 19:51:40'),
+(89,1,1,NULL,'save','2025-11-26 19:51:43'),
+(89,1,1,NULL,'view','2025-11-27 16:09:29'),
+(92,1,1,NULL,'edit','2025-11-26 19:21:20'),
+(92,1,1,NULL,'save','2025-11-26 19:21:22'),
+(92,1,1,NULL,'view','2025-11-26 19:21:22'),
+(96,1,1,NULL,'save','2025-11-26 19:21:44'),
+(96,1,1,NULL,'view','2025-11-27 16:03:58'),
+(113,1,1,NULL,'save','2025-11-27 16:02:28'),
+(113,1,1,NULL,'view','2025-11-27 16:13:30'),
+(116,1,1,NULL,'save','2025-11-27 16:13:18'),
+(116,1,1,NULL,'view','2025-11-27 16:13:18'),
+(118,1,1,NULL,'view','2025-11-27 16:05:05'),
+(119,1,1,NULL,'edit','2025-11-27 16:14:02'),
+(119,1,1,NULL,'save','2025-11-27 16:14:02'),
+(119,1,1,NULL,'view','2025-11-27 16:14:03'),
+(123,1,1,NULL,'save','2025-11-27 16:06:18'),
+(123,1,1,NULL,'view','2025-11-27 16:06:06');
 /*!40000 ALTER TABLE `elementactivity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -709,7 +784,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `elements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `canonicalId` int(11) DEFAULT NULL,
@@ -740,7 +815,7 @@ CREATE TABLE `elements` (
   CONSTRAINT `fk_cedzikdlhfaypgjcgjqpbimyolsfyznvempo` FOREIGN KEY (`fieldLayoutId`) REFERENCES `fieldlayouts` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_nidfhzmawapvwynoziaxtwvrnckzhyhqdpvb` FOREIGN KEY (`revisionId`) REFERENCES `revisions` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rtdiwkydecvqrlqbbmstmjjvhgiiucwmmvqo` FOREIGN KEY (`canonicalId`) REFERENCES `elements` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -751,7 +826,7 @@ LOCK TABLES `elements` WRITE;
 /*!40000 ALTER TABLE `elements` DISABLE KEYS */;
 INSERT INTO `elements` VALUES
 (1,NULL,NULL,NULL,NULL,'craft\\elements\\User',1,0,'2022-09-28 08:08:17','2025-07-18 18:46:54',NULL,NULL,NULL,'93ff1eae-a809-48c5-8c5c-102b24b5db0b'),
-(2,NULL,NULL,NULL,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2024-11-02 09:16:40',NULL,NULL,NULL,'439cd31e-c532-45b2-8bc3-453ad109657b'),
+(2,NULL,NULL,NULL,4,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2025-11-26 19:41:00',NULL,NULL,NULL,'439cd31e-c532-45b2-8bc3-453ad109657b'),
 (3,2,NULL,1,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2022-09-28 12:24:30',NULL,NULL,NULL,'b9f4b01d-79e6-4ee8-8065-bb8aaf430f02'),
 (4,2,NULL,2,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2022-09-28 12:24:30',NULL,NULL,NULL,'a4bbb624-ee50-4e42-87e2-3122257bfa20'),
 (5,2,NULL,3,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2022-09-28 12:24:30',NULL,NULL,NULL,'8350a19c-f110-4ee5-adc1-43309377d8f0'),
@@ -805,7 +880,51 @@ INSERT INTO `elements` VALUES
 (67,2,NULL,40,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:12:42','2024-11-02 09:12:42',NULL,NULL,NULL,'89b2154c-bebd-4ce2-9395-014e2937e205'),
 (68,2,NULL,41,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:12:51','2024-11-02 09:12:51',NULL,NULL,NULL,'7dc49e81-147f-4c6b-a8b0-ee0cb8615ad8'),
 (70,2,NULL,42,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:15:27','2024-11-02 09:15:27',NULL,NULL,NULL,'1e814acb-9300-48a9-9464-19aff1669ec9'),
-(72,2,NULL,43,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:16:40','2024-11-02 09:16:40',NULL,NULL,NULL,'2c6a581c-8ae4-418f-be10-9c96964a0aab');
+(72,2,NULL,43,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:16:40','2024-11-02 09:16:40',NULL,NULL,NULL,'2c6a581c-8ae4-418f-be10-9c96964a0aab'),
+(74,2,NULL,44,1,'craft\\elements\\Entry',1,0,'2025-11-26 18:56:45','2025-11-26 18:56:45',NULL,NULL,NULL,'120909a9-31fa-4ae3-8dfd-5d976e1a40fd'),
+(75,2,NULL,45,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:06:42','2025-11-26 19:06:42',NULL,NULL,NULL,'15657099-5c9f-4500-8f0b-db7e8ae87d9f'),
+(76,2,NULL,46,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:10:21','2025-11-26 19:10:21',NULL,NULL,NULL,'da0f1f9d-5028-40bc-8001-8f54ae6073e7'),
+(80,NULL,NULL,NULL,7,'craft\\elements\\Entry',1,0,'2025-11-26 19:12:15','2025-11-27 16:03:15',NULL,NULL,NULL,'74c20b69-7006-4a60-ae9b-a8c525610d1a'),
+(81,80,NULL,47,7,'craft\\elements\\Entry',1,0,'2025-11-26 19:12:25','2025-11-26 19:12:25',NULL,NULL,NULL,'705f42fb-d529-4a35-adf9-90387a4aeb9f'),
+(82,NULL,NULL,NULL,5,'craft\\elements\\Entry',1,0,'2025-11-26 19:12:33','2025-11-26 19:12:33',NULL,NULL,NULL,'f8eadc7d-f5ff-4df2-be9f-e106111b5dc3'),
+(83,NULL,NULL,NULL,6,'craft\\elements\\Entry',1,0,'2025-11-26 19:12:33','2025-11-26 19:12:33',NULL,NULL,NULL,'c2b66677-1e98-4953-97b7-99cd9094b40c'),
+(84,2,NULL,48,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:12:33','2025-11-26 19:12:33',NULL,NULL,NULL,'ce1a3649-80b1-4c33-b4dd-eeee6d296596'),
+(85,82,NULL,49,5,'craft\\elements\\Entry',1,0,'2025-11-26 19:12:33','2025-11-26 19:12:33',NULL,NULL,NULL,'c5aac964-8e40-4655-91d5-52612e263b25'),
+(86,83,NULL,50,6,'craft\\elements\\Entry',1,0,'2025-11-26 19:12:33','2025-11-26 19:12:33',NULL,NULL,NULL,'9c93d3ad-2d6c-430e-a2f9-c0ef1cfc96ea'),
+(87,NULL,NULL,NULL,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:12:58','2025-11-26 19:51:55',NULL,NULL,NULL,'0509f7e7-5a94-4166-b4bf-45276c3b2702'),
+(88,87,NULL,51,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:13:04','2025-11-26 19:13:04',NULL,NULL,NULL,'7ca91d2b-7cd9-401a-9df7-d14a2d1cfd32'),
+(89,NULL,NULL,NULL,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:13:15','2025-11-26 19:51:43',NULL,NULL,NULL,'21a7c6af-95f2-4a8e-b66b-5eba01e0bf3d'),
+(90,89,NULL,52,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:13:25','2025-11-26 19:13:25',NULL,NULL,NULL,'b637e560-8e77-4e68-9402-b2a529dcaebb'),
+(91,89,NULL,53,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:13:57','2025-11-26 19:13:57',NULL,NULL,NULL,'db95fc3f-a1c3-4110-8b66-3a37563b868c'),
+(92,NULL,NULL,NULL,8,'craft\\elements\\Entry',1,0,'2025-11-26 19:19:36','2025-11-26 19:21:22',NULL,NULL,NULL,'8fdfd339-3422-42a4-99e1-19a7931c8776'),
+(93,92,NULL,54,8,'craft\\elements\\Entry',1,0,'2025-11-26 19:19:57','2025-11-26 19:19:57',NULL,NULL,NULL,'4a96da45-9ba3-4883-b6d1-3df3e05b1cdf'),
+(95,92,NULL,55,8,'craft\\elements\\Entry',1,0,'2025-11-26 19:21:22','2025-11-26 19:21:22',NULL,NULL,NULL,'db60526d-c51c-482e-80f6-954b457d0348'),
+(96,NULL,NULL,NULL,8,'craft\\elements\\Entry',1,0,'2025-11-26 19:21:33','2025-11-26 19:21:44',NULL,NULL,NULL,'e3b812c9-6196-4884-8d48-85c6628639e5'),
+(97,96,NULL,56,8,'craft\\elements\\Entry',1,0,'2025-11-26 19:21:44','2025-11-26 19:21:44',NULL,NULL,NULL,'555bc67a-3b1b-46af-936c-89012ed4306a'),
+(98,2,NULL,57,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:23:41','2025-11-26 19:23:41',NULL,NULL,NULL,'cb915a3d-0389-4141-8e5b-79e16e56d0e6'),
+(99,2,NULL,58,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:38:01','2025-11-26 19:38:01',NULL,NULL,NULL,'214dd87c-a8cf-4927-a4ef-49d2983c6b92'),
+(100,2,NULL,59,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:41:00','2025-11-26 19:41:00',NULL,NULL,NULL,'d4c282ab-7e82-428f-9ab3-43cc0fa931c0'),
+(102,80,NULL,60,7,'craft\\elements\\Entry',1,0,'2025-11-26 19:47:21','2025-11-26 19:47:21',NULL,NULL,NULL,'c9e65f8f-c811-49f3-bf2a-2d5fb76024f9'),
+(105,NULL,NULL,NULL,5,'craft\\elements\\Entry',1,0,'2025-11-26 19:51:43','2025-11-26 19:51:43',NULL,NULL,NULL,'628cbc14-a0dd-41d7-ad52-e17656a90808'),
+(106,89,NULL,61,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:51:43','2025-11-26 19:51:43',NULL,NULL,NULL,'551825f6-fdb7-48f4-8284-e394e67ac455'),
+(107,105,NULL,62,5,'craft\\elements\\Entry',1,0,'2025-11-26 19:51:43','2025-11-26 19:51:43',NULL,NULL,NULL,'a7c7e78f-9083-4ddd-adfd-182a3dff265f'),
+(110,NULL,NULL,NULL,5,'craft\\elements\\Entry',1,0,'2025-11-26 19:51:55','2025-11-26 19:51:55',NULL,NULL,NULL,'e31c7e87-35df-4d27-8ae1-000380385fd2'),
+(111,87,NULL,63,4,'craft\\elements\\Entry',1,0,'2025-11-26 19:51:55','2025-11-26 19:51:55',NULL,NULL,NULL,'acc1afee-82a5-4a24-a296-9801765cce20'),
+(112,110,NULL,64,5,'craft\\elements\\Entry',1,0,'2025-11-26 19:51:55','2025-11-26 19:51:55',NULL,NULL,NULL,'b23b9bc6-52cd-4155-a039-0addd9cb80a4'),
+(113,NULL,NULL,NULL,8,'craft\\elements\\Entry',1,0,'2025-11-27 16:02:15','2025-11-27 16:13:38',NULL,'2025-11-27 16:13:38',NULL,'9bd0fd86-79f5-4d34-8082-9606e454240c'),
+(114,113,NULL,65,8,'craft\\elements\\Entry',1,0,'2025-11-27 16:02:28','2025-11-27 16:02:28',NULL,'2025-11-27 16:13:38',NULL,'f8a57a93-3c20-44fe-94f5-4524630adfdd'),
+(115,80,NULL,66,7,'craft\\elements\\Entry',1,0,'2025-11-27 16:03:15','2025-11-27 16:03:15',NULL,NULL,NULL,'b49b5b93-309d-4aa2-a7b7-07ec62d5286f'),
+(116,NULL,NULL,NULL,7,'craft\\elements\\Entry',1,0,'2025-11-27 16:03:19','2025-11-27 16:13:18',NULL,NULL,NULL,'f0075c18-e9da-4b48-aae8-7c96e33944aa'),
+(117,116,NULL,67,7,'craft\\elements\\Entry',1,0,'2025-11-27 16:03:23','2025-11-27 16:03:23',NULL,NULL,NULL,'4b5c3207-7066-486f-a258-3a6cbcc7fb5a'),
+(118,NULL,30,NULL,4,'craft\\elements\\Entry',1,0,'2025-11-27 16:05:05','2025-11-27 16:05:05',NULL,NULL,NULL,'c55c6634-96cf-478e-b1df-e9aa02c32508'),
+(119,NULL,NULL,NULL,4,'craft\\elements\\Entry',1,0,'2025-11-27 16:05:53','2025-11-27 16:14:02',NULL,NULL,NULL,'17ec153c-1d17-40c5-9e3c-d43e052730d7'),
+(120,NULL,NULL,NULL,5,'craft\\elements\\Entry',1,0,'2025-11-27 16:05:58','2025-11-27 16:06:01',NULL,NULL,NULL,'628ae440-ddd9-4e8d-a44c-f509a854ad0d'),
+(121,119,NULL,68,4,'craft\\elements\\Entry',1,0,'2025-11-27 16:06:01','2025-11-27 16:06:01',NULL,NULL,NULL,'6cf741e8-bef5-4e68-844c-bd29e291829f'),
+(122,120,NULL,69,5,'craft\\elements\\Entry',1,0,'2025-11-27 16:06:01','2025-11-27 16:06:01',NULL,NULL,NULL,'9cc9b865-506e-419b-8b3f-88aa44a7d11f'),
+(123,NULL,NULL,NULL,8,'craft\\elements\\Entry',1,0,'2025-11-27 16:06:05','2025-11-27 16:06:18',NULL,NULL,NULL,'4c286f1f-36ef-4d3a-9986-8f277d5a5ce7'),
+(124,123,NULL,70,8,'craft\\elements\\Entry',1,0,'2025-11-27 16:06:18','2025-11-27 16:06:18',NULL,NULL,NULL,'96cd1a3a-b818-4817-b760-1ba50d1cd440'),
+(127,116,NULL,71,7,'craft\\elements\\Entry',1,0,'2025-11-27 16:13:18','2025-11-27 16:13:18',NULL,NULL,NULL,'79284792-d96a-4a8c-bdb5-dbd9edc44f6d'),
+(128,119,NULL,72,4,'craft\\elements\\Entry',1,0,'2025-11-27 16:14:02','2025-11-27 16:14:02',NULL,NULL,NULL,'82b4b32b-e9a7-42cc-9b3e-339932c8167c');
 /*!40000 ALTER TABLE `elements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -815,7 +934,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elements_bulkops`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `elements_bulkops` (
   `elementId` int(11) NOT NULL,
   `key` char(10) NOT NULL,
@@ -840,7 +959,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elements_owners`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `elements_owners` (
   `elementId` int(11) NOT NULL,
   `ownerId` int(11) NOT NULL,
@@ -858,6 +977,24 @@ CREATE TABLE `elements_owners` (
 
 LOCK TABLES `elements_owners` WRITE;
 /*!40000 ALTER TABLE `elements_owners` DISABLE KEYS */;
+INSERT INTO `elements_owners` VALUES
+(82,2,1),
+(83,2,2),
+(85,84,1),
+(85,98,1),
+(85,99,1),
+(85,100,1),
+(86,84,2),
+(86,98,2),
+(86,99,2),
+(86,100,2),
+(105,89,1),
+(107,106,1),
+(110,87,1),
+(112,111,1),
+(120,119,1),
+(122,121,1),
+(122,128,1);
 /*!40000 ALTER TABLE `elements_owners` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -867,7 +1004,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `elements_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `elements_sites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `elementId` int(11) NOT NULL,
@@ -889,7 +1026,7 @@ CREATE TABLE `elements_sites` (
   KEY `idx_fjweliconneugqkntlrjikpjgqcxuhdgyvtj` (`title`,`siteId`),
   CONSTRAINT `fk_temteqgowhfhpxokeldgqekhgfidcvcbqngc` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_yceeftjuorghylwmascvixnayjfwilrtffcy` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -900,7 +1037,7 @@ LOCK TABLES `elements_sites` WRITE;
 /*!40000 ALTER TABLE `elements_sites` DISABLE KEYS */;
 INSERT INTO `elements_sites` VALUES
 (1,1,1,NULL,NULL,NULL,NULL,1,'2022-09-28 08:08:17','2022-09-28 08:08:17','3383af9f-5662-4bca-83c6-62ceb0a97ac3'),
-(2,2,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2022-09-28 12:24:30','2024-11-02 09:12:42','92ab4b47-56a4-4bfd-9e11-38837b48cc2f'),
+(2,2,1,'Startseite','startseite','__home__',NULL,1,'2022-09-28 12:24:30','2025-11-26 19:12:33','92ab4b47-56a4-4bfd-9e11-38837b48cc2f'),
 (3,3,1,'Startseite','startseite','__home__',NULL,1,'2022-09-28 12:24:30','2022-09-28 12:24:30','bc2c96e8-4b47-4d63-904d-6b4535a2e017'),
 (4,4,1,'Startseite','startseite','__home__',NULL,1,'2022-09-28 12:24:30','2022-09-28 12:24:30','6ac103ad-ffcb-47dc-8b3f-4b6de5caa1cc'),
 (5,5,1,'Startseite','startseite','__home__',NULL,1,'2022-09-28 12:24:30','2022-09-28 12:24:30','5e0b824d-bae7-4de6-8cfe-3bc6284471cc'),
@@ -954,7 +1091,51 @@ INSERT INTO `elements_sites` VALUES
 (67,67,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:12:42','2024-11-02 09:12:42','5a723060-6ede-4445-bee5-8e0c5a2cc63e'),
 (68,68,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:12:51','2024-11-02 09:12:51','0f771e44-feca-458f-8fb4-86f7efd958ce'),
 (70,70,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:15:27','2024-11-02 09:15:27','7b55e9b8-cb5e-4a45-adb6-67cd1b93679e'),
-(72,72,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:16:40','2024-11-02 09:16:40','2c72584c-535e-4ae0-a21b-43d80f1f2fa5');
+(72,72,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:16:40','2024-11-02 09:16:40','2c72584c-535e-4ae0-a21b-43d80f1f2fa5'),
+(74,74,1,'Reiner Zufall','startseite','__home__',NULL,1,'2025-11-26 18:56:45','2025-11-26 18:56:45','81fd63be-92d4-4cb0-ae6f-bbb05bf67f94'),
+(75,75,1,'Reiner Zufall','startseite','__home__',NULL,1,'2025-11-26 19:06:42','2025-11-26 19:06:42','99c9784a-35cb-467e-b089-78e1c5617d57'),
+(76,76,1,'Startseite','startseite','__home__',NULL,1,'2025-11-26 19:10:21','2025-11-26 19:10:21','04f77ad5-aedc-4195-80ad-cb920ff5430c'),
+(80,80,1,'Kontakt: Teaser','test-teaser',NULL,'{\"264473a6-3581-4888-8a0f-5e0b38492335\":\"Titel Teaser\",\"4057441c-cbfd-4af0-ac7b-efb322042fb1\":\"Text Teaser\"}',1,'2025-11-26 19:12:15','2025-11-27 16:03:15','e62abeb5-8436-43a9-9e11-84a70d29956d'),
+(81,81,1,'Test Teaser','test-teaser',NULL,'{\"264473a6-3581-4888-8a0f-5e0b38492335\":\"Test Teaser\",\"4057441c-cbfd-4af0-ac7b-efb322042fb1\":\"Test\"}',1,'2025-11-26 19:12:25','2025-11-26 19:12:25','ad63fc59-912c-4aa0-bf1e-6e13280c6406'),
+(82,82,1,NULL,'__temp_yezbbmaaqktrrvsqryfvxpdmgrbvsmvlmwsp',NULL,'{\"b2786315-1fe5-4154-be70-d1b25803fa5f\":\"Reiner Text\"}',1,'2025-11-26 19:12:33','2025-11-26 19:12:33','bd092a44-1f18-45bb-9e2a-b6b86856449a'),
+(83,83,1,NULL,'__temp_datxnoobnvatstpahrfdnopvdjwahribklxe',NULL,'{\"f78da7b6-6c65-48b3-b832-9ea4d3719e7d\":[80]}',1,'2025-11-26 19:12:33','2025-11-26 19:12:33','e52274e9-4e4a-4970-88fe-d6394c57c70d'),
+(84,84,1,'Startseite','startseite','__home__',NULL,1,'2025-11-26 19:12:33','2025-11-26 19:12:33','f72e5e0c-281c-440c-a310-5255bd5ad9fa'),
+(85,85,1,NULL,'__temp_yezbbmaaqktrrvsqryfvxpdmgrbvsmvlmwsp',NULL,'{\"b2786315-1fe5-4154-be70-d1b25803fa5f\":\"Reiner Text\"}',1,'2025-11-26 19:12:33','2025-11-26 19:12:33','74f11a0e-c03f-46a6-8347-3ac2a715980f'),
+(86,86,1,NULL,'__temp_datxnoobnvatstpahrfdnopvdjwahribklxe',NULL,'{\"f78da7b6-6c65-48b3-b832-9ea4d3719e7d\":[80]}',1,'2025-11-26 19:12:33','2025-11-26 19:12:33','d097f07a-509c-4d13-883d-7a069a0f823c'),
+(87,87,1,'Über Uns','ueber-uns','ueber-uns',NULL,1,'2025-11-26 19:12:58','2025-11-26 19:23:21','ce698b64-be81-46b5-8794-5a15a38aab3c'),
+(88,88,1,'Über Uns','ueber-uns','landingpages/ueber-uns',NULL,1,'2025-11-26 19:13:04','2025-11-26 19:13:04','aa13ce2d-2ad0-435c-b7a8-c961938ba6b7'),
+(89,89,1,'Kontakt','kontakt','kontakt',NULL,1,'2025-11-26 19:13:15','2025-11-26 19:23:21','e1398544-823f-4757-badd-2f4237714b91'),
+(90,90,1,'Kontakt','kontakt','landingpages/kontakt',NULL,1,'2025-11-26 19:13:25','2025-11-26 19:13:25','8db3fd90-c204-4871-a11f-c620a7d0fa3c'),
+(91,91,1,'Kontakt','kontakt','landingpages/kontakt',NULL,1,'2025-11-26 19:13:57','2025-11-26 19:13:57','ae3b8975-ca4a-4389-96f3-fd47c2ae3f23'),
+(92,92,1,'Über Uns','ueber-uns',NULL,'{\"782ddd9a-768e-4add-84d8-6d9f0753c227\":{\"value\":\"{entry:87@1:url}\",\"type\":\"entry\",\"label\":\"Über Uns\"}}',1,'2025-11-26 19:19:36','2025-11-26 19:22:58','ebc5c147-4586-4395-8df8-4eb8cb94d5cd'),
+(93,93,1,'Über Uns','ueber-uns','navigation/ueber-uns','{\"782ddd9a-768e-4add-84d8-6d9f0753c227\":{\"value\":\"{entry:87@1:url}\",\"type\":\"entry\"}}',1,'2025-11-26 19:19:57','2025-11-26 19:19:57','56858a2c-3acb-4251-aba8-4106abf52cfc'),
+(95,95,1,'Über Uns','ueber-uns','navigation/ueber-uns','{\"782ddd9a-768e-4add-84d8-6d9f0753c227\":{\"value\":\"{entry:87@1:url}\",\"type\":\"entry\",\"label\":\"Über Uns\"}}',1,'2025-11-26 19:21:22','2025-11-26 19:21:22','95d8cb97-8884-4530-ad67-4f75ea462904'),
+(96,96,1,'Kontakt','kontakt',NULL,'{\"782ddd9a-768e-4add-84d8-6d9f0753c227\":{\"value\":\"{entry:89@1:url}\",\"type\":\"entry\",\"label\":\"Kontakt\"}}',1,'2025-11-26 19:21:33','2025-11-26 19:22:58','54c49f9b-a0fe-4e93-bb92-4733ac3e37dd'),
+(97,97,1,'Kontakt','kontakt','navigation/kontakt','{\"782ddd9a-768e-4add-84d8-6d9f0753c227\":{\"value\":\"{entry:89@1:url}\",\"type\":\"entry\",\"label\":\"Kontakt\"}}',1,'2025-11-26 19:21:44','2025-11-26 19:21:44','32211a14-c474-4a5a-8f59-bda3cdb947e3'),
+(98,98,1,'Startseite','startseite','__home__',NULL,1,'2025-11-26 19:23:41','2025-11-26 19:23:41','d0f90584-611f-4a66-95fd-07e39ca039d5'),
+(99,99,1,'Startseite','startseite','__home__',NULL,1,'2025-11-26 19:38:01','2025-11-26 19:38:01','c0a526a5-6a9f-4704-b176-5234b69fbda3'),
+(100,100,1,'Startseite','startseite','__home__',NULL,1,'2025-11-26 19:41:00','2025-11-26 19:41:00','3982f646-7854-433f-b0ec-477d6f4d0f53'),
+(102,102,1,'Interner Name Teaser','test-teaser',NULL,'{\"264473a6-3581-4888-8a0f-5e0b38492335\":\"Titel Teaser\",\"4057441c-cbfd-4af0-ac7b-efb322042fb1\":\"Text Teaser\"}',1,'2025-11-26 19:47:21','2025-11-26 19:47:21','eb39bfc2-3bb0-499d-a951-ebc756120c22'),
+(105,105,1,NULL,'__temp_evpckupjrhrtisadphvnwyvfqvrfzjocqidc',NULL,'{\"b2786315-1fe5-4154-be70-d1b25803fa5f\":\"Kontakt :)\"}',1,'2025-11-26 19:51:43','2025-11-26 19:51:43','341709c3-5b66-4208-9d96-a51670969f8e'),
+(106,106,1,'Kontakt','kontakt','kontakt',NULL,1,'2025-11-26 19:51:43','2025-11-26 19:51:43','c445e8a5-2e0a-434c-98fa-72ecf897aee3'),
+(107,107,1,NULL,'__temp_evpckupjrhrtisadphvnwyvfqvrfzjocqidc',NULL,'{\"b2786315-1fe5-4154-be70-d1b25803fa5f\":\"Kontakt :)\"}',1,'2025-11-26 19:51:43','2025-11-26 19:51:43','aeaa95f8-52fb-4a58-8dbc-6e3c6c24e03a'),
+(110,110,1,NULL,'__temp_cluicaugvqvtlhgngdemokxkxaqefwglwtzd',NULL,'{\"b2786315-1fe5-4154-be70-d1b25803fa5f\":\"Über uns\"}',1,'2025-11-26 19:51:55','2025-11-26 19:51:55','430675e9-1b45-40b0-8f6d-13b41f2b5cde'),
+(111,111,1,'Über Uns','ueber-uns','ueber-uns',NULL,1,'2025-11-26 19:51:55','2025-11-26 19:51:55','0c877269-9c1e-422a-90db-aae294087add'),
+(112,112,1,NULL,'__temp_cluicaugvqvtlhgngdemokxkxaqefwglwtzd',NULL,'{\"b2786315-1fe5-4154-be70-d1b25803fa5f\":\"Über uns\"}',1,'2025-11-26 19:51:55','2025-11-26 19:51:55','96ea4208-a010-4b03-a0b7-e031913e7c44'),
+(113,113,1,'Test','test',NULL,'{\"782ddd9a-768e-4add-84d8-6d9f0753c227\":{\"value\":\"https://google.com\",\"type\":\"url\",\"label\":\"Google.com\"}}',1,'2025-11-27 16:02:15','2025-11-27 16:02:27','2111023d-ffdc-4c64-bee4-56891e1f5e3e'),
+(114,114,1,'Test','test',NULL,'{\"782ddd9a-768e-4add-84d8-6d9f0753c227\":{\"value\":\"https://google.com\",\"type\":\"url\",\"label\":\"Google.com\"}}',1,'2025-11-27 16:02:28','2025-11-27 16:02:28','c7716fd5-07f5-4687-b9ad-5763a7cb06de'),
+(115,115,1,'Kontakt: Teaser','test-teaser',NULL,'{\"264473a6-3581-4888-8a0f-5e0b38492335\":\"Titel Teaser\",\"4057441c-cbfd-4af0-ac7b-efb322042fb1\":\"Text Teaser\"}',1,'2025-11-27 16:03:15','2025-11-27 16:03:15','6839707f-bbbe-4815-8475-ef6584224675'),
+(116,116,1,'Test: Teaser','test-teaser',NULL,NULL,1,'2025-11-27 16:03:19','2025-11-27 16:13:18','5a5ac283-38f5-4aef-a19b-8dc1e686bdcf'),
+(117,117,1,'Test Teaser','test-teaser',NULL,NULL,1,'2025-11-27 16:03:23','2025-11-27 16:03:23','7e64a34e-7531-41c0-bd67-8e6cfa2be8ed'),
+(118,118,1,NULL,'__temp_zgcihtihcwhpyhykuabigrfmoixzjkkaesse','__temp_zgcihtihcwhpyhykuabigrfmoixzjkkaesse',NULL,1,'2025-11-27 16:05:05','2025-11-27 16:05:05','4b1d331f-3389-4e56-a57c-eced28b7246b'),
+(119,119,1,'Verkauf','verkauf','verkauf',NULL,1,'2025-11-27 16:05:53','2025-11-27 16:13:24','d5b03bf0-9819-4e06-96d2-4236a14d10da'),
+(120,120,1,NULL,'__temp_dqicluatynmaajhnieqnkhrpnibrztyntqfo',NULL,'{\"b2786315-1fe5-4154-be70-d1b25803fa5f\":\"Verkauf\"}',1,'2025-11-27 16:05:58','2025-11-27 16:06:01','653cfb89-7799-48f9-99e1-ca361ecd252a'),
+(121,121,1,'Verkauf','verkauf','verkauf',NULL,1,'2025-11-27 16:06:01','2025-11-27 16:06:01','1d78fa2f-4fcc-45c1-bfd7-7ef34f0f4f71'),
+(122,122,1,NULL,'__temp_dqicluatynmaajhnieqnkhrpnibrztyntqfo',NULL,'{\"b2786315-1fe5-4154-be70-d1b25803fa5f\":\"Verkauf\"}',1,'2025-11-27 16:06:01','2025-11-27 16:06:01','dd43a32c-bf18-40ab-957f-272fd4718cda'),
+(123,123,1,'Verkauf','verkauf',NULL,'{\"782ddd9a-768e-4add-84d8-6d9f0753c227\":{\"value\":\"{entry:119@1:url}\",\"type\":\"entry\"}}',1,'2025-11-27 16:06:05','2025-11-27 16:06:16','f4ad2d85-7d92-4845-8f01-cfeef6631c5c'),
+(124,124,1,'Verkauf','verkauf',NULL,'{\"782ddd9a-768e-4add-84d8-6d9f0753c227\":{\"value\":\"{entry:119@1:url}\",\"type\":\"entry\"}}',1,'2025-11-27 16:06:18','2025-11-27 16:06:18','45e387d5-fd5a-4699-9178-6260d17b63b9'),
+(127,127,1,'Test: Teaser','test-teaser',NULL,NULL,1,'2025-11-27 16:13:18','2025-11-27 16:13:18','b6b6239c-225a-4b12-8199-bc822e9ca27b'),
+(128,128,1,'Verkauf','verkauf','verkauf',NULL,1,'2025-11-27 16:14:02','2025-11-27 16:14:02','a74700eb-0439-446d-aeff-92d7de9751fa');
 /*!40000 ALTER TABLE `elements_sites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -964,7 +1145,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `entries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `entries` (
   `id` int(11) NOT NULL,
   `sectionId` int(11) DEFAULT NULL,
@@ -1004,7 +1185,7 @@ CREATE TABLE `entries` (
 LOCK TABLES `entries` WRITE;
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
 INSERT INTO `entries` VALUES
-(2,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
+(2,1,NULL,NULL,NULL,2,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:30','2025-11-26 19:06:42'),
 (3,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
 (4,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
 (5,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2022-09-28 12:24:30','2022-09-28 12:24:30'),
@@ -1047,7 +1228,51 @@ INSERT INTO `entries` VALUES
 (67,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:12:42','2024-11-02 09:12:42'),
 (68,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:12:51','2024-11-02 09:12:51'),
 (70,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:15:27','2024-11-02 09:15:27'),
-(72,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:16:40','2024-11-02 09:16:40');
+(72,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:16:40','2024-11-02 09:16:40'),
+(74,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2025-11-26 18:56:45','2025-11-26 18:56:45'),
+(75,1,NULL,NULL,NULL,2,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2025-11-26 19:06:42','2025-11-26 19:06:42'),
+(76,1,NULL,NULL,NULL,2,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2025-11-26 19:10:21','2025-11-26 19:10:21'),
+(80,2,NULL,NULL,NULL,5,'2025-11-26 19:12:00',NULL,'live',NULL,NULL,'2025-11-26 19:12:15','2025-11-26 19:12:25'),
+(81,2,NULL,NULL,NULL,5,'2025-11-26 19:12:00',NULL,'live',NULL,NULL,'2025-11-26 19:12:25','2025-11-26 19:12:25'),
+(82,NULL,NULL,2,21,3,'2025-11-26 19:10:00',NULL,'live',NULL,NULL,'2025-11-26 19:12:33','2025-11-26 19:12:33'),
+(83,NULL,NULL,2,21,4,'2025-11-26 19:12:00',NULL,'live',NULL,NULL,'2025-11-26 19:12:33','2025-11-26 19:12:33'),
+(84,1,NULL,NULL,NULL,2,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2025-11-26 19:12:33','2025-11-26 19:12:33'),
+(85,NULL,NULL,84,21,3,'2025-11-26 19:10:00',NULL,'live',NULL,NULL,'2025-11-26 19:12:33','2025-11-26 19:12:33'),
+(86,NULL,NULL,84,21,4,'2025-11-26 19:12:00',NULL,'live',NULL,NULL,'2025-11-26 19:12:33','2025-11-26 19:12:33'),
+(87,3,NULL,NULL,NULL,2,'2025-11-26 19:13:00',NULL,'live',NULL,NULL,'2025-11-26 19:12:58','2025-11-26 19:13:04'),
+(88,3,NULL,NULL,NULL,2,'2025-11-26 19:13:00',NULL,'live',NULL,NULL,'2025-11-26 19:13:04','2025-11-26 19:13:04'),
+(89,3,NULL,NULL,NULL,2,'2025-11-26 19:13:00',NULL,'live',NULL,NULL,'2025-11-26 19:13:15','2025-11-26 19:13:25'),
+(90,3,NULL,NULL,NULL,2,'2025-11-26 19:13:00',NULL,'live',NULL,NULL,'2025-11-26 19:13:25','2025-11-26 19:13:25'),
+(91,3,NULL,NULL,NULL,2,'2025-11-26 19:13:00',NULL,'live',NULL,NULL,'2025-11-26 19:13:57','2025-11-26 19:13:57'),
+(92,4,NULL,NULL,NULL,6,'2025-11-26 19:19:00',NULL,'live',NULL,NULL,'2025-11-26 19:19:36','2025-11-26 19:19:57'),
+(93,4,NULL,NULL,NULL,6,'2025-11-26 19:19:00',NULL,'live',NULL,NULL,'2025-11-26 19:19:57','2025-11-26 19:19:57'),
+(95,4,NULL,NULL,NULL,6,'2025-11-26 19:19:00',NULL,'live',NULL,NULL,'2025-11-26 19:21:22','2025-11-26 19:21:22'),
+(96,4,NULL,NULL,NULL,6,'2025-11-26 19:21:00',NULL,'live',NULL,NULL,'2025-11-26 19:21:33','2025-11-26 19:21:44'),
+(97,4,NULL,NULL,NULL,6,'2025-11-26 19:21:00',NULL,'live',NULL,NULL,'2025-11-26 19:21:44','2025-11-26 19:21:44'),
+(98,1,NULL,NULL,NULL,2,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2025-11-26 19:23:41','2025-11-26 19:23:41'),
+(99,1,NULL,NULL,NULL,2,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2025-11-26 19:38:01','2025-11-26 19:38:01'),
+(100,1,NULL,NULL,NULL,2,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2025-11-26 19:41:00','2025-11-26 19:41:00'),
+(102,2,NULL,NULL,NULL,5,'2025-11-26 19:12:00',NULL,'live',NULL,NULL,'2025-11-26 19:47:21','2025-11-26 19:47:21'),
+(105,NULL,NULL,89,21,3,'2025-11-26 19:51:00',NULL,'live',NULL,NULL,'2025-11-26 19:51:43','2025-11-26 19:51:43'),
+(106,3,NULL,NULL,NULL,2,'2025-11-26 19:13:00',NULL,'live',NULL,NULL,'2025-11-26 19:51:43','2025-11-26 19:51:43'),
+(107,NULL,NULL,106,21,3,'2025-11-26 19:51:00',NULL,'live',NULL,NULL,'2025-11-26 19:51:43','2025-11-26 19:51:43'),
+(110,NULL,NULL,87,21,3,'2025-11-26 19:51:00',NULL,'live',NULL,NULL,'2025-11-26 19:51:55','2025-11-26 19:51:55'),
+(111,3,NULL,NULL,NULL,2,'2025-11-26 19:13:00',NULL,'live',NULL,NULL,'2025-11-26 19:51:55','2025-11-26 19:51:55'),
+(112,NULL,NULL,111,21,3,'2025-11-26 19:51:00',NULL,'live',NULL,NULL,'2025-11-26 19:51:55','2025-11-26 19:51:55'),
+(113,4,NULL,NULL,NULL,6,'2025-11-27 16:02:00',NULL,'live',0,0,'2025-11-27 16:02:15','2025-11-27 16:02:28'),
+(114,4,NULL,NULL,NULL,6,'2025-11-27 16:02:00',NULL,'live',NULL,NULL,'2025-11-27 16:02:28','2025-11-27 16:02:28'),
+(115,2,NULL,NULL,NULL,5,'2025-11-26 19:12:00',NULL,'live',NULL,NULL,'2025-11-27 16:03:15','2025-11-27 16:03:15'),
+(116,2,NULL,NULL,NULL,5,'2025-11-27 16:03:00',NULL,'live',NULL,NULL,'2025-11-27 16:03:19','2025-11-27 16:03:23'),
+(117,2,NULL,NULL,NULL,5,'2025-11-27 16:03:00',NULL,'live',NULL,NULL,'2025-11-27 16:03:23','2025-11-27 16:03:23'),
+(118,3,NULL,NULL,NULL,2,'2025-11-27 16:05:05',NULL,'live',NULL,NULL,'2025-11-27 16:05:05','2025-11-27 16:05:05'),
+(119,3,NULL,NULL,NULL,2,'2025-11-27 16:06:00',NULL,'live',NULL,NULL,'2025-11-27 16:05:53','2025-11-27 16:06:01'),
+(120,NULL,NULL,119,21,3,'2025-11-27 16:05:00',NULL,'live',NULL,NULL,'2025-11-27 16:05:58','2025-11-27 16:05:58'),
+(121,3,NULL,NULL,NULL,2,'2025-11-27 16:06:00',NULL,'live',NULL,NULL,'2025-11-27 16:06:01','2025-11-27 16:06:01'),
+(122,NULL,NULL,121,21,3,'2025-11-27 16:05:00',NULL,'live',NULL,NULL,'2025-11-27 16:06:01','2025-11-27 16:06:01'),
+(123,4,NULL,NULL,NULL,6,'2025-11-27 16:06:00',NULL,'live',NULL,NULL,'2025-11-27 16:06:05','2025-11-27 16:06:18'),
+(124,4,NULL,NULL,NULL,6,'2025-11-27 16:06:00',NULL,'live',NULL,NULL,'2025-11-27 16:06:18','2025-11-27 16:06:18'),
+(127,2,NULL,NULL,NULL,5,'2025-11-27 16:03:00',NULL,'live',NULL,NULL,'2025-11-27 16:13:18','2025-11-27 16:13:18'),
+(128,3,NULL,NULL,NULL,2,'2025-11-27 16:06:00',NULL,'live',NULL,NULL,'2025-11-27 16:14:02','2025-11-27 16:14:02');
 /*!40000 ALTER TABLE `entries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1057,7 +1282,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `entries_authors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `entries_authors` (
   `entryId` int(11) NOT NULL,
   `authorId` int(11) NOT NULL,
@@ -1076,6 +1301,34 @@ CREATE TABLE `entries_authors` (
 
 LOCK TABLES `entries_authors` WRITE;
 /*!40000 ALTER TABLE `entries_authors` DISABLE KEYS */;
+INSERT INTO `entries_authors` VALUES
+(80,1,1),
+(81,1,1),
+(87,1,1),
+(88,1,1),
+(89,1,1),
+(90,1,1),
+(91,1,1),
+(92,1,1),
+(93,1,1),
+(95,1,1),
+(96,1,1),
+(97,1,1),
+(102,1,1),
+(106,1,1),
+(111,1,1),
+(113,1,1),
+(114,1,1),
+(115,1,1),
+(116,1,1),
+(117,1,1),
+(118,1,1),
+(119,1,1),
+(121,1,1),
+(123,1,1),
+(124,1,1),
+(127,1,1),
+(128,1,1);
 /*!40000 ALTER TABLE `entries_authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1085,7 +1338,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `entrytypes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `entrytypes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldLayoutId` int(11) DEFAULT NULL,
@@ -1110,7 +1363,7 @@ CREATE TABLE `entrytypes` (
   KEY `idx_bbjfbcelkueahisyjscvmpgplqpjknbwsoco` (`fieldLayoutId`),
   KEY `idx_oemaojqaauvkpsfrckxtnjlbjtyjkdlxlbiw` (`dateDeleted`),
   CONSTRAINT `fk_pzvqhapiyrmnddhuzrcijyezrovxhymyqjjj` FOREIGN KEY (`fieldLayoutId`) REFERENCES `fieldlayouts` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1120,7 +1373,12 @@ CREATE TABLE `entrytypes` (
 LOCK TABLES `entrytypes` WRITE;
 /*!40000 ALTER TABLE `entrytypes` DISABLE KEYS */;
 INSERT INTO `entrytypes` VALUES
-(1,1,'Startseite','startseite',NULL,'',NULL,1,'site',NULL,'',1,'site',NULL,1,'2022-09-28 12:24:11','2024-10-04 19:32:56',NULL,'0e793c4c-3298-4c14-a50e-fe050eeaee18');
+(1,1,'Startseite','startseite',NULL,'',NULL,1,'site',NULL,'',1,'site',NULL,1,'2022-09-28 12:24:11','2024-10-04 19:32:56',NULL,'0e793c4c-3298-4c14-a50e-fe050eeaee18'),
+(2,4,'Landingpage','landingpage',NULL,NULL,NULL,1,'site',NULL,NULL,1,'site',NULL,1,'2025-11-26 19:00:06','2025-11-26 19:00:06',NULL,'84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb'),
+(3,5,'Text','text',NULL,NULL,NULL,0,'site',NULL,NULL,1,'site',NULL,1,'2025-11-26 19:03:03','2025-11-26 19:37:57',NULL,'0396ff1d-5e87-4504-952e-1935bb565bf6'),
+(4,6,'Teaser','teaser',NULL,NULL,NULL,0,'site',NULL,NULL,1,'site',NULL,1,'2025-11-26 19:06:32','2025-11-26 19:12:01',NULL,'bac239f3-c626-43b7-9726-0a62539fdd46'),
+(5,7,'TeaserSection','teasersection',NULL,NULL,NULL,1,'site',NULL,NULL,1,'site',NULL,1,'2025-11-26 19:08:42','2025-11-26 19:08:42',NULL,'18952c35-98c2-44eb-b5bc-5bf8cc8829c8'),
+(6,8,'Navigation','navigation',NULL,NULL,NULL,1,'site',NULL,NULL,1,'site',NULL,1,'2025-11-26 19:19:05','2025-11-26 19:19:05',NULL,'84b612e4-4c88-4c37-8daf-af7b33fdfa22');
 /*!40000 ALTER TABLE `entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1130,7 +1388,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `fieldlayouts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fieldlayouts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -1142,7 +1400,7 @@ CREATE TABLE `fieldlayouts` (
   PRIMARY KEY (`id`),
   KEY `idx_mxviibmsollegbigmyggahsevjyvwezmknjh` (`dateDeleted`),
   KEY `idx_ptvqlhbjvxzrparbdvucycfzhwxeekciooca` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1154,7 +1412,12 @@ LOCK TABLES `fieldlayouts` WRITE;
 INSERT INTO `fieldlayouts` VALUES
 (1,'craft\\elements\\Entry','{\"tabs\":[{\"name\":\"Inhalt\",\"uid\":\"68594230-9efe-49da-80cf-dc0970f98312\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\entries\\\\EntryTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"requirable\":false,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T17:41:11+00:00\",\"uid\":\"b0f3b706-9654-4e91-ad6c-c7a6fde59439\",\"userCondition\":null,\"elementCondition\":null},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":false,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T17:41:11+00:00\",\"uid\":\"2fef81bc-44ba-4070-967c-51790791d3b6\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"12994855-fd13-4d38-8ad9-156bb1960e74\"}]}]}','2022-09-28 12:24:11','2024-12-10 22:37:37',NULL,'8b195686-1317-4797-8d9f-8106393d5d59'),
 (2,'craft\\elements\\Asset',NULL,'2022-10-03 14:52:04','2022-10-03 14:52:04','2022-10-03 17:07:18','e6565791-f8cf-4a18-85f0-1eb2df8e7e78'),
-(3,'craft\\elements\\Asset','{\"tabs\":[{\"name\":\"Content\",\"uid\":\"6b9c9049-f380-4f5d-8db8-2e6fa1a74f1c\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\assets\\\\AssetTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"requirable\":false,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T10:41:11-07:00\",\"uid\":\"2124b4b0-5b72-4089-a532-43c097daaf1d\",\"userCondition\":null,\"elementCondition\":null},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":true,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T10:41:11-07:00\",\"uid\":\"e1f9bdf7-3e08-4419-8e6f-4bb6c8eebfdd\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"396abe4e-d4af-4c68-a2fb-7a3bce13f340\"}]}]}','2022-10-03 17:08:22','2024-10-04 17:42:11',NULL,'413aa4a6-e2a6-4c94-b2e0-08be3e37fc65');
+(3,'craft\\elements\\Asset','{\"tabs\":[{\"name\":\"Content\",\"uid\":\"6b9c9049-f380-4f5d-8db8-2e6fa1a74f1c\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\assets\\\\AssetTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"requirable\":false,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T10:41:11-07:00\",\"uid\":\"2124b4b0-5b72-4089-a532-43c097daaf1d\",\"userCondition\":null,\"elementCondition\":null},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":true,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T10:41:11-07:00\",\"uid\":\"e1f9bdf7-3e08-4419-8e6f-4bb6c8eebfdd\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"396abe4e-d4af-4c68-a2fb-7a3bce13f340\"}]}]}','2022-10-03 17:08:22','2024-10-04 17:42:11',NULL,'413aa4a6-e2a6-4c94-b2e0-08be3e37fc65'),
+(4,'craft\\elements\\Entry','{\"tabs\":[{\"name\":\"Navigation\",\"uid\":\"b8173002-03c7-48fd-8d31-9409efad6870\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\entries\\\\EntryTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":\"Interner Name\",\"instructions\":null,\"tip\":null,\"warning\":null,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2025-11-26T18:58:58+00:00\",\"uid\":\"f6cd3f38-b3b4-485a-8158-c2220d1392af\",\"userCondition\":null,\"elementCondition\":null,\"required\":true}]},{\"name\":\"Blocks\",\"uid\":\"036001b7-372b-490a-b6cc-05fee2032c1b\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":false,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2025-11-26T19:06:35+00:00\",\"uid\":\"028df4ba-bb51-46e5-98a0-6c9911fecb0d\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"f0300c95-552b-49b5-9351-7ad29f907352\",\"editCondition\":null}]}],\"generatedFields\":[],\"cardView\":[],\"cardThumbAlignment\":\"end\"}','2025-11-26 19:00:06','2025-11-26 19:06:35',NULL,'41c3aded-2fe1-42b8-9401-5a01576e9c6d'),
+(5,'craft\\elements\\Entry','{\"tabs\":[{\"name\":\"Content\",\"uid\":\"a32cfe7b-a633-4c3e-aaf2-0fe33181f6e6\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":true,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2025-11-26T19:04:15+00:00\",\"uid\":\"b2786315-1fe5-4154-be70-d1b25803fa5f\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"1ce458b1-c5ff-40c2-bad8-2ef7bffa8003\",\"editCondition\":null}]}],\"generatedFields\":[],\"cardView\":[],\"cardThumbAlignment\":\"end\"}','2025-11-26 19:03:03','2025-11-26 19:11:48',NULL,'02b6f6dc-4f73-498d-9e93-bec0bec5a61b'),
+(6,'craft\\elements\\Entry','{\"tabs\":[{\"name\":\"Content\",\"uid\":\"d9b5098e-5c09-468d-a13d-65ea9fb882d6\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":true,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2025-11-26T19:06:32+00:00\",\"uid\":\"f78da7b6-6c65-48b3-b832-9ea4d3719e7d\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"40535b60-d662-44ba-97fa-7aecf43c6ea6\",\"editCondition\":null}]}],\"generatedFields\":[],\"cardView\":[],\"cardThumbAlignment\":\"end\"}','2025-11-26 19:06:32','2025-11-26 19:12:01',NULL,'c15d8232-344f-4d80-b90e-70bfd9d5ec5e'),
+(7,'craft\\elements\\Entry','{\"tabs\":[{\"name\":\"Content\",\"uid\":\"de146f84-8e32-492f-bd33-7b01b62c9f29\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\entries\\\\EntryTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":\"Interner Name\",\"instructions\":null,\"tip\":null,\"warning\":null,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2025-11-26T19:06:00+00:00\",\"uid\":\"084408b8-0673-4b46-ae41-2c527b8ab41e\",\"userCondition\":null,\"elementCondition\":null,\"required\":true},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":\"heading\",\"label\":\"Titel\",\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":false,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2025-11-26T19:08:42+00:00\",\"uid\":\"264473a6-3581-4888-8a0f-5e0b38492335\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"1ce458b1-c5ff-40c2-bad8-2ef7bffa8003\",\"editCondition\":null},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":false,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2025-11-26T19:08:42+00:00\",\"uid\":\"4057441c-cbfd-4af0-ac7b-efb322042fb1\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"1ce458b1-c5ff-40c2-bad8-2ef7bffa8003\",\"editCondition\":null}]}],\"generatedFields\":[],\"cardView\":[],\"cardThumbAlignment\":\"end\"}','2025-11-26 19:08:42','2025-11-26 19:08:42',NULL,'91b39068-d9f8-4be8-9d06-d63569ba9a1c'),
+(8,'craft\\elements\\Entry','{\"tabs\":[{\"name\":\"Content\",\"uid\":\"b17f768f-09da-4ad7-a26a-c7dfe700a142\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\entries\\\\EntryTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":\"Interner Name\",\"instructions\":null,\"tip\":null,\"warning\":null,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2025-11-26T19:15:16+00:00\",\"uid\":\"12df8b18-cb74-407b-8fb4-63284541791e\",\"userCondition\":null,\"elementCondition\":null,\"required\":true},{\"type\":\"craft\\\\fieldlayoutelements\\\\HorizontalRule\",\"dateAdded\":\"2025-11-26T19:19:05+00:00\",\"uid\":\"501708d6-7abe-4fa9-9f92-2ccd61e530f7\",\"userCondition\":null,\"elementCondition\":null},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":\"navigationLink\",\"label\":\"Navigation Link\",\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":false,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2025-11-26T19:19:05+00:00\",\"uid\":\"782ddd9a-768e-4add-84d8-6d9f0753c227\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"ec8bc776-3089-49fb-8891-4559bcbb37a3\",\"editCondition\":null}]}],\"generatedFields\":[],\"cardView\":[],\"cardThumbAlignment\":\"end\"}','2025-11-26 19:19:05','2025-11-26 19:19:05',NULL,'cf89bbb6-c266-4d12-92d0-22d25da1c872');
 /*!40000 ALTER TABLE `fieldlayouts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1164,7 +1427,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `fields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
@@ -1185,7 +1448,7 @@ CREATE TABLE `fields` (
   KEY `idx_hqlkqtznjkmctpcmdfasqabrnoifpwdqtpqg` (`handle`,`context`),
   KEY `idx_fpdazeqmbuzxtbvqurcuqqegkvlrpbmyunhn` (`context`),
   KEY `idx_jsriqkjieqhjghpyhkflaskwkvigjcowwnow` (`dateDeleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1205,7 +1468,11 @@ INSERT INTO `fields` VALUES
 (17,'Konflikt ;)','konflikt','global','lftxpsoa',NULL,0,'none',NULL,'craft\\fields\\PlainText','{\"byteLimit\":null,\"charLimit\":null,\"code\":false,\"columnType\":null,\"initialRows\":4,\"multiline\":false,\"placeholder\":null,\"uiMode\":\"normal\"}','2024-10-04 17:42:11','2024-10-04 17:42:11','2024-10-04 19:33:11','82491024-fe0a-4331-a632-7b4e1a03d628'),
 (18,'SEO Meta Description','seoMetaDescription','global',NULL,'Kurzer Text, den Suchmaschinen (wahrscheinlich) unter dem Namen der Seite anzeigt',0,'none',NULL,'craft\\fields\\PlainText','{\"byteLimit\":null,\"charLimit\":null,\"code\":false,\"initialRows\":4,\"multiline\":false,\"placeholder\":null,\"uiMode\":\"normal\"}','2024-10-04 19:55:42','2024-10-04 19:56:24',NULL,'e667dda0-024e-49cf-b865-a2bb0a7c491e'),
 (19,'CKEditor','ckeditor','global',NULL,NULL,0,'none',NULL,'craft\\ckeditor\\Field','{\"availableTransforms\":\"\",\"availableVolumes\":\"*\",\"ckeConfig\":null,\"createButtonLabel\":null,\"defaultTransform\":null,\"enableSourceEditingForNonAdmins\":false,\"purifierConfig\":null,\"purifyHtml\":true,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"showWordCount\":false,\"wordLimit\":null}','2024-10-06 07:58:30','2024-10-06 07:58:30','2024-10-06 08:03:56','352e4f04-b337-41cf-a259-2df2eb9be025'),
-(20,'Test CKEditor','testCkeditor','global',NULL,NULL,0,'none',NULL,'craft\\ckeditor\\Field','{\"availableTransforms\":\"\",\"availableVolumes\":\"*\",\"ckeConfig\":\"cb39eaf1-d815-499d-a1b7-bbf293af0c6e\",\"createButtonLabel\":null,\"defaultTransform\":null,\"enableSourceEditingForNonAdmins\":false,\"purifierConfig\":null,\"purifyHtml\":true,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"showWordCount\":false,\"wordLimit\":null}','2024-11-01 23:35:49','2024-11-01 23:35:49','2024-12-10 22:37:37','116cf140-dea1-4764-a15b-a90c197516e3');
+(20,'Test CKEditor','testCkeditor','global',NULL,NULL,0,'none',NULL,'craft\\ckeditor\\Field','{\"availableTransforms\":\"\",\"availableVolumes\":\"*\",\"ckeConfig\":\"cb39eaf1-d815-499d-a1b7-bbf293af0c6e\",\"createButtonLabel\":null,\"defaultTransform\":null,\"enableSourceEditingForNonAdmins\":false,\"purifierConfig\":null,\"purifyHtml\":true,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"showWordCount\":false,\"wordLimit\":null}','2024-11-01 23:35:49','2024-11-01 23:35:49','2024-12-10 22:37:37','116cf140-dea1-4764-a15b-a90c197516e3'),
+(21,'Blocks','blocks','global',NULL,NULL,0,'site',NULL,'craft\\fields\\Matrix','{\"minEntries\":null,\"maxEntries\":null,\"enableVersioning\":false,\"viewMode\":\"blocks\",\"showCardsInGrid\":false,\"includeTableView\":false,\"defaultTableColumns\":[],\"defaultIndexViewMode\":\"cards\",\"pageSize\":null,\"createButtonLabel\":null,\"propagationMethod\":\"all\",\"propagationKeyFormat\":null,\"siteSettings\":{\"c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8\":[]},\"entryTypes\":[{\"uid\":\"0396ff1d-5e87-4504-952e-1935bb565bf6\",\"group\":\"General\"},{\"uid\":\"bac239f3-c626-43b7-9726-0a62539fdd46\",\"group\":\"General\"}]}','2025-11-26 19:03:04','2025-11-26 19:12:03',NULL,'f0300c95-552b-49b5-9351-7ad29f907352'),
+(22,'Text','text','global',NULL,NULL,0,'none',NULL,'craft\\fields\\PlainText','{\"byteLimit\":null,\"charLimit\":null,\"code\":false,\"initialRows\":4,\"multiline\":false,\"placeholder\":null,\"uiMode\":\"normal\"}','2025-11-26 19:04:08','2025-11-26 19:04:08',NULL,'1ce458b1-c5ff-40c2-bad8-2ef7bffa8003'),
+(23,'Teasers','teasers','global',NULL,NULL,0,'none',NULL,'craft\\fields\\Entries','{\"allowSelfRelations\":false,\"branchLimit\":null,\"defaultPlacement\":\"end\",\"maintainHierarchy\":false,\"maxRelations\":null,\"minRelations\":null,\"selectionLabel\":null,\"showCardsInGrid\":false,\"showSearchInput\":true,\"showSiteMenu\":true,\"showUnpermittedEntries\":false,\"showUnpermittedSections\":false,\"sources\":[\"section:73f201e5-ad16-409e-aad7-af99f7e14761\"],\"targetSiteId\":null,\"validateRelatedElements\":false,\"viewMode\":\"list\"}','2025-11-26 19:06:24','2025-11-26 19:10:07',NULL,'40535b60-d662-44ba-97fa-7aecf43c6ea6'),
+(24,'Links','links','global',NULL,NULL,0,'none',NULL,'craft\\fields\\Link','{\"advancedFields\":[\"target\"],\"fullGraphqlData\":true,\"maxLength\":255,\"showLabelField\":true,\"typeSettings\":{\"entry\":{\"sources\":\"*\",\"showUnpermittedSections\":\"\",\"showUnpermittedEntries\":\"\"},\"url\":{\"allowRootRelativeUrls\":\"\",\"allowAnchors\":\"\",\"allowCustomSchemes\":\"\"}},\"types\":[\"entry\",\"url\"]}','2025-11-26 19:18:45','2025-11-26 19:21:02',NULL,'ec8bc776-3089-49fb-8891-4559bcbb37a3');
 /*!40000 ALTER TABLE `fields` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1215,7 +1482,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_emailtemplates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_emailtemplates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1245,7 +1512,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_forms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_forms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `handle` varchar(64) NOT NULL,
@@ -1292,7 +1559,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_formtemplates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_formtemplates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1332,7 +1599,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_integrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_integrations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1366,7 +1633,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_nested`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_nested` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldId` int(11) NOT NULL,
@@ -1397,7 +1664,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_nestedfieldrows`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_nestedfieldrows` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ownerId` int(11) NOT NULL,
@@ -1432,7 +1699,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_notifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `formId` int(11) NOT NULL,
@@ -1485,7 +1752,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_pagesettings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_pagesettings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldLayoutId` int(11) NOT NULL,
@@ -1516,7 +1783,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_payments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_payments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `integrationId` int(11) NOT NULL,
@@ -1562,7 +1829,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_payments_plans`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_payments_plans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `integrationId` int(11) NOT NULL,
@@ -1600,7 +1867,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_payments_subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_payments_subscriptions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `integrationId` int(11) DEFAULT NULL,
@@ -1652,7 +1919,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_pdftemplates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_pdftemplates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1683,7 +1950,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_relations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_relations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -1719,7 +1986,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_rows`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_rows` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldLayoutId` int(11) NOT NULL,
@@ -1750,7 +2017,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_sentnotifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_sentnotifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
@@ -1800,7 +2067,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_statuses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1834,7 +2101,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_stencils`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_stencils` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1873,7 +2140,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_submissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_submissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -1915,7 +2182,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_syncfields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_syncfields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `syncId` int(11) NOT NULL,
@@ -1946,7 +2213,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_syncs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_syncs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dateCreated` datetime NOT NULL,
@@ -1971,7 +2238,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `formie_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formie_tokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -2001,7 +2268,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `globalsets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `globalsets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -2036,7 +2303,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `gqlschemas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `gqlschemas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -2064,7 +2331,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `gqltokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `gqltokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -2099,7 +2366,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `imagetransformindex`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `imagetransformindex` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `assetId` int(11) NOT NULL,
@@ -2159,8 +2426,8 @@ INSERT INTO `imagetransformindex` VALUES
 (31,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_300x300_crop_center-center_none',1,0,0,'2022-10-03 21:38:29','2022-10-03 21:38:29','2022-10-03 21:41:49','5cf06df9-c1f8-4ba2-b0be-780e228832ba'),
 (32,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_666x1000_crop_center-center_none',1,0,0,'2022-10-04 15:15:09','2022-10-04 15:15:09','2022-10-04 15:15:09','1795a88d-e2cd-44f4-aaaf-4deaa8dc22f1'),
 (33,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_300xAUTO_crop_center-center_none',1,0,0,'2022-10-04 15:49:41','2022-10-04 15:49:41','2022-10-04 15:49:41','e5bc1e1d-09dc-4e1b-be58-8385286f0a26'),
-(34,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_20x30_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2025-07-18 18:45:45','36b1d84c-39d1-42c3-88df-3a6d4a46e7a3'),
-(35,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_40x60_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2025-07-18 18:45:45','502eeba7-2b68-4938-97dc-7cdc7de98593');
+(34,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_20x30_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2025-11-26 18:56:39','36b1d84c-39d1-42c3-88df-3a6d4a46e7a3'),
+(35,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_40x60_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2025-11-26 18:56:39','502eeba7-2b68-4938-97dc-7cdc7de98593');
 /*!40000 ALTER TABLE `imagetransformindex` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2170,7 +2437,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `imagetransforms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `imagetransforms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -2209,7 +2476,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(50) NOT NULL,
@@ -2231,8 +2498,46 @@ CREATE TABLE `info` (
 LOCK TABLES `info` WRITE;
 /*!40000 ALTER TABLE `info` DISABLE KEYS */;
 INSERT INTO `info` VALUES
-(1,'5.8.8','5.8.0.3',0,'hlnfrxzzczgp','3@qcgnfgfxgn','2022-09-28 08:08:17','2025-07-18 18:49:30','7e6daab9-2991-4d5f-bb87-ffbee2fc0cc5');
+(1,'5.8.14','5.8.0.3',0,'neqenlpztznu','3@bctzypwijb','2022-09-28 08:08:17','2025-11-26 19:37:59','7e6daab9-2991-4d5f-bb87-ffbee2fc0cc5');
 /*!40000 ALTER TABLE `info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `maps`
+--
+
+DROP TABLE IF EXISTS `maps`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `maps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ownerId` int(11) NOT NULL,
+  `ownerSiteId` int(11) DEFAULT NULL,
+  `fieldId` int(11) NOT NULL,
+  `lat` decimal(11,9) DEFAULT NULL,
+  `lng` decimal(12,9) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_ruseatiezmhcshvunxjuibyoytqeljioiufx` (`ownerId`,`ownerSiteId`,`fieldId`),
+  KEY `idx_hkmfdpqtybeksaczqnyimhtkkbkwdoyznhqu` (`lat`),
+  KEY `idx_abkfullhkiylcgutnqwfscdkwepklhkubbvt` (`lng`),
+  KEY `fk_tufbrstozdhefbwzfllpgzawxpqvpjfmkzib` (`ownerSiteId`),
+  KEY `fk_wncbgcmrkkwhxnfgtkftbwdzkuggvsskfjas` (`fieldId`),
+  CONSTRAINT `fk_thwzdbcrapphipuahxkptdovqpbktssconoe` FOREIGN KEY (`ownerId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_tufbrstozdhefbwzfllpgzawxpqvpjfmkzib` FOREIGN KEY (`ownerSiteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_wncbgcmrkkwhxnfgtkftbwdzkuggvsskfjas` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `maps`
+--
+
+LOCK TABLES `maps` WRITE;
+/*!40000 ALTER TABLE `maps` DISABLE KEYS */;
+/*!40000 ALTER TABLE `maps` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2241,7 +2546,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `migrations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `track` varchar(255) NOT NULL,
@@ -2252,7 +2557,7 @@ CREATE TABLE `migrations` (
   `uid` char(36) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_uvdmqkcsluyfebluxvoxsgkdjswwdqoihest` (`track`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2337,7 +2642,13 @@ INSERT INTO `migrations` VALUES
 (76,'craft','m250512_164202_asset_mime_types','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','7cfa85fd-a602-429d-9a7a-e2cb86963ca9'),
 (77,'craft','m250522_090843_add_deleteEntriesForSite_and_deletePeerEntriesForSite_permissions','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','355d0d55-eaca-4a3f-ba06-c66837351a43'),
 (78,'craft','m250531_183058_content_blocks','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','d86d8cac-2d9e-402b-b1fe-3b1534d33af5'),
-(79,'craft','m250623_105031_entry_type_descriptions','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','854e446e-36fa-42e9-a16b-70a60b43b6ea');
+(79,'craft','m250623_105031_entry_type_descriptions','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','854e446e-36fa-42e9-a16b-70a60b43b6ea'),
+(80,'plugin:csp','m240917_100024_settings_1_3','2025-11-26 18:49:16','2025-11-26 18:49:16','2025-11-26 18:49:16','686082b5-cfd5-4397-8ab8-51308bffbbbd'),
+(81,'plugin:simplemap','Install','2025-11-26 18:49:17','2025-11-26 18:49:17','2025-11-26 18:49:17','32905ab1-11a3-4126-8db1-9ddbd8b22899'),
+(82,'plugin:simplemap','m190226_143809_craft3_upgrade','2025-11-26 18:49:17','2025-11-26 18:49:17','2025-11-26 18:49:17','0036e58d-1d17-4652-bf05-a2d700ef8d30'),
+(83,'plugin:simplemap','m190325_130533_repair_map_elements','2025-11-26 18:49:17','2025-11-26 18:49:17','2025-11-26 18:49:17','3b287111-09ea-4792-ad4b-38e5c9f662be'),
+(84,'plugin:simplemap','m190712_104805_new_data_format','2025-11-26 18:49:17','2025-11-26 18:49:17','2025-11-26 18:49:17','6dbd65c9-e253-4966-b8ee-ee243a6738ae'),
+(85,'plugin:simplemap','m190723_105637_fix_map_field_column_type','2025-11-26 18:49:17','2025-11-26 18:49:17','2025-11-26 18:49:17','2a4554a5-b0a0-4b70-ab70-4eaa01ef39c9');
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2347,7 +2658,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `plugins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `plugins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `handle` varchar(255) NOT NULL,
@@ -2359,7 +2670,7 @@ CREATE TABLE `plugins` (
   `uid` char(36) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_ddsqzsroivbxuxdmttstlobprwfbcdrgbzrg` (`handle`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2370,10 +2681,12 @@ LOCK TABLES `plugins` WRITE;
 /*!40000 ALTER TABLE `plugins` DISABLE KEYS */;
 INSERT INTO `plugins` VALUES
 (1,'password-policy','5.0.0-beta1','1.0.0','2022-09-28 12:22:49','2022-09-28 12:22:49','2024-10-04 17:42:05','d3414302-d559-47bd-ac22-135357cb9204'),
-(7,'content-security-policy','3.0.0','1.0.0','2024-10-04 19:57:43','2024-10-04 19:57:43','2024-10-04 19:57:43','186e1270-6c17-4a5c-b230-27cc4b8fdd15'),
 (8,'ckeditor','4.9.0','3.0.0.0','2024-10-04 19:59:35','2024-10-04 19:59:35','2025-07-18 18:41:00','0e2d0533-8a79-4601-ab08-def7bfd38e07'),
 (9,'obfuscator','1.2.0','1.0.0','2024-10-06 07:56:12','2024-10-06 07:56:12','2024-10-06 07:56:12','8502b7fb-7387-45d0-b73f-32189c958484'),
-(10,'vite','5.0.1','1.0.0','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','504498a2-8678-420c-a846-64a119d5ca44');
+(10,'vite','5.0.1','1.0.0','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','504498a2-8678-420c-a846-64a119d5ca44'),
+(11,'csp','1.3.0','1.0.1','2025-11-26 18:49:16','2025-11-26 18:49:16','2025-11-26 18:49:16','3b63b77e-fec0-4ce6-aa29-81dcf005f24c'),
+(12,'imager-x','5.1.5','4.0.0','2025-11-26 18:49:16','2025-11-26 18:49:16','2025-11-26 18:49:16','710442c5-3c7b-4f7b-9911-1b9368d4821c'),
+(13,'simplemap','5.0.4','3.4.2','2025-11-26 18:49:16','2025-11-26 18:49:16','2025-11-26 18:49:16','3cb5f02e-3738-47bb-8b40-8f3278d14453');
 /*!40000 ALTER TABLE `plugins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2383,7 +2696,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `projectconfig`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `projectconfig` (
   `path` varchar(255) NOT NULL,
   `value` text NOT NULL,
@@ -2410,10 +2723,44 @@ INSERT INTO `projectconfig` VALUES
 ('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.2','\"bold\"'),
 ('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.3','\"italic\"'),
 ('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.4','\"link\"'),
-('dateModified','1752864545'),
+('dateModified','1764185877'),
 ('email.fromEmail','\"dev@profitlich.ch\"'),
 ('email.fromName','\"Profitlich DEV\"'),
 ('email.transportType','\"craft\\\\mail\\\\transportadapters\\\\Sendmail\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.color','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.description','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.cardThumbAlignment','\"end\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elementCondition','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.dateAdded','\"2025-11-26T19:04:15+00:00\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.editCondition','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.elementCondition','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.fieldUid','\"1ce458b1-c5ff-40c2-bad8-2ef7bffa8003\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.handle','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.includeInCards','false'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.instructions','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.label','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.providesThumbs','false'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.required','true'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.tip','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.uid','\"b2786315-1fe5-4154-be70-d1b25803fa5f\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.userCondition','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.warning','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.elements.0.width','100'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.name','\"Content\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.uid','\"a32cfe7b-a633-4c3e-aaf2-0fe33181f6e6\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.fieldLayouts.02b6f6dc-4f73-498d-9e93-bec0bec5a61b.tabs.0.userCondition','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.handle','\"text\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.hasTitleField','false'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.icon','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.name','\"Text\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.showSlugField','true'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.showStatusField','true'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.slugTranslationKeyFormat','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.slugTranslationMethod','\"site\"'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.titleFormat','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.titleTranslationKeyFormat','null'),
+('entryTypes.0396ff1d-5e87-4504-952e-1935bb565bf6.titleTranslationMethod','\"site\"'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.color','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elementCondition','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.autocapitalize','true'),
@@ -2504,6 +2851,254 @@ INSERT INTO `projectconfig` VALUES
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.titleFormat','\"\"'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.titleTranslationKeyFormat','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.titleTranslationMethod','\"site\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.color','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.description','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.cardThumbAlignment','\"end\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elementCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.autocapitalize','true'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.autocomplete','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.autocorrect','true'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.class','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.dateAdded','\"2025-11-26T19:06:00+00:00\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.disabled','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.elementCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.id','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.includeInCards','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.inputType','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.instructions','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.label','\"Interner Name\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.max','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.min','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.name','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.orientation','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.placeholder','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.providesThumbs','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.readonly','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.required','true'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.size','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.step','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.tip','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.title','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.type','\"craft\\\\fieldlayoutelements\\\\entries\\\\EntryTitleField\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.uid','\"084408b8-0673-4b46-ae41-2c527b8ab41e\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.userCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.warning','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.0.width','100'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.dateAdded','\"2025-11-26T19:08:42+00:00\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.editCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.elementCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.fieldUid','\"1ce458b1-c5ff-40c2-bad8-2ef7bffa8003\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.handle','\"heading\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.includeInCards','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.instructions','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.label','\"Titel\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.providesThumbs','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.required','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.tip','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.uid','\"264473a6-3581-4888-8a0f-5e0b38492335\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.userCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.warning','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.1.width','100'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.dateAdded','\"2025-11-26T19:08:42+00:00\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.editCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.elementCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.fieldUid','\"1ce458b1-c5ff-40c2-bad8-2ef7bffa8003\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.handle','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.includeInCards','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.instructions','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.label','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.providesThumbs','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.required','false'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.tip','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.uid','\"4057441c-cbfd-4af0-ac7b-efb322042fb1\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.userCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.warning','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.elements.2.width','100'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.name','\"Content\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.uid','\"de146f84-8e32-492f-bd33-7b01b62c9f29\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.fieldLayouts.91b39068-d9f8-4be8-9d06-d63569ba9a1c.tabs.0.userCondition','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.handle','\"teasersection\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.hasTitleField','true'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.icon','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.name','\"TeaserSection\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.showSlugField','true'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.showStatusField','true'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.slugTranslationKeyFormat','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.slugTranslationMethod','\"site\"'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.titleFormat','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.titleTranslationKeyFormat','null'),
+('entryTypes.18952c35-98c2-44eb-b5bc-5bf8cc8829c8.titleTranslationMethod','\"site\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.color','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.description','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.cardThumbAlignment','\"end\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elementCondition','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.autocapitalize','true'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.autocomplete','false'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.autocorrect','true'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.class','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.dateAdded','\"2025-11-26T19:15:16+00:00\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.disabled','false'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.elementCondition','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.id','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.includeInCards','false'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.inputType','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.instructions','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.label','\"Interner Name\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.max','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.min','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.name','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.orientation','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.placeholder','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.providesThumbs','false'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.readonly','false'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.required','true'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.size','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.step','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.tip','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.title','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.type','\"craft\\\\fieldlayoutelements\\\\entries\\\\EntryTitleField\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.uid','\"12df8b18-cb74-407b-8fb4-63284541791e\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.userCondition','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.warning','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.0.width','100'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.1.dateAdded','\"2025-11-26T19:19:05+00:00\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.1.elementCondition','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.1.type','\"craft\\\\fieldlayoutelements\\\\HorizontalRule\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.1.uid','\"501708d6-7abe-4fa9-9f92-2ccd61e530f7\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.1.userCondition','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.dateAdded','\"2025-11-26T19:19:05+00:00\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.editCondition','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.elementCondition','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.fieldUid','\"ec8bc776-3089-49fb-8891-4559bcbb37a3\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.handle','\"navigationLink\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.includeInCards','false'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.instructions','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.label','\"Navigation Link\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.providesThumbs','false'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.required','false'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.tip','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.uid','\"782ddd9a-768e-4add-84d8-6d9f0753c227\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.userCondition','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.warning','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.elements.2.width','100'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.name','\"Content\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.uid','\"b17f768f-09da-4ad7-a26a-c7dfe700a142\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.fieldLayouts.cf89bbb6-c266-4d12-92d0-22d25da1c872.tabs.0.userCondition','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.handle','\"navigation\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.hasTitleField','true'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.icon','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.name','\"Navigation\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.showSlugField','true'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.showStatusField','true'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.slugTranslationKeyFormat','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.slugTranslationMethod','\"site\"'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.titleFormat','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.titleTranslationKeyFormat','null'),
+('entryTypes.84b612e4-4c88-4c37-8daf-af7b33fdfa22.titleTranslationMethod','\"site\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.color','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.description','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.cardThumbAlignment','\"end\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elementCondition','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.autocapitalize','true'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.autocomplete','false'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.autocorrect','true'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.class','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.dateAdded','\"2025-11-26T18:58:58+00:00\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.disabled','false'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.elementCondition','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.id','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.includeInCards','false'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.inputType','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.instructions','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.label','\"Interner Name\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.max','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.min','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.name','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.orientation','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.placeholder','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.providesThumbs','false'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.readonly','false'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.required','true'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.size','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.step','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.tip','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.title','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.type','\"craft\\\\fieldlayoutelements\\\\entries\\\\EntryTitleField\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.uid','\"f6cd3f38-b3b4-485a-8158-c2220d1392af\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.userCondition','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.warning','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.elements.0.width','100'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.name','\"Navigation\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.uid','\"b8173002-03c7-48fd-8d31-9409efad6870\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.0.userCondition','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elementCondition','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.dateAdded','\"2025-11-26T19:06:35+00:00\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.editCondition','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.elementCondition','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.fieldUid','\"f0300c95-552b-49b5-9351-7ad29f907352\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.handle','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.includeInCards','false'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.instructions','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.label','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.providesThumbs','false'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.required','false'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.tip','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.uid','\"028df4ba-bb51-46e5-98a0-6c9911fecb0d\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.userCondition','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.warning','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.elements.0.width','100'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.name','\"Blocks\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.uid','\"036001b7-372b-490a-b6cc-05fee2032c1b\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.fieldLayouts.41c3aded-2fe1-42b8-9401-5a01576e9c6d.tabs.1.userCondition','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.handle','\"landingpage\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.hasTitleField','true'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.icon','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.name','\"Landingpage\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.showSlugField','true'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.showStatusField','true'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.slugTranslationKeyFormat','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.slugTranslationMethod','\"site\"'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.titleFormat','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.titleTranslationKeyFormat','null'),
+('entryTypes.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb.titleTranslationMethod','\"site\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.color','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.description','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.cardThumbAlignment','\"end\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elementCondition','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.dateAdded','\"2025-11-26T19:06:32+00:00\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.editCondition','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.elementCondition','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.fieldUid','\"40535b60-d662-44ba-97fa-7aecf43c6ea6\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.handle','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.includeInCards','false'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.instructions','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.label','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.providesThumbs','false'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.required','true'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.tip','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.uid','\"f78da7b6-6c65-48b3-b832-9ea4d3719e7d\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.userCondition','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.warning','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.elements.0.width','100'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.name','\"Content\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.uid','\"d9b5098e-5c09-468d-a13d-65ea9fb882d6\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.fieldLayouts.c15d8232-344f-4d80-b90e-70bfd9d5ec5e.tabs.0.userCondition','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.handle','\"teaser\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.hasTitleField','false'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.icon','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.name','\"Teaser\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.showSlugField','true'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.showStatusField','true'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.slugTranslationKeyFormat','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.slugTranslationMethod','\"site\"'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.titleFormat','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.titleTranslationKeyFormat','null'),
+('entryTypes.bac239f3-c626-43b7-9726-0a62539fdd46.titleTranslationMethod','\"site\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.columnSuffix','null'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.contentColumnType','\"string\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.handle','\"projektbilder\"'),
@@ -2538,6 +3133,21 @@ INSERT INTO `projectconfig` VALUES
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.translationKeyFormat','null'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.translationMethod','\"site\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.type','\"craft\\\\fields\\\\Assets\"'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.columnSuffix','null'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.handle','\"text\"'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.instructions','null'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.name','\"Text\"'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.searchable','false'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.settings.byteLimit','null'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.settings.charLimit','null'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.settings.code','false'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.settings.initialRows','4'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.settings.multiline','false'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.settings.placeholder','null'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.settings.uiMode','\"normal\"'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.translationKeyFormat','null'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.translationMethod','\"none\"'),
+('fields.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003.type','\"craft\\\\fields\\\\PlainText\"'),
 ('fields.396abe4e-d4af-4c68-a2fb-7a3bce13f340.columnSuffix','\"dukgymih\"'),
 ('fields.396abe4e-d4af-4c68-a2fb-7a3bce13f340.handle','\"seoBildbeschreibung\"'),
 ('fields.396abe4e-d4af-4c68-a2fb-7a3bce13f340.instructions','null'),
@@ -2553,6 +3163,30 @@ INSERT INTO `projectconfig` VALUES
 ('fields.396abe4e-d4af-4c68-a2fb-7a3bce13f340.translationKeyFormat','null'),
 ('fields.396abe4e-d4af-4c68-a2fb-7a3bce13f340.translationMethod','\"none\"'),
 ('fields.396abe4e-d4af-4c68-a2fb-7a3bce13f340.type','\"craft\\\\fields\\\\PlainText\"'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.columnSuffix','null'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.handle','\"teasers\"'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.instructions','null'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.name','\"Teasers\"'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.searchable','false'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.allowSelfRelations','false'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.branchLimit','null'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.defaultPlacement','\"end\"'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.maintainHierarchy','false'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.maxRelations','null'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.minRelations','null'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.selectionLabel','null'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.showCardsInGrid','false'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.showSearchInput','true'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.showSiteMenu','true'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.showUnpermittedEntries','false'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.showUnpermittedSections','false'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.sources.0','\"section:73f201e5-ad16-409e-aad7-af99f7e14761\"'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.targetSiteId','null'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.validateRelatedElements','false'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.settings.viewMode','\"list\"'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.translationKeyFormat','null'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.translationMethod','\"none\"'),
+('fields.40535b60-d662-44ba-97fa-7aecf43c6ea6.type','\"craft\\\\fields\\\\Entries\"'),
 ('fields.e667dda0-024e-49cf-b865-a2bb0a7c491e.columnSuffix','null'),
 ('fields.e667dda0-024e-49cf-b865-a2bb0a7c491e.handle','\"seoMetaDescription\"'),
 ('fields.e667dda0-024e-49cf-b865-a2bb0a7c491e.instructions','\"Kurzer Text, den Suchmaschinen (wahrscheinlich) unter dem Namen der Seite anzeigt\"'),
@@ -2568,6 +3202,61 @@ INSERT INTO `projectconfig` VALUES
 ('fields.e667dda0-024e-49cf-b865-a2bb0a7c491e.translationKeyFormat','null'),
 ('fields.e667dda0-024e-49cf-b865-a2bb0a7c491e.translationMethod','\"none\"'),
 ('fields.e667dda0-024e-49cf-b865-a2bb0a7c491e.type','\"craft\\\\fields\\\\PlainText\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.columnSuffix','null'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.handle','\"links\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.instructions','null'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.name','\"Links\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.searchable','false'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.advancedFields.0','\"target\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.fullGraphqlData','true'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.maxLength','255'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.showLabelField','true'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.types.0','\"entry\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.types.1','\"url\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.0.0','\"entry\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.0.1.__assoc__.0.0','\"sources\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.0.1.__assoc__.0.1','\"*\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.0.1.__assoc__.1.0','\"showUnpermittedSections\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.0.1.__assoc__.1.1','\"\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.0.1.__assoc__.2.0','\"showUnpermittedEntries\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.0.1.__assoc__.2.1','\"\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.1.0','\"url\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.1.1.__assoc__.0.0','\"allowRootRelativeUrls\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.1.1.__assoc__.0.1','\"\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.1.1.__assoc__.1.0','\"allowAnchors\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.1.1.__assoc__.1.1','\"\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.1.1.__assoc__.2.0','\"allowCustomSchemes\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.settings.typeSettings.__assoc__.1.1.__assoc__.2.1','\"\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.translationKeyFormat','null'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.translationMethod','\"none\"'),
+('fields.ec8bc776-3089-49fb-8891-4559bcbb37a3.type','\"craft\\\\fields\\\\Link\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.columnSuffix','null'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.handle','\"blocks\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.instructions','null'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.name','\"Blocks\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.searchable','false'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.createButtonLabel','null'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.defaultIndexViewMode','\"cards\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.enableVersioning','false'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.entryTypes.0.__assoc__.0.0','\"uid\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.entryTypes.0.__assoc__.0.1','\"0396ff1d-5e87-4504-952e-1935bb565bf6\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.entryTypes.0.__assoc__.1.0','\"group\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.entryTypes.0.__assoc__.1.1','\"General\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.entryTypes.1.__assoc__.0.0','\"uid\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.entryTypes.1.__assoc__.0.1','\"bac239f3-c626-43b7-9726-0a62539fdd46\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.entryTypes.1.__assoc__.1.0','\"group\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.entryTypes.1.__assoc__.1.1','\"General\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.includeTableView','false'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.maxEntries','null'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.minEntries','null'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.pageSize','null'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.propagationKeyFormat','null'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.propagationMethod','\"all\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.showCardsInGrid','false'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.settings.viewMode','\"blocks\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.translationKeyFormat','null'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.translationMethod','\"site\"'),
+('fields.f0300c95-552b-49b5-9351-7ad29f907352.type','\"craft\\\\fields\\\\Matrix\"'),
 ('fs.lokal.hasUrls','true'),
 ('fs.lokal.name','\"Lokal\"'),
 ('fs.lokal.settings.path','\"@assetBasePath\"'),
@@ -2575,21 +3264,146 @@ INSERT INTO `projectconfig` VALUES
 ('fs.lokal.url','\"@assetBaseUrl\"'),
 ('graphql.publicToken.enabled','false'),
 ('graphql.publicToken.expiryDate','null'),
+('meta.__names__.0396ff1d-5e87-4504-952e-1935bb565bf6','\"Text\"'),
 ('meta.__names__.0e793c4c-3298-4c14-a50e-fe050eeaee18','\"Startseite\"'),
 ('meta.__names__.10120e23-43ba-494f-ba6c-7241058df713','\"Startseite\"'),
 ('meta.__names__.12994855-fd13-4d38-8ad9-156bb1960e74','\"Projektbilder\"'),
+('meta.__names__.18952c35-98c2-44eb-b5bc-5bf8cc8829c8','\"TeaserSection\"'),
+('meta.__names__.1ce458b1-c5ff-40c2-bad8-2ef7bffa8003','\"Text\"'),
 ('meta.__names__.396abe4e-d4af-4c68-a2fb-7a3bce13f340','\"SEO Bildbeschreibung\"'),
+('meta.__names__.40535b60-d662-44ba-97fa-7aecf43c6ea6','\"Teasers\"'),
 ('meta.__names__.44fec1ae-cc09-42b5-b6a8-1c301d066c04','\"Projektbilder\"'),
+('meta.__names__.73f201e5-ad16-409e-aad7-af99f7e14761','\"Teasers\"'),
+('meta.__names__.84b612e4-4c88-4c37-8daf-af7b33fdfa22','\"Navigation\"'),
+('meta.__names__.84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb','\"Landingpage\"'),
+('meta.__names__.bac239f3-c626-43b7-9726-0a62539fdd46','\"Teaser\"'),
+('meta.__names__.c0847a8d-414f-4497-81a5-0bb43568b583','\"Navigation\"'),
 ('meta.__names__.c2146f3a-86c4-4929-ad3b-bfa61123b4c1','\"Simple\"'),
 ('meta.__names__.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8','\"Profitlich DEV\"'),
+('meta.__names__.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8','\"Landingpages\"'),
 ('meta.__names__.e667dda0-024e-49cf-b865-a2bb0a7c491e','\"SEO Meta Description\"'),
 ('meta.__names__.e814380a-f915-44b8-92b3-a767fa94f64a','\"Profitlich DEV\"'),
+('meta.__names__.ec8bc776-3089-49fb-8891-4559bcbb37a3','\"Links\"'),
+('meta.__names__.f0300c95-552b-49b5-9351-7ad29f907352','\"Blocks\"'),
 ('plugins.ckeditor.edition','\"standard\"'),
 ('plugins.ckeditor.enabled','true'),
 ('plugins.ckeditor.schemaVersion','\"3.0.0.0\"'),
-('plugins.content-security-policy.edition','\"standard\"'),
-('plugins.content-security-policy.enabled','true'),
-('plugins.content-security-policy.schemaVersion','\"1.0.0\"'),
+('plugins.csp.edition','\"standard\"'),
+('plugins.csp.enabled','true'),
+('plugins.csp.schemaVersion','\"1.0.1\"'),
+('plugins.csp.settings.baseUri.0.0','\"\'self\'\"'),
+('plugins.csp.settings.connectSrc.0.0','\"\'self\'\"'),
+('plugins.csp.settings.connectSrc.1.0','\"https://*.googleapis.com\"'),
+('plugins.csp.settings.connectSrc.2.0','\"*.google.com\"'),
+('plugins.csp.settings.connectSrc.3.0','\"https://*.gstatic.com\"'),
+('plugins.csp.settings.connectSrc.4.0','\"wss://*.ddev.site:5173\"'),
+('plugins.csp.settings.cspEnabled','true'),
+('plugins.csp.settings.cspMode','\"tag\"'),
+('plugins.csp.settings.cspOptions.0','\"defaultSrc\"'),
+('plugins.csp.settings.cspOptions.1','\"scriptSrc\"'),
+('plugins.csp.settings.cspOptions.10','\"baseUri\"'),
+('plugins.csp.settings.cspOptions.2','\"styleSrc\"'),
+('plugins.csp.settings.cspOptions.3','\"styleSrcAttr\"'),
+('plugins.csp.settings.cspOptions.4','\"styleSrcElem\"'),
+('plugins.csp.settings.cspOptions.5','\"imgSrc\"'),
+('plugins.csp.settings.cspOptions.6','\"connectSrc\"'),
+('plugins.csp.settings.cspOptions.7','\"fontSrc\"'),
+('plugins.csp.settings.cspOptions.8','\"frameSrc\"'),
+('plugins.csp.settings.cspOptions.9','\"formAction\"'),
+('plugins.csp.settings.defaultSrc.0.0','\"\'none\'\"'),
+('plugins.csp.settings.fontSrc.0.0','\"\'self\'\"'),
+('plugins.csp.settings.fontSrc.1.0','\"https://fonts.gstatic.com\"'),
+('plugins.csp.settings.formAction.0.0','\"\'self\'\"'),
+('plugins.csp.settings.frameSrc.0.0','\"*.google.com\"'),
+('plugins.csp.settings.headerProtection.0.0','\"Referrer-Policy\"'),
+('plugins.csp.settings.headerProtection.0.1','\"strict-origin-when-cross-origin\"'),
+('plugins.csp.settings.headerProtection.1.0','\"Strict-Transport-Security\"'),
+('plugins.csp.settings.headerProtection.1.1','\"max-age=31536000;includeSubDomains;preload\"'),
+('plugins.csp.settings.headerProtection.2.0','\"X-Content-Type-Options\"'),
+('plugins.csp.settings.headerProtection.2.1','\"nosniff\"'),
+('plugins.csp.settings.headerProtection.3.0','\"X-Frame-Options\"'),
+('plugins.csp.settings.headerProtection.3.1','\"SAMEORIGIN\"'),
+('plugins.csp.settings.headerProtection.4.0','\"X-Xss-Protection\"'),
+('plugins.csp.settings.headerProtection.4.1','\"1; mode=block\"'),
+('plugins.csp.settings.imgSrc.0.0','\"\'self\'\"'),
+('plugins.csp.settings.imgSrc.1.0','\"https://*.googleapis.com\"'),
+('plugins.csp.settings.imgSrc.2.0','\"https://*.gstatic.com\"'),
+('plugins.csp.settings.imgSrc.3.0','\"*.google.com\"'),
+('plugins.csp.settings.imgSrc.4.0','\"*.googleusercontent.com\"'),
+('plugins.csp.settings.modeOptions.0.__assoc__.0.0','\"label\"'),
+('plugins.csp.settings.modeOptions.0.__assoc__.0.1','\"Response Headers\"'),
+('plugins.csp.settings.modeOptions.0.__assoc__.1.0','\"value\"'),
+('plugins.csp.settings.modeOptions.0.__assoc__.1.1','\"header\"'),
+('plugins.csp.settings.modeOptions.1.__assoc__.0.0','\"label\"'),
+('plugins.csp.settings.modeOptions.1.__assoc__.0.1','\"Meta Tags\"'),
+('plugins.csp.settings.modeOptions.1.__assoc__.1.0','\"value\"'),
+('plugins.csp.settings.modeOptions.1.__assoc__.1.1','\"tag\"'),
+('plugins.csp.settings.modeOptions.2.__assoc__.0.0','\"label\"'),
+('plugins.csp.settings.modeOptions.2.__assoc__.0.1','\"Report Only\"'),
+('plugins.csp.settings.modeOptions.2.__assoc__.1.0','\"value\"'),
+('plugins.csp.settings.modeOptions.2.__assoc__.1.1','\"report\"'),
+('plugins.csp.settings.policyOptions.__assoc__.0.0','\"defaultSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.0.1','\"default-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.1.0','\"scriptSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.1.1','\"script-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.10.0','\"objectSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.10.1','\"object-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.11.0','\"mediaSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.11.1','\"media-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.12.0','\"frameSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.12.1','\"frame-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.13.0','\"sandbox\"'),
+('plugins.csp.settings.policyOptions.__assoc__.13.1','\"sandbox\"'),
+('plugins.csp.settings.policyOptions.__assoc__.14.0','\"reportUri\"'),
+('plugins.csp.settings.policyOptions.__assoc__.14.1','\"report-uri\"'),
+('plugins.csp.settings.policyOptions.__assoc__.15.0','\"childSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.15.1','\"child-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.16.0','\"formAction\"'),
+('plugins.csp.settings.policyOptions.__assoc__.16.1','\"form-action\"'),
+('plugins.csp.settings.policyOptions.__assoc__.17.0','\"frameAncestors\"'),
+('plugins.csp.settings.policyOptions.__assoc__.17.1','\"frame-ancestors\"'),
+('plugins.csp.settings.policyOptions.__assoc__.18.0','\"pluginTypes\"'),
+('plugins.csp.settings.policyOptions.__assoc__.18.1','\"plugin-types\"'),
+('plugins.csp.settings.policyOptions.__assoc__.19.0','\"baseUri\"'),
+('plugins.csp.settings.policyOptions.__assoc__.19.1','\"base-uri\"'),
+('plugins.csp.settings.policyOptions.__assoc__.2.0','\"scriptSrcAttr\"'),
+('plugins.csp.settings.policyOptions.__assoc__.2.1','\"script-src-attr\"'),
+('plugins.csp.settings.policyOptions.__assoc__.20.0','\"reportTo\"'),
+('plugins.csp.settings.policyOptions.__assoc__.20.1','\"report-to\"'),
+('plugins.csp.settings.policyOptions.__assoc__.21.0','\"workerSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.21.1','\"worker-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.22.0','\"manifestSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.22.1','\"manifest-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.23.0','\"prefetchSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.23.1','\"prefetch-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.24.0','\"navigateTo\"'),
+('plugins.csp.settings.policyOptions.__assoc__.24.1','\"navigate-to\"'),
+('plugins.csp.settings.policyOptions.__assoc__.3.0','\"scriptSrcElem\"'),
+('plugins.csp.settings.policyOptions.__assoc__.3.1','\"script-src-elem\"'),
+('plugins.csp.settings.policyOptions.__assoc__.4.0','\"styleSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.4.1','\"style-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.5.0','\"styleSrcAttr\"'),
+('plugins.csp.settings.policyOptions.__assoc__.5.1','\"style-src-attr\"'),
+('plugins.csp.settings.policyOptions.__assoc__.6.0','\"styleSrcElem\"'),
+('plugins.csp.settings.policyOptions.__assoc__.6.1','\"style-src-elem\"'),
+('plugins.csp.settings.policyOptions.__assoc__.7.0','\"imgSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.7.1','\"img-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.8.0','\"connectSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.8.1','\"connect-src\"'),
+('plugins.csp.settings.policyOptions.__assoc__.9.0','\"fontSrc\"'),
+('plugins.csp.settings.policyOptions.__assoc__.9.1','\"font-src\"'),
+('plugins.csp.settings.protectionEnabled','true'),
+('plugins.csp.settings.scriptSrc.0.0','\"\'self\'\"'),
+('plugins.csp.settings.styleSrc.0.0','\"\'self\'\"'),
+('plugins.csp.settings.styleSrc.1.0','\"https://fonts.googleapis.com\"'),
+('plugins.csp.settings.styleSrcAttr.0.0','\"\'self\'\"'),
+('plugins.csp.settings.styleSrcAttr.1.0','\"\'unsafe-inline\'\"'),
+('plugins.csp.settings.styleSrcElem.0.0','\"\'self\'\"'),
+('plugins.csp.settings.styleSrcElem.1.0','\"\'unsafe-inline\'\"'),
+('plugins.imager-x.edition','\"pro\"'),
+('plugins.imager-x.enabled','true'),
+('plugins.imager-x.licenseKey','\"KU32LJZPYKL71P52HFU03HNL\"'),
+('plugins.imager-x.schemaVersion','\"4.0.0\"'),
 ('plugins.obfuscator.edition','\"standard\"'),
 ('plugins.obfuscator.enabled','true'),
 ('plugins.obfuscator.schemaVersion','\"1.0.0\"'),
@@ -2602,12 +3416,16 @@ INSERT INTO `projectconfig` VALUES
 ('plugins.password-policy.settings.numbers','true'),
 ('plugins.password-policy.settings.showStrengthIndicator','true'),
 ('plugins.password-policy.settings.symbols','true'),
+('plugins.simplemap.edition','\"pro\"'),
+('plugins.simplemap.enabled','true'),
+('plugins.simplemap.licenseKey','\"KW1SS54N2K3A6KBM3H0WKF4E\"'),
+('plugins.simplemap.schemaVersion','\"3.4.2\"'),
 ('plugins.vite.edition','\"standard\"'),
 ('plugins.vite.enabled','true'),
 ('plugins.vite.schemaVersion','\"1.0.0\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.defaultPlacement','\"end\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.enableVersioning','true'),
-('sections.10120e23-43ba-494f-ba6c-7241058df713.entryTypes.0','\"0e793c4c-3298-4c14-a50e-fe050eeaee18\"'),
+('sections.10120e23-43ba-494f-ba6c-7241058df713.entryTypes.0.uid','\"84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.handle','\"startseite\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.maxAuthors','1'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.name','\"Startseite\"'),
@@ -2620,9 +3438,65 @@ INSERT INTO `projectconfig` VALUES
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.propagationMethod','\"all\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.enabledByDefault','true'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.hasUrls','true'),
-('sections.10120e23-43ba-494f-ba6c-7241058df713.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.template','\"startseite/_entry\"'),
+('sections.10120e23-43ba-494f-ba6c-7241058df713.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.template','null'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.uriFormat','\"__home__\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.type','\"single\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.defaultPlacement','\"end\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.enableVersioning','true'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.entryTypes.0.uid','\"18952c35-98c2-44eb-b5bc-5bf8cc8829c8\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.handle','\"teasers\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.maxAuthors','1'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.name','\"Teasers\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.previewTargets.0.__assoc__.0.0','\"label\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.previewTargets.0.__assoc__.0.1','\"Primary entry page\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.previewTargets.0.__assoc__.1.0','\"urlFormat\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.previewTargets.0.__assoc__.1.1','\"{url}\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.previewTargets.0.__assoc__.2.0','\"refresh\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.previewTargets.0.__assoc__.2.1','\"1\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.propagationMethod','\"all\"'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.enabledByDefault','true'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.hasUrls','false'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.template','null'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.uriFormat','null'),
+('sections.73f201e5-ad16-409e-aad7-af99f7e14761.type','\"channel\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.defaultPlacement','\"end\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.enableVersioning','true'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.entryTypes.0.uid','\"84b612e4-4c88-4c37-8daf-af7b33fdfa22\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.handle','\"navigation\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.maxAuthors','1'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.name','\"Navigation\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.previewTargets.0.__assoc__.0.0','\"label\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.previewTargets.0.__assoc__.0.1','\"Primary entry page\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.previewTargets.0.__assoc__.1.0','\"urlFormat\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.previewTargets.0.__assoc__.1.1','\"{url}\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.previewTargets.0.__assoc__.2.0','\"refresh\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.previewTargets.0.__assoc__.2.1','\"1\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.propagationMethod','\"all\"'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.enabledByDefault','true'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.hasUrls','false'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.template','null'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.uriFormat','null'),
+('sections.c0847a8d-414f-4497-81a5-0bb43568b583.type','\"channel\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.defaultPlacement','\"end\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.enableVersioning','true'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.entryTypes.0.uid','\"84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.handle','\"landingpages\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.maxAuthors','1'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.name','\"Landingpages\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.previewTargets.0.__assoc__.0.0','\"label\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.previewTargets.0.__assoc__.0.1','\"Primary entry page\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.previewTargets.0.__assoc__.1.0','\"urlFormat\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.previewTargets.0.__assoc__.1.1','\"{url}\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.previewTargets.0.__assoc__.2.0','\"refresh\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.previewTargets.0.__assoc__.2.1','\"1\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.propagationMethod','\"all\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.enabledByDefault','true'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.hasUrls','true'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.template','null'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.uriFormat','\"{parent.uri}/{slug}\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.structure.maxLevels','null'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.structure.uid','\"afce15f2-4cf8-4998-8525-0ad186764a51\"'),
+('sections.cdc8fe6c-761a-46b0-895a-4df17d4a4fc8.type','\"structure\"'),
 ('siteGroups.e814380a-f915-44b8-92b3-a767fa94f64a.name','\"Profitlich DEV\"'),
 ('sites.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.baseUrl','\"$PRIMARY_SITE_URL\"'),
 ('sites.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.enabled','true'),
@@ -2701,7 +3575,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `queue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `queue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `channel` varchar(255) NOT NULL DEFAULT 'queue',
@@ -2722,7 +3596,7 @@ CREATE TABLE `queue` (
   PRIMARY KEY (`id`),
   KEY `idx_sziryarwktdtumewknzytfdmynnofogwczsp` (`channel`,`fail`,`timeUpdated`,`timePushed`),
   KEY `idx_adrmfafzrwbdpodfkvzdiwxjkqdwqersigyh` (`channel`,`fail`,`timeUpdated`,`delay`)
-) ENGINE=InnoDB AUTO_INCREMENT=376 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=478 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2740,7 +3614,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `recoverycodes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `recoverycodes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -2768,7 +3642,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `relations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `relations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldId` int(11) NOT NULL,
@@ -2787,7 +3661,7 @@ CREATE TABLE `relations` (
   CONSTRAINT `fk_airkuqthylrqsyecxtbhwoohrvsqbwdkjsdh` FOREIGN KEY (`sourceSiteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_nsnondvsjuexfbyseuqrvrshjdcsbqosahsy` FOREIGN KEY (`sourceId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_pbeizbkjushnhdfswbumvghrnmqjaabjvetp` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2797,7 +3671,6 @@ CREATE TABLE `relations` (
 LOCK TABLES `relations` WRITE;
 /*!40000 ALTER TABLE `relations` DISABLE KEYS */;
 INSERT INTO `relations` VALUES
-(2,10,2,NULL,50,1,'2022-10-03 21:37:42','2022-10-03 21:37:42','56559761-0e18-46a1-bafd-65a3a132b883'),
 (3,10,52,NULL,50,1,'2022-10-03 21:37:42','2022-10-03 21:37:42','b23fd353-b7c6-4ff0-a39f-1d3b3345cb45'),
 (4,10,53,NULL,50,1,'2022-10-04 09:51:59','2022-10-04 09:51:59','ba459030-af81-45e7-bdc0-bfd0214166a6'),
 (5,10,54,NULL,50,1,'2022-10-04 09:55:54','2022-10-04 09:55:54','c60937ab-a1d2-43fa-a1ac-bb5f6c163edb'),
@@ -2813,7 +3686,16 @@ INSERT INTO `relations` VALUES
 (19,10,67,NULL,50,1,'2024-11-02 09:12:42','2024-11-02 09:12:42','27664115-9abe-4303-ab92-5f92d22f1651'),
 (20,10,68,NULL,50,1,'2024-11-02 09:12:51','2024-11-02 09:12:51','6c6533ff-de99-4c44-a581-81da55f07932'),
 (22,10,70,NULL,50,1,'2024-11-02 09:15:27','2024-11-02 09:15:27','b788de4e-e4e6-4f63-95ed-871a5fa6fe93'),
-(24,10,72,NULL,50,1,'2024-11-02 09:16:40','2024-11-02 09:16:40','9f6f35ce-96a4-48d0-81f8-c48f27a24755');
+(24,10,72,NULL,50,1,'2024-11-02 09:16:40','2024-11-02 09:16:40','9f6f35ce-96a4-48d0-81f8-c48f27a24755'),
+(27,23,83,NULL,80,1,'2025-11-26 19:12:33','2025-11-26 19:12:33','541e91d5-6acc-447e-82c7-7b0bd26871b2'),
+(28,23,86,NULL,80,1,'2025-11-26 19:12:33','2025-11-26 19:12:33','bbc14a6c-b59f-4dd4-ae13-1b105c03cc2f'),
+(29,24,92,1,87,1,'2025-11-26 19:19:55','2025-11-26 19:19:55','844a5057-9088-4553-b8a7-e066b90d3480'),
+(30,24,93,1,87,1,'2025-11-26 19:19:57','2025-11-26 19:19:57','53ed9f29-8b0a-4380-bdde-632c74b1322c'),
+(32,24,95,1,87,1,'2025-11-26 19:21:22','2025-11-26 19:21:22','e67718ef-6154-42ec-9929-162444968f29'),
+(33,24,96,1,89,1,'2025-11-26 19:21:40','2025-11-26 19:21:40','0b1dfc45-77b9-461d-8475-73d484f74b82'),
+(34,24,97,1,89,1,'2025-11-26 19:21:44','2025-11-26 19:21:44','eaa61421-d73d-4c32-b9cd-0b7d706c40ac'),
+(35,24,123,1,119,1,'2025-11-27 16:06:16','2025-11-27 16:06:16','5858d6a9-8e33-4868-b22b-00fb1f763da8'),
+(36,24,124,1,119,1,'2025-11-27 16:06:18','2025-11-27 16:06:18','b84be7e5-bf45-469f-928e-3fc9edbe891d');
 /*!40000 ALTER TABLE `relations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2823,7 +3705,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `resourcepaths`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `resourcepaths` (
   `hash` varchar(255) NOT NULL,
   `path` varchar(255) NOT NULL,
@@ -2846,7 +3728,9 @@ INSERT INTO `resourcepaths` VALUES
 ('12c7352f','@craft/web/assets/datepickeri18n/dist'),
 ('12f43057','@bower/jquery/dist'),
 ('13231297','@craft/web/assets/tailwindreset/dist'),
+('1339d61d','@craft/web/assets/updateswidget/dist'),
 ('136939d1','@craft/web/assets/datepickeri18n/dist'),
+('137229c5','@craft/web/assets/d3/dist'),
 ('1436a8b5','@craft/web/assets/selectize/dist'),
 ('147f63f2','@bower/jquery/dist'),
 ('15458015','@spicyweb/embeddedassets/assets/main/dist'),
@@ -2857,6 +3741,7 @@ INSERT INTO `resourcepaths` VALUES
 ('1687fc70','@craft/web/assets/edittransform/dist'),
 ('16881fcb','@craft/web/assets/feed/dist'),
 ('168ca9a6','@craft/web/assets/utilities/dist'),
+('18132072','@craft/web/assets/iframeresizer/dist'),
 ('1813a041','@craft/web/assets/jqueryui/dist'),
 ('187e0afd','@craft/web/assets/cp/dist'),
 ('18f5b2a1','@craft/web/assets/velocity/dist'),
@@ -2865,6 +3750,7 @@ INSERT INTO `resourcepaths` VALUES
 ('198d9022','@craft/web/assets/velocity/dist'),
 ('19c3fb1a','@craft/web/assets/picturefill/dist'),
 ('1b973935','@craft/web/assets/jquerytouchevents/dist'),
+('1bb175c0','@craft/web/assets/theme/dist'),
 ('1bc4e657','@craft/web/assets/jquerypayment/dist'),
 ('1bf4d6b6','@craft/web/assets/garnish/dist'),
 ('1c1a9295','@craft/web/assets/jquerypayment/dist'),
@@ -2878,6 +3764,7 @@ INSERT INTO `resourcepaths` VALUES
 ('1e53e4e0','@craft/web/assets/velocity/dist'),
 ('1e66ceb','@craft/web/assets/craftsupport/dist'),
 ('1e727351','@craft/web/assets/fileupload/dist'),
+('1e7af544','@craft/web/assets/fieldsettings/dist'),
 ('1e98f3e4','@craft/web/assets/jqueryui/dist'),
 ('1eb76f02','@craft/web/assets/updateswidget/dist'),
 ('1efc90da','@craft/web/assets/d3/dist'),
@@ -2888,6 +3775,7 @@ INSERT INTO `resourcepaths` VALUES
 ('2041484b','@craft/web/assets/picturefill/dist'),
 ('20976636','@craft/web/assets/picturefill/dist'),
 ('21396ac8','@craft/web/assets/picturefill/dist'),
+('21a17e6','@craft/web/assets/tailwindreset/dist'),
 ('223df65c','@craft/web/assets/fileupload/dist'),
 ('236c779f','@craft/web/assets/utilities/dist'),
 ('244f045b','@craft/web/assets/axios/dist'),
@@ -2907,7 +3795,9 @@ INSERT INTO `resourcepaths` VALUES
 ('2bf9f54b','@craft/web/assets/xregexp/dist'),
 ('2c05a3ac','@craft/web/assets/iframeresizer/dist'),
 ('2c278189','@craft/web/assets/xregexp/dist'),
+('2d839473','@craft/web/assets/recententries/dist'),
 ('2e000198','@craft/web/assets/generalsettings/dist'),
+('2e04fc27','@craft/web/assets/conditionbuilder/dist'),
 ('2e14088f','@craft/web/assets/garnish/dist'),
 ('2e77bdf6','@craft/web/assets/axios/dist'),
 ('2ec34228','@spicyweb/embeddedassets/assets/main/dist'),
@@ -2921,6 +3811,7 @@ INSERT INTO `resourcepaths` VALUES
 ('3346e1a1','@craft/web/assets/fabric/dist'),
 ('34320393','@craft/web/assets/jquerytouchevents/dist'),
 ('3461dcf1','@craft/web/assets/jquerypayment/dist'),
+('3576012a','@craft/web/assets/axios/dist'),
 ('360c9438','@craft/web/assets/tailwindreset/dist'),
 ('36a1b0e1','@bower/jquery/dist'),
 ('371787c9','@craft/web/assets/jquerypayment/dist'),
@@ -2944,6 +3835,7 @@ INSERT INTO `resourcepaths` VALUES
 ('41cd9928','@craft/web/assets/velocity/dist'),
 ('42821758','@craft/web/assets/jquerytouchevents/dist'),
 ('42d1c83a','@craft/web/assets/jquerypayment/dist'),
+('439fa178','@craft/web/assets/fabric/dist'),
 ('440944fd','@craft/web/assets/jquerytouchevents/dist'),
 ('445a9b9f','@craft/web/assets/jquerypayment/dist'),
 ('44c62c5c','@craft/web/assets/dashboard/dist'),
@@ -2968,6 +3860,7 @@ INSERT INTO `resourcepaths` VALUES
 ('4e2c0436','@craft/web/assets/elementresizedetector/dist'),
 ('4ec816c1','@craft/web/assets/feed/dist'),
 ('4f5426b5','@craft/web/assets/elementresizedetector/dist'),
+('50fadc4','@craft/web/assets/selectize/dist'),
 ('51c41294','@craft/web/assets/updates/dist'),
 ('524b17e3','@craft/web/assets/datepickeri18n/dist'),
 ('52a6a409','@craft/web/assets/fabric/dist'),
@@ -2982,6 +3875,7 @@ INSERT INTO `resourcepaths` VALUES
 ('59d79c93','@craft/web/assets/velocity/dist'),
 ('59f60b22','@craft/web/assets/fileupload/dist'),
 ('5b436ba4','@craft/web/assets/fieldsettings/dist'),
+('5b6ee33f','@craft/web/assets/matrix/dist'),
 ('5c134146','@craft/web/assets/jquerytouchevents/dist'),
 ('5c409e24','@craft/web/assets/jquerypayment/dist'),
 ('5c54c1f7','@craft/web/assets/picturefill/dist'),
@@ -3010,6 +3904,7 @@ INSERT INTO `resourcepaths` VALUES
 ('68ca60ab','@craft/web/assets/iframeresizer/dist'),
 ('69c72e3e','@craft/web/assets/craftsupport/dist'),
 ('6a63f98','@craft/web/assets/fabric/dist'),
+('6b2d966f','@craft/web/assets/garnish/dist'),
 ('6b3d62c7','@craft/web/assets/conditionbuilder/dist'),
 ('6b5ebc17','@craft/web/assets/jqueryui/dist'),
 ('6b683519','@craft/web/assets/theme/dist'),
@@ -3035,6 +3930,7 @@ INSERT INTO `resourcepaths` VALUES
 ('799e4f55','@craft/web/assets/cp/dist'),
 ('79d11a1a','@craft/web/assets/jqueryui/dist'),
 ('7a14931e','@craft/web/assets/garnish/dist'),
+('7aa3d590','@craft/web/assets/admintable/dist'),
 ('7b1dbb8f','@craft/web/assets/htmx/dist'),
 ('7ddb12ed','@craft/web/assets/prismjs/dist'),
 ('7e612832','@craft/web/assets/updates/dist'),
@@ -3042,6 +3938,8 @@ INSERT INTO `resourcepaths` VALUES
 ('7ead49d5','@craft/web/assets/prismjs/dist'),
 ('80054dd5','@craft/web/assets/axios/dist'),
 ('805cf94c','@craft/web/assets/fabric/dist'),
+('8112900e','@craft/web/assets/jquerypayment/dist'),
+('81414f6c','@craft/web/assets/jquerytouchevents/dist'),
 ('819c4f93','@craft/web/assets/vue/dist'),
 ('8297a0d6','@craft/web/assets/datepickeri18n/dist'),
 ('82c5562b','@craft/web/assets/iframeresizer/dist'),
@@ -3052,6 +3950,7 @@ INSERT INTO `resourcepaths` VALUES
 ('83a062f','@craft/web/assets/picturefill/dist'),
 ('83a4d9a2','@craft/web/assets/fieldsettings/dist'),
 ('8463006a','@craft/web/assets/iframeresizer/dist'),
+('848592b9','@craft/web/assets/velocity/dist'),
 ('851b22e9','@craft/web/assets/iframeresizer/dist'),
 ('85cd0c94','@craft/web/assets/iframeresizer/dist'),
 ('8619e39b','@craft/web/assets/fileupload/dist'),
@@ -3065,6 +3964,7 @@ INSERT INTO `resourcepaths` VALUES
 ('89a45f9c','@craft/web/assets/d3/dist'),
 ('8a301d48','@craft/web/assets/garnish/dist'),
 ('8a85073','@craft/ckeditor/web/assets/ckeditor/dist'),
+('8b801d50','@craft/web/assets/feed/dist'),
 ('8c9c2911','@craft/web/assets/jquerypayment/dist'),
 ('8ccff673','@craft/web/assets/jquerytouchevents/dist'),
 ('8d13cf9','@craft/web/assets/updates/dist'),
@@ -3077,10 +3977,13 @@ INSERT INTO `resourcepaths` VALUES
 ('8ee7fafb','@craft/web/assets/updateswidget/dist'),
 ('8f0209dd','@craft/web/assets/d3/dist'),
 ('8f09f716','@spicyweb/embeddedassets/resources'),
+('8f1919c9','@craft/web/assets/datepickeri18n/dist'),
 ('902b957f','@craft/web/assets/jquerypayment/dist'),
 ('903fab4f','@craft/web/assets/sites/dist'),
 ('90766f72','@craft/web/assets/utilities/dist'),
 ('90784a1d','@craft/web/assets/jquerytouchevents/dist'),
+('90a54ae2','@craft/web/assets/vue/dist'),
+('90fdbabd','@craft/web/assets/editsection/dist'),
 ('91fcb0e0','@craft/web/assets/axios/dist'),
 ('9245c5eb','@craft/web/assets/updater/dist'),
 ('9285a526','@bower/jquery/dist'),
@@ -3088,6 +3991,7 @@ INSERT INTO `resourcepaths` VALUES
 ('939179d5','@craft/web/assets/cp/dist'),
 ('9418a515','@craft/web/assets/datepickeri18n/dist'),
 ('944f0d17','@craft/web/assets/cp/dist'),
+('9470f8c','@craft/web/assets/cp/dist'),
 ('9499236a','@craft/web/assets/cp/dist'),
 ('95372f94','@craft/web/assets/cp/dist'),
 ('95bc97c8','@craft/web/assets/velocity/dist'),
@@ -3152,6 +4056,7 @@ INSERT INTO `resourcepaths` VALUES
 ('b0931167','@craft/web/assets/velocity/dist'),
 ('b0c7f3cf','@craft/web/assets/picturefill/dist'),
 ('b1b858c2','@craftpulse/passwordpolicy/assetbundles/PasswordPolicy/dist'),
+('b23bba6c','@craft/web/assets/timepicker/dist'),
 ('b2a8bc61','@craft/web/assets/utilities/dist'),
 ('b30aba03','@craft/web/assets/selectize/dist'),
 ('b30cfebc','@craft/web/assets/conditionbuilder/dist'),
@@ -3159,12 +4064,14 @@ INSERT INTO `resourcepaths` VALUES
 ('b3f93da2','@craft/web/assets/fileupload/dist'),
 ('b41f0021','@craft/web/assets/tailwindreset/dist'),
 ('b44c4415','@spicyweb/embeddedassets/resources'),
+('b4952014','@craft/web/assets/craftsupport/dist'),
 ('b4c5d17','@craft/web/assets/picturefill/dist'),
 ('b50413d0','@craft/web/assets/jquerypayment/dist'),
 ('b557ccb2','@craft/web/assets/jquerytouchevents/dist'),
 ('b6392836','@craft/web/assets/pluginstore/dist'),
 ('b67f9845','@craft/web/assets/garnish/dist'),
 ('b6edbc3','@spicyweb/embeddedassets/assets/main/dist'),
+('b6f1f7d0','@craft/web/assets/xregexp/dist'),
 ('b7695b19','@craft/web/assets/tailwindreset/dist'),
 ('b7f8980f','@craft/web/assets/d3/dist'),
 ('b91b990b','@craft/web/assets/craftsupport/dist'),
@@ -3175,11 +4082,13 @@ INSERT INTO `resourcepaths` VALUES
 ('bc344373','@craft/web/assets/cp/dist'),
 ('bc598eb0','@craft/ckeditor/web/assets/ckeconfig/dist'),
 ('bc9991b8','@craft/web/assets/iframeresizer/dist'),
+('bd494ad0','@craft/web/assets/picturefill/dist'),
 ('bf3bc40a','@craft/web/assets/theme/dist'),
 ('bf42184b','@craft/web/assets/cp/dist'),
 ('c047a655','@craft/web/assets/selectize/dist'),
 ('c1bc0c59','@craft/web/assets/velocity/dist'),
 ('c1d94fd2','@craft/web/assets/tailwindreset/dist'),
+('c3207d7b','@craft/web/assets/fileupload/dist'),
 ('c40ecd47','@percipiolondon/passwordpolicy/assetbundles/PasswordPolicy/dist'),
 ('c42b0eee','@craft/web/assets/jquerypayment/dist'),
 ('c478d18c','@craft/web/assets/jquerytouchevents/dist'),
@@ -3192,6 +4101,7 @@ INSERT INTO `resourcepaths` VALUES
 ('c6ccf5f0','@craft/web/assets/selectize/dist'),
 ('c7448c6c','@craft/web/assets/generalsettings/dist'),
 ('c7521c77','@craft/web/assets/tailwindreset/dist'),
+('c8a85e12','@craft/web/assets/prismjs/dist'),
 ('c963411f','@craft/web/assets/utilities/dist'),
 ('ca208729','@craft/web/assets/datepickeri18n/dist'),
 ('ca8457b8','@craft/web/assets/cp/dist'),
@@ -3223,6 +4133,7 @@ INSERT INTO `resourcepaths` VALUES
 ('d671dd8c','@craft/web/assets/updateswidget/dist'),
 ('d6eeb23d','@craft/web/assets/focusvisible/dist'),
 ('d7b6604','@craft/web/assets/vue/dist'),
+('d7bc3bc6','@bower/jquery/dist'),
 ('d821c1a7','@craft/web/assets/fileupload/dist'),
 ('d85da3ee','@craft/web/assets/selectize/dist'),
 ('d949d721','@craft/web/assets/fabric/dist'),
@@ -3232,6 +4143,7 @@ INSERT INTO `resourcepaths` VALUES
 ('dbdb540','@craft/web/assets/authmethodsetup/dist'),
 ('dd2881a8','@craft/web/assets/garnish/dist'),
 ('dd5b2be3','@craft/web/assets/iframeresizer/dist'),
+('dd5babd0','@craft/web/assets/jqueryui/dist'),
 ('dd6e31db','@craft/web/assets/pluginstore/dist'),
 ('de418d9e','@craft/web/assets/fabric/dist'),
 ('de5eda90','@craft/web/assets/garnish/dist'),
@@ -3247,12 +4159,14 @@ INSERT INTO `resourcepaths` VALUES
 ('e3fa3eea','@craft/web/assets/dashboard/dist'),
 ('e41226e3','@craft/web/assets/selectize/dist'),
 ('e5a6f5c','@craft/web/assets/updates/dist'),
+('e615b914','@craft/web/assets/htmx/dist'),
 ('e64aa7f0','@craft/web/assets/elementresizedetector/dist'),
 ('e6c67bb9','@craft/web/assets/utilities/dist'),
 ('e71510b2','@craft/web/assets/fabric/dist'),
 ('e77df976','@craft/web/assets/admintable/dist'),
 ('e8240f00','@craft/web/assets/axios/dist'),
 ('e85a84ab','@craft/web/assets/cp/dist'),
+('e885f0c6','@craft/web/assets/animationblocker/dist'),
 ('e8cb9fe2','@craft/web/assets/recententries/dist'),
 ('e94d280e','@craft/web/assets/jqueryui/dist'),
 ('eaa13730','@craft/web/assets/focusvisible/dist'),
@@ -3265,6 +4179,7 @@ INSERT INTO `resourcepaths` VALUES
 ('f1cbd0d7','@craft/web/assets/jquerypayment/dist'),
 ('f1fbe036','@craft/web/assets/garnish/dist'),
 ('f26fa2e2','@craft/web/assets/d3/dist'),
+('f2c33b9b','@craft/web/assets/dashboard/dist'),
 ('f3c86930','@craft/web/assets/xregexp/dist'),
 ('f45cd260','@craft/web/assets/velocity/dist'),
 ('f4e017','@craft/web/assets/xregexp/dist'),
@@ -3292,7 +4207,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `revisions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `revisions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `canonicalId` int(11) NOT NULL,
@@ -3304,7 +4219,7 @@ CREATE TABLE `revisions` (
   KEY `fk_nhbxfjmmaexxkfbgzsdhhlrbpufntlwcieae` (`creatorId`),
   CONSTRAINT `fk_mzemovtlyzobnokbyngtuxhamicuzbxeygsm` FOREIGN KEY (`canonicalId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_nhbxfjmmaexxkfbgzsdhhlrbpufntlwcieae` FOREIGN KEY (`creatorId`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3356,7 +4271,36 @@ INSERT INTO `revisions` VALUES
 (40,2,1,40,'Applied “Draft 1”'),
 (41,2,1,41,''),
 (42,2,1,42,'Applied “Draft 1”'),
-(43,2,1,43,'Applied “Draft 1”');
+(43,2,1,43,'Applied “Draft 1”'),
+(44,2,1,44,'Applied “Draft 1”'),
+(45,2,1,45,NULL),
+(46,2,1,46,''),
+(47,80,1,1,''),
+(48,2,1,47,'Applied “Draft 1”'),
+(49,82,1,1,NULL),
+(50,83,1,1,NULL),
+(51,87,1,1,''),
+(52,89,1,1,''),
+(53,89,1,2,''),
+(54,92,1,1,''),
+(55,92,1,2,'Applied “Draft 1”'),
+(56,96,1,1,''),
+(57,2,1,48,NULL),
+(58,2,1,49,''),
+(59,2,1,50,''),
+(60,80,1,2,'Applied “Draft 1”'),
+(61,89,1,3,'Applied “Draft 1”'),
+(62,105,1,1,NULL),
+(63,87,1,2,'Applied “Draft 1”'),
+(64,110,1,1,NULL),
+(65,113,1,1,''),
+(66,80,1,3,''),
+(67,116,1,1,''),
+(68,119,1,1,''),
+(69,120,1,1,NULL),
+(70,123,1,1,''),
+(71,116,1,2,''),
+(72,119,1,2,'Applied “Draft 1”');
 /*!40000 ALTER TABLE `revisions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3366,7 +4310,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `searchindex`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `searchindex` (
   `elementId` int(11) NOT NULL,
   `attribute` varchar(25) NOT NULL,
@@ -3392,7 +4336,7 @@ INSERT INTO `searchindex` VALUES
 (1,'slug',0,1,''),
 (1,'username',0,1,' pro dev admin '),
 (2,'slug',0,1,' startseite '),
-(2,'title',0,1,' reiner zufall '),
+(2,'title',0,1,' startseite '),
 (34,'extension',0,1,' jpg '),
 (34,'filename',0,1,' asset633af76982e267 12846520 jpg '),
 (34,'kind',0,1,' image '),
@@ -3447,7 +4391,37 @@ INSERT INTO `searchindex` VALUES
 (50,'filename',0,1,' ts paralax 191 ts a jpg '),
 (50,'kind',0,1,' image '),
 (50,'slug',0,1,''),
-(50,'title',0,1,' ts paralax 191 ts a ');
+(50,'title',0,1,' ts paralax 191 ts a '),
+(80,'slug',0,1,' test teaser '),
+(80,'title',0,1,' kontakt teaser '),
+(82,'slug',0,1,' temp yezbbmaaqktrrvsqryfvxpdmgrbvsmvlmwsp '),
+(82,'title',0,1,''),
+(83,'slug',0,1,' temp datxnoobnvatstpahrfdnopvdjwahribklxe '),
+(83,'title',0,1,''),
+(87,'slug',0,1,' ueber uns '),
+(87,'title',0,1,' ueber uns '),
+(89,'slug',0,1,' kontakt '),
+(89,'title',0,1,' kontakt '),
+(92,'slug',0,1,' ueber uns '),
+(92,'title',0,1,' ueber uns '),
+(96,'slug',0,1,' kontakt '),
+(96,'title',0,1,' kontakt '),
+(105,'slug',0,1,' temp evpckupjrhrtisadphvnwyvfqvrfzjocqidc '),
+(105,'title',0,1,''),
+(110,'slug',0,1,' temp cluicaugvqvtlhgngdemokxkxaqefwglwtzd '),
+(110,'title',0,1,''),
+(113,'slug',0,1,' test '),
+(113,'title',0,1,' test '),
+(116,'slug',0,1,' test teaser '),
+(116,'title',0,1,' test teaser '),
+(118,'slug',0,1,' temp zgcihtihcwhpyhykuabigrfmoixzjkkaesse '),
+(118,'title',0,1,''),
+(119,'slug',0,1,' verkauf '),
+(119,'title',0,1,' verkauf '),
+(120,'slug',0,1,' temp dqicluatynmaajhnieqnkhrpnibrztyntqfo '),
+(120,'title',0,1,''),
+(123,'slug',0,1,' verkauf '),
+(123,'title',0,1,' verkauf ');
 /*!40000 ALTER TABLE `searchindex` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3457,7 +4431,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `searchindexqueue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `searchindexqueue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `elementId` int(11) NOT NULL,
@@ -3466,7 +4440,7 @@ CREATE TABLE `searchindexqueue` (
   PRIMARY KEY (`id`),
   KEY `idx_eutllkzdkpucsthmoejaphnhgjeadjqmtfkv` (`elementId`,`siteId`,`reserved`),
   CONSTRAINT `fk_zjjidpefpdfmlhpcjcdaozkfnqjvsegucncj` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3484,7 +4458,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `searchindexqueue_fields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `searchindexqueue_fields` (
   `jobId` int(11) NOT NULL,
   `fieldHandle` varchar(255) NOT NULL,
@@ -3509,7 +4483,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sections`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sections` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `structureId` int(11) DEFAULT NULL,
@@ -3531,7 +4505,7 @@ CREATE TABLE `sections` (
   KEY `idx_sawlklneyutuosmvzcefuophawclsncwxnin` (`structureId`),
   KEY `idx_uefexhuelblytghauvimyfhbgbxyqfiytkau` (`dateDeleted`),
   CONSTRAINT `fk_amqvrmxjjfjuzboxfdxmcgbjysszqhdjimtn` FOREIGN KEY (`structureId`) REFERENCES `structures` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3541,7 +4515,10 @@ CREATE TABLE `sections` (
 LOCK TABLES `sections` WRITE;
 /*!40000 ALTER TABLE `sections` DISABLE KEYS */;
 INSERT INTO `sections` VALUES
-(1,NULL,'Startseite','startseite','single',1,1,'all','end','[{\"label\":\"Primäre eintrag Seite\",\"urlFormat\":\"{url}\",\"refresh\":\"1\"}]','2022-09-28 12:24:11','2022-09-28 12:24:30',NULL,'10120e23-43ba-494f-ba6c-7241058df713');
+(1,NULL,'Startseite','startseite','single',1,1,'all','end','[{\"label\":\"Primäre eintrag Seite\",\"urlFormat\":\"{url}\",\"refresh\":\"1\"}]','2022-09-28 12:24:11','2022-09-28 12:24:30',NULL,'10120e23-43ba-494f-ba6c-7241058df713'),
+(2,NULL,'Teasers','teasers','channel',1,1,'all','end','[{\"label\":\"Primary entry page\",\"urlFormat\":\"{url}\",\"refresh\":\"1\"}]','2025-11-26 19:08:44','2025-11-26 19:08:44',NULL,'73f201e5-ad16-409e-aad7-af99f7e14761'),
+(3,1,'Landingpages','landingpages','structure',1,1,'all','end','[{\"label\":\"Primary entry page\",\"urlFormat\":\"{url}\",\"refresh\":\"1\"}]','2025-11-26 19:12:51','2025-11-26 19:12:51',NULL,'cdc8fe6c-761a-46b0-895a-4df17d4a4fc8'),
+(4,NULL,'Navigation','navigation','channel',1,1,'all','end','[{\"label\":\"Primary entry page\",\"urlFormat\":\"{url}\",\"refresh\":\"1\"}]','2025-11-26 19:19:07','2025-11-26 19:22:58',NULL,'c0847a8d-414f-4497-81a5-0bb43568b583');
 /*!40000 ALTER TABLE `sections` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3551,7 +4528,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sections_entrytypes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sections_entrytypes` (
   `sectionId` int(11) NOT NULL,
   `typeId` int(11) NOT NULL,
@@ -3573,7 +4550,10 @@ CREATE TABLE `sections_entrytypes` (
 LOCK TABLES `sections_entrytypes` WRITE;
 /*!40000 ALTER TABLE `sections_entrytypes` DISABLE KEYS */;
 INSERT INTO `sections_entrytypes` VALUES
-(1,1,1,NULL,NULL,NULL);
+(1,2,1,NULL,NULL,NULL),
+(2,5,1,NULL,NULL,NULL),
+(3,2,1,NULL,NULL,NULL),
+(4,6,1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sections_entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3583,7 +4563,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sections_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sections_sites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sectionId` int(11) NOT NULL,
@@ -3600,7 +4580,7 @@ CREATE TABLE `sections_sites` (
   KEY `idx_thtzpgjhdfhilslrrzbygtdacdakjafjpzxc` (`siteId`),
   CONSTRAINT `fk_renlsoycvfnjrkrhmbopryaabkmpocufsxeb` FOREIGN KEY (`sectionId`) REFERENCES `sections` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_sdgeaphvzzvvepfxcitatncacqtzlfpmavvz` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3610,7 +4590,10 @@ CREATE TABLE `sections_sites` (
 LOCK TABLES `sections_sites` WRITE;
 /*!40000 ALTER TABLE `sections_sites` DISABLE KEYS */;
 INSERT INTO `sections_sites` VALUES
-(1,1,1,1,'__home__','startseite/_entry',1,'2022-09-28 12:24:11','2022-09-28 12:24:30','e66ee714-d528-4c82-a060-4de0376029ac');
+(1,1,1,1,'__home__',NULL,1,'2022-09-28 12:24:11','2025-11-26 19:23:41','e66ee714-d528-4c82-a060-4de0376029ac'),
+(2,2,1,0,NULL,NULL,1,'2025-11-26 19:08:44','2025-11-26 19:08:44','20ee0d02-e29a-4249-baa8-84816de415ff'),
+(3,3,1,1,'{parent.uri}/{slug}',NULL,1,'2025-11-26 19:12:51','2025-11-26 19:23:20','51fcd884-04a7-4aa4-9892-e00a498877a9'),
+(4,4,1,0,NULL,NULL,1,'2025-11-26 19:19:07','2025-11-26 19:22:58','298ae278-c5b5-4814-a75c-c7eea54a3aa4');
 /*!40000 ALTER TABLE `sections_sites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3620,7 +4603,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sequences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sequences` (
   `name` varchar(255) NOT NULL,
   `next` int(11) unsigned NOT NULL DEFAULT 1,
@@ -3643,7 +4626,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sessions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -3657,7 +4640,7 @@ CREATE TABLE `sessions` (
   KEY `idx_cslgbqqcglkcjkvoqwyagkwzmuyibtyozqsu` (`dateUpdated`),
   KEY `idx_elfaknonyntxharvevkxelqijvgawxsfbezy` (`userId`),
   CONSTRAINT `fk_oevoxpcummfcdwyqehbkqpmiynnxmilnpcjt` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3667,7 +4650,9 @@ CREATE TABLE `sessions` (
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` VALUES
-(26,1,'UAoiPjM2DyrN26l3-Z6-mqJaBXgR9U_izIGdSiPBv6iZ5BcSqGvI2ZoTbVPlH2Hib9LmxfVDw6P-MymxqGMIxeLLe5kSIaCf8Kq_','2025-07-18 18:47:02','2025-07-18 18:49:32','ee10de44-601d-490c-a8a7-6d15c79993d2');
+(26,1,'UAoiPjM2DyrN26l3-Z6-mqJaBXgR9U_izIGdSiPBv6iZ5BcSqGvI2ZoTbVPlH2Hib9LmxfVDw6P-MymxqGMIxeLLe5kSIaCf8Kq_','2025-07-18 18:47:02','2025-07-18 18:49:32','ee10de44-601d-490c-a8a7-6d15c79993d2'),
+(27,1,'UQnkrW-A2SewOMUO6KujmPu9cxcYMdYSRm7CrVAJZNBx_mM6jVKFdZUQiDKfScm6xiyLAuZovKYs6Ej1xOOOZw10I0O3Tp2R2GbB','2025-11-26 18:51:21','2025-11-26 20:05:45','6f3fcd83-7281-47b4-9527-5a227f90912b'),
+(28,1,'VVA8dY_uGAXDvx4Sb8LHy5uiM7eXZ2TiBbFKSq77nLBKIx8CKV9i318rci-89ZIPd1i-yCuLmqxLFzBo3e140XaUJtp4fPbYndAE','2025-11-27 16:00:57','2025-11-27 16:38:48','c445c595-d4b8-4848-b846-fd190fca013e');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3677,7 +4662,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `shunnedmessages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shunnedmessages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -3707,7 +4692,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sitegroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sitegroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -3737,7 +4722,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groupId` int(11) NOT NULL,
@@ -3779,7 +4764,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sso_identities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sso_identities` (
   `provider` varchar(255) NOT NULL,
   `identityId` varchar(255) NOT NULL,
@@ -3807,7 +4792,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `structureelements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `structureelements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `structureId` int(11) NOT NULL,
@@ -3827,7 +4812,7 @@ CREATE TABLE `structureelements` (
   KEY `idx_gfcmmejisiqmywmlrsjgeleygncjtzikoorf` (`level`),
   KEY `idx_qqgappepxbevivpxwwmgflwfreglukhjfljo` (`elementId`),
   CONSTRAINT `fk_tvvgrfsvfpxboulpunjuraaprvpvrzthyauo` FOREIGN KEY (`structureId`) REFERENCES `structures` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3836,6 +4821,15 @@ CREATE TABLE `structureelements` (
 
 LOCK TABLES `structureelements` WRITE;
 /*!40000 ALTER TABLE `structureelements` DISABLE KEYS */;
+INSERT INTO `structureelements` VALUES
+(1,1,NULL,1,1,10,0,'2025-11-26 19:12:58','2025-11-27 16:13:24','fc77eb14-c050-4359-af8b-ba9bd98c5969'),
+(2,1,87,1,2,3,1,'2025-11-26 19:12:58','2025-11-26 19:12:58','8ae3a571-f817-40c7-a70a-f36e6c02f69d'),
+(3,1,89,1,4,5,1,'2025-11-26 19:13:15','2025-11-27 16:13:24','0b9a2a70-243f-47a7-a4d1-d5e0fdb3efb3'),
+(4,2,NULL,4,1,6,0,'2025-11-26 19:22:40','2025-11-26 19:22:40','d9b45cc2-23f5-4cf0-a021-525f5ec5c22a'),
+(5,2,92,4,2,3,1,'2025-11-26 19:22:40','2025-11-26 19:22:40','74a73d7a-c158-42b4-b14a-0574e66dc5ec'),
+(6,2,96,4,4,5,1,'2025-11-26 19:22:40','2025-11-26 19:22:40','ea7afd5c-d9af-4cde-af72-a2a59439d4f5'),
+(7,1,118,1,8,9,1,'2025-11-27 16:05:05','2025-11-27 16:13:24','e318d35d-943c-4e06-bab4-95be54ead41e'),
+(8,1,119,1,6,7,1,'2025-11-27 16:05:53','2025-11-27 16:13:24','8bb194aa-ca13-44af-a231-04e5c302a11a');
 /*!40000 ALTER TABLE `structureelements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3845,7 +4839,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `structures`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `structures` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `maxLevels` smallint(6) unsigned DEFAULT NULL,
@@ -3855,7 +4849,7 @@ CREATE TABLE `structures` (
   `uid` char(36) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `idx_jsrdjlgrlxohlwotdxyhjirfgsisapzsyjre` (`dateDeleted`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3864,6 +4858,9 @@ CREATE TABLE `structures` (
 
 LOCK TABLES `structures` WRITE;
 /*!40000 ALTER TABLE `structures` DISABLE KEYS */;
+INSERT INTO `structures` VALUES
+(1,NULL,'2025-11-26 19:12:51','2025-11-26 19:12:51',NULL,'afce15f2-4cf8-4998-8525-0ad186764a51'),
+(2,NULL,'2025-11-26 19:22:40','2025-11-26 19:22:40','2025-11-26 19:22:58','7ed1ed68-3f0b-4ebe-b405-5668d1f71d2b');
 /*!40000 ALTER TABLE `structures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3873,7 +4870,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `systemmessages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `systemmessages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `language` varchar(255) NOT NULL,
@@ -3904,7 +4901,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `taggroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `taggroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -3938,7 +4935,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tags` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
@@ -3967,7 +4964,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token` char(32) NOT NULL,
@@ -3999,7 +4996,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usergroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usergroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -4029,7 +5026,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usergroups_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usergroups_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groupId` int(11) NOT NULL,
@@ -4060,7 +5057,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `userpermissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `userpermissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -4087,7 +5084,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `userpermissions_usergroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `userpermissions_usergroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `permissionId` int(11) NOT NULL,
@@ -4118,7 +5115,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `userpermissions_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `userpermissions_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `permissionId` int(11) NOT NULL,
@@ -4149,7 +5146,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `userpreferences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `userpreferences` (
   `userId` int(11) NOT NULL AUTO_INCREMENT,
   `preferences` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`preferences`)),
@@ -4175,7 +5172,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `photoId` int(11) DEFAULT NULL,
@@ -4228,7 +5225,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,NULL,NULL,1,0,0,0,1,'pro-dev-admin',NULL,NULL,NULL,'dev@profitlich.ch','$2y$13$Ly9i8Z0Ck3/PSL9RAYiMyOLXhYpWAPArHkAQpzKgjTtptLO1/OsOm','2025-07-18 18:47:02',NULL,NULL,NULL,'2022-09-28 12:08:05',NULL,1,NULL,NULL,NULL,0,'2025-07-18 18:46:55','2022-09-28 08:08:18','2025-07-18 18:47:02');
+(1,NULL,NULL,1,0,0,0,1,'pro-dev-admin',NULL,NULL,NULL,'dev@profitlich.ch','$2y$13$Ly9i8Z0Ck3/PSL9RAYiMyOLXhYpWAPArHkAQpzKgjTtptLO1/OsOm','2025-11-27 16:00:57',NULL,NULL,NULL,'2022-09-28 12:08:05',NULL,1,NULL,NULL,NULL,0,'2025-07-18 18:46:55','2022-09-28 08:08:18','2025-11-27 16:00:57');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4238,7 +5235,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `volumefolders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `volumefolders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) DEFAULT NULL,
@@ -4277,7 +5274,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `volumes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `volumes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fieldLayoutId` int(11) DEFAULT NULL,
@@ -4323,7 +5320,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `webauthn`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `webauthn` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -4355,7 +5352,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `widgets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `widgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -4396,4 +5393,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-18 21:49:49
+-- Dump completed on 2025-11-27 16:39:23

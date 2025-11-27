@@ -1,0 +1,76 @@
+color: null
+description: null
+fieldLayouts:
+  41c3aded-2fe1-42b8-9401-5a01576e9c6d:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-11-26T18:58:58+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: 'Interner Name'
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: f6cd3f38-b3b4-485a-8158-c2220d1392af
+            userCondition: null
+            warning: null
+            width: 100
+        name: Navigation
+        uid: b8173002-03c7-48fd-8d31-9409efad6870
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-11-26T19:06:35+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f0300c95-552b-49b5-9351-7ad29f907352 # Blocks
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 028df4ba-bb51-46e5-98a0-6c9911fecb0d
+            userCondition: null
+            warning: null
+            width: 100
+        name: Blocks
+        uid: 036001b7-372b-490a-b6cc-05fee2032c1b
+        userCondition: null
+handle: landingpage
+hasTitleField: true
+icon: null
+name: Landingpage
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

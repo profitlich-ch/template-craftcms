@@ -1,0 +1,37 @@
+columnSuffix: null
+handle: blocks
+instructions: null
+name: Blocks
+searchable: false
+settings:
+  createButtonLabel: null
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 0396ff1d-5e87-4504-952e-1935bb565bf6 # Text
+        -
+          - group
+          - General
+    -
+      __assoc__:
+        -
+          - uid
+          - bac239f3-c626-43b7-9726-0a62539fdd46 # Teaser
+        -
+          - group
+          - General
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: blocks
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

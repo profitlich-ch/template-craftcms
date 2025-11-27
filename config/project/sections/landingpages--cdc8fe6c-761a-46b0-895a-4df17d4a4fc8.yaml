@@ -3,15 +3,15 @@ enableVersioning: true
 entryTypes:
   -
     uid: 84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb # Landingpage
-handle: startseite
+handle: landingpages
 maxAuthors: 1
-name: Startseite
+name: Landingpages
 previewTargets:
   -
     __assoc__:
       -
         - label
-        - 'Primäre eintrag Seite'
+        - 'Primary entry page'
       -
         - urlFormat
         - '{url}'
@@ -24,5 +24,8 @@ siteSettings:
     enabledByDefault: true
     hasUrls: true
     template: null
-    uriFormat: __home__
-type: single
+    uriFormat: '{parent.uri}/{slug}'
+structure:
+  maxLevels: null
+  uid: afce15f2-4cf8-4998-8525-0ad186764a51
+type: structure

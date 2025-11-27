@@ -1,0 +1,40 @@
+color: null
+description: null
+fieldLayouts:
+  c15d8232-344f-4d80-b90e-70bfd9d5ec5e:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-11-26T19:06:32+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 40535b60-d662-44ba-97fa-7aecf43c6ea6 # Teasers
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f78da7b6-6c65-48b3-b832-9ea4d3719e7d
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: d9b5098e-5c09-468d-a13d-65ea9fb882d6
+        userCondition: null
+handle: teaser
+hasTitleField: false
+icon: null
+name: Teaser
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

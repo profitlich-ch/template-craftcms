@@ -1,0 +1,4 @@
+{% for teaser in block.teasers.all() %}
+    <div>{{ teaser.heading }}</div>
+    <div>{{ teaser.text }}</div>
+{% endfor %}

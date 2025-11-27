@@ -1,4 +1,4 @@
-dateModified: 1755201946
+dateModified: 1764185877
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -18,14 +18,26 @@ graphql:
 meta:
   __names__:
     0e793c4c-3298-4c14-a50e-fe050eeaee18: Startseite # Startseite
+    1ce458b1-c5ff-40c2-bad8-2ef7bffa8003: Text # Text
     44fec1ae-cc09-42b5-b6a8-1c301d066c04: Projektbilder # Projektbilder
+    73f201e5-ad16-409e-aad7-af99f7e14761: Teasers # Teasers
+    84b612e4-4c88-4c37-8daf-af7b33fdfa22: Navigation # Navigation
+    84c06b02-ca2f-4cc8-8286-9ff9f9a1eccb: Landingpage # Landingpage
     396abe4e-d4af-4c68-a2fb-7a3bce13f340: 'SEO Bildbeschreibung' # SEO Bildbeschreibung
+    0396ff1d-5e87-4504-952e-1935bb565bf6: Text # Text
     10120e23-43ba-494f-ba6c-7241058df713: Startseite # Startseite
+    18952c35-98c2-44eb-b5bc-5bf8cc8829c8: TeaserSection # TeaserSection
+    40535b60-d662-44ba-97fa-7aecf43c6ea6: Teasers # Teasers
     12994855-fd13-4d38-8ad9-156bb1960e74: Projektbilder # Projektbilder
+    bac239f3-c626-43b7-9726-0a62539fdd46: Teaser # Teaser
+    c0847a8d-414f-4497-81a5-0bb43568b583: Navigation # Navigation
     c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8: 'Profitlich DEV' # Profitlich DEV
     c2146f3a-86c4-4929-ad3b-bfa61123b4c1: Simple # Simple
+    cdc8fe6c-761a-46b0-895a-4df17d4a4fc8: Landingpages # Landingpages
     e667dda0-024e-49cf-b865-a2bb0a7c491e: 'SEO Meta Description' # SEO Meta Description
     e814380a-f915-44b8-92b3-a767fa94f64a: 'Profitlich DEV' # Profitlich DEV
+    ec8bc776-3089-49fb-8891-4559bcbb37a3: Links # Links
+    f0300c95-552b-49b5-9351-7ad29f907352: Blocks # Blocks
 plugins:
   ckeditor:
     edition: standard
@@ -229,7 +241,7 @@ plugins:
   imager-x:
     edition: pro
     enabled: true
-    licenseKey: 1YV4073KECMD8IACSOWJQDNV
+    licenseKey: KU32LJZPYKL71P52HFU03HNL
     schemaVersion: 4.0.0
   obfuscator:
     edition: standard
