@@ -1,12 +1,12 @@
 {
   "require": {
-    "cloudgrayau/csp": "1.3.0",
+    "cloudgrayau/csp": "^1.3.0",
     "craftcms/ckeditor": "^4.1.0",
     "craftcms/cms": "^5.0.0",
-    "ether/simplemap": "5.0.4",
+    "ether/simplemap": "^5.0.4",
     "miranj/craft-obfuscator": "^1.2",
     "nystudio107/craft-vite": "^5.0",
-    "spacecatninja/imager-x": "5.1.5",
+    "spacecatninja/imager-x": "^5.1.5",
     "vlucas/phpdotenv": "^5.4.0"
   },
   "require-dev": {
