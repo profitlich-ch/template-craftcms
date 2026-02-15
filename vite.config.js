@@ -1,7 +1,9 @@
 import { defineConfig, loadEnv } from 'vite';
+import manifestSRI from 'vite-plugin-manifest-sri'
+import browserslist from 'browserslist';
+import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap'
 import * as fs from 'fs';
 import * as path from 'path';
-
 
 // Match ports in .ddev/config.yaml and config/vite.php
 const HTTPS_PORT = 5173;
@@ -23,16 +25,19 @@ export default defineConfig(({ command, mode }) => {
             manifest: true,
             outDir: './web/dist/',
             sourcemap: mode === 'development',
+            // empty the out dir before writing new files
+            emptyOutDir: true,
+            // Wegen CSP kann das preload ployfill nicht verwendet werden
+            modulePreload: {
+                polyfill: false
+            },
+            // Activates terser for minification
             minify: 'terser',
-            ssMinify: 'lightningcss',
+            cssMinify: 'lightningcss',
             terserOptions: {
                 compress: {
-                    // Entfernt alle console.log-Anweisungen
+                    // drops all console.log commands
                     drop_console: true,
-                },
-                format: {
-                    // Entfernt alle Kommentare
-                    comments: false,
                 },
             },
             rollupOptions: {
@@ -50,17 +55,29 @@ export default defineConfig(({ command, mode }) => {
             host: '0.0.0.0',
             port: HTTPS_PORT,
             strictPort: true,
+            // origin: `${env.PRIMARY_SITE_URL.replace(/:\d+$/, "")}:${HTTPS_PORT}`,
             origin: `${env.PRIMARY_SITE_URL.replace(/:\d+$/, "")}:${HTTPS_PORT}`,
             cors: {
                 origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
             },
             watch: {
+                paths: [
+                    'src/**',
+                ],
                 ignored: [
                     '**/node_modules/**',
                     '**/vendor/**',
                 ],
             },
         },
+        plugins: [
+            manifestSRI(),
+            VitePluginSvgSpritemap('./src/**/_*.svg', {
+                svgo: true,
+                gutter: 10,
+                output: './web/sprites/sprites.svg',
+            }),
+        ],
     };
 });
 

@@ -1,4 +1,4 @@
-import './_menu-toggle.scss';
+import './menu-toggle.scss';
 
 export class MenuToggle {
     private static instance: MenuToggle;
