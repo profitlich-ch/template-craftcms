@@ -1,131 +1,102 @@
+import GUI from 'lil-gui';
 import { MediaQueries } from '../../utils/MediaQueries.js';
-import Cookies from 'js-cookie'
 import './dev-toolbar.scss';
 
 export class DevToolbar {
     #mediaQueries = MediaQueries.getInstance();
-    #isDevToolsLoaded = false;
-    #isDevToolsShown = false;
-    #grid = 'lines';
-    #devDiv = null;
-    #devDivText = null;
-    #pictureElements = null;
+    #gui;
+    #state;
+    #pictureElements;
 
     constructor() {
-        // Prüfen, ob ein Cookie für die Dev-Tools existiert.
-        const devToolsCookie = Cookies.get('devTools');
-        if (devToolsCookie) {
-            const devToolsArray = devToolsCookie.split(',');
-            if (devToolsArray[0] === 'true') {
-                // Setze den Grid-Typ aus dem Cookie.
-                this.#grid = devToolsArray[1];
-                this.#initialiseDevTools();
-            }
+        // State aus localStorage laden
+        const saved = localStorage.getItem('devTools');
+        this.#state = saved
+            ? JSON.parse(saved)
+            : { visible: false, grid: 'aus', imageSize: false };
+
+        // Grid-Overlay DOM-Element erstellen
+        const gridOverlay = document.createElement('div');
+        gridOverlay.classList.add('dev-toolbar__grid');
+        document.body.prepend(gridOverlay);
+
+        // Picture-Elemente sammeln
+        this.#pictureElements = document.getElementsByTagName('picture');
+
+        // lil-gui initialisieren
+        this.#gui = new GUI({ title: this.#getViewportText() });
+
+        this.#gui.add(this.#state, 'grid', ['aus', 'lines', 'ribbons'])
+            .name('Grid')
+            .onChange(() => this.#onStateChange());
+
+        this.#gui.add(this.#state, 'imageSize')
+            .name('Bildgrössen')
+            .onChange(() => this.#onStateChange());
+
+        // State anwenden
+        this.#applyState();
+
+        // Panel ein-/ausblenden
+        if (!this.#state.visible) {
+            this.#gui.hide();
         }
 
-        // Event-Listener für Tastatureingaben hinzufügen.
+        // Event-Listener
+        window.addEventListener('resize', this.#onResize);
         document.addEventListener('keydown', this.#handleKeyDown);
     }
 
-    /**
-     * Erstellt die notwendigen DOM-Elemente für die Toolbar und fügt sie dem Body hinzu.
-     */
-    #initialiseDevTools() {
-        this.#devDiv = document.createElement('div');
-        this.#devDiv.classList.add('dev-toolbar');
-        this.#devDiv.id = 'dev-toolbar';
-        document.body.prepend(this.#devDiv);
+    #getViewportText() {
+        return `${this.#mediaQueries.layout} @ ${window.innerWidth}×${window.innerHeight}`;
+    }
 
-        this.#devDivText = document.createElement('div');
-        this.#devDivText.classList.add('dev-toolbar__text');
-        this.#devDivText.id = 'dev-toolbar__text';
-        this.#devDiv.append(this.#devDivText);
+    #onStateChange() {
+        this.#applyState();
+        this.#saveState();
+    }
 
-        this.#pictureElements = document.getElementsByTagName('picture');
-
-        const devDivRaster = document.createElement('div');
-        devDivRaster.classList.add('dev-toolbar__grid');
-        devDivRaster.id = 'dev-toolbar__grid';
-        this.#devDiv.append(devDivRaster);
-
-        window.addEventListener('resize', this.#updateDevDisplay);
-        window.addEventListener('resize', this.#updateImageSize);
-
-        this.#isDevToolsLoaded = true;
-        this.#toggleDevTools(true, this.#grid);
-        this.#updateDevDisplay();
+    #applyState() {
+        const gridActive = this.#state.grid !== 'aus';
+        document.body.setAttribute('data-dev', String(gridActive));
+        document.body.setAttribute('data-dev-grid', this.#state.grid);
         this.#updateImageSize();
     }
 
-    /**
-     * Aktualisiert den Text in der Toolbar mit der aktuellen Layout- und Fenstergröße.
-     */
-    #updateDevDisplay = () => {
-        if (this.#isDevToolsShown === true && this.#devDivText) {
+    #saveState() {
+        localStorage.setItem('devTools', JSON.stringify(this.#state));
+    }
 
-            const windowHeight = window.innerHeight;
+    #updateImageSize() {
+        if (!this.#pictureElements) return;
+        const pictures = Array.from(this.#pictureElements);
+        if (this.#state.imageSize) {
             const windowWidth = window.innerWidth;
-            this.#devDivText.textContent = `${this.#mediaQueries.layout} @ ${windowWidth}×${windowHeight}`;
+            pictures.forEach((picture) => {
+                picture.setAttribute('data-size', `${Math.round(picture.offsetWidth / windowWidth * 100)}vw`);
+            });
+        } else {
+            pictures.forEach((picture) => {
+                picture.setAttribute('data-size', '');
+            });
         }
     }
 
-    #updateImageSize = () => {
-        if (this.#pictureElements) {
-            let pictures = Array.from(this.#pictureElements);
-            if (this.#isDevToolsShown === true) {
-                const windowWidth = window.innerWidth;
-                pictures.forEach((picture) => {
-                    let pictureWidth = picture.offsetWidth;
-                    picture.setAttribute('data-size', `${Math.round(pictureWidth / windowWidth * 100)}vw`);
-                });
-            } else {
-                pictures.forEach((picture) => {
-                    picture.setAttribute('data-size', '');
-                });
-            }
-        }
+    #onResize = () => {
+        this.#gui.title(this.#getViewportText());
+        this.#updateImageSize();
     }
 
-    /**
-     * Behandelt das 'keydown'-Event, um die Toolbar mit der Strg-Taste umzuschalten.
-     */
     #handleKeyDown = (event) => {
         if (event.key === 'Control') {
-            // Verhindere Standard-Aktionen des Browsers
             event.preventDefault();
-
-            if (!this.#isDevToolsLoaded) {
-                this.#initialiseDevTools();
+            this.#state.visible = !this.#state.visible;
+            if (this.#state.visible) {
+                this.#gui.show();
             } else {
-                const newIsShown = !this.#isDevToolsShown;
-                if (newIsShown) {
-                    // Wechsle den Grid-Typ bei jeder Aktivierung.
-                    this.#grid = this.#grid === 'lines' ? 'ribbons' : 'lines';
-                }
-                this.#toggleDevTools(newIsShown, this.#grid);
+                this.#gui.hide();
             }
+            this.#saveState();
         }
-    }
-
-    /**
-     * Schaltet die Sichtbarkeit der Dev-Tools um und speichert den Zustand in einem Cookie.
-     */
-    #toggleDevTools(isOn, grid) {
-        document.body.setAttribute('data-dev', String(isOn));
-        document.body.setAttribute('data-dev-grid', grid);
-
-        // Speichere den Zustand im Cookie.
-        const cookieValue = `${isOn},${grid}`;
-        Cookies.set('devTools', cookieValue, {
-            expires: 365,
-            path: '/',
-            domain: window.location.hostname,
-            secure: true,
-            sameSite: 'lax'
-        });
-
-        this.#isDevToolsShown = isOn;
-        this.#updateDevDisplay();
-        this.#updateImageSize();
     }
 }

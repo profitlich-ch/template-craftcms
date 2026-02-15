@@ -3,7 +3,6 @@
 @use "../../scss/functions/map-deep-get";
 
 // grid
-$color--dev-toolbar: rgba(0, 220, 30, 1.0);
 $color--dev-grid: rgba(0, 0, 255, 0.5);
 $color--dev-grid-ribbons: rgba(191, 255, 254, 0.5);
 $color--dev-grid-center: rgba(0, 0, 0, 0.2);
@@ -14,19 +13,19 @@ $color--dev-grid-center: rgba(0, 0, 0, 0.2);
     $gutter: size($layout, $gutter);
     $margin-left: size($layout, $margin-left);
     $margin-right: size($layout, $margin-right);
-    
+
     body[data-dev='true'] {
         .dev-toolbar__grid::after {
             // the grid is made through repition
             // 'important' because background settings are more specific than the grid settings
             background-size: calc((100% - ($columns * $gutter)) * calc(1 / $columns) + $gutter) 1px !important;
             margin: 0 ($margin-right - calc($gutter / 2)) 0 ($margin-left - calc($gutter / 2));
-            // The grid is calculated starting from the middle 
+            // The grid is calculated starting from the middle
             // Thats why its necessary to add the half of the column gap to the left and right side
             width: calc(100% - $margin-right + calc($gutter / 2) - $margin-left + calc($gutter / 2));
         }
     }
-    
+
     body[data-dev='true'][data-dev-grid="lines"] {
         .dev-toolbar__grid::after {
             background:
@@ -39,7 +38,7 @@ $color--dev-grid-center: rgba(0, 0, 0, 0.2);
                 linear-gradient(90deg, $color--dev-grid 0.5px, transparent 0.5px) calc($gutter / 2 * -1) 0;
         }
     }
-    
+
     body[data-dev='true'][data-dev-grid="ribbons"] {
         .dev-toolbar__grid::after {
             background:
@@ -50,47 +49,34 @@ $color--dev-grid-center: rgba(0, 0, 0, 0.2);
     }
 }
 
-.dev-toolbar {
+// lil-gui z-index
+.lil-gui.root {
+    z-index: 9999999;
+}
+
+.dev-toolbar__grid {
     display: none;
-    font-family: sans-serif;
-    font-size: 12px;
-    font-weight: bold;
+    width: 100%;
+    height: 100%;
     left: 0;
     pointer-events: none;
+    position: fixed;
     top: 0;
-    
+
     body[data-dev='true'] & {
-        display: flex;
+        display: block;
     }
-    
-    &__text {
-        background-color: $color--dev-toolbar;
-        left: 0;
-        padding: 5px 10px;
-        position: fixed;
-        top: 0;
+
+    body[data-dev-grid='lines'] & {
         z-index: 9999999;
     }
-    
-    &__grid {
-        width: 100%;
+
+    &::after {
+        content: "";
         height: 100%;
         left: 0;
-        pointer-events: none;
-        position: fixed;
+        position: absolute;
         top: 0;
-
-        body[data-dev-grid='lines'] & {
-            z-index: 9999999;
-        }
-        
-        &::after {
-            content: "";
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
-        }
     }
 }
 
