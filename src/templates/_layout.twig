@@ -74,9 +74,9 @@
         </div>
 
         {# JS #}
-        {{ craft.vite.script("src/App.ts", false, { 'nonce': csp('script-src') } ) }}
+        {{ craft.vite.script("src/App.js", false, { 'nonce': csp('script-src') } ) }}
         {% if craft.app.env != 'production' %}
-            {{ craft.vite.script("src/Dev.ts", false, { 'nonce': csp('script-src') } ) }}
+            {{ craft.vite.script("src/Dev.js", false, { 'nonce': csp('script-src') } ) }}
         {% endif %}
         
         <script nonce="{{ csp('script-src') }}">

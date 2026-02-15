@@ -16,6 +16,6 @@ return [
     'devMode' => App::env('CRAFT_ENVIRONMENT') === 'dev',
     'manifestPath' => '@webroot/dist/.vite/manifest.json',
     'includeScriptOnloadHandler' => true,
-    'errorEntry' => 'src/App.ts',
+    'errorEntry' => 'src/App.js',
     'debug' => true,
 ];

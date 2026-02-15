@@ -3,13 +3,13 @@
  */
 
 export class BodyScrolled {
-    private static instance: BodyScrolled;
+    static #instance;
 
-    private constructor() {
+    constructor() {
         document.addEventListener('scroll', function setScrolled() {
             document.body.setAttribute('data-body-scrolled', 'true');
             this.removeEventListener('scroll', setScrolled);
-            
+
             // create event
             let event = new CustomEvent('eventBodyScrolled', {
                 detail: {
@@ -22,10 +22,10 @@ export class BodyScrolled {
 
     }
 
-    public static getInstance(): BodyScrolled {
-        if (!BodyScrolled.instance) {
-            BodyScrolled.instance = new BodyScrolled();
+    static getInstance() {
+        if (!BodyScrolled.#instance) {
+            BodyScrolled.#instance = new BodyScrolled();
         }
-        return BodyScrolled.instance;
+        return BodyScrolled.#instance;
     }
 }

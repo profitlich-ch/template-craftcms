@@ -1,28 +1,28 @@
 /**Media queries
  * https://kinsta.com/blog/javamediaqueryipt-media-query/
  * option 3 on the linked page
- */ 
+ */
 
 import config from '../config.json' with { type: "json" };
 
 export class MediaQueries {
-    private static instance: MediaQueries;
-    public layout: keyof typeof config.layouts = 'desktop';
+    static #instance;
+    layout = 'desktop';
 
-    private constructor() {
+    constructor() {
         this.layout = 'desktop';
         this.changeLayout();
-        this.matchmedia();
+        this.#matchmedia();
     }
 
-    public static getInstance(): MediaQueries {
-        if (!MediaQueries.instance) {
-            MediaQueries.instance = new MediaQueries();
+    static getInstance() {
+        if (!MediaQueries.#instance) {
+            MediaQueries.#instance = new MediaQueries();
         }
-        return MediaQueries.instance;
+        return MediaQueries.#instance;
     }
 
-    private matchmedia() {
+    #matchmedia() {
         for (let [layout, minSize] of Object.entries(config.breakpoints)) {
             if (minSize) {
                 var matchmedia = window.matchMedia('(min-width: ' + minSize + 'px)');
@@ -30,18 +30,17 @@ export class MediaQueries {
             }
         }
     }
-    
+
     // media query handler function
     changeLayout() {
-        // let size = null;
         for (let [layout, minSize] of Object.entries(config.breakpoints)) {
             var matchmedia = window.matchMedia('(min-width: ' + minSize + 'px)');
             if (!matchmedia || matchmedia.matches) {
-                this.layout = layout as keyof typeof config.layouts;
+                this.layout = layout;
             }
         }
         document.body.setAttribute('data-layout', this.layout);
-    
+
         // create event
         let event = new CustomEvent('eventLayoutchange', {
             detail: {

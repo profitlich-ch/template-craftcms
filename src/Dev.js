@@ -1,19 +1,19 @@
-import { DevToolbar } from './dev/dev-toolbar/DevToolbar.ts';
+import { DevToolbar } from './dev/dev-toolbar/DevToolbar.js';
 
 class Dev {
-    public devToolbar: DevToolbar;
+    devToolbar;
 
     constructor() {
         this.devToolbar = new DevToolbar();
-        this.initialize();
+        this.#initialize();
     }
 
-    private initialize() {
+    #initialize() {
         console.info('Dev initialized.');
     }
 }
 
-let dev: Dev;
+let dev;
 
 document.addEventListener('DOMContentLoaded', () => {
     dev = new Dev();

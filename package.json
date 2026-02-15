@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "type": "module",
-    "main": "src/app.ts",
+    "main": "src/App.js",
     "scripts": {
         "copy": "node scripts/copy-files.js build",
         "watch:copy": "node scripts/copy-files.js dev",
@@ -40,14 +40,11 @@
     },
     "dependencies": {
         "@mux/mux-player": "^3.5.3",
-        "@types/js-cookie": "^3.0.6",
         "debounce": "^2.2.0",
         "dotenv": "^17.2.0",
-        "gulp-typescript": "^6.0.0-alpha.1",
         "js-cookie": "^3.0.5",
         "lazysizes": "^5.3.2",
         "pathe": "^2.0.3",
-        "typescript": "^5.8.3",
         "vite": "^7.0.5"
     }
 }
