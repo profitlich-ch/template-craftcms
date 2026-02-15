@@ -1,6 +1,6 @@
 import { MediaQueries } from '../../utils/MediaQueries.ts';
 import Cookies from 'js-cookie'
-import './_dev-toolbar.scss';
+import './dev-toolbar.scss';
 
 export class DevToolbar {
     private mediaQueries = MediaQueries.getInstance();

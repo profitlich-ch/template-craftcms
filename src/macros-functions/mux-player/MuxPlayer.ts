@@ -1,5 +1,5 @@
 import '@mux/mux-player';
-import './_mux-player.scss';
+import './mux-player.scss';
 
 export class MuxPlayer {
     private lazyLoadObserver: IntersectionObserver;
