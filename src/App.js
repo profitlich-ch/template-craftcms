@@ -1,8 +1,9 @@
 import 'lazysizes';
-import { MediaQueries } from './utils/MediaQueries.js';
-import { Vh100 } from './utils/Vh100.js';
-import { BodyScrolled } from './utils/BodyScrolled.js';
-import { MenuToggle } from './macros-functions/menu-toggle/MenuToggle.js';
+import config from './config.json' with { type: "json" };
+import { MediaQueries } from 'profitlich-template-toolkit/utils/MediaQueries';
+import { Vh100 } from 'profitlich-template-toolkit/utils/Vh100';
+import { BodyScrolled } from 'profitlich-template-toolkit/utils/BodyScrolled';
+import { MenuToggle } from 'profitlich-template-toolkit/components/menu-toggle/MenuToggle';
 import './app.scss';
 
 class App {
@@ -12,7 +13,7 @@ class App {
     menuToggle;
 
     constructor() {
-        this.mediaQuery = MediaQueries.getInstance();
+        this.mediaQuery = MediaQueries.getInstance(config.breakpoints);
         this.bodyScrolledEvent = BodyScrolled.getInstance();
         this.vh100 = Vh100.getInstance();
 

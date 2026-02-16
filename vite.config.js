@@ -9,9 +9,6 @@ import * as path from 'path';
 const HTTPS_PORT = 5173;
 const configJson = JSON.parse(fs.readFileSync('./src/config.json', 'utf8'));
 const scssVariables = jsonToScssVariables(configJson);
-const scssConfigPath = path.resolve(__dirname, 'src/scss/_config.scss');
-fs.writeFileSync(scssConfigPath, scssVariables, 'utf8');
-console.log('SCSS config file generated at:', scssConfigPath);
 
 export default defineConfig(({ command, mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
@@ -68,6 +65,33 @@ export default defineConfig(({ command, mode }) => {
                     '**/node_modules/**',
                     '**/vendor/**',
                 ],
+            },
+        },
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern',
+                    // Custom importer resolves @use "config" from config.json
+                    // without writing a _config.scss file to disk
+                    importers: [{
+                        canonicalize(url) {
+                            if (url === 'config') {
+                                return new URL('custom:config');
+                            }
+                            return null;
+                        },
+                        load(canonicalUrl) {
+                            if (canonicalUrl.toString() === 'custom:config') {
+                                return { contents: scssVariables, syntax: 'scss' };
+                            }
+                            return null;
+                        }
+                    }],
+                    loadPaths: [
+                        path.resolve(__dirname, 'src/scss'),
+                        path.resolve(__dirname, 'node_modules'),
+                    ],
+                },
             },
         },
         plugins: [

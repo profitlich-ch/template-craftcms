@@ -1,5 +1,5 @@
 import GUI from 'lil-gui';
-import { MediaQueries } from '../../utils/MediaQueries.js';
+import { MediaQueries } from 'profitlich-template-toolkit/utils/MediaQueries';
 import './dev-toolbar.scss';
 
 export class DevToolbar {
