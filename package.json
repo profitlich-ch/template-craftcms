@@ -18,10 +18,8 @@
     "author": "Moritz Profitlich",
     "license": "ISC",
     "devDependencies": {
-        "@sayhellogmbh/gulp-sass-import-json": "github:SayHelloGmbH/gulp-sass-import-json",
         "@spiriit/vite-plugin-svg-spritemap": "^5.0.0",
         "archiver": "^7.0.1",
-        "browserslist": "^4.26.3",
         "chokidar": "^4.0.3",
         "cli-progress": "^3.12.0",
         "del": "^8.0.1",
