@@ -17,7 +17,7 @@ class App {
         this.bodyScrolledEvent = BodyScrolled.getInstance();
         this.vh100 = Vh100.getInstance();
 
-        this.menuToggle = MenuToggle.getInstance('hamburger', 'menu', '.menu__link', 'menu__link');
+        this.menuToggle = MenuToggle.getInstance('hamburger', 'menu', 'menu__link', 'menu__link');
 
         this.#initialize();
     }
