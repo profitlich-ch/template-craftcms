@@ -1,0 +1,12 @@
+// basic formatting
+@use "./basics";
+
+// project
+@use "./project/body";
+@use "./project/fonts";
+@use "./project/main";
+@use "./project/mixins";
+@use "./project/variables";
+
+// modules
+@use "../modules/modules";

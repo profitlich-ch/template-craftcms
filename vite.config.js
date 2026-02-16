@@ -39,7 +39,7 @@ export default defineConfig(({ command, mode }) => {
             },
             rollupOptions: {
                 input: {
-                    appCss: 'src/app.scss',
+                    appCss: 'src/scss/app.scss',
                     app: 'src/App.js',
                     dev: 'src/Dev.js',
                     devToolbar: 'src/dev/dev-toolbar/DevToolbar.js',
