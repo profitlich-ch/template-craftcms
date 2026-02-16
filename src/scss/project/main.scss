@@ -5,22 +5,19 @@
     position: relative;
 }
 
-@include mediaquery(smartphone) {
-    $layout: smartphone;
+@include mediaquery(smartphone) using ($layout) {
 
     .main {
     }
 }
 
-@include mediaquery(tablet) {
-    $layout: tablet;
+@include mediaquery(tablet) using ($layout) {
 
     .main {
     }
 }
 
-@include mediaquery(desktop) {   
-    $layout: desktop;
+@include mediaquery(desktop) using ($layout) {
 
     .main {
     }

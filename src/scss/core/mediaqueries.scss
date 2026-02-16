@@ -18,7 +18,7 @@
 
     // Include the media mixin with $queries
     @include media($queries) {
-        @content;
+        @content($mediaquery);
     }
 }
 

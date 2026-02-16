@@ -1,5 +1,4 @@
 @use "../forward" as *;
-@use "../functions/map-deep-get";
 @use "sass:map";
 
 body {
@@ -7,22 +6,19 @@ body {
     font-weight: 400;
 }
 
-@include mediaquery(smartphone) {
-    $layout: smartphone;
+@include mediaquery(smartphone) using ($layout) {
 
     body {
     }
 }
 
-@include mediaquery(tablet) {
-    $layout: tablet;
+@include mediaquery(tablet) using ($layout) {
 
-    body {        
+    body {
     }
 }
 
-@include mediaquery(desktop) {   
-    $layout: desktop;
+@include mediaquery(desktop) using ($layout) {
 
     body {
     }

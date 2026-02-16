@@ -35,7 +35,7 @@
         }
     }
 
-    body[data-menue-active='true'] & {
+    body[data-menu-active='true'] & {
         &:hover {
             @if $hamburger-hover-use-filter==true {
                 filter: $hamburger-active-hover-filter;
@@ -129,7 +129,7 @@
         }
     }
 
-    body[data-menue-active='true'] & {
+    body[data-menu-active='true'] & {
         .hamburger-inner {
             transform: rotate(45deg);
             transition-delay: $hamburger-compression-speed;

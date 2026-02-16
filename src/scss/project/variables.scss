@@ -5,22 +5,19 @@
     --vw: 1vw;
 }
 
-@include mediaquery(smartphone) {
-    $layout: smartphone;
+@include mediaquery(smartphone) using ($layout) {
 
     :root {
     }
 }
 
-@include mediaquery(tablet) {
-    $layout: tablet;
+@include mediaquery(tablet) using ($layout) {
 
     :root {
     }
 }
 
-@include mediaquery(desktop) {   
-    $layout: desktop;
+@include mediaquery(desktop) using ($layout) {
 
     :root {
    }

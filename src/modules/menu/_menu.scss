@@ -30,9 +30,7 @@
 }
 
 
-@include mediaquery(smartphone) {
-
-    $layout: smartphone;
+@include mediaquery(smartphone) using ($layout) {
 
     .menu {
         @include marginPadding($layout, padding, all, 0, 26, 0, 26);
@@ -88,9 +86,7 @@
 }
 
 
-@include mediaquery(desktop) {
-
-    $layout: desktop;
+@include mediaquery(desktop) using ($layout) {
 
     .menu {
         height: 100%;

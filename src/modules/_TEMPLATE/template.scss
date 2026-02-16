@@ -5,23 +5,20 @@
 }
 
 
-@include mediaquery(smartphone) {
-    $layout: smartphone;
+@include mediaquery(smartphone) using ($layout) {
 
     .TEMPLATE {
     }
 }
 
-@include mediaquery(tablet) {
-    $layout: smartphone;
+@include mediaquery(tablet) using ($layout) {
 
     .TEMPLATE {
     }
 }
 
 
-@include mediaquery(desktop) {
-    $layout: desktop;
+@include mediaquery(desktop) using ($layout) {
 
     .TEMPLATE {
     }

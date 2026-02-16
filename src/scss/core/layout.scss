@@ -1,4 +1,4 @@
-@use "decimal";
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 @use "sass:math";
@@ -67,12 +67,6 @@ $mediaqueries: (
 	desktopTo:          (max-width: map.get($breakpointsVariables, desktopTo)),
 	big:                (min-width: map.get($breakpointsVariables, bigFrom)),
 );
-
-
-// Bilder
-.bild {
-    width: 100%;
-}
 
 
 // Font
@@ -169,6 +163,12 @@ $mediaqueries: (
     }
 }
 
+// Round a number to specified decimal places
+@function _decimal-round($number, $digits: 0) {
+    $n: math.pow(10, $digits);
+    @return math.div(math.round($number * $n), $n);
+}
+
 // Helper function to calculate a single size value (px or vw)
 // This function is used by the main size() function
 @function _calculate-single-size($number, $layout) {
@@ -188,7 +188,7 @@ $mediaqueries: (
     @if ($unit-type == 'px') {
         @return $number * 1px;
     } @else if ($unit-type == 'vw') {
-        @return decimal.decimal-round(math.div($number, $width) * 100, 2) * 1vw;
+        @return _decimal-round(math.div($number, $width) * 100, 2) * 1vw;
     } @else {
         @error "Nicht unterstützter Einheitstyp '#{$unit-type}' für Layout '#{$layout}'. Nur 'px' oder 'vw' werden unterstützt.";
     }
@@ -228,12 +228,12 @@ $mediaqueries: (
         #{$mode}-top: $top;
     }
     @if $position == right {
-        #{$mode}-right: $top;
+        #{$mode}-right: $right;
     }
     @if $position == bottom {
-        #{$mode}-bottom: $top;
+        #{$mode}-bottom: $bottom;
     }
     @if $position == left {
-        #{$mode}-left: $top;
+        #{$mode}-left: $left;
     }
 }
