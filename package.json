@@ -44,7 +44,7 @@
         "dotenv": "^17.2.0",
         "lazysizes": "^5.3.2",
         "pathe": "^2.0.3",
-        "profitlich-template-toolkit": "^0.4.0",
+        "profitlich-template-toolkit": "^0.4.5",
         "vite": "^7.0.5"
     }
 }
