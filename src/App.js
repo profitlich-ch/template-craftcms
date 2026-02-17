@@ -1,4 +1,3 @@
-import 'lazysizes';
 import config from './config.json' with { type: "json" };
 import { MediaQueries } from 'profitlich-template-toolkit/utils/MediaQueries';
 import { Vh100 } from 'profitlich-template-toolkit/utils/Vh100';

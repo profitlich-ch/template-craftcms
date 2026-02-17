@@ -18,12 +18,6 @@ const copyTasks = [
         base: 'src/modules'
     },
     {
-        name: 'macrosFunctions',
-        src: ['src/macros-functions/**/*.twig'],
-        dest: 'templates/_macros-functions',
-        base: 'src/macros-functions'
-    },
-    {
         name: 'fonts',
         src: ['src/fonts/**/*.*'],
         dest: 'web/fonts',
