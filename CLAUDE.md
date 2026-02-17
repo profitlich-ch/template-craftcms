@@ -1,0 +1,1 @@
+../profitlich-template-toolkit/CLAUDE.md
