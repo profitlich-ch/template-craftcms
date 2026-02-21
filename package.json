@@ -18,6 +18,7 @@
     "author": "Moritz Profitlich",
     "license": "ISC",
     "devDependencies": {
+        "@rollup/rollup-linux-arm64-gnu": "^4.58.0",
         "@spiriit/vite-plugin-svg-spritemap": "^6.0.0",
         "archiver": "^4.0.2",
         "del": "^8.0.1",
