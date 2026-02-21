@@ -18,23 +18,23 @@
     "author": "Moritz Profitlich",
     "license": "ISC",
     "devDependencies": {
-        "@spiriit/vite-plugin-svg-spritemap": "^5.0.0",
-        "archiver": "^7.0.1",
+        "@spiriit/vite-plugin-svg-spritemap": "^6.0.0",
+        "archiver": "^4.0.2",
         "del": "^8.0.1",
         "easing-progress": "^1.0.2",
-        "npm-run-all": "^4.1.5",
+        "npm-run-all": "^1.1.3",
         "postcss-lightningcss": "^1.0.2",
-        "sass": "^1.93.2",
+        "sass": "^1.97.3",
         "svgo": "^4.0.0",
-        "terser": "^5.44.0",
+        "terser": "^5.46.0",
         "vite": "^7.1.9",
         "vite-plugin-manifest-sri": "^0.2.0"
     },
     "dependencies": {
-        "@mux/mux-player": "^3.5.3",
-        "debounce": "^2.2.0",
-"pathe": "^2.0.3",
-        "profitlich-template-toolkit": "^0.5.0",
-        "vite": "^7.0.5"
+        "@mux/mux-player": "^3.11.4",
+        "debounce": "^3.0.0",
+        "pathe": "^2.0.3",
+        "profitlich-template-toolkit": "^0.6.2",
+        "vite": "^7.3.1"
     }
 }

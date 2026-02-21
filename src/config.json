@@ -47,5 +47,14 @@
     "gutter": {
         "smartphone": 1,
         "desktop": 16
+    },
+
+    "formie": {
+        "kontaktformular": {
+            "vorname": "Max",
+            "name": "Mustermann",
+            "email": "max@mustermann.ch",
+            "nachricht": "Testanfrage"
+        }
     }
 }
