@@ -1,4 +1,4 @@
-import { run } from 'profitlich-template-toolkit/scripts/deploy';
+import { run } from '@profitlich/template-toolkit/scripts/deploy';
 
 const uploadTasks = [
     {

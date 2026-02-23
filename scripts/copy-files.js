@@ -1,4 +1,4 @@
-import { run } from 'profitlich-template-toolkit/scripts/copy-files';
+import { run } from '@profitlich/template-toolkit/scripts/copy-files';
 
 const copyTasks = [
     {
