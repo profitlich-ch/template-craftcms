@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@mux/mux-player": "^3.11.4",
-        "@profitlich/template-toolkit": "^1.0.2",
+        "@profitlich/template-toolkit": "^2.0.0",
         "debounce": "^3.0.0",
         "pathe": "^2.0.3",
         "vite": "^7.3.1"
