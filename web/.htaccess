@@ -1,15 +1,9 @@
-# Static Asset Versioning
-# muss zu Beginn der htaccess stehen
-# https://nystudio107.com/blog/simple-static-asset-versioning
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*?\/*?)([a-z\.\-]+)(\d+)\.(bmp|css|cur|gif|ico|jpe?g|js|png|svgz?|webp|mp4|webm|webmanifest)$ $1$2$4 [L]
-</IfModule>
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
+	
+    # www wo non-www
+	RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
+	RewriteRule ^(.*) http://%1/$1 [R=301,NE,L]
 
     # Send would-be 404 requests to Craft
     RewriteCond %{REQUEST_FILENAME} !-f
