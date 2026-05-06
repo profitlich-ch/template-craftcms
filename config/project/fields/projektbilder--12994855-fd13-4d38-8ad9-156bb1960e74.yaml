@@ -1,5 +1,4 @@
 columnSuffix: null
-contentColumnType: string
 handle: projektbilder
 instructions: null
 name: Projektbilder
@@ -10,9 +9,9 @@ settings:
   allowUploads: true
   allowedKinds: null
   branchLimit: null
+  defaultPlacement: end
   defaultUploadLocationSource: 'volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04' # Projektbilder
   defaultUploadLocationSubpath: null
-  localizeRelations: false
   maintainHierarchy: false
   maxRelations: null
   minRelations: null
@@ -23,6 +22,7 @@ settings:
   restrictedLocationSource: 'volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04' # Projektbilder
   restrictedLocationSubpath: null
   selectionLabel: null
+  showSearchInput: true
   showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: false
@@ -31,5 +31,5 @@ settings:
   validateRelatedElements: false
   viewMode: list
 translationKeyFormat: null
-translationMethod: site
+translationMethod: none
 type: craft\fields\Assets

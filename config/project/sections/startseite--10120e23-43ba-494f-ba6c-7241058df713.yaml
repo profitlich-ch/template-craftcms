@@ -1,22 +1,16 @@
 defaultPlacement: end
 enableVersioning: true
 entryTypes:
-  - 0e793c4c-3298-4c14-a50e-fe050eeaee18 # Startseite
+  -
+    uid: 0e793c4c-3298-4c14-a50e-fe050eeaee18 # Startseite
 handle: startseite
 maxAuthors: 1
 name: Startseite
 previewTargets:
   -
-    __assoc__:
-      -
-        - label
-        - 'Primäre eintrag Seite'
-      -
-        - urlFormat
-        - '{url}'
-      -
-        - refresh
-        - '1'
+    label: 'Primäre eintrag Seite'
+    refresh: '1'
+    urlFormat: '{url}'
 propagationMethod: all
 siteSettings:
   c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8: # Profitlich DEV

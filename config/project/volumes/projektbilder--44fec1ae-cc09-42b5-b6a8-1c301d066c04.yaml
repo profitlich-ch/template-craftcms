@@ -1,5 +1,8 @@
+altTranslationKeyFormat: null
+altTranslationMethod: none
 fieldLayouts:
   413aa4a6-e2a6-4c94-b2e0-08be3e37fc65:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -9,6 +12,7 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
+            dateAdded: '2024-10-04T17:41:11+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -32,8 +36,12 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: '2024-10-04T17:41:11+00:00'
+            editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 396abe4e-d4af-4c68-a2fb-7a3bce13f340 # SEO Bildbeschreibung
+            handle: null
             instructions: null
             label: null
             required: true
@@ -46,10 +54,12 @@ fieldLayouts:
         name: Content
         uid: 6b9c9049-f380-4f5d-8db8-2e6fa1a74f1c
         userCondition: null
+    thumbFieldKey: null
 fs: lokal
 handle: projektbilder
 name: Projektbilder
 sortOrder: 2
+subpath: ''
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
 transformFs: ''

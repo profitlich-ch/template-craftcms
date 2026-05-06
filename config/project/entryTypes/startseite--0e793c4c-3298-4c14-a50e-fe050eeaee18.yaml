@@ -1,6 +1,9 @@
+allowLineBreaksInTitles: false
 color: null
+description: null
 fieldLayouts:
   8b195686-1317-4797-8d9f-8106393d5d59:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -23,7 +26,7 @@ fieldLayouts:
             orientation: null
             placeholder: null
             readonly: false
-            requirable: false
+            required: true
             size: null
             step: null
             tip: null
@@ -35,21 +38,9 @@ fieldLayouts:
             width: 100
           -
             dateAdded: '2024-10-04T17:41:11+00:00'
+            editCondition: null
             elementCondition: null
-            fieldUid: 0a064e6b-5fcd-4a2b-acb7-b46630ad5244
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 8e610b7c-7931-4225-a570-5057ec906e28
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2024-10-04T17:41:11+00:00'
-            elementCondition: null
+            elementEditCondition: null
             fieldUid: 12994855-fd13-4d38-8ad9-156bb1960e74 # Projektbilder
             handle: null
             instructions: null
@@ -61,31 +52,19 @@ fieldLayouts:
             userCondition: null
             warning: null
             width: 100
-          -
-            dateAdded: '2024-10-06T07:58:37+00:00'
-            elementCondition: null
-            fieldUid: 352e4f04-b337-41cf-a259-2df2eb9be025
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: b824efd1-e9f2-4916-9b35-fc51d38c9020
-            userCondition: null
-            warning: null
-            width: 100
         name: Inhalt
         uid: 68594230-9efe-49da-80cf-dc0970f98312
         userCondition: null
+    thumbFieldKey: null
 handle: startseite
 hasTitleField: true
-icon: ''
+icon: null
 name: Startseite
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: ''
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

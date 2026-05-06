@@ -1,4 +1,4 @@
-dateModified: 1771882702
+dateModified: 1778066400
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -23,14 +23,13 @@ meta:
     10120e23-43ba-494f-ba6c-7241058df713: Startseite # Startseite
     12994855-fd13-4d38-8ad9-156bb1960e74: Projektbilder # Projektbilder
     c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8: 'Profitlich DEV' # Profitlich DEV
-    c2146f3a-86c4-4929-ad3b-bfa61123b4c1: Simple # Simple
     e667dda0-024e-49cf-b865-a2bb0a7c491e: 'SEO Meta Description' # SEO Meta Description
     e814380a-f915-44b8-92b3-a767fa94f64a: 'Profitlich DEV' # Profitlich DEV
 plugins:
   ckeditor:
     edition: standard
     enabled: true
-    schemaVersion: 3.0.0.0
+    schemaVersion: 5.0.0.1
   csp:
     edition: standard
     enabled: true
@@ -229,7 +228,7 @@ plugins:
   imager-x:
     edition: pro
     enabled: true
-    licenseKey: 1YV4073KECMD8IACSOWJQDNV
+    licenseKey: OZMJ7IKPBXIGAQK6BA00OAVG
     schemaVersion: 4.0.0
   obfuscator:
     edition: standard
@@ -261,7 +260,7 @@ system:
   name: 'Profitlich Template'
   retryDuration: null
   schemaVersion: 5.9.0.8
-  timeZone: Europe/Zurich
+  timeZone: America/Los_Angeles
 users:
   allowPublicRegistration: false
   defaultGroup: null
