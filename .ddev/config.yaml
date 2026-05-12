@@ -21,6 +21,9 @@ web_extra_exposed_ports:
   container_port: 5173
   http_port: 5172
   https_port: 5173
+hooks:
+  pre-start:
+    - exec-host: op environment read gbjxqx27vd6ulhaqkldw5qvf5q > .env
 
 # Key features of DDEV's config.yaml:
 
