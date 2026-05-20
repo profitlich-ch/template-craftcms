@@ -154,11 +154,7 @@ package-lock.json
 /env.json
 
 # Favicon
-/web/android-chrome*
-/web/apple-touch-icon*
-/web/browserconfig.xml
-/web/favicon*
-/web/mstile*
-/web/safari-pinned-tab*
-/web/site.webmanifest
-/web/web.config
+/web/favicon/
+
+# BLITZ CACHE
+/web/cache/

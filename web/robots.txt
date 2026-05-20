@@ -1,0 +1,5 @@
+# robots.txt for https://craftcms.com/
+
+User-agent: *
+Disallow: /cpresources/
+Disallow: /cache/
