@@ -8,7 +8,7 @@ const copyTasks = [
         base: 'src/templates' },
     {
         name: 'modulesTwig',
-        src: ['src/modules/**/*.+(twig|js)'],
+        src: ['src/modules/**/*twig'],
         dest: 'templates/_modules',
         base: 'src/modules' },
     {
