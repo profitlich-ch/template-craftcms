@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite';
 import manifestSRI from 'vite-plugin-manifest-sri'
 import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap'
+import { jsonToScss } from '@profitlich/template-toolkit/vite/jsonToScss';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -94,17 +95,3 @@ export default defineConfig(({ command, mode }) => {
         ],
     };
 });
-
-function jsonToScss(json) {
-    const toValue = (v) => {
-        if (typeof v === 'object' && v !== null) {
-            return '(' + Object.entries(v).map(([k, val]) => `"${k}": ${toValue(val)}`).join(', ') + ')';
-        }
-        if (typeof v === 'string') return `"${v}"`;
-        return v;
-    };
-    return Object.entries(json)
-        .filter(([key]) => key !== 'README')
-        .map(([key, value]) => `$${key}: ${toValue(value)};`)
-        .join('\n');
-}
