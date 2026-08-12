@@ -5,16 +5,18 @@ const copyTasks = [
         name: 'templatesTwig',
         src: ['src/templates/**/*.twig'],
         dest: 'templates',
-        base: 'src/templates' },
+        base: 'src/templates'
+    },
+    {
+        name: 'macrosTwig',
+        src: ['src/macros/**/*.twig'],
+        dest: 'templates/_macros',
+        base: 'src/macros'
+    },
     {
         name: 'modulesTwig',
-        src: ['src/modules/**/*twig'],
+        src: ['src/modules/**/*.twig'],
         dest: 'templates/_modules',
-        base: 'src/modules' },
-    {
-        name: 'modulesAssets',
-        src: ['src/modules/**/*.+(svg|jpg|jpeg|gif|png|html)', '!src/modules/**/_*.*'],
-        dest: 'web/modules',
         base: 'src/modules'
     },
     {
