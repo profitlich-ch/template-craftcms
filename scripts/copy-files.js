@@ -33,4 +33,4 @@ const copyTasks = [
     },
 ];
 
-run(copyTasks);
+run(copyTasks, { template: 'craftcms' });
