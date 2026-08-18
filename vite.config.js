@@ -17,6 +17,15 @@ export default defineConfig(({ command, mode }) => {
         // In dev mode, we serve assets at the root of https://my.ddev.site:3000
         // In production, files live in the /dist directory
         base: command === 'serve' ? '' : '/dist/',
+        // Wird zur Bauzeit durch ein Literal ersetzt. Aus `if (__DEBUG__)` wird
+        // damit `if (false)`, und der Minifier entfernt den Zweig — Debug-Code
+        // bleibt im Quelltext, erreicht die Produktion aber nicht.
+        //
+        // An `mode` gehängt, nicht an `import.meta.env.DEV`: Letzteres wäre auf
+        // Staging bereits false und würde den Debug-Code dort verschlucken.
+        define: {
+            __DEBUG__: mode !== 'production',
+        },
         build: {
             manifest: true,
             outDir: './web/dist/',
