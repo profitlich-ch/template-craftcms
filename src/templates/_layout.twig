@@ -23,19 +23,12 @@
         <meta name="apple-mobile-web-app-title" content="siaa">
         <link rel="manifest" href="/favicon/site.webmanifest">
         
-        {# FOUC #}
-        {# https://medium.com/@fbnlsr/how-to-get-rid-of-the-flash-of-unstyled-content-d6b79bf5d75f #}
+        {# Keine Transitions, solange die Seite lädt. Den Body bis DOMContentLoaded
+           zu verstecken, wäre gegen FOUC unnötig – das CSS blockiert im <head> ohnehin –,
+           liesse FCP und LCP aber auf alle Modul-Skripte warten. #}
         {% set css %}
-            .no-js {
-                visibility: visible;
-            }
-            {# prevent CSS transitions until page is loaded #}
             body[data-preloading="true"] * {
                 transition: transform 0s !important;
-            }
-            {# hide body until full html is loaded #}
-            body {
-                visibility: hidden;
             }
         {% endset %}
         {% do craft.app.view.registerCss(css, { nonce: csp('style-src') }) %}
@@ -57,15 +50,11 @@
         {% if entry is not defined or entry is null %}
             body--404
         {% endif %}
-    no-js" {{ attr(bodyDataTags) }}>
+    " {{ attr(bodyDataTags) }}>
 
         {# Firefox hack against FOUC: https://www.primative.net/blog/how-to-get-rid-of-the-flash-of-unstyled-content/ #}
         <script nonce="{{ csp('script-src') }}">0</script>
 
-        {# FOUC #}
-        <script nonce="{{ csp('script-src') }}">
-            document.querySelector('body').classList.remove('no-js');
-        </script>
         <div class="seite" id="seite">
              <header class="header" id="header">
                 {% include '/_modules/menu/_menu.twig' %}
@@ -80,16 +69,6 @@
         {% endif %}
         
         <script nonce="{{ csp('script-src') }}">
-            {# FOUC #}
-            let domReady = (cb) => {
-            document.readyState === 'interactive' || document.readyState === 'complete'
-                ? cb()
-                : document.addEventListener('DOMContentLoaded', cb);
-            };
-                        
-            domReady(() => {
-                document.body.style.visibility = 'visible';
-            });
             {# finish preloading #}
             setTimeout(function(){
                 document.body.setAttribute('data-preloading', 'false');
