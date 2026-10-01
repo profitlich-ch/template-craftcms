@@ -38,7 +38,7 @@ labels: go-live
 ### SEO
 
 - [ ] Canonical Tags zwischen Sprachen sind angelegt
-- [ ] Google Page Speed Test ist auf allen ausgeführt, Befunde als issues angelegt
+- [ ] `ddev npm run pagespeed -- production` (mobile und `--desktop`) ohne Warnung, Befunde als Issues angelegt
 - [ ] Google Page Speed issues sind umgesetzt
 - [ ] Sitemap ist eingerichtet
 

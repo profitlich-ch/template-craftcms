@@ -158,3 +158,6 @@ package-lock.json
 
 # BLITZ CACHE
 /web/cache/
+
+# Messergebnisse von scripts/pagespeed.js
+.pagespeed/

@@ -13,7 +13,8 @@
         "deploy:staging": "node scripts/deploy.js staging",
         "deploy:production": "node scripts/deploy.js production",
         "release:staging": "npm run build && npm run deploy:staging",
-        "release:production": "npm run build && npm run deploy:production"
+        "release:production": "npm run build && npm run deploy:production",
+        "pagespeed": "node scripts/pagespeed.js"
     },
     "author": "Moritz Profitlich",
     "license": "ISC",
