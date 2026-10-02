@@ -55,6 +55,44 @@ fieldLayouts:
         name: Inhalt
         uid: 68594230-9efe-49da-80cf-dc0970f98312
         userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-10-02T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e667dda0-024e-49cf-b865-a2bb0a7c491e # SEO Meta Description
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5f38c507-0ae3-4d62-b548-919e713c0ea6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-10-02T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e6ae2701-df0a-4888-9652-c27e703d3a04 # Open Graph Bild
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5f174405-7ebc-4db6-a429-a4949f1abfef
+            userCondition: null
+            warning: null
+            width: 100
+        name: SEO
+        uid: b94d0d0f-17b3-419e-b00e-33fd90b947ee
+        userCondition: null
     thumbFieldKey: null
 handle: startseite
 hasTitleField: true

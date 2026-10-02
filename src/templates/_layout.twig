@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ currentSite.language }}">
+<html lang="{{ craft.app.language }}">
     <head>
         <meta charset="utf-8">
-        <title>
-            {% if craft.app.request.segment(1) %}
-                {% block pageTitle %}{% endblock %}
-                —
-            {% endif %}
-            PROJECT NAME
-        </title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         {# prevent automatic conversion of numbers to telephone links #}
         <meta name="format-detection" content="telephone=no">
-        {% block seoMetaDescription %}{% endblock %}
+        {# bildquelle: *.openGraphBild = seomateImage, seomateOgImage, seomateTwitterImage #}
+        {% hook 'seomateMeta' %}
 
         {# Favicon #}
         <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
@@ -26,12 +20,12 @@
         {# Keine Transitions, solange die Seite lädt. Den Body bis DOMContentLoaded
            zu verstecken, wäre gegen FOUC unnötig – das CSS blockiert im <head> ohnehin –,
            liesse FCP und LCP aber auf alle Modul-Skripte warten. #}
-        {% set css %}
+        {# Direct <style> tag instead of registerCss() to prevent leaking into other templates (e.g. SEOMate preview) via Craft's global CSS registry #}
+        <style nonce="{{ csp('style-src') }}">
             body[data-preloading="true"] * {
                 transition: transform 0s !important;
             }
-        {% endset %}
-        {% do craft.app.view.registerCss(css, { nonce: csp('style-src') }) %}
+        </style>
     </head>
     {% if not craft.app.request.segment(1) %}
         {% set pagename = 'home' %}
@@ -43,6 +37,7 @@
     {% endif %}
     {% set bodyDataTags = {
         data: {
+            "body-scrolled": 'false',
             "preloading": 'true'
         },
     } %}
@@ -63,9 +58,9 @@
         </div>
 
         {# JS #}
-        {{ craft.vite.register("src/App.js", false, { 'nonce': csp('script-src') } ) }}
+        {% do craft.vite.register("src/App.js", false, { 'nonce': csp('script-src') } ) %}
         {% if craft.app.env != 'production' %}
-            {{ craft.vite.register("src/Dev.js", false, { 'nonce': csp('script-src') } ) }}
+            {% do craft.vite.register("src/Dev.js", false, { 'nonce': csp('script-src') } ) %}
         {% endif %}
         
         <script nonce="{{ csp('script-src') }}">

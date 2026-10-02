@@ -1,5 +1,6 @@
-# robots.txt for https://craftcms.com/
-
 User-agent: *
 Disallow: /cpresources/
 Disallow: /cache/
+
+# TODO: Domain eintragen
+Sitemap: https://domain.tld/sitemap.xml

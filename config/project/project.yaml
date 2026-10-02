@@ -1,4 +1,4 @@
-dateModified: 1779569546
+dateModified: 1790933961
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -23,9 +23,118 @@ meta:
     10120e23-43ba-494f-ba6c-7241058df713: Startseite # Startseite
     12994855-fd13-4d38-8ad9-156bb1960e74: Projektbilder # Projektbilder
     c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8: 'Profitlich DEV' # Profitlich DEV
+    e6ae2701-df0a-4888-9652-c27e703d3a04: 'Open Graph Bild' # Open Graph Bild
     e667dda0-024e-49cf-b865-a2bb0a7c491e: 'SEO Meta Description' # SEO Meta Description
     e814380a-f915-44b8-92b3-a767fa94f64a: 'Profitlich DEV' # Profitlich DEV
 plugins:
+  blitz:
+    edition: standard
+    enabled: true
+    licenseKey: V3H5ID9GCYYDO5FL5ZQ6YE5S
+    schemaVersion: 5.13.0
+    settings:
+      apiKey: ''
+      batchInsertSize: 50
+      cacheActionRequests: false
+      cacheControlHeader: 'public, max-age=0, must-revalidate'
+      cacheControlHeaderExpired: 'public, s-maxage=5, max-age=0'
+      cacheDuration: null
+      cacheGeneratorSettings:
+        __assoc__:
+          -
+            - concurrency
+            - '5'
+          -
+            - useBasicAuth
+            - ''
+          -
+            - username
+            - ''
+          -
+            - password
+            - ''
+      cacheGeneratorType: putyourlightson\blitz\drivers\generators\HttpGenerator
+      cacheNonHtmlResponses: true
+      cachePurgerType: putyourlightson\blitz\drivers\purgers\DummyPurger
+      cacheStorageSettings:
+        __assoc__:
+          -
+            - folderPath
+            - '@webroot/cache/blitz'
+          -
+            - compressCachedValues
+            - '1'
+      cacheStorageType: putyourlightson\blitz\drivers\storage\FileStorage
+      cachedIncludePathParam: p
+      cachingEnabled: true
+      debug: false
+      defaultCacheControlHeader: no-store
+      deployerType: putyourlightson\blitz\drivers\deployers\DummyDeployer
+      detectSsiEnabled: false
+      driverJobBatchSize: 100
+      driverJobPriority: 100
+      esiEnabled: false
+      excludedQueryStringParams:
+        -
+          __assoc__:
+            -
+              - enabled
+              - '1'
+            -
+              - queryStringParam
+              - gclid
+        -
+          __assoc__:
+            -
+              - enabled
+              - '1'
+            -
+              - queryStringParam
+              - fbclid
+      generatePagesWithQueryStringParams: true
+      hintsEnabled: false
+      includedQueryStringParams:
+        -
+          __assoc__:
+            -
+              - enabled
+              - '1'
+            -
+              - queryStringParam
+              - '.*'
+      includedUriPatterns:
+        -
+          __assoc__:
+            -
+              - enabled
+              - '1'
+            -
+              - uriPattern
+              - '.*'
+      injectScriptEvent: DOMContentLoaded
+      injectScriptPosition: 3
+      maxRetryAttempts: 10
+      maxUriIndexLength: 767
+      maxUriLength: 2048
+      mutexTimeout: 1
+      onlyCacheLowercaseUris: false
+      outputComments: false
+      purgeAssetImagesWhenChanged: true
+      queryStringCaching: 2
+      queueJobTtr: 300
+      refreshCacheAutomaticallyForGlobals: true
+      refreshCacheEnabled: true
+      refreshCacheJobPriority: 10
+      refreshCacheWhenElementMovedInStructure: true
+      refreshCacheWhenElementSavedNotLive: false
+      refreshCacheWhenElementSavedUnchanged: false
+      refreshExpiredCacheAfterVisit: true
+      refreshMode: 2
+      sendPoweredByHeader: false
+      ssiEnabled: false
+      ssiTagFormat: '<!--#include virtual="{uri}" -->'
+      trackElementQueries: true
+      trackElements: true
   ckeditor:
     edition: standard
     enabled: true
@@ -230,6 +339,10 @@ plugins:
     enabled: true
     licenseKey: OZMJ7IKPBXIGAQK6BA00OAVG
     schemaVersion: 4.0.0
+  imager-x-power-pack:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   obfuscator:
     edition: standard
     enabled: true
@@ -245,6 +358,10 @@ plugins:
       numbers: true
       showStrengthIndicator: true
       symbols: true
+  seomate:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   simplemap:
     edition: pro
     enabled: true
@@ -259,7 +376,7 @@ system:
   live: true
   name: 'Profitlich Template'
   retryDuration: null
-  schemaVersion: 5.10.0.0
+  schemaVersion: 5.11.0.2
   timeZone: America/Los_Angeles
 users:
   allowPublicRegistration: false

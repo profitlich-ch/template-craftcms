@@ -1,1 +1,1 @@
-{{ craft.vite.register("src/modules/template/Template.js", false, { 'nonce': csp('script-src') } ) }}
+{% do craft.vite.register("src/modules/template/Template.js", false, { 'nonce': csp('script-src') } ) %}
