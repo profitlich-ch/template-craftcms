@@ -2,6 +2,8 @@ import { defineConfig, loadEnv } from 'vite';
 import manifestSRI from 'vite-plugin-manifest-sri'
 import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap'
 import { jsonToScss } from '@profitlich/template-toolkit/vite/jsonToScss';
+import { createCapsizeFunctions } from '@profitlich/template-toolkit/vite/capsizeSassFunctions';
+import { NodePackageImporter } from 'sass';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -9,8 +11,9 @@ import * as path from 'path';
 const HTTPS_PORT = 5173;
 const configJson = JSON.parse(fs.readFileSync('./src/config.json', 'utf8'));
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(async ({ command, mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
+    const capsizeFunctions = await createCapsizeFunctions(configJson.fonts ?? {});
 
     return {
         root: './', // Standard ist das Projektverzeichnis
@@ -41,13 +44,12 @@ export default defineConfig(({ command, mode }) => {
             cssMinify: 'lightningcss',
             terserOptions: {
                 compress: {
-                    // drops all console.log commands
-                    drop_console: true,
+                    // drops all console.log commands (nur bei Production-Builds)
+                    drop_console: mode === 'production',
                 },
             },
             rollupOptions: {
                 input: {
-                    appCss: 'src/scss/app.scss',
                     app: 'src/App.js',
                     dev: 'src/Dev.js',
                     error: 'src/modules/error/Error.js',
@@ -62,7 +64,7 @@ export default defineConfig(({ command, mode }) => {
             // origin: `${env.PRIMARY_SITE_URL.replace(/:\d+$/, "")}:${HTTPS_PORT}`,
             origin: `${env.PRIMARY_SITE_URL.replace(/:\d+$/, "")}:${HTTPS_PORT}`,
             cors: {
-                origin: /https?:\/\/([A-Za-z0-9\-\.]+)?(\.ddev\.site)(?::\d+)?$/,
+                origin: /https?:\/\/([A-Za-z0-9\-.]+)?(\.ddev\.site)(?::\d+)?$/,
             },
             watch: {
                 paths: [
@@ -78,19 +80,22 @@ export default defineConfig(({ command, mode }) => {
             preprocessorOptions: {
                 scss: {
                     api: 'modern',
-                    importers: [{
-                        canonicalize(url) {
-                            return url === 'config' ? new URL('custom:config') : null;
-                        },
-                        load(canonicalUrl) {
-                            if (canonicalUrl.toString() !== 'custom:config') return null;
-                            return { contents: jsonToScss(configJson), syntax: 'scss' };
+                    importers: [
+                        new NodePackageImporter(),
+                        {
+                            canonicalize(url) {
+                                return url === 'config' ? new URL('custom:config') : null;
+                            },
+                            load(canonicalUrl) {
+                                if (canonicalUrl.toString() !== 'custom:config') return null;
+                                return { contents: jsonToScss(configJson), syntax: 'scss' };
+                            }
                         }
-                    }],
+                    ],
                     loadPaths: [
                         path.resolve(__dirname, 'src/scss'),
-                        path.resolve(__dirname, 'node_modules'),
                     ],
+                    functions: capsizeFunctions,
                 },
             },
         },

@@ -4,6 +4,10 @@
         "JS": "config is transformed to a JS file and loaded in the gulpfile in the variable dateien jsInline"
     },
 
+    "vwBasis": "body",
+
+    "fonts": {},
+
     "layouts": {
         "smartphone": 421,
         "desktop": 1920

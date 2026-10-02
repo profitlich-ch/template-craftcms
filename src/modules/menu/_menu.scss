@@ -4,6 +4,7 @@
 .menu {
     font-family: Filson Pro, sans-serif;
     font-weight: 400;
+    width: 100%;
 
     &__logo {
         color: black;
@@ -17,7 +18,7 @@
 
     &__link {
         cursor: pointer;
-        
+        text-decoration: none;
 
         &[data-menu-active="true"] {
             color: map.get($colors, rot);
@@ -36,11 +37,10 @@
         @include marginPadding($layout, padding, all, 0, 26, 0, 26);
         background-color: map.get($colors, hellbraun);
         display: none;
-        height: calc(var(--vh, 1vh) * 100);
+        height: 100dvh;
         left: 0;
         position: fixed;
         top: 0;
-        width: 100%;
         z-index: 1000;
 
         .body[data-menu-active="true"] & {
@@ -69,10 +69,6 @@
             display: flex;
             flex-direction: column;
         }
-
-        &__link {
-            text-decoration: none;
-        }
     }
 
     .hamburger {
@@ -90,10 +86,9 @@
 
     .menu {
         height: 100%;
-        width: 100%;
 
         &__logo-text {
-            @include font($layout, 28, 32, 400);
+            @include font($layout, 28, 32);
             position: absolute;
             top: size($layout, 68);
             right: size($layout, 576);
@@ -105,7 +100,8 @@
         }
         
         &__logo {
-            @include font($layout, 70, 59, 400);
+            @include font($layout, 70, 59);
+            font-weight: 400;
             text-decoration: none;
             position: absolute;
             top: size($layout, 50);
@@ -127,7 +123,6 @@
         &__link {
             @include font($layout, 34, 36);
             display: inherit;
-            text-decoration: none;
 
             &--active {
                 font-weight: 500;

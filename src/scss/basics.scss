@@ -5,6 +5,7 @@
 // padding and border become part of width/height definitions
 html {
     box-sizing: border-box;
+    overflow-x: clip;
 }
 *, *:after, *:before { 
 	box-sizing: border-box;
@@ -15,15 +16,24 @@ body {
     background-color: map.get($colors, background);
     margin: 0 auto;
 
-    min-height: calc(var(--vh, 1vh) * 100);
-    overflow-x: hidden;
+    min-height: 100dvh;
+    overflow-x: clip;
+    display: flex;
+    flex-direction: column;
 
     // skip underlines at descenders
     text-decoration-skip-ink: auto;
 
     // font smoothing
     -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased; 
+    -webkit-font-smoothing: antialiased;
+}
+
+@supports not (overflow: clip) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
 }
 
 p,
@@ -60,9 +70,9 @@ sup {
 }
 
 
-// prevent cropping of SVGs on iOS
 svg {
-    padding: 1px 1px 1px 1px;
+    display: block;
+    width: 100%;
 }
 
 // remove focus outline when not set keyboard
@@ -76,14 +86,19 @@ svg {
     outline: 2px solid black;
 }
 
-// hide alt text for the eye but keep visible for screen readers
-// show images as block instead of inline to prevent superfluos space below images
+// Alt Text unsichtbar machen, aber für Screenreader lesbar halten
+// Bilder als Block statt als Inline anzeigen. Das löst das Problem von unerwünschten Pixeln unterhalb des Bildes.
+picture {
+    width: 100%;
+}
+
 img {
     color: transparent;
     display: block;
     line-height: 1em;
     text-indent: -9999px;
     width: 100%;
+    height: auto;
 }
 
 .bild {
