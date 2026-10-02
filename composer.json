@@ -2,6 +2,7 @@
   "require": {
     "craftcms/ckeditor": "^5.5.0",
     "craftcms/cms": "^5.0.0",
+    "craftpulse/craft-password-policy": "^5.1",
     "ether/simplemap": "^5.0.4",
     "miranj/craft-obfuscator": "^1.2",
     "nystudio107/craft-vite": "^5.0.1",
