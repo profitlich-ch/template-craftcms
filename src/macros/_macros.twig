@@ -1,0 +1,12 @@
+{% macro picture(image, transform, sizes, loading = 'lazy') %}
+    {# Ohne Alt-Text vom Asset bleibt der Dateititel die beste Beschreibung #}
+    {% set alt = image.alt is not empty ? image.alt : image.title %}
+    {{ pppicture([
+        [image, transform, 'webp'],
+    ], {
+        alt: alt,
+        style: 'aspect-ratio: ' ~ (image.getWidth() / image.getHeight()),
+        loading: loading,
+        sizes: sizes
+    }) }}
+{% endmacro %}

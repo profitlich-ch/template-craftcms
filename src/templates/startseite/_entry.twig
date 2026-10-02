@@ -1,12 +1,9 @@
 {% extends "_layout.twig" %}
-
-{% block pageTitle %}
-	Startseite
-{% endblock %}
-{% block seoMetaDescription %}
-	{# <meta name="description" content="{{ entry.seoMetaDescription }}"> #}
-{% endblock %}
+{% import '_macros/_macros' as macros %}
 
 {% block content %}
-
+    {% for image in entry.projektbilder.all() %}
+        {# bildquelle: startseite.projektbilder #}
+        {{ macros.picture(image, 'startseite', '(max-width: 799px) 88vw, 64vw') }}
+    {% endfor %}
 {% endblock %}
