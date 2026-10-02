@@ -46,7 +46,7 @@ labels: go-live
 
 - [ ] Favicon ist mit Realfavicon Generator angelegt
 - [ ] 404-Seite ist angelegt
-- [ ] Content-Security-Policy ist umgesetzt
+- [ ] Sicherheits-Header kommen an: `curl -s -D - -o /dev/null https://domain.tld/` (GET, nicht `-I` – HEAD geht an Blitz vorbei durch PHP)
 
 ### Suchmaschinen und Sichtbarkeit
 

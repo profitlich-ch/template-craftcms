@@ -21,7 +21,7 @@
            zu verstecken, wäre gegen FOUC unnötig – das CSS blockiert im <head> ohnehin –,
            liesse FCP und LCP aber auf alle Modul-Skripte warten. #}
         {# Direct <style> tag instead of registerCss() to prevent leaking into other templates (e.g. SEOMate preview) via Craft's global CSS registry #}
-        <style nonce="{{ csp('style-src') }}">
+        <style>
             body[data-preloading="true"] * {
                 transition: transform 0s !important;
             }
@@ -48,7 +48,7 @@
     " {{ attr(bodyDataTags) }}>
 
         {# Firefox hack against FOUC: https://www.primative.net/blog/how-to-get-rid-of-the-flash-of-unstyled-content/ #}
-        <script nonce="{{ csp('script-src') }}">0</script>
+        <script>0</script>
 
         <div class="seite" id="seite">
              <header class="header" id="header">
@@ -58,12 +58,12 @@
         </div>
 
         {# JS #}
-        {% do craft.vite.register("src/App.js", false, { 'nonce': csp('script-src') } ) %}
+        {% do craft.vite.register("src/App.js", false) %}
         {% if craft.app.env != 'production' %}
-            {% do craft.vite.register("src/Dev.js", false, { 'nonce': csp('script-src') } ) %}
+            {% do craft.vite.register("src/Dev.js", false) %}
         {% endif %}
         
-        <script nonce="{{ csp('script-src') }}">
+        <script>
             {# finish preloading #}
             setTimeout(function(){
                 document.body.setAttribute('data-preloading', 'false');

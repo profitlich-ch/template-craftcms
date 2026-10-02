@@ -1,6 +1,5 @@
 {
   "require": {
-    "cloudgrayau/csp": "^1.3.0",
     "craftcms/ckeditor": "^5.5.0",
     "craftcms/cms": "^5.0.0",
     "ether/simplemap": "^5.0.4",

@@ -35,7 +35,7 @@ export default defineConfig(async ({ command, mode }) => {
             sourcemap: mode === 'development',
             // empty the out dir before writing new files
             emptyOutDir: true,
-            // Wegen CSP kann das preload ployfill nicht verwendet werden
+            // modulepreload können alle aktuellen Browser, das Polyfill wäre nur zusätzlicher Code
             modulePreload: {
                 polyfill: false
             },

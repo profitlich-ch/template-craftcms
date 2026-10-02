@@ -74,6 +74,16 @@
 	Header set Cache-Control "public, max-age=31536000, immutable" env=GEHASHTES_ASSET
 </IfModule>
 
+# Sicherheits-Header. "always", damit sie auch an Fehlerseiten und an den
+# Dateien hängen, die Blitz statisch ausliefert – diese erreichen PHP nie.
+# HSTS bewusst ohne includeSubDomains und preload: Beides legt die ganze Domain
+# samt fremder Subdomains (Mail, Kundensysteme) dauerhaft auf https fest.
+<IfModule mod_headers.c>
+	Header always set Strict-Transport-Security "max-age=31536000"
+	Header always set X-Content-Type-Options "nosniff"
+	Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
 <IfModule mod_expires.c>
 	# Enable expirations
 		ExpiresActive On 
