@@ -6,7 +6,10 @@
     "ether/simplemap": "^5.0.4",
     "miranj/craft-obfuscator": "^1.2",
     "nystudio107/craft-vite": "^5.0.1",
-    "spacecatninja/imager-x": "^5.2.1",
+    "putyourlightson/craft-blitz": "^5.10",
+    "spacecatninja/imager-x": "^6.0",
+    "spacecatninja/imager-x-power-pack": "^1.1.1",
+    "vaersaagod/seomate": "^3.3",
     "vlucas/phpdotenv": "^5.6.3"
   },
   "require-dev": {

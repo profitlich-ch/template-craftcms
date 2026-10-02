@@ -15,7 +15,9 @@ return [
     'serverPublic' => App::env('PRIMARY_SITE_URL') . '/dist/',
     'devMode' => App::env('CRAFT_ENVIRONMENT') === 'dev',
     'manifestPath' => '@webroot/dist/.vite/manifest.json',
-    'includeScriptOnloadHandler' => true,
+    // Hängt an jedes Skript-Tag ein onload, das ein Event feuert. Niemand hört
+    // darauf, und es landet mit jedem Modul-Skript im kritischen Pfad.
+    'includeScriptOnloadHandler' => false,
     'errorEntry' => 'src/App.js',
-    'debug' => true,
+    'debug' => App::env('CRAFT_ENVIRONMENT') === 'dev',
 ];

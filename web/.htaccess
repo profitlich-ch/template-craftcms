@@ -1,9 +1,46 @@
 <IfModule mod_rewrite.c>
+    # Ohne dies läuft im Verzeichniskontext keine der folgenden Regeln — die
+    # Einstellung des VirtualHost wird in eine .htaccess nicht vererbt.
     RewriteEngine On
-	
-    # www wo non-www
+
+    # WWW TO NON-WWW
 	RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
-	RewriteRule ^(.*) http://%1/$1 [R=301,NE,L]
+	RewriteRule ^(.*) https://%1/$1 [R=301,NE,L]
+
+    # https://putyourlightson.com/plugins/blitz#apache
+    # Muss VOR dem Craft-Fallback stehen: Dessen [L] beendet den Durchlauf, und im
+    # zweiten hängt [QSA] ein p=<uri> an, womit %{QUERY_STRING} unten nicht mehr passt.
+    # Steht der Block dahinter, startet bei jedem Cache-Treffer der volle Craft-Bootstrap.
+
+    # Der Query-String steht bewusst NICHT im Pfad, anders als im Beispiel von Blitz:
+    # queryStringCaching steht auf 2 ("cache urls as the same page"), die Cache-URI
+    # trägt also nie einen Query-String. So bekommen auch Kampagnen-Links mit
+    # ?utm_source=… die statische Datei. Wird die Einstellung je zurückgedreht,
+    # gehört %{QUERY_STRING} hier wieder hinein.
+
+    # Nur URIs ohne Dateiendung statisch ausliefern. Blitz legt auch Nicht-HTML
+    # (sitemap.xml) als index.html ab; statisch käme das als text/html zurück.
+    # Über PHP setzt Blitz den richtigen Typ und bedient sich trotzdem am Cache.
+    #- Blitz cache rewrite for gzip files
+    RewriteCond %{DOCUMENT_ROOT}/cache/blitz/%{HTTP_HOST}/%{REQUEST_URI}/index.html.gz -s
+    RewriteCond %{HTTP:Accept-encoding} gzip
+    RewriteCond %{REQUEST_METHOD} GET
+    RewriteCond %{QUERY_STRING} !token= [NC]
+    RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{2,5}$
+    RewriteRule .* /cache/blitz/%{HTTP_HOST}/%{REQUEST_URI}/index.html.gz [L]
+
+    #- AddEncoding allows you to have certain browsers uncompress information on the fly.
+    AddEncoding gzip .gz
+
+    #- Serve correct content types, and prevent mod_deflate double gzip.
+    RewriteRule \.html\.gz$ - [T=text/html,E=no-gzip:1]
+
+    #- Blitz cache rewrite
+    RewriteCond %{DOCUMENT_ROOT}/cache/blitz/%{HTTP_HOST}/%{REQUEST_URI}/index.html -s
+    RewriteCond %{REQUEST_METHOD} GET
+    RewriteCond %{QUERY_STRING} !token= [NC]
+    RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{2,5}$
+    RewriteRule .* /cache/blitz/%{HTTP_HOST}/%{REQUEST_URI}/index.html [L]
 
     # Send would-be 404 requests to Craft
     RewriteCond %{REQUEST_FILENAME} !-f
@@ -25,10 +62,17 @@
 	AddOutputFilterByType DEFLATE application/atom_xml
 	AddOutputFilterByType DEFLATE application/javascript
 	AddOutputFilterByType DEFLATE application/x-javascript
-	AddOutputFilterByType DEFLATE application/x-shockwave-flash
+	AddOutputFilterByType DEFLATE application/json
 	AddOutputFilterByType DEFLATE image/svg+xml
+	AddOutputFilterByType DEFLATE image/x-icon
 </IfModule>
 
+# Vite hasht die Dateinamen, ein geänderter Inhalt bekommt also einen neuen Namen.
+# Ohne immutable revalidieren Browser sie beim Reload trotz Jahresfrist.
+<IfModule mod_headers.c>
+	SetEnvIf Request_URI "^/dist/assets/" GEHASHTES_ASSET=1
+	Header set Cache-Control "public, max-age=31536000, immutable" env=GEHASHTES_ASSET
+</IfModule>
 
 <IfModule mod_expires.c>
 	# Enable expirations
@@ -39,7 +83,7 @@
 	ExpiresByType image/x-icon "access plus 1 year"
 	
 	# HTML
-	    ExpiresByType text/html "access plus 1 minute"
+	    ExpiresByType text/html "access plus 0 seconds"
 	
 	# Images
 		ExpiresByType image/gif "access plus 1 year"
@@ -49,7 +93,7 @@
 		ExpiresByType image/svg "access plus 1 year"
 	
 	# CSS
-		ExpiresByType text/css "access 1 year"
+		ExpiresByType text/css "access plus 1 year"
 	
 	# Javascript
 		ExpiresByType application/javascript "access plus 1 year"

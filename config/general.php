@@ -30,9 +30,6 @@ return GeneralConfig::create()
     // Disallow robots
     ->disallowRobots(!$isProduction)
 
-    // Allow template chaching
-    ->enableTemplateCaching(!$isDev)
-
     // slugs without Umlaute
     ->limitAutoSlugsToAscii(true)
     // login adress of the cms
@@ -55,7 +52,7 @@ return GeneralConfig::create()
     -> runQueueAutomatically($isDev)
 
     // Blitz does the caching, that’s why Craft’s own caching through {% cache %} is disabled
-    // ->enableTemplateCaching(false)
+    ->enableTemplateCaching(false)
 
     // Generate images before page load so hat they are ready when a page is called
     -> generateTransformsBeforePageLoad(true)

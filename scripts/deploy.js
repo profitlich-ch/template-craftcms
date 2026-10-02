@@ -14,6 +14,9 @@ const uploadTasks = [
             'web/assets/**',
             'web/cpresources/**',
             'web/imager/**',
+            // Der lokale Blitz-Cache gehört nicht auf den Server: hunderte kleine
+            // Dateien unter dem ddev-Hostnamen, die dort nie ausgeliefert werden.
+            'web/cache/**',
             'web/index.php'
         ],
         localBase: 'web',
@@ -21,10 +24,10 @@ const uploadTasks = [
     },
     {
         name: 'Cronjobs',
-        localPattern: 'src/cronjobs/**/*',
+        localPattern: 'cronjobs/**/*',
         localBase: 'cronjobs',
         remoteDir: '/cronjobs'
     }
 ];
 
-run(uploadTasks);
+run(uploadTasks, { parallel: 3 });
