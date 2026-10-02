@@ -1,5 +1,4 @@
-/*M!999999\- enable the sandbox mode */ 
--- MariaDB dump 10.19  Distrib 10.11.11-MariaDB, for debian-linux-gnu (aarch64)
+-- MariaDB dump 10.19  Distrib 10.11.19-MariaDB, for debian-linux-gnu (aarch64)
 --
 -- Host: db    Database: db
 -- ------------------------------------------------------
@@ -253,6 +252,41 @@ LOCK TABLES `assets_sites` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `auth_oauth_tokens`
+--
+
+DROP TABLE IF EXISTS `auth_oauth_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_oauth_tokens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ownerHandle` varchar(255) NOT NULL,
+  `providerType` varchar(255) NOT NULL,
+  `tokenType` varchar(255) NOT NULL,
+  `reference` varchar(255) DEFAULT NULL,
+  `accessToken` text DEFAULT NULL,
+  `secret` text DEFAULT NULL,
+  `expires` varchar(255) DEFAULT NULL,
+  `refreshToken` text DEFAULT NULL,
+  `resourceOwnerId` varchar(255) DEFAULT NULL,
+  `values` text DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_oauth_tokens`
+--
+
+LOCK TABLES `auth_oauth_tokens` WRITE;
+/*!40000 ALTER TABLE `auth_oauth_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_oauth_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `authenticator`
 --
 
@@ -279,6 +313,381 @@ CREATE TABLE `authenticator` (
 LOCK TABLES `authenticator` WRITE;
 /*!40000 ALTER TABLE `authenticator` DISABLE KEYS */;
 /*!40000 ALTER TABLE `authenticator` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_caches`
+--
+
+DROP TABLE IF EXISTS `blitz_caches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_caches` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `siteId` int(11) NOT NULL,
+  `uri` varchar(2048) NOT NULL,
+  `paginate` int(11) DEFAULT NULL,
+  `dateCached` datetime DEFAULT NULL,
+  `expiryDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_nbudjgayymuaxzjmcfjgjijmjaoauhvthirp` (`siteId`,`uri`(767)),
+  KEY `idx_ghsxrxgivgmdgefcsbjhetybopdtekgaftfx` (`expiryDate`),
+  CONSTRAINT `fk_toupfnwnrvlpgkmtwpzwgvyhewibrikgxhto` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_caches`
+--
+
+LOCK TABLES `blitz_caches` WRITE;
+/*!40000 ALTER TABLE `blitz_caches` DISABLE KEYS */;
+INSERT INTO `blitz_caches` VALUES
+(2,1,'',NULL,'2026-10-02 10:21:03',NULL);
+/*!40000 ALTER TABLE `blitz_caches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_cachetags`
+--
+
+DROP TABLE IF EXISTS `blitz_cachetags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_cachetags` (
+  `cacheId` int(11) NOT NULL,
+  `tag` varchar(255) NOT NULL,
+  PRIMARY KEY (`cacheId`,`tag`),
+  KEY `idx_dhzzqhguvumngjgambajogxgiimhjjlvngbv` (`tag`),
+  CONSTRAINT `fk_fkawesvpyamtfhuacuuxedzfwvtdgbrhphle` FOREIGN KEY (`cacheId`) REFERENCES `blitz_caches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_cachetags`
+--
+
+LOCK TABLES `blitz_cachetags` WRITE;
+/*!40000 ALTER TABLE `blitz_cachetags` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_cachetags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_driverdata`
+--
+
+DROP TABLE IF EXISTS `blitz_driverdata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_driverdata` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `driver` varchar(255) NOT NULL,
+  `data` text DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_driverdata`
+--
+
+LOCK TABLES `blitz_driverdata` WRITE;
+/*!40000 ALTER TABLE `blitz_driverdata` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_driverdata` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_elementcaches`
+--
+
+DROP TABLE IF EXISTS `blitz_elementcaches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_elementcaches` (
+  `cacheId` int(11) NOT NULL,
+  `elementId` int(11) NOT NULL,
+  `siteId` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`cacheId`,`elementId`,`siteId`),
+  KEY `fk_krndknhypdpcbwnaxjvjvlsafqhhaouzkphe` (`elementId`),
+  CONSTRAINT `fk_krndknhypdpcbwnaxjvjvlsafqhhaouzkphe` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_ucsezudncsxsdqtzgldnaxxrbpumprawhtqj` FOREIGN KEY (`cacheId`) REFERENCES `blitz_caches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_elementcaches`
+--
+
+LOCK TABLES `blitz_elementcaches` WRITE;
+/*!40000 ALTER TABLE `blitz_elementcaches` DISABLE KEYS */;
+INSERT INTO `blitz_elementcaches` VALUES
+(2,2,1),
+(2,50,1);
+/*!40000 ALTER TABLE `blitz_elementcaches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_elementexpirydates`
+--
+
+DROP TABLE IF EXISTS `blitz_elementexpirydates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_elementexpirydates` (
+  `elementId` int(11) NOT NULL,
+  `expiryDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`elementId`),
+  UNIQUE KEY `idx_wijtfezxbibmgrkqnkkvltgtwzoiupeggesc` (`elementId`),
+  KEY `idx_qeasxgmrbiuudrlskudtalptpoajqzhixgxf` (`expiryDate`),
+  CONSTRAINT `fk_sfqossfeqofgsrwsgbahudgeujqthyomaqun` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_elementexpirydates`
+--
+
+LOCK TABLES `blitz_elementexpirydates` WRITE;
+/*!40000 ALTER TABLE `blitz_elementexpirydates` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_elementexpirydates` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_elementfieldcaches`
+--
+
+DROP TABLE IF EXISTS `blitz_elementfieldcaches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_elementfieldcaches` (
+  `cacheId` int(11) NOT NULL,
+  `elementId` int(11) NOT NULL,
+  `siteId` int(11) NOT NULL DEFAULT 0,
+  `fieldInstanceUid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cacheId`,`elementId`,`siteId`,`fieldInstanceUid`),
+  KEY `fk_annhzowegowrrfzhtyposcspigkszpioxtdo` (`elementId`),
+  CONSTRAINT `fk_annhzowegowrrfzhtyposcspigkszpioxtdo` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_zpojuxibcxnbzlbtycyvfrxispasxginpxai` FOREIGN KEY (`cacheId`) REFERENCES `blitz_caches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_elementfieldcaches`
+--
+
+LOCK TABLES `blitz_elementfieldcaches` WRITE;
+/*!40000 ALTER TABLE `blitz_elementfieldcaches` DISABLE KEYS */;
+INSERT INTO `blitz_elementfieldcaches` VALUES
+(2,2,1,'2fef81bc-44ba-4070-967c-51790791d3b6');
+/*!40000 ALTER TABLE `blitz_elementfieldcaches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_elementqueries`
+--
+
+DROP TABLE IF EXISTS `blitz_elementqueries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_elementqueries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `index` bigint(20) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `params` text DEFAULT NULL,
+  `template` varchar(255) DEFAULT NULL,
+  `code` text DEFAULT NULL,
+  `backtrace` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_xcpuvmujsgqqdhxophmhrmywyulfjzpnmtnj` (`index`),
+  KEY `idx_aaesggbcxexpdypnvnzhhfrrzrmwbuhjysrq` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_elementqueries`
+--
+
+LOCK TABLES `blitz_elementqueries` WRITE;
+/*!40000 ALTER TABLE `blitz_elementqueries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_elementqueries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_elementqueryattributes`
+--
+
+DROP TABLE IF EXISTS `blitz_elementqueryattributes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_elementqueryattributes` (
+  `queryId` int(11) NOT NULL,
+  `attribute` varchar(255) NOT NULL,
+  PRIMARY KEY (`queryId`,`attribute`),
+  CONSTRAINT `fk_kgnlrpsqkrudbocdvzhkgonosrllwfoiqgsg` FOREIGN KEY (`queryId`) REFERENCES `blitz_elementqueries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_elementqueryattributes`
+--
+
+LOCK TABLES `blitz_elementqueryattributes` WRITE;
+/*!40000 ALTER TABLE `blitz_elementqueryattributes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_elementqueryattributes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_elementquerycaches`
+--
+
+DROP TABLE IF EXISTS `blitz_elementquerycaches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_elementquerycaches` (
+  `cacheId` int(11) NOT NULL,
+  `queryId` int(11) NOT NULL,
+  PRIMARY KEY (`cacheId`,`queryId`),
+  KEY `fk_ausjvmxzigpsheowxriuuailfsostjyifyis` (`queryId`),
+  CONSTRAINT `fk_ausjvmxzigpsheowxriuuailfsostjyifyis` FOREIGN KEY (`queryId`) REFERENCES `blitz_elementqueries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_nbsjiqimcyjgwukboakxmzzwjvuqsxzdhpqv` FOREIGN KEY (`cacheId`) REFERENCES `blitz_caches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_elementquerycaches`
+--
+
+LOCK TABLES `blitz_elementquerycaches` WRITE;
+/*!40000 ALTER TABLE `blitz_elementquerycaches` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_elementquerycaches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_elementqueryfields`
+--
+
+DROP TABLE IF EXISTS `blitz_elementqueryfields`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_elementqueryfields` (
+  `queryId` int(11) NOT NULL,
+  `fieldInstanceUid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`queryId`,`fieldInstanceUid`),
+  CONSTRAINT `fk_gnwksghqosmnrbljrvdpxagqavszxkohikwd` FOREIGN KEY (`queryId`) REFERENCES `blitz_elementqueries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_elementqueryfields`
+--
+
+LOCK TABLES `blitz_elementqueryfields` WRITE;
+/*!40000 ALTER TABLE `blitz_elementqueryfields` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_elementqueryfields` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_elementquerysites`
+--
+
+DROP TABLE IF EXISTS `blitz_elementquerysites`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_elementquerysites` (
+  `queryId` int(11) NOT NULL,
+  `siteId` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`queryId`,`siteId`),
+  CONSTRAINT `fk_bksuawtxnquhdyxlhoobvwjofizyeftwtchq` FOREIGN KEY (`queryId`) REFERENCES `blitz_elementqueries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_elementquerysites`
+--
+
+LOCK TABLES `blitz_elementquerysites` WRITE;
+/*!40000 ALTER TABLE `blitz_elementquerysites` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_elementquerysites` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_elementquerysources`
+--
+
+DROP TABLE IF EXISTS `blitz_elementquerysources`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_elementquerysources` (
+  `queryId` int(11) NOT NULL,
+  `sourceId` int(11) NOT NULL,
+  PRIMARY KEY (`queryId`,`sourceId`),
+  CONSTRAINT `fk_djwkwvotjnkkvtoccizhjaojudbbcgjihijp` FOREIGN KEY (`queryId`) REFERENCES `blitz_elementqueries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_elementquerysources`
+--
+
+LOCK TABLES `blitz_elementquerysources` WRITE;
+/*!40000 ALTER TABLE `blitz_elementquerysources` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_elementquerysources` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_includes`
+--
+
+DROP TABLE IF EXISTS `blitz_includes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_includes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `index` bigint(20) NOT NULL,
+  `siteId` int(11) NOT NULL,
+  `template` varchar(255) NOT NULL,
+  `params` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_blnkwyvctyaetziehhalvzzoacstgqowlhxb` (`index`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_includes`
+--
+
+LOCK TABLES `blitz_includes` WRITE;
+/*!40000 ALTER TABLE `blitz_includes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_includes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blitz_ssiincludecaches`
+--
+
+DROP TABLE IF EXISTS `blitz_ssiincludecaches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blitz_ssiincludecaches` (
+  `cacheId` int(11) NOT NULL,
+  `includeId` int(11) NOT NULL,
+  PRIMARY KEY (`cacheId`,`includeId`),
+  KEY `fk_skoozqfjjamtwpddqltalnaczridlfixwssl` (`includeId`),
+  CONSTRAINT `fk_skoozqfjjamtwpddqltalnaczridlfixwssl` FOREIGN KEY (`includeId`) REFERENCES `blitz_includes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_ttxntauoxyocujqnwtfdcgtqqturtoyjceje` FOREIGN KEY (`cacheId`) REFERENCES `blitz_caches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blitz_ssiincludecaches`
+--
+
+LOCK TABLES `blitz_ssiincludecaches` WRITE;
+/*!40000 ALTER TABLE `blitz_ssiincludecaches` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blitz_ssiincludecaches` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -491,6 +900,40 @@ INSERT INTO `changedfields` VALUES
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ckeditor_references`
+--
+
+DROP TABLE IF EXISTS `ckeditor_references`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ckeditor_references` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fieldId` int(11) NOT NULL,
+  `fieldInstanceUid` char(36) NOT NULL DEFAULT '0',
+  `sourceId` int(11) NOT NULL,
+  `sourceSiteId` int(11) DEFAULT NULL,
+  `targetId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_dlwndlsgsoqgneoyxdnimhybnuaiyhqukjtl` (`fieldId`,`fieldInstanceUid`,`sourceId`,`sourceSiteId`,`targetId`),
+  KEY `idx_bsjvhzjnfafacznmgbdunltxjsemczcbkjfx` (`targetId`),
+  KEY `fk_tmqjzokkzwhdwrbnivpmthqwxqlfxhpnewyx` (`sourceId`),
+  KEY `fk_zhsapynoroznppvasbjerqejptvrqbbmyanw` (`sourceSiteId`),
+  CONSTRAINT `fk_slwtkpnrgjywvfpxfwijoaujxwaidzznjbvs` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_tmqjzokkzwhdwrbnivpmthqwxqlfxhpnewyx` FOREIGN KEY (`sourceId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_zhsapynoroznppvasbjerqejptvrqbbmyanw` FOREIGN KEY (`sourceSiteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ckeditor_references`
+--
+
+LOCK TABLES `ckeditor_references` WRITE;
+/*!40000 ALTER TABLE `ckeditor_references` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ckeditor_references` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `content`
 --
 
@@ -684,8 +1127,7 @@ CREATE TABLE `elementactivity` (
   KEY `fk_yoyeordkubclcpvhwgrddlubiuolagzheeie` (`draftId`),
   CONSTRAINT `fk_jzunbrdfdmrdatjglaqxlhhjnkhmfvqidvgh` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_pojuvdbthsvtdnezrlkwyqmlabietrzorbjr` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_xfbuzuqtccqiazopwneqlxtmtdnsrsgnxixh` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_yoyeordkubclcpvhwgrddlubiuolagzheeie` FOREIGN KEY (`draftId`) REFERENCES `drafts` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_xfbuzuqtccqiazopwneqlxtmtdnsrsgnxixh` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -699,7 +1141,7 @@ INSERT INTO `elementactivity` VALUES
 (1,1,1,NULL,'view','2025-07-18 18:45:46'),
 (2,1,1,NULL,'edit','2024-11-02 09:16:40'),
 (2,1,1,NULL,'save','2024-11-02 09:16:40'),
-(2,1,1,NULL,'view','2024-11-02 09:16:41');
+(2,1,1,NULL,'view','2026-02-21 21:05:28');
 /*!40000 ALTER TABLE `elementactivity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -740,7 +1182,7 @@ CREATE TABLE `elements` (
   CONSTRAINT `fk_cedzikdlhfaypgjcgjqpbimyolsfyznvempo` FOREIGN KEY (`fieldLayoutId`) REFERENCES `fieldlayouts` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_nidfhzmawapvwynoziaxtwvrnckzhyhqdpvb` FOREIGN KEY (`revisionId`) REFERENCES `revisions` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rtdiwkydecvqrlqbbmstmjjvhgiiucwmmvqo` FOREIGN KEY (`canonicalId`) REFERENCES `elements` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -751,7 +1193,7 @@ LOCK TABLES `elements` WRITE;
 /*!40000 ALTER TABLE `elements` DISABLE KEYS */;
 INSERT INTO `elements` VALUES
 (1,NULL,NULL,NULL,NULL,'craft\\elements\\User',1,0,'2022-09-28 08:08:17','2025-07-18 18:46:54',NULL,NULL,NULL,'93ff1eae-a809-48c5-8c5c-102b24b5db0b'),
-(2,NULL,NULL,NULL,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2024-11-02 09:16:40',NULL,NULL,NULL,'439cd31e-c532-45b2-8bc3-453ad109657b'),
+(2,NULL,NULL,NULL,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2026-05-23 20:52:26',NULL,NULL,NULL,'439cd31e-c532-45b2-8bc3-453ad109657b'),
 (3,2,NULL,1,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2022-09-28 12:24:30',NULL,NULL,NULL,'b9f4b01d-79e6-4ee8-8065-bb8aaf430f02'),
 (4,2,NULL,2,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2022-09-28 12:24:30',NULL,NULL,NULL,'a4bbb624-ee50-4e42-87e2-3122257bfa20'),
 (5,2,NULL,3,1,'craft\\elements\\Entry',1,0,'2022-09-28 12:24:30','2022-09-28 12:24:30',NULL,NULL,NULL,'8350a19c-f110-4ee5-adc1-43309377d8f0'),
@@ -805,7 +1247,9 @@ INSERT INTO `elements` VALUES
 (67,2,NULL,40,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:12:42','2024-11-02 09:12:42',NULL,NULL,NULL,'89b2154c-bebd-4ce2-9395-014e2937e205'),
 (68,2,NULL,41,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:12:51','2024-11-02 09:12:51',NULL,NULL,NULL,'7dc49e81-147f-4c6b-a8b0-ee0cb8615ad8'),
 (70,2,NULL,42,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:15:27','2024-11-02 09:15:27',NULL,NULL,NULL,'1e814acb-9300-48a9-9464-19aff1669ec9'),
-(72,2,NULL,43,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:16:40','2024-11-02 09:16:40',NULL,NULL,NULL,'2c6a581c-8ae4-418f-be10-9c96964a0aab');
+(72,2,NULL,43,1,'craft\\elements\\Entry',1,0,'2024-11-02 09:16:40','2024-11-02 09:16:40',NULL,NULL,NULL,'2c6a581c-8ae4-418f-be10-9c96964a0aab'),
+(74,2,NULL,44,1,'craft\\elements\\Entry',1,0,'2026-05-12 20:21:24','2026-05-12 20:21:24',NULL,NULL,NULL,'7be22a1c-cb3b-4e6a-9213-b7cb669aa18e'),
+(75,2,NULL,45,1,'craft\\elements\\Entry',1,0,'2026-05-23 20:52:26','2026-05-23 20:52:26',NULL,NULL,NULL,'4ee15298-40ea-4399-a85a-73a05b0a0943');
 /*!40000 ALTER TABLE `elements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -847,6 +1291,7 @@ CREATE TABLE `elements_owners` (
   `sortOrder` smallint(6) unsigned NOT NULL,
   PRIMARY KEY (`elementId`,`ownerId`),
   KEY `fk_fkrqqmvqcfqtyvxmooroipjlfglxakjiydxq` (`ownerId`),
+  KEY `idx_bqzrgrhiglwujsllcagaawkycijgcruqocvf` (`sortOrder`),
   CONSTRAINT `fk_fkrqqmvqcfqtyvxmooroipjlfglxakjiydxq` FOREIGN KEY (`ownerId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_thnzbspsvccnjmblrelcdsijyzdjeumwfwxs` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -889,7 +1334,7 @@ CREATE TABLE `elements_sites` (
   KEY `idx_fjweliconneugqkntlrjikpjgqcxuhdgyvtj` (`title`,`siteId`),
   CONSTRAINT `fk_temteqgowhfhpxokeldgqekhgfidcvcbqngc` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_yceeftjuorghylwmascvixnayjfwilrtffcy` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -900,7 +1345,7 @@ LOCK TABLES `elements_sites` WRITE;
 /*!40000 ALTER TABLE `elements_sites` DISABLE KEYS */;
 INSERT INTO `elements_sites` VALUES
 (1,1,1,NULL,NULL,NULL,NULL,1,'2022-09-28 08:08:17','2022-09-28 08:08:17','3383af9f-5662-4bca-83c6-62ceb0a97ac3'),
-(2,2,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2022-09-28 12:24:30','2024-11-02 09:12:42','92ab4b47-56a4-4bfd-9e11-38837b48cc2f'),
+(2,2,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50]}',1,'2022-09-28 12:24:30','2026-05-12 20:21:28','92ab4b47-56a4-4bfd-9e11-38837b48cc2f'),
 (3,3,1,'Startseite','startseite','__home__',NULL,1,'2022-09-28 12:24:30','2022-09-28 12:24:30','bc2c96e8-4b47-4d63-904d-6b4535a2e017'),
 (4,4,1,'Startseite','startseite','__home__',NULL,1,'2022-09-28 12:24:30','2022-09-28 12:24:30','6ac103ad-ffcb-47dc-8b3f-4b6de5caa1cc'),
 (5,5,1,'Startseite','startseite','__home__',NULL,1,'2022-09-28 12:24:30','2022-09-28 12:24:30','5e0b824d-bae7-4de6-8cfe-3bc6284471cc'),
@@ -954,7 +1399,9 @@ INSERT INTO `elements_sites` VALUES
 (67,67,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:12:42','2024-11-02 09:12:42','5a723060-6ede-4445-bee5-8e0c5a2cc63e'),
 (68,68,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:12:51','2024-11-02 09:12:51','0f771e44-feca-458f-8fb4-86f7efd958ce'),
 (70,70,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:15:27','2024-11-02 09:15:27','7b55e9b8-cb5e-4a45-adb6-67cd1b93679e'),
-(72,72,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:16:40','2024-11-02 09:16:40','2c72584c-535e-4ae0-a21b-43d80f1f2fa5');
+(72,72,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50],\"d2a5becd-cb13-4dfe-85d3-f09c17e34448\":\"<p class=\\\"module-text__2-spalten\\\">sdsddsfds </p><p>sdfdsfsdffds</p><p> </p>\"}',1,'2024-11-02 09:16:40','2024-11-02 09:16:40','2c72584c-535e-4ae0-a21b-43d80f1f2fa5'),
+(74,74,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50]}',1,'2026-05-12 20:21:24','2026-05-12 20:21:24','c7dd9844-eb83-4715-9841-bc56b0187cea'),
+(75,75,1,'Reiner Zufall','startseite','__home__','{\"2fef81bc-44ba-4070-967c-51790791d3b6\":[50]}',1,'2026-05-23 20:52:26','2026-05-23 20:52:26','0b2220b9-c20d-4676-aa51-5ea9dd436ea3');
 /*!40000 ALTER TABLE `elements_sites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1047,7 +1494,9 @@ INSERT INTO `entries` VALUES
 (67,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:12:42','2024-11-02 09:12:42'),
 (68,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:12:51','2024-11-02 09:12:51'),
 (70,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:15:27','2024-11-02 09:15:27'),
-(72,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:16:40','2024-11-02 09:16:40');
+(72,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2024-11-02 09:16:40','2024-11-02 09:16:40'),
+(74,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2026-05-12 20:21:24','2026-05-12 20:21:24'),
+(75,1,NULL,NULL,NULL,1,'2022-09-28 12:24:00',NULL,'live',NULL,NULL,'2026-05-23 20:52:26','2026-05-23 20:52:26');
 /*!40000 ALTER TABLE `entries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1094,6 +1543,7 @@ CREATE TABLE `entrytypes` (
   `description` text DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
+  `uiLabelFormat` varchar(255) NOT NULL DEFAULT '{title}',
   `hasTitleField` tinyint(1) NOT NULL DEFAULT 1,
   `titleTranslationMethod` varchar(255) NOT NULL DEFAULT 'site',
   `titleTranslationKeyFormat` text DEFAULT NULL,
@@ -1106,6 +1556,7 @@ CREATE TABLE `entrytypes` (
   `dateUpdated` datetime NOT NULL,
   `dateDeleted` datetime DEFAULT NULL,
   `uid` char(36) NOT NULL DEFAULT '0',
+  `allowLineBreaksInTitles` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `idx_bbjfbcelkueahisyjscvmpgplqpjknbwsoco` (`fieldLayoutId`),
   KEY `idx_oemaojqaauvkpsfrckxtnjlbjtyjkdlxlbiw` (`dateDeleted`),
@@ -1120,7 +1571,7 @@ CREATE TABLE `entrytypes` (
 LOCK TABLES `entrytypes` WRITE;
 /*!40000 ALTER TABLE `entrytypes` DISABLE KEYS */;
 INSERT INTO `entrytypes` VALUES
-(1,1,'Startseite','startseite',NULL,'',NULL,1,'site',NULL,'',1,'site',NULL,1,'2022-09-28 12:24:11','2024-10-04 19:32:56',NULL,'0e793c4c-3298-4c14-a50e-fe050eeaee18');
+(1,1,'Startseite','startseite',NULL,NULL,NULL,'{title}',1,'site',NULL,NULL,1,'site',NULL,1,'2022-09-28 12:24:11','2026-05-12 20:21:24',NULL,'0e793c4c-3298-4c14-a50e-fe050eeaee18',0);
 /*!40000 ALTER TABLE `entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1152,9 +1603,9 @@ CREATE TABLE `fieldlayouts` (
 LOCK TABLES `fieldlayouts` WRITE;
 /*!40000 ALTER TABLE `fieldlayouts` DISABLE KEYS */;
 INSERT INTO `fieldlayouts` VALUES
-(1,'craft\\elements\\Entry','{\"tabs\":[{\"name\":\"Inhalt\",\"uid\":\"68594230-9efe-49da-80cf-dc0970f98312\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\entries\\\\EntryTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"requirable\":false,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T17:41:11+00:00\",\"uid\":\"b0f3b706-9654-4e91-ad6c-c7a6fde59439\",\"userCondition\":null,\"elementCondition\":null},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":false,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T17:41:11+00:00\",\"uid\":\"2fef81bc-44ba-4070-967c-51790791d3b6\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"12994855-fd13-4d38-8ad9-156bb1960e74\"}]}]}','2022-09-28 12:24:11','2024-12-10 22:37:37',NULL,'8b195686-1317-4797-8d9f-8106393d5d59'),
+(1,'craft\\elements\\Entry','{\"tabs\":[{\"name\":\"Inhalt\",\"uid\":\"68594230-9efe-49da-80cf-dc0970f98312\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\entries\\\\EntryTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"width\":100,\"dateAdded\":\"2024-10-04T17:41:11+00:00\",\"uid\":\"b0f3b706-9654-4e91-ad6c-c7a6fde59439\",\"userCondition\":null,\"elementCondition\":null,\"required\":true},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"oldFieldUid\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":false,\"width\":100,\"dateAdded\":\"2024-10-04T17:41:11+00:00\",\"uid\":\"2fef81bc-44ba-4070-967c-51790791d3b6\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"12994855-fd13-4d38-8ad9-156bb1960e74\",\"editCondition\":null,\"elementEditCondition\":null}]},{\"name\":\"SEO\",\"uid\":\"b94d0d0f-17b3-419e-b00e-33fd90b947ee\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"oldFieldUid\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":false,\"width\":100,\"dateAdded\":\"2026-10-02T00:00:00+00:00\",\"uid\":\"5f38c507-0ae3-4d62-b548-919e713c0ea6\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"e667dda0-024e-49cf-b865-a2bb0a7c491e\",\"editCondition\":null,\"elementEditCondition\":null},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"oldFieldUid\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":false,\"width\":100,\"dateAdded\":\"2026-10-02T00:00:00+00:00\",\"uid\":\"5f174405-7ebc-4db6-a429-a4949f1abfef\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"e6ae2701-df0a-4888-9652-c27e703d3a04\",\"editCondition\":null,\"elementEditCondition\":null}]}],\"generatedFields\":[],\"cardView\":[],\"thumbFieldKey\":null,\"cardThumbAlignment\":\"end\"}','2022-09-28 12:24:11','2026-10-02 09:41:19',NULL,'8b195686-1317-4797-8d9f-8106393d5d59'),
 (2,'craft\\elements\\Asset',NULL,'2022-10-03 14:52:04','2022-10-03 14:52:04','2022-10-03 17:07:18','e6565791-f8cf-4a18-85f0-1eb2df8e7e78'),
-(3,'craft\\elements\\Asset','{\"tabs\":[{\"name\":\"Content\",\"uid\":\"6b9c9049-f380-4f5d-8db8-2e6fa1a74f1c\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\assets\\\\AssetTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"requirable\":false,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T10:41:11-07:00\",\"uid\":\"2124b4b0-5b72-4089-a532-43c097daaf1d\",\"userCondition\":null,\"elementCondition\":null},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":true,\"providesThumbs\":false,\"includeInCards\":false,\"width\":100,\"dateAdded\":\"2024-10-04T10:41:11-07:00\",\"uid\":\"e1f9bdf7-3e08-4419-8e6f-4bb6c8eebfdd\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"396abe4e-d4af-4c68-a2fb-7a3bce13f340\"}]}]}','2022-10-03 17:08:22','2024-10-04 17:42:11',NULL,'413aa4a6-e2a6-4c94-b2e0-08be3e37fc65');
+(3,'craft\\elements\\Asset','{\"tabs\":[{\"name\":\"Content\",\"uid\":\"6b9c9049-f380-4f5d-8db8-2e6fa1a74f1c\",\"userCondition\":null,\"elementCondition\":null,\"elements\":[{\"type\":\"craft\\\\fieldlayoutelements\\\\assets\\\\AssetTitleField\",\"inputType\":null,\"autocomplete\":false,\"class\":null,\"size\":null,\"name\":null,\"autocorrect\":true,\"autocapitalize\":true,\"disabled\":false,\"readonly\":false,\"title\":null,\"placeholder\":null,\"step\":null,\"min\":null,\"max\":null,\"requirable\":false,\"id\":null,\"containerAttributes\":[],\"inputContainerAttributes\":[],\"labelAttributes\":[],\"orientation\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"width\":100,\"dateAdded\":\"2024-10-04T17:41:11+00:00\",\"uid\":\"2124b4b0-5b72-4089-a532-43c097daaf1d\",\"userCondition\":null,\"elementCondition\":null},{\"type\":\"craft\\\\fieldlayoutelements\\\\CustomField\",\"handle\":null,\"label\":null,\"instructions\":null,\"tip\":null,\"warning\":null,\"required\":true,\"width\":100,\"dateAdded\":\"2024-10-04T17:41:11+00:00\",\"uid\":\"e1f9bdf7-3e08-4419-8e6f-4bb6c8eebfdd\",\"userCondition\":null,\"elementCondition\":null,\"fieldUid\":\"396abe4e-d4af-4c68-a2fb-7a3bce13f340\",\"editCondition\":null,\"elementEditCondition\":null}]}],\"generatedFields\":[],\"cardView\":[],\"thumbFieldKey\":null,\"cardThumbAlignment\":\"end\"}','2022-10-03 17:08:22','2026-05-12 20:21:24',NULL,'413aa4a6-e2a6-4c94-b2e0-08be3e37fc65');
 /*!40000 ALTER TABLE `fieldlayouts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1185,7 +1636,7 @@ CREATE TABLE `fields` (
   KEY `idx_hqlkqtznjkmctpcmdfasqabrnoifpwdqtpqg` (`handle`,`context`),
   KEY `idx_fpdazeqmbuzxtbvqurcuqqegkvlrpbmyunhn` (`context`),
   KEY `idx_jsriqkjieqhjghpyhkflaskwkvigjcowwnow` (`dateDeleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1195,7 +1646,7 @@ CREATE TABLE `fields` (
 LOCK TABLES `fields` WRITE;
 /*!40000 ALTER TABLE `fields` DISABLE KEYS */;
 INSERT INTO `fields` VALUES
-(10,'Projektbilder','projektbilder','global',NULL,NULL,0,'site',NULL,'craft\\fields\\Assets','{\"allowSelfRelations\":false,\"allowSubfolders\":false,\"allowUploads\":true,\"allowedKinds\":null,\"branchLimit\":null,\"defaultUploadLocationSource\":\"volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04\",\"defaultUploadLocationSubpath\":null,\"localizeRelations\":false,\"maintainHierarchy\":false,\"maxRelations\":null,\"minRelations\":null,\"previewMode\":\"full\",\"restrictFiles\":false,\"restrictLocation\":false,\"restrictedDefaultUploadSubpath\":null,\"restrictedLocationSource\":\"volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04\",\"restrictedLocationSubpath\":null,\"selectionLabel\":null,\"showSiteMenu\":true,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"sources\":\"*\",\"targetSiteId\":null,\"validateRelatedElements\":false,\"viewMode\":\"list\"}','2022-10-03 14:52:37','2024-10-04 17:42:11',NULL,'12994855-fd13-4d38-8ad9-156bb1960e74'),
+(10,'Projektbilder','projektbilder','global',NULL,NULL,0,'none',NULL,'craft\\fields\\Assets','{\"allowSelfRelations\":false,\"allowSubfolders\":false,\"allowUploads\":true,\"allowedKinds\":null,\"branchLimit\":null,\"defaultPlacement\":\"end\",\"defaultUploadLocationSource\":\"volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04\",\"defaultUploadLocationSubpath\":null,\"maintainHierarchy\":false,\"maxRelations\":null,\"minRelations\":null,\"previewMode\":\"full\",\"restrictFiles\":false,\"restrictLocation\":false,\"restrictedDefaultUploadSubpath\":null,\"restrictedLocationSource\":\"volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04\",\"restrictedLocationSubpath\":null,\"selectionLabel\":null,\"showSearchInput\":true,\"showSiteMenu\":true,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"sources\":\"*\",\"targetSiteId\":null,\"validateRelatedElements\":false,\"viewMode\":\"list\"}','2022-10-03 14:52:37','2026-05-12 20:21:24',NULL,'12994855-fd13-4d38-8ad9-156bb1960e74'),
 (11,'SEO Bildbeschreibung','seoBildbeschreibung','global','dukgymih',NULL,0,'none',NULL,'craft\\fields\\PlainText','{\"byteLimit\":null,\"charLimit\":null,\"code\":false,\"initialRows\":4,\"multiline\":false,\"placeholder\":null,\"uiMode\":\"normal\"}','2022-10-04 09:51:25','2024-10-04 19:56:14',NULL,'396abe4e-d4af-4c68-a2fb-7a3bce13f340'),
 (12,'CKEditor','ckeditor','global','lnhfbfqy',NULL,0,'none',NULL,'craft\\ckeditor\\Field','{\"availableTransforms\":\"\",\"availableVolumes\":\"*\",\"ckeConfig\":\"9e7d0f16-c377-4f3b-a734-ed1f646f1fed\",\"columnType\":\"text\",\"defaultTransform\":null,\"enableSourceEditingForNonAdmins\":false,\"purifierConfig\":null,\"purifyHtml\":true,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"showWordCount\":false,\"wordLimit\":null}','2024-07-17 16:33:23','2024-07-17 16:33:23','2024-10-04 17:42:11','dffdb509-f1db-4d98-897e-971108a169e2'),
 (13,'Farbe','farbe','global','ctrdgacg',NULL,0,'none',NULL,'craft\\fields\\Color','{\"defaultColor\":null}','2024-10-04 17:42:11','2024-10-04 17:42:11','2024-10-06 08:03:59','0a064e6b-5fcd-4a2b-acb7-b46630ad5244'),
@@ -1205,48 +1656,184 @@ INSERT INTO `fields` VALUES
 (17,'Konflikt ;)','konflikt','global','lftxpsoa',NULL,0,'none',NULL,'craft\\fields\\PlainText','{\"byteLimit\":null,\"charLimit\":null,\"code\":false,\"columnType\":null,\"initialRows\":4,\"multiline\":false,\"placeholder\":null,\"uiMode\":\"normal\"}','2024-10-04 17:42:11','2024-10-04 17:42:11','2024-10-04 19:33:11','82491024-fe0a-4331-a632-7b4e1a03d628'),
 (18,'SEO Meta Description','seoMetaDescription','global',NULL,'Kurzer Text, den Suchmaschinen (wahrscheinlich) unter dem Namen der Seite anzeigt',0,'none',NULL,'craft\\fields\\PlainText','{\"byteLimit\":null,\"charLimit\":null,\"code\":false,\"initialRows\":4,\"multiline\":false,\"placeholder\":null,\"uiMode\":\"normal\"}','2024-10-04 19:55:42','2024-10-04 19:56:24',NULL,'e667dda0-024e-49cf-b865-a2bb0a7c491e'),
 (19,'CKEditor','ckeditor','global',NULL,NULL,0,'none',NULL,'craft\\ckeditor\\Field','{\"availableTransforms\":\"\",\"availableVolumes\":\"*\",\"ckeConfig\":null,\"createButtonLabel\":null,\"defaultTransform\":null,\"enableSourceEditingForNonAdmins\":false,\"purifierConfig\":null,\"purifyHtml\":true,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"showWordCount\":false,\"wordLimit\":null}','2024-10-06 07:58:30','2024-10-06 07:58:30','2024-10-06 08:03:56','352e4f04-b337-41cf-a259-2df2eb9be025'),
-(20,'Test CKEditor','testCkeditor','global',NULL,NULL,0,'none',NULL,'craft\\ckeditor\\Field','{\"availableTransforms\":\"\",\"availableVolumes\":\"*\",\"ckeConfig\":\"cb39eaf1-d815-499d-a1b7-bbf293af0c6e\",\"createButtonLabel\":null,\"defaultTransform\":null,\"enableSourceEditingForNonAdmins\":false,\"purifierConfig\":null,\"purifyHtml\":true,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"showWordCount\":false,\"wordLimit\":null}','2024-11-01 23:35:49','2024-11-01 23:35:49','2024-12-10 22:37:37','116cf140-dea1-4764-a15b-a90c197516e3');
+(20,'Test CKEditor','testCkeditor','global',NULL,NULL,0,'none',NULL,'craft\\ckeditor\\Field','{\"availableTransforms\":\"\",\"availableVolumes\":\"*\",\"ckeConfig\":\"cb39eaf1-d815-499d-a1b7-bbf293af0c6e\",\"createButtonLabel\":null,\"defaultTransform\":null,\"enableSourceEditingForNonAdmins\":false,\"purifierConfig\":null,\"purifyHtml\":true,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"showWordCount\":false,\"wordLimit\":null}','2024-11-01 23:35:49','2024-11-01 23:35:49','2024-12-10 22:37:37','116cf140-dea1-4764-a15b-a90c197516e3'),
+(21,'Open Graph Bild','openGraphBild','global',NULL,NULL,0,'none',NULL,'craft\\fields\\Assets','{\"allowSelfRelations\":false,\"allowSubfolders\":false,\"allowUploads\":true,\"allowedKinds\":[\"image\"],\"branchLimit\":null,\"defaultPlacement\":\"end\",\"defaultUploadLocationSource\":\"volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04\",\"defaultUploadLocationSubpath\":null,\"maintainHierarchy\":false,\"maxRelations\":1,\"minRelations\":null,\"previewMode\":\"full\",\"restrictFiles\":true,\"restrictLocation\":false,\"restrictedDefaultUploadSubpath\":null,\"restrictedLocationSource\":\"volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04\",\"restrictedLocationSubpath\":null,\"selectionLabel\":null,\"showSearchInput\":true,\"showSiteMenu\":false,\"showUnpermittedFiles\":false,\"showUnpermittedVolumes\":false,\"sources\":\"*\",\"targetSiteId\":null,\"validateRelatedElements\":false,\"viewMode\":\"thumbs\"}','2026-10-02 09:41:19','2026-10-02 09:41:19',NULL,'e6ae2701-df0a-4888-9652-c27e703d3a04');
 /*!40000 ALTER TABLE `fields` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `formie_emailtemplates`
+-- Table structure for table `form_old10`
 --
 
-DROP TABLE IF EXISTS `formie_emailtemplates`;
+DROP TABLE IF EXISTS `form_old10`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_emailtemplates` (
+CREATE TABLE `form_old10` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `formId` int(11) DEFAULT NULL,
+  `submissionId` int(11) DEFAULT NULL,
+  `notificationId` int(11) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `to` varchar(255) DEFAULT NULL,
+  `cc` varchar(255) DEFAULT NULL,
+  `bcc` varchar(255) DEFAULT NULL,
+  `replyTo` varchar(255) DEFAULT NULL,
+  `replyToName` varchar(255) DEFAULT NULL,
+  `from` varchar(255) DEFAULT NULL,
+  `fromName` varchar(255) DEFAULT NULL,
+  `sender` varchar(255) DEFAULT NULL,
+  `body` mediumtext DEFAULT NULL,
+  `htmlBody` mediumtext DEFAULT NULL,
+  `info` text DEFAULT NULL,
+  `success` tinyint(1) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `dateCreated` datetime DEFAULT NULL,
+  `dateUpdated` datetime DEFAULT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fk_kigawkunncvweeskovdvcsgiatbpswhzlbfy` (`formId`),
+  KEY `fk_iucbjutlrpcmanhxqvusmiretddyxtpydqaq` (`submissionId`),
+  KEY `fk_eeqvwqtoeynxeonujtfjnzzamcdozmebawdm` (`notificationId`),
+  CONSTRAINT `fk_eeqvwqtoeynxeonujtfjnzzamcdozmebawdm` FOREIGN KEY (`notificationId`) REFERENCES `formi_old4` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_gttoqdsftqxyedxngvbfxxiimnsisfxqqpvu` FOREIGN KEY (`id`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_iucbjutlrpcmanhxqvusmiretddyxtpydqaq` FOREIGN KEY (`submissionId`) REFERENCES `form_old13` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_kigawkunncvweeskovdvcsgiatbpswhzlbfy` FOREIGN KEY (`formId`) REFERENCES `formi_old1` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `form_old10`
+--
+
+LOCK TABLES `form_old10` WRITE;
+/*!40000 ALTER TABLE `form_old10` DISABLE KEYS */;
+/*!40000 ALTER TABLE `form_old10` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `form_old11`
+--
+
+DROP TABLE IF EXISTS `form_old11`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `form_old11` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `handle` varchar(64) NOT NULL,
-  `template` varchar(255) NOT NULL,
+  `color` enum('green','orange','red','blue','yellow','pink','purple','turquoise','light','grey','black') NOT NULL DEFAULT 'green',
+  `description` varchar(255) DEFAULT NULL,
   `sortOrder` smallint(6) unsigned DEFAULT NULL,
+  `isDefault` tinyint(1) DEFAULT NULL,
   `dateDeleted` datetime DEFAULT NULL,
   `dateCreated` datetime NOT NULL,
   `dateUpdated` datetime NOT NULL,
   `uid` char(36) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `form_old11`
+--
+
+LOCK TABLES `form_old11` WRITE;
+/*!40000 ALTER TABLE `form_old11` DISABLE KEYS */;
+INSERT INTO `form_old11` VALUES
+(1,'New','new','green',NULL,1,1,NULL,'2024-07-17 15:11:57','2024-07-17 15:11:57','c9004b70-8ede-4500-b44d-1638afd790aa');
+/*!40000 ALTER TABLE `form_old11` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `form_old12`
+--
+
+DROP TABLE IF EXISTS `form_old12`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `form_old12` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `handle` varchar(64) NOT NULL,
+  `data` mediumtext DEFAULT NULL,
+  `templateId` int(11) DEFAULT NULL,
+  `submitActionEntryId` int(11) DEFAULT NULL,
+  `submitActionEntrySiteId` int(11) DEFAULT NULL,
+  `defaultStatusId` int(11) DEFAULT NULL,
+  `dateDeleted` datetime DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_guztfeusufwurxlfrpgeaeznrdwzncxzeyof` (`templateId`),
+  KEY `idx_jegfxjhjrtsevyhbcswbetbmgfracqveennq` (`defaultStatusId`),
+  CONSTRAINT `fk_eqdsaqiwxtdvgmjdpzekvvuexoawribjzwhi` FOREIGN KEY (`defaultStatusId`) REFERENCES `form_old11` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_zxqfhvmudkhraxtsfmsuoiddcygybhvqqfcc` FOREIGN KEY (`templateId`) REFERENCES `formi_old2` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `form_old12`
+--
+
+LOCK TABLES `form_old12` WRITE;
+/*!40000 ALTER TABLE `form_old12` DISABLE KEYS */;
+INSERT INTO `form_old12` VALUES
+(1,'Contact Form','contactForm','{\"dataRetention\":\"forever\",\"dataRetentionValue\":null,\"fileUploadsAction\":\"retain\",\"notifications\":[{\"attachFiles\":true,\"attachPdf\":false,\"bcc\":null,\"cc\":null,\"conditions\":\"{\\\"sendRule\\\":\\\"send\\\",\\\"conditionRule\\\":\\\"all\\\",\\\"conditions\\\":[]}\",\"content\":\"[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"A user submission has been made on the \\\\\\\"\\\"},{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"Form Name\\\",\\\"value\\\":\\\"{formName}\\\"}},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"\\\\\\\" form on \\\"},{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"Site Name\\\",\\\"value\\\":\\\"{siteName}\\\"}},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" at \\\"},{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"Timestamp (yyyy-mm-dd hh:mm:ss)\\\",\\\"value\\\":\\\"{timestamp}\\\"}}]},{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Their submission details are:\\\"}]},{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"All Form Fields\\\",\\\"value\\\":\\\"{allFields}\\\"}}]}]\",\"enableConditions\":false,\"enabled\":true,\"formId\":null,\"from\":null,\"fromName\":null,\"id\":\"new981-8077\",\"name\":\"Admin Notification\",\"pdfTemplateId\":null,\"recipients\":\"email\",\"replyTo\":\"{field.emailAddress}\",\"replyToName\":null,\"subject\":\"A new submission was made on \\\"{formName}\\\"\",\"templateId\":null,\"to\":\"{systemEmail}\",\"toConditions\":\"{\\\"toRecipients\\\":[]}\",\"uid\":null},{\"attachFiles\":true,\"attachPdf\":false,\"bcc\":null,\"cc\":null,\"conditions\":\"{\\\"sendRule\\\":\\\"send\\\",\\\"conditionRule\\\":\\\"all\\\",\\\"conditions\\\":[]}\",\"content\":\"[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Thanks again for contacting us. Our team will get back to you as soon as we can.\\\"}]},{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"As a reminder, you submitted the following details at \\\"},{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"Timestamp (yyyy-mm-dd hh:mm:ss)\\\",\\\"value\\\":\\\"{timestamp}\\\"}}]},{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"All Form Fields\\\",\\\"value\\\":\\\"{allFields}\\\"}}]}]\",\"enableConditions\":false,\"enabled\":true,\"formId\":null,\"from\":null,\"fromName\":null,\"id\":\"new7052-5168\",\"name\":\"User Notification\",\"pdfTemplateId\":\"\",\"recipients\":\"email\",\"replyTo\":null,\"replyToName\":null,\"subject\":\"Thanks for contacting us!\",\"templateId\":\"\",\"to\":\"{field.emailAddress}\",\"toConditions\":\"{\\\"toRecipients\\\":[]}\",\"uid\":null}],\"pages\":[{\"id\":\"new1272610411\",\"label\":\"Page 1\",\"notificationFlag\":true,\"rows\":[{\"fields\":[{\"brandNewField\":false,\"handle\":\"yourName\",\"hasLabel\":true,\"id\":\"new7715-7348\",\"label\":\"Your Name\",\"settings\":{\"conditions\":\"{\\\"showRule\\\":\\\"show\\\",\\\"conditionRule\\\":\\\"all\\\",\\\"conditions\\\":[]}\",\"firstNameCollapsed\":false,\"firstNameDefaultValue\":\"\",\"firstNameEnabled\":true,\"firstNameLabel\":\"First Name\",\"firstNamePlaceholder\":\"e.g. Peter\",\"firstNameRequired\":true,\"handle\":\"yourName\",\"instructions\":\"Please enter your full name.\",\"instructionsPosition\":\"verbb\\\\formie\\\\positions\\\\AboveInput\",\"label\":\"Your Name\",\"labelPosition\":\"verbb\\\\formie\\\\positions\\\\Hidden\",\"lastNameCollapsed\":false,\"lastNameDefaultValue\":\"\",\"lastNameEnabled\":true,\"lastNameLabel\":\"Last Name\",\"lastNamePlaceholder\":\"e.g. Sherman\",\"lastNameRequired\":true,\"maxType\":\"characters\",\"middleNameCollapsed\":true,\"middleNameDefaultValue\":\"\",\"middleNameEnabled\":false,\"middleNameLabel\":\"Middle Name\",\"placeholder\":\"Your name\",\"prefixCollapsed\":true,\"prefixDefaultValue\":\"\",\"prefixEnabled\":false,\"prefixLabel\":\"Prefix\",\"subfieldLabelPosition\":\"\",\"useMultipleFields\":true,\"visibility\":\"\"},\"type\":\"verbb\\\\formie\\\\fields\\\\formfields\\\\Name\"}],\"id\":\"new8990-9934\"},{\"fields\":[{\"brandNewField\":false,\"handle\":\"emailAddress\",\"hasLabel\":true,\"id\":\"new6482-9528\",\"label\":\"Email Address\",\"settings\":{\"handle\":\"emailAddress\",\"instructions\":\"Please enter your email so we can get in touch.\",\"instructionsPosition\":\"\",\"label\":\"Email Address\",\"labelPosition\":\"\",\"maxType\":\"characters\",\"placeholder\":\"e.g. psherman@wallaby.com\",\"required\":true},\"type\":\"verbb\\\\formie\\\\fields\\\\formfields\\\\Email\"}],\"id\":\"new9524-8509\"},{\"fields\":[{\"brandNewField\":false,\"handle\":\"message\",\"hasLabel\":true,\"id\":\"new982-7322\",\"label\":\"Message\",\"settings\":{\"conditions\":\"{\\\"showRule\\\":\\\"show\\\",\\\"conditionRule\\\":\\\"all\\\",\\\"conditions\\\":[]}\",\"handle\":\"message\",\"instructions\":\"Please enter your comments.\",\"instructionsPosition\":\"\",\"label\":\"Message\",\"labelPosition\":\"\",\"maxType\":\"characters\",\"placeholder\":\"e.g. The reason for my enquiry is...\",\"required\":true,\"visibility\":\"\"},\"type\":\"verbb\\\\formie\\\\fields\\\\formfields\\\\MultiLineText\"}],\"id\":\"new2177-9685\"}],\"settings\":{\"backButtonLabel\":\"Back\",\"buttonsPosition\":\"left\",\"label\":\"Page 1\",\"showBackButton\":false,\"submitButtonLabel\":\"Contact us\"},\"sortOrder\":0}],\"settings\":{\"collectIp\":false,\"collectUser\":false,\"dataRetention\":null,\"dataRetentionValue\":null,\"defaultEmailTemplateId\":null,\"defaultInstructionsPosition\":\"verbb\\\\formie\\\\positions\\\\AboveInput\",\"defaultLabelPosition\":\"verbb\\\\formie\\\\positions\\\\AboveInput\",\"disableCaptchas\":false,\"displayCurrentPageTitle\":false,\"displayFormTitle\":false,\"displayPageProgress\":false,\"displayPageTabs\":false,\"errorMessage\":[{\"content\":[{\"text\":\"Couldn’t save submission due to errors.\",\"type\":\"text\"}],\"type\":\"paragraph\"}],\"errorMessagePosition\":\"top-form\",\"fileUploadsAction\":null,\"limitSubmissions\":false,\"limitSubmissionsMessage\":null,\"limitSubmissionsNumber\":null,\"limitSubmissionsType\":null,\"loadingIndicator\":\"spinner\",\"loadingIndicatorText\":null,\"progressPosition\":\"end\",\"redirectUrl\":null,\"requireUser\":false,\"requireUserMessage\":null,\"scheduleForm\":false,\"scheduleFormEnd\":null,\"scheduleFormExpiredMessage\":null,\"scheduleFormPendingMessage\":null,\"scheduleFormStart\":null,\"scrollToTop\":true,\"submissionTitleFormat\":\"{timestamp}\",\"submitAction\":\"message\",\"submitActionFormHide\":false,\"submitActionMessage\":[{\"content\":[{\"text\":\"Thank you for contacting us! Our team will get in touch shortly to follow up on your message.\",\"type\":\"text\"}],\"type\":\"paragraph\"}],\"submitActionMessagePosition\":\"top-form\",\"submitActionMessageTimeout\":null,\"submitActionTab\":null,\"submitActionUrl\":null,\"submitMethod\":\"ajax\",\"validationOnFocus\":true,\"validationOnSubmit\":true},\"userDeletedAction\":\"retain\"}',NULL,NULL,NULL,1,NULL,'2024-07-17 15:11:57','2024-07-17 15:11:57','d9d672c4-8aa3-4a45-bb07-6e3471e03007');
+/*!40000 ALTER TABLE `form_old12` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `form_old13`
+--
+
+DROP TABLE IF EXISTS `form_old13`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `form_old13` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `formId` int(11) NOT NULL,
+  `statusId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `isIncomplete` tinyint(1) DEFAULT 0,
+  `isSpam` tinyint(1) DEFAULT 0,
+  `spamReason` text DEFAULT NULL,
+  `spamClass` varchar(255) DEFAULT NULL,
+  `snapshot` text DEFAULT NULL,
+  `ipAddress` varchar(255) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_efabkbmuaohrkwthgjrypbzweqjfmcvqscoi` (`formId`),
+  KEY `idx_zzxlojxuagfhzkcxdepfcmbpsmsrslmcfgwv` (`statusId`),
+  KEY `idx_sxlxejjsojpnxkczmcwbwitglkxvdxqqotba` (`userId`),
+  CONSTRAINT `fk_bvukyjeaijgntfrpwlvagbxrhxbziecrwasg` FOREIGN KEY (`statusId`) REFERENCES `form_old11` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_fhvcgcdmsasuyouqtxjuaarolfmnyqsstkwx` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_tilojsmskjjgejztzgogymtjevvolhbswqsp` FOREIGN KEY (`id`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_vmmkmammecvecoapqyiusmdgtpajxxxeccdo` FOREIGN KEY (`formId`) REFERENCES `formi_old1` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `formie_emailtemplates`
+-- Dumping data for table `form_old13`
 --
 
-LOCK TABLES `formie_emailtemplates` WRITE;
-/*!40000 ALTER TABLE `formie_emailtemplates` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_emailtemplates` ENABLE KEYS */;
+LOCK TABLES `form_old13` WRITE;
+/*!40000 ALTER TABLE `form_old13` DISABLE KEYS */;
+/*!40000 ALTER TABLE `form_old13` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `formie_forms`
+-- Table structure for table `formi_old1`
 --
 
-DROP TABLE IF EXISTS `formie_forms`;
+DROP TABLE IF EXISTS `formi_old1`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_forms` (
+CREATE TABLE `formi_old1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `handle` varchar(64) NOT NULL,
   `fieldContentTable` varchar(74) NOT NULL,
@@ -1269,31 +1856,31 @@ CREATE TABLE `formie_forms` (
   KEY `idx_vhowpsqsjpwzxyxdlqvhwyfzbsxhsdwfcbwd` (`submitActionEntryId`),
   KEY `idx_oayinwrtqvfmyeymjpkbaneaezeqkcqhxfws` (`submitActionEntrySiteId`),
   KEY `idx_rytvaeupkjkvecswlobmklwbheytpjkqdsvn` (`fieldLayoutId`),
-  CONSTRAINT `fk_bajjmvwmvbboewlwqmpqwpvoiyqmegerstel` FOREIGN KEY (`templateId`) REFERENCES `formie_formtemplates` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_bajjmvwmvbboewlwqmpqwpvoiyqmegerstel` FOREIGN KEY (`templateId`) REFERENCES `formi_old2` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_ijivgddlzmlasqpgoybceabfymooxwhusxcq` FOREIGN KEY (`submitActionEntryId`) REFERENCES `entries` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `fk_itwfblyudymbaaxzceaievvfkzvjrfropolp` FOREIGN KEY (`defaultStatusId`) REFERENCES `formie_statuses` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_itwfblyudymbaaxzceaievvfkzvjrfropolp` FOREIGN KEY (`defaultStatusId`) REFERENCES `form_old11` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_mmnlzeocmbmenytvfyqvhattdugulmhowbyq` FOREIGN KEY (`id`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_viutyzvdovdimmuwohieiqtwxgwytotjadpv` FOREIGN KEY (`fieldLayoutId`) REFERENCES `fieldlayouts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `formie_forms`
+-- Dumping data for table `formi_old1`
 --
 
-LOCK TABLES `formie_forms` WRITE;
-/*!40000 ALTER TABLE `formie_forms` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_forms` ENABLE KEYS */;
+LOCK TABLES `formi_old1` WRITE;
+/*!40000 ALTER TABLE `formi_old1` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formi_old1` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `formie_formtemplates`
+-- Table structure for table `formi_old2`
 --
 
-DROP TABLE IF EXISTS `formie_formtemplates`;
+DROP TABLE IF EXISTS `formi_old2`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_formtemplates` (
+CREATE TABLE `formi_old2` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `handle` varchar(64) NOT NULL,
@@ -1318,22 +1905,22 @@ CREATE TABLE `formie_formtemplates` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `formie_formtemplates`
+-- Dumping data for table `formi_old2`
 --
 
-LOCK TABLES `formie_formtemplates` WRITE;
-/*!40000 ALTER TABLE `formie_formtemplates` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_formtemplates` ENABLE KEYS */;
+LOCK TABLES `formi_old2` WRITE;
+/*!40000 ALTER TABLE `formi_old2` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formi_old2` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `formie_integrations`
+-- Table structure for table `formi_old3`
 --
 
-DROP TABLE IF EXISTS `formie_integrations`;
+DROP TABLE IF EXISTS `formi_old3`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_integrations` (
+CREATE TABLE `formi_old3` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `handle` varchar(64) NOT NULL,
@@ -1352,12 +1939,268 @@ CREATE TABLE `formie_integrations` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `formie_integrations`
+-- Dumping data for table `formi_old3`
 --
 
-LOCK TABLES `formie_integrations` WRITE;
-/*!40000 ALTER TABLE `formie_integrations` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_integrations` ENABLE KEYS */;
+LOCK TABLES `formi_old3` WRITE;
+/*!40000 ALTER TABLE `formi_old3` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formi_old3` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `formi_old4`
+--
+
+DROP TABLE IF EXISTS `formi_old4`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `formi_old4` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `formId` int(11) NOT NULL,
+  `templateId` int(11) DEFAULT NULL,
+  `pdfTemplateId` int(11) DEFAULT NULL,
+  `name` text NOT NULL,
+  `enabled` tinyint(1) DEFAULT 1,
+  `subject` text DEFAULT NULL,
+  `recipients` enum('email','conditions') NOT NULL DEFAULT 'email',
+  `to` text DEFAULT NULL,
+  `toConditions` text DEFAULT NULL,
+  `cc` text DEFAULT NULL,
+  `bcc` text DEFAULT NULL,
+  `replyTo` text DEFAULT NULL,
+  `replyToName` text DEFAULT NULL,
+  `from` text DEFAULT NULL,
+  `fromName` text DEFAULT NULL,
+  `sender` text DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `attachFiles` tinyint(1) DEFAULT 1,
+  `attachPdf` tinyint(1) DEFAULT 0,
+  `attachAssets` text DEFAULT NULL,
+  `enableConditions` tinyint(1) DEFAULT 0,
+  `conditions` text DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_tgmhfpjjlbinqhwyvlrbcdmysyppnxbhsmob` (`formId`),
+  KEY `idx_iqpfihdqncdqxwvwelxljajphrncxjgnemtv` (`templateId`),
+  KEY `fk_ekhuwcvhlalefisbruauwyofsmkehvqutgqp` (`pdfTemplateId`),
+  CONSTRAINT `fk_axiydtxpomlgahnayzwpmhmhxijjstfvqnro` FOREIGN KEY (`formId`) REFERENCES `formi_old1` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_eehmpkvgshdjwhhyrksryrhvffueflrnkfks` FOREIGN KEY (`templateId`) REFERENCES `formie_old` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_ekhuwcvhlalefisbruauwyofsmkehvqutgqp` FOREIGN KEY (`pdfTemplateId`) REFERENCES `formi_old8` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `formi_old4`
+--
+
+LOCK TABLES `formi_old4` WRITE;
+/*!40000 ALTER TABLE `formi_old4` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formi_old4` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `formi_old5`
+--
+
+DROP TABLE IF EXISTS `formi_old5`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `formi_old5` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `integrationId` int(11) NOT NULL,
+  `submissionId` int(11) NOT NULL,
+  `fieldId` int(11) NOT NULL,
+  `subscriptionId` int(11) DEFAULT NULL,
+  `amount` decimal(14,4) DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `status` enum('pending','redirect','success','failed','processing') NOT NULL,
+  `reference` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `note` mediumtext DEFAULT NULL,
+  `response` text DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_naomowvfvcksfdvenhuzjowzftskmvnhxvuh` (`integrationId`),
+  KEY `idx_ekksuvdoawvdmxqpqmhqupjbsxgnsmqmyrqi` (`fieldId`),
+  KEY `idx_snzefinhuzepdamuamhqwxyzbtphxvdawvcz` (`reference`),
+  KEY `fk_gpmolxwfpjcbeuxebgfadulvqthmgtxlihfh` (`submissionId`),
+  KEY `fk_exgnlpsrmxksfhkrzhputkbjqfxcnbpztjag` (`subscriptionId`),
+  CONSTRAINT `fk_exgnlpsrmxksfhkrzhputkbjqfxcnbpztjag` FOREIGN KEY (`subscriptionId`) REFERENCES `formi_old7` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_gpmolxwfpjcbeuxebgfadulvqthmgtxlihfh` FOREIGN KEY (`submissionId`) REFERENCES `form_old13` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_xmnqshrfumzjjpgsqaequjyppjgevkwcztyu` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_xtkbharamwgenurngwunmsrbtaokjxolrmgx` FOREIGN KEY (`integrationId`) REFERENCES `formi_old3` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `formi_old5`
+--
+
+LOCK TABLES `formi_old5` WRITE;
+/*!40000 ALTER TABLE `formi_old5` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formi_old5` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `formi_old6`
+--
+
+DROP TABLE IF EXISTS `formi_old6`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `formi_old6` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `integrationId` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `handle` varchar(255) DEFAULT NULL,
+  `reference` varchar(255) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `planData` text DEFAULT NULL,
+  `isArchived` tinyint(1) NOT NULL,
+  `dateArchived` datetime DEFAULT NULL,
+  `sortOrder` int(11) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_dxszargbxflmlrlmibprpmyvdwirteqfuhrw` (`handle`),
+  KEY `idx_syvxgzijnlllxncbonganhpbtyhedieiygqx` (`integrationId`),
+  KEY `idx_onzgugwxyyafnhlvlhohyesmhocywhypjjpe` (`reference`),
+  CONSTRAINT `fk_odnkuznpxujnwwjxazfsherqeehszlhfhpeh` FOREIGN KEY (`integrationId`) REFERENCES `formi_old3` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `formi_old6`
+--
+
+LOCK TABLES `formi_old6` WRITE;
+/*!40000 ALTER TABLE `formi_old6` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formi_old6` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `formi_old7`
+--
+
+DROP TABLE IF EXISTS `formi_old7`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `formi_old7` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `integrationId` int(11) DEFAULT NULL,
+  `submissionId` int(11) DEFAULT NULL,
+  `fieldId` int(11) DEFAULT NULL,
+  `planId` int(11) DEFAULT NULL,
+  `reference` varchar(255) NOT NULL,
+  `subscriptionData` text DEFAULT NULL,
+  `trialDays` int(11) NOT NULL,
+  `nextPaymentDate` datetime DEFAULT NULL,
+  `hasStarted` tinyint(1) NOT NULL DEFAULT 1,
+  `isSuspended` tinyint(1) NOT NULL DEFAULT 0,
+  `dateSuspended` datetime DEFAULT NULL,
+  `isCanceled` tinyint(1) NOT NULL,
+  `dateCanceled` datetime DEFAULT NULL,
+  `isExpired` tinyint(1) NOT NULL,
+  `dateExpired` datetime DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_kbpqfsthxuaonjmrvzugsvdqvjalkezyumte` (`integrationId`),
+  KEY `idx_azbbbkxfgneuacocpysbdafjulltuzbyctqr` (`submissionId`),
+  KEY `idx_oqpeaafuujznmlunuaebkafkljsawmwkxlik` (`fieldId`),
+  KEY `idx_jmfehrwfaecjrcdeasfcmxrcqhecrmfugehg` (`planId`),
+  KEY `idx_ajtoqbtyxntbxfssqdgodhdeormjuhdirwse` (`reference`),
+  KEY `idx_xwmkjzjhtsuvegjseegoldiceejsmwhfojdr` (`nextPaymentDate`),
+  KEY `idx_qjtimefzpgskxlitmgqhlmlttlzcgjpayjyi` (`dateExpired`),
+  KEY `idx_qidovlszpmaredzhppyscpsagjiepgycdmjj` (`dateExpired`),
+  CONSTRAINT `fk_aendfgchbeubitdwqvwdmerqrawhogsbcvfu` FOREIGN KEY (`submissionId`) REFERENCES `form_old13` (`id`),
+  CONSTRAINT `fk_fkhaxnydqzefmiswscldzgklfjybfyehtdnq` FOREIGN KEY (`planId`) REFERENCES `formi_old6` (`id`),
+  CONSTRAINT `fk_lkmnjopnqgoswrpbfcnhvwdbpveaiblxfqlq` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`),
+  CONSTRAINT `fk_zjqjiiuswzgepxdazkxrtzzsghmtonwzkwzi` FOREIGN KEY (`integrationId`) REFERENCES `formi_old3` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `formi_old7`
+--
+
+LOCK TABLES `formi_old7` WRITE;
+/*!40000 ALTER TABLE `formi_old7` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formi_old7` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `formi_old8`
+--
+
+DROP TABLE IF EXISTS `formi_old8`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `formi_old8` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `handle` varchar(64) NOT NULL,
+  `template` varchar(255) NOT NULL,
+  `filenameFormat` varchar(255) NOT NULL,
+  `sortOrder` smallint(6) unsigned DEFAULT NULL,
+  `dateDeleted` datetime DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `formi_old8`
+--
+
+LOCK TABLES `formi_old8` WRITE;
+/*!40000 ALTER TABLE `formi_old8` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formi_old8` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `formi_old9`
+--
+
+DROP TABLE IF EXISTS `formi_old9`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `formi_old9` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL,
+  `sourceId` int(11) NOT NULL,
+  `sourceSiteId` int(11) DEFAULT NULL,
+  `targetId` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_nzrdpzxxaczpkfngpxvvibarovqzaaufkqix` (`sourceId`,`sourceSiteId`,`targetId`),
+  KEY `idx_xcgwlxkvqtqmliegtlncystnlewwicxhxxim` (`sourceId`),
+  KEY `idx_fufdqtmhufxfcfdyvratyhjnnfqcpnmmgtep` (`targetId`),
+  KEY `idx_bzhinieqpplzdaoyliaqugezmsopsahspxku` (`sourceSiteId`),
+  CONSTRAINT `fk_bisbusyadfclhkfthyhbxyllpdgbtkngveqg` FOREIGN KEY (`sourceId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_fxnoemiqltzkvprihenpvjjmfhmizvraemfu` FOREIGN KEY (`sourceSiteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_nfwavhqymkfjrxzivroxgagptuwdykhlobxd` FOREIGN KEY (`targetId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `formi_old9`
+--
+
+LOCK TABLES `formi_old9` WRITE;
+/*!40000 ALTER TABLE `formi_old9` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formi_old9` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1427,56 +2270,33 @@ LOCK TABLES `formie_nestedfieldrows` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `formie_notifications`
+-- Table structure for table `formie_old`
 --
 
-DROP TABLE IF EXISTS `formie_notifications`;
+DROP TABLE IF EXISTS `formie_old`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_notifications` (
+CREATE TABLE `formie_old` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `formId` int(11) NOT NULL,
-  `templateId` int(11) DEFAULT NULL,
-  `pdfTemplateId` int(11) DEFAULT NULL,
-  `name` text NOT NULL,
-  `enabled` tinyint(1) DEFAULT 1,
-  `subject` text DEFAULT NULL,
-  `recipients` enum('email','conditions') NOT NULL DEFAULT 'email',
-  `to` text DEFAULT NULL,
-  `toConditions` text DEFAULT NULL,
-  `cc` text DEFAULT NULL,
-  `bcc` text DEFAULT NULL,
-  `replyTo` text DEFAULT NULL,
-  `replyToName` text DEFAULT NULL,
-  `from` text DEFAULT NULL,
-  `fromName` text DEFAULT NULL,
-  `sender` text DEFAULT NULL,
-  `content` text DEFAULT NULL,
-  `attachFiles` tinyint(1) DEFAULT 1,
-  `attachPdf` tinyint(1) DEFAULT 0,
-  `attachAssets` text DEFAULT NULL,
-  `enableConditions` tinyint(1) DEFAULT 0,
-  `conditions` text DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `handle` varchar(64) NOT NULL,
+  `template` varchar(255) NOT NULL,
+  `sortOrder` smallint(6) unsigned DEFAULT NULL,
+  `dateDeleted` datetime DEFAULT NULL,
   `dateCreated` datetime NOT NULL,
   `dateUpdated` datetime NOT NULL,
   `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `idx_tgmhfpjjlbinqhwyvlrbcdmysyppnxbhsmob` (`formId`),
-  KEY `idx_iqpfihdqncdqxwvwelxljajphrncxjgnemtv` (`templateId`),
-  KEY `fk_ekhuwcvhlalefisbruauwyofsmkehvqutgqp` (`pdfTemplateId`),
-  CONSTRAINT `fk_axiydtxpomlgahnayzwpmhmhxijjstfvqnro` FOREIGN KEY (`formId`) REFERENCES `formie_forms` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_eehmpkvgshdjwhhyrksryrhvffueflrnkfks` FOREIGN KEY (`templateId`) REFERENCES `formie_emailtemplates` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `fk_ekhuwcvhlalefisbruauwyofsmkehvqutgqp` FOREIGN KEY (`pdfTemplateId`) REFERENCES `formie_pdftemplates` (`id`) ON DELETE SET NULL
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `formie_notifications`
+-- Dumping data for table `formie_old`
 --
 
-LOCK TABLES `formie_notifications` WRITE;
-/*!40000 ALTER TABLE `formie_notifications` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_notifications` ENABLE KEYS */;
+LOCK TABLES `formie_old` WRITE;
+/*!40000 ALTER TABLE `formie_old` DISABLE KEYS */;
+/*!40000 ALTER TABLE `formie_old` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1511,209 +2331,6 @@ LOCK TABLES `formie_pagesettings` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `formie_payments`
---
-
-DROP TABLE IF EXISTS `formie_payments`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_payments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `integrationId` int(11) NOT NULL,
-  `submissionId` int(11) NOT NULL,
-  `fieldId` int(11) NOT NULL,
-  `subscriptionId` int(11) DEFAULT NULL,
-  `amount` decimal(14,4) DEFAULT NULL,
-  `currency` varchar(255) DEFAULT NULL,
-  `status` enum('pending','redirect','success','failed','processing') NOT NULL,
-  `reference` varchar(255) DEFAULT NULL,
-  `code` varchar(255) DEFAULT NULL,
-  `message` text DEFAULT NULL,
-  `note` mediumtext DEFAULT NULL,
-  `response` text DEFAULT NULL,
-  `dateCreated` datetime NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `idx_naomowvfvcksfdvenhuzjowzftskmvnhxvuh` (`integrationId`),
-  KEY `idx_ekksuvdoawvdmxqpqmhqupjbsxgnsmqmyrqi` (`fieldId`),
-  KEY `idx_snzefinhuzepdamuamhqwxyzbtphxvdawvcz` (`reference`),
-  KEY `fk_gpmolxwfpjcbeuxebgfadulvqthmgtxlihfh` (`submissionId`),
-  KEY `fk_exgnlpsrmxksfhkrzhputkbjqfxcnbpztjag` (`subscriptionId`),
-  CONSTRAINT `fk_exgnlpsrmxksfhkrzhputkbjqfxcnbpztjag` FOREIGN KEY (`subscriptionId`) REFERENCES `formie_payments_subscriptions` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_gpmolxwfpjcbeuxebgfadulvqthmgtxlihfh` FOREIGN KEY (`submissionId`) REFERENCES `formie_submissions` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_xmnqshrfumzjjpgsqaequjyppjgevkwcztyu` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_xtkbharamwgenurngwunmsrbtaokjxolrmgx` FOREIGN KEY (`integrationId`) REFERENCES `formie_integrations` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formie_payments`
---
-
-LOCK TABLES `formie_payments` WRITE;
-/*!40000 ALTER TABLE `formie_payments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_payments` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `formie_payments_plans`
---
-
-DROP TABLE IF EXISTS `formie_payments_plans`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_payments_plans` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `integrationId` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `handle` varchar(255) DEFAULT NULL,
-  `reference` varchar(255) NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `planData` text DEFAULT NULL,
-  `isArchived` tinyint(1) NOT NULL,
-  `dateArchived` datetime DEFAULT NULL,
-  `sortOrder` int(11) DEFAULT NULL,
-  `dateCreated` datetime NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_dxszargbxflmlrlmibprpmyvdwirteqfuhrw` (`handle`),
-  KEY `idx_syvxgzijnlllxncbonganhpbtyhedieiygqx` (`integrationId`),
-  KEY `idx_onzgugwxyyafnhlvlhohyesmhocywhypjjpe` (`reference`),
-  CONSTRAINT `fk_odnkuznpxujnwwjxazfsherqeehszlhfhpeh` FOREIGN KEY (`integrationId`) REFERENCES `formie_integrations` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formie_payments_plans`
---
-
-LOCK TABLES `formie_payments_plans` WRITE;
-/*!40000 ALTER TABLE `formie_payments_plans` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_payments_plans` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `formie_payments_subscriptions`
---
-
-DROP TABLE IF EXISTS `formie_payments_subscriptions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_payments_subscriptions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `integrationId` int(11) DEFAULT NULL,
-  `submissionId` int(11) DEFAULT NULL,
-  `fieldId` int(11) DEFAULT NULL,
-  `planId` int(11) DEFAULT NULL,
-  `reference` varchar(255) NOT NULL,
-  `subscriptionData` text DEFAULT NULL,
-  `trialDays` int(11) NOT NULL,
-  `nextPaymentDate` datetime DEFAULT NULL,
-  `hasStarted` tinyint(1) NOT NULL DEFAULT 1,
-  `isSuspended` tinyint(1) NOT NULL DEFAULT 0,
-  `dateSuspended` datetime DEFAULT NULL,
-  `isCanceled` tinyint(1) NOT NULL,
-  `dateCanceled` datetime DEFAULT NULL,
-  `isExpired` tinyint(1) NOT NULL,
-  `dateExpired` datetime DEFAULT NULL,
-  `dateCreated` datetime NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `idx_kbpqfsthxuaonjmrvzugsvdqvjalkezyumte` (`integrationId`),
-  KEY `idx_azbbbkxfgneuacocpysbdafjulltuzbyctqr` (`submissionId`),
-  KEY `idx_oqpeaafuujznmlunuaebkafkljsawmwkxlik` (`fieldId`),
-  KEY `idx_jmfehrwfaecjrcdeasfcmxrcqhecrmfugehg` (`planId`),
-  KEY `idx_ajtoqbtyxntbxfssqdgodhdeormjuhdirwse` (`reference`),
-  KEY `idx_xwmkjzjhtsuvegjseegoldiceejsmwhfojdr` (`nextPaymentDate`),
-  KEY `idx_qjtimefzpgskxlitmgqhlmlttlzcgjpayjyi` (`dateExpired`),
-  KEY `idx_qidovlszpmaredzhppyscpsagjiepgycdmjj` (`dateExpired`),
-  CONSTRAINT `fk_aendfgchbeubitdwqvwdmerqrawhogsbcvfu` FOREIGN KEY (`submissionId`) REFERENCES `formie_submissions` (`id`),
-  CONSTRAINT `fk_fkhaxnydqzefmiswscldzgklfjybfyehtdnq` FOREIGN KEY (`planId`) REFERENCES `formie_payments_plans` (`id`),
-  CONSTRAINT `fk_lkmnjopnqgoswrpbfcnhvwdbpveaiblxfqlq` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`),
-  CONSTRAINT `fk_zjqjiiuswzgepxdazkxrtzzsghmtonwzkwzi` FOREIGN KEY (`integrationId`) REFERENCES `formie_integrations` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formie_payments_subscriptions`
---
-
-LOCK TABLES `formie_payments_subscriptions` WRITE;
-/*!40000 ALTER TABLE `formie_payments_subscriptions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_payments_subscriptions` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `formie_pdftemplates`
---
-
-DROP TABLE IF EXISTS `formie_pdftemplates`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_pdftemplates` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `handle` varchar(64) NOT NULL,
-  `template` varchar(255) NOT NULL,
-  `filenameFormat` varchar(255) NOT NULL,
-  `sortOrder` smallint(6) unsigned DEFAULT NULL,
-  `dateDeleted` datetime DEFAULT NULL,
-  `dateCreated` datetime NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formie_pdftemplates`
---
-
-LOCK TABLES `formie_pdftemplates` WRITE;
-/*!40000 ALTER TABLE `formie_pdftemplates` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_pdftemplates` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `formie_relations`
---
-
-DROP TABLE IF EXISTS `formie_relations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_relations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) NOT NULL,
-  `sourceId` int(11) NOT NULL,
-  `sourceSiteId` int(11) DEFAULT NULL,
-  `targetId` int(11) NOT NULL,
-  `dateCreated` datetime NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_nzrdpzxxaczpkfngpxvvibarovqzaaufkqix` (`sourceId`,`sourceSiteId`,`targetId`),
-  KEY `idx_xcgwlxkvqtqmliegtlncystnlewwicxhxxim` (`sourceId`),
-  KEY `idx_fufdqtmhufxfcfdyvratyhjnnfqcpnmmgtep` (`targetId`),
-  KEY `idx_bzhinieqpplzdaoyliaqugezmsopsahspxku` (`sourceSiteId`),
-  CONSTRAINT `fk_bisbusyadfclhkfthyhbxyllpdgbtkngveqg` FOREIGN KEY (`sourceId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_fxnoemiqltzkvprihenpvjjmfhmizvraemfu` FOREIGN KEY (`sourceSiteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_nfwavhqymkfjrxzivroxgagptuwdykhlobxd` FOREIGN KEY (`targetId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formie_relations`
---
-
-LOCK TABLES `formie_relations` WRITE;
-/*!40000 ALTER TABLE `formie_relations` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_relations` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `formie_rows`
 --
 
@@ -1742,171 +2359,6 @@ CREATE TABLE `formie_rows` (
 LOCK TABLES `formie_rows` WRITE;
 /*!40000 ALTER TABLE `formie_rows` DISABLE KEYS */;
 /*!40000 ALTER TABLE `formie_rows` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `formie_sentnotifications`
---
-
-DROP TABLE IF EXISTS `formie_sentnotifications`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_sentnotifications` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `formId` int(11) DEFAULT NULL,
-  `submissionId` int(11) DEFAULT NULL,
-  `notificationId` int(11) DEFAULT NULL,
-  `subject` varchar(255) DEFAULT NULL,
-  `to` varchar(255) DEFAULT NULL,
-  `cc` varchar(255) DEFAULT NULL,
-  `bcc` varchar(255) DEFAULT NULL,
-  `replyTo` varchar(255) DEFAULT NULL,
-  `replyToName` varchar(255) DEFAULT NULL,
-  `from` varchar(255) DEFAULT NULL,
-  `fromName` varchar(255) DEFAULT NULL,
-  `sender` varchar(255) DEFAULT NULL,
-  `body` mediumtext DEFAULT NULL,
-  `htmlBody` mediumtext DEFAULT NULL,
-  `info` text DEFAULT NULL,
-  `success` tinyint(1) DEFAULT NULL,
-  `message` text DEFAULT NULL,
-  `dateCreated` datetime DEFAULT NULL,
-  `dateUpdated` datetime DEFAULT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `fk_kigawkunncvweeskovdvcsgiatbpswhzlbfy` (`formId`),
-  KEY `fk_iucbjutlrpcmanhxqvusmiretddyxtpydqaq` (`submissionId`),
-  KEY `fk_eeqvwqtoeynxeonujtfjnzzamcdozmebawdm` (`notificationId`),
-  CONSTRAINT `fk_eeqvwqtoeynxeonujtfjnzzamcdozmebawdm` FOREIGN KEY (`notificationId`) REFERENCES `formie_notifications` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `fk_gttoqdsftqxyedxngvbfxxiimnsisfxqqpvu` FOREIGN KEY (`id`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_iucbjutlrpcmanhxqvusmiretddyxtpydqaq` FOREIGN KEY (`submissionId`) REFERENCES `formie_submissions` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `fk_kigawkunncvweeskovdvcsgiatbpswhzlbfy` FOREIGN KEY (`formId`) REFERENCES `formie_forms` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formie_sentnotifications`
---
-
-LOCK TABLES `formie_sentnotifications` WRITE;
-/*!40000 ALTER TABLE `formie_sentnotifications` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_sentnotifications` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `formie_statuses`
---
-
-DROP TABLE IF EXISTS `formie_statuses`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_statuses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `handle` varchar(64) NOT NULL,
-  `color` enum('green','orange','red','blue','yellow','pink','purple','turquoise','light','grey','black') NOT NULL DEFAULT 'green',
-  `description` varchar(255) DEFAULT NULL,
-  `sortOrder` smallint(6) unsigned DEFAULT NULL,
-  `isDefault` tinyint(1) DEFAULT NULL,
-  `dateDeleted` datetime DEFAULT NULL,
-  `dateCreated` datetime NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formie_statuses`
---
-
-LOCK TABLES `formie_statuses` WRITE;
-/*!40000 ALTER TABLE `formie_statuses` DISABLE KEYS */;
-INSERT INTO `formie_statuses` VALUES
-(1,'New','new','green',NULL,1,1,NULL,'2024-07-17 15:11:57','2024-07-17 15:11:57','c9004b70-8ede-4500-b44d-1638afd790aa');
-/*!40000 ALTER TABLE `formie_statuses` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `formie_stencils`
---
-
-DROP TABLE IF EXISTS `formie_stencils`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_stencils` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `handle` varchar(64) NOT NULL,
-  `data` mediumtext DEFAULT NULL,
-  `templateId` int(11) DEFAULT NULL,
-  `submitActionEntryId` int(11) DEFAULT NULL,
-  `submitActionEntrySiteId` int(11) DEFAULT NULL,
-  `defaultStatusId` int(11) DEFAULT NULL,
-  `dateDeleted` datetime DEFAULT NULL,
-  `dateCreated` datetime NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `idx_guztfeusufwurxlfrpgeaeznrdwzncxzeyof` (`templateId`),
-  KEY `idx_jegfxjhjrtsevyhbcswbetbmgfracqveennq` (`defaultStatusId`),
-  CONSTRAINT `fk_eqdsaqiwxtdvgmjdpzekvvuexoawribjzwhi` FOREIGN KEY (`defaultStatusId`) REFERENCES `formie_statuses` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `fk_zxqfhvmudkhraxtsfmsuoiddcygybhvqqfcc` FOREIGN KEY (`templateId`) REFERENCES `formie_formtemplates` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formie_stencils`
---
-
-LOCK TABLES `formie_stencils` WRITE;
-/*!40000 ALTER TABLE `formie_stencils` DISABLE KEYS */;
-INSERT INTO `formie_stencils` VALUES
-(1,'Contact Form','contactForm','{\"dataRetention\":\"forever\",\"dataRetentionValue\":null,\"fileUploadsAction\":\"retain\",\"notifications\":[{\"attachFiles\":true,\"attachPdf\":false,\"bcc\":null,\"cc\":null,\"conditions\":\"{\\\"sendRule\\\":\\\"send\\\",\\\"conditionRule\\\":\\\"all\\\",\\\"conditions\\\":[]}\",\"content\":\"[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"A user submission has been made on the \\\\\\\"\\\"},{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"Form Name\\\",\\\"value\\\":\\\"{formName}\\\"}},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"\\\\\\\" form on \\\"},{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"Site Name\\\",\\\"value\\\":\\\"{siteName}\\\"}},{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\" at \\\"},{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"Timestamp (yyyy-mm-dd hh:mm:ss)\\\",\\\"value\\\":\\\"{timestamp}\\\"}}]},{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Their submission details are:\\\"}]},{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"All Form Fields\\\",\\\"value\\\":\\\"{allFields}\\\"}}]}]\",\"enableConditions\":false,\"enabled\":true,\"formId\":null,\"from\":null,\"fromName\":null,\"id\":\"new981-8077\",\"name\":\"Admin Notification\",\"pdfTemplateId\":null,\"recipients\":\"email\",\"replyTo\":\"{field.emailAddress}\",\"replyToName\":null,\"subject\":\"A new submission was made on \\\"{formName}\\\"\",\"templateId\":null,\"to\":\"{systemEmail}\",\"toConditions\":\"{\\\"toRecipients\\\":[]}\",\"uid\":null},{\"attachFiles\":true,\"attachPdf\":false,\"bcc\":null,\"cc\":null,\"conditions\":\"{\\\"sendRule\\\":\\\"send\\\",\\\"conditionRule\\\":\\\"all\\\",\\\"conditions\\\":[]}\",\"content\":\"[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Thanks again for contacting us. Our team will get back to you as soon as we can.\\\"}]},{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"As a reminder, you submitted the following details at \\\"},{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"Timestamp (yyyy-mm-dd hh:mm:ss)\\\",\\\"value\\\":\\\"{timestamp}\\\"}}]},{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"variableTag\\\",\\\"attrs\\\":{\\\"label\\\":\\\"All Form Fields\\\",\\\"value\\\":\\\"{allFields}\\\"}}]}]\",\"enableConditions\":false,\"enabled\":true,\"formId\":null,\"from\":null,\"fromName\":null,\"id\":\"new7052-5168\",\"name\":\"User Notification\",\"pdfTemplateId\":\"\",\"recipients\":\"email\",\"replyTo\":null,\"replyToName\":null,\"subject\":\"Thanks for contacting us!\",\"templateId\":\"\",\"to\":\"{field.emailAddress}\",\"toConditions\":\"{\\\"toRecipients\\\":[]}\",\"uid\":null}],\"pages\":[{\"id\":\"new1272610411\",\"label\":\"Page 1\",\"notificationFlag\":true,\"rows\":[{\"fields\":[{\"brandNewField\":false,\"handle\":\"yourName\",\"hasLabel\":true,\"id\":\"new7715-7348\",\"label\":\"Your Name\",\"settings\":{\"conditions\":\"{\\\"showRule\\\":\\\"show\\\",\\\"conditionRule\\\":\\\"all\\\",\\\"conditions\\\":[]}\",\"firstNameCollapsed\":false,\"firstNameDefaultValue\":\"\",\"firstNameEnabled\":true,\"firstNameLabel\":\"First Name\",\"firstNamePlaceholder\":\"e.g. Peter\",\"firstNameRequired\":true,\"handle\":\"yourName\",\"instructions\":\"Please enter your full name.\",\"instructionsPosition\":\"verbb\\\\formie\\\\positions\\\\AboveInput\",\"label\":\"Your Name\",\"labelPosition\":\"verbb\\\\formie\\\\positions\\\\Hidden\",\"lastNameCollapsed\":false,\"lastNameDefaultValue\":\"\",\"lastNameEnabled\":true,\"lastNameLabel\":\"Last Name\",\"lastNamePlaceholder\":\"e.g. Sherman\",\"lastNameRequired\":true,\"maxType\":\"characters\",\"middleNameCollapsed\":true,\"middleNameDefaultValue\":\"\",\"middleNameEnabled\":false,\"middleNameLabel\":\"Middle Name\",\"placeholder\":\"Your name\",\"prefixCollapsed\":true,\"prefixDefaultValue\":\"\",\"prefixEnabled\":false,\"prefixLabel\":\"Prefix\",\"subfieldLabelPosition\":\"\",\"useMultipleFields\":true,\"visibility\":\"\"},\"type\":\"verbb\\\\formie\\\\fields\\\\formfields\\\\Name\"}],\"id\":\"new8990-9934\"},{\"fields\":[{\"brandNewField\":false,\"handle\":\"emailAddress\",\"hasLabel\":true,\"id\":\"new6482-9528\",\"label\":\"Email Address\",\"settings\":{\"handle\":\"emailAddress\",\"instructions\":\"Please enter your email so we can get in touch.\",\"instructionsPosition\":\"\",\"label\":\"Email Address\",\"labelPosition\":\"\",\"maxType\":\"characters\",\"placeholder\":\"e.g. psherman@wallaby.com\",\"required\":true},\"type\":\"verbb\\\\formie\\\\fields\\\\formfields\\\\Email\"}],\"id\":\"new9524-8509\"},{\"fields\":[{\"brandNewField\":false,\"handle\":\"message\",\"hasLabel\":true,\"id\":\"new982-7322\",\"label\":\"Message\",\"settings\":{\"conditions\":\"{\\\"showRule\\\":\\\"show\\\",\\\"conditionRule\\\":\\\"all\\\",\\\"conditions\\\":[]}\",\"handle\":\"message\",\"instructions\":\"Please enter your comments.\",\"instructionsPosition\":\"\",\"label\":\"Message\",\"labelPosition\":\"\",\"maxType\":\"characters\",\"placeholder\":\"e.g. The reason for my enquiry is...\",\"required\":true,\"visibility\":\"\"},\"type\":\"verbb\\\\formie\\\\fields\\\\formfields\\\\MultiLineText\"}],\"id\":\"new2177-9685\"}],\"settings\":{\"backButtonLabel\":\"Back\",\"buttonsPosition\":\"left\",\"label\":\"Page 1\",\"showBackButton\":false,\"submitButtonLabel\":\"Contact us\"},\"sortOrder\":0}],\"settings\":{\"collectIp\":false,\"collectUser\":false,\"dataRetention\":null,\"dataRetentionValue\":null,\"defaultEmailTemplateId\":null,\"defaultInstructionsPosition\":\"verbb\\\\formie\\\\positions\\\\AboveInput\",\"defaultLabelPosition\":\"verbb\\\\formie\\\\positions\\\\AboveInput\",\"disableCaptchas\":false,\"displayCurrentPageTitle\":false,\"displayFormTitle\":false,\"displayPageProgress\":false,\"displayPageTabs\":false,\"errorMessage\":[{\"content\":[{\"text\":\"Couldn’t save submission due to errors.\",\"type\":\"text\"}],\"type\":\"paragraph\"}],\"errorMessagePosition\":\"top-form\",\"fileUploadsAction\":null,\"limitSubmissions\":false,\"limitSubmissionsMessage\":null,\"limitSubmissionsNumber\":null,\"limitSubmissionsType\":null,\"loadingIndicator\":\"spinner\",\"loadingIndicatorText\":null,\"progressPosition\":\"end\",\"redirectUrl\":null,\"requireUser\":false,\"requireUserMessage\":null,\"scheduleForm\":false,\"scheduleFormEnd\":null,\"scheduleFormExpiredMessage\":null,\"scheduleFormPendingMessage\":null,\"scheduleFormStart\":null,\"scrollToTop\":true,\"submissionTitleFormat\":\"{timestamp}\",\"submitAction\":\"message\",\"submitActionFormHide\":false,\"submitActionMessage\":[{\"content\":[{\"text\":\"Thank you for contacting us! Our team will get in touch shortly to follow up on your message.\",\"type\":\"text\"}],\"type\":\"paragraph\"}],\"submitActionMessagePosition\":\"top-form\",\"submitActionMessageTimeout\":null,\"submitActionTab\":null,\"submitActionUrl\":null,\"submitMethod\":\"ajax\",\"validationOnFocus\":true,\"validationOnSubmit\":true},\"userDeletedAction\":\"retain\"}',NULL,NULL,NULL,1,NULL,'2024-07-17 15:11:57','2024-07-17 15:11:57','d9d672c4-8aa3-4a45-bb07-6e3471e03007');
-/*!40000 ALTER TABLE `formie_stencils` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `formie_submissions`
---
-
-DROP TABLE IF EXISTS `formie_submissions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formie_submissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `formId` int(11) NOT NULL,
-  `statusId` int(11) DEFAULT NULL,
-  `userId` int(11) DEFAULT NULL,
-  `isIncomplete` tinyint(1) DEFAULT 0,
-  `isSpam` tinyint(1) DEFAULT 0,
-  `spamReason` text DEFAULT NULL,
-  `spamClass` varchar(255) DEFAULT NULL,
-  `snapshot` text DEFAULT NULL,
-  `ipAddress` varchar(255) DEFAULT NULL,
-  `dateCreated` datetime NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `idx_efabkbmuaohrkwthgjrypbzweqjfmcvqscoi` (`formId`),
-  KEY `idx_zzxlojxuagfhzkcxdepfcmbpsmsrslmcfgwv` (`statusId`),
-  KEY `idx_sxlxejjsojpnxkczmcwbwitglkxvdxqqotba` (`userId`),
-  CONSTRAINT `fk_bvukyjeaijgntfrpwlvagbxrhxbziecrwasg` FOREIGN KEY (`statusId`) REFERENCES `formie_statuses` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `fk_fhvcgcdmsasuyouqtxjuaarolfmnyqsstkwx` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `fk_tilojsmskjjgejztzgogymtjevvolhbswqsp` FOREIGN KEY (`id`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_vmmkmammecvecoapqyiusmdgtpajxxxeccdo` FOREIGN KEY (`formId`) REFERENCES `formie_forms` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formie_submissions`
---
-
-LOCK TABLES `formie_submissions` WRITE;
-/*!40000 ALTER TABLE `formie_submissions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formie_submissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2159,8 +2611,8 @@ INSERT INTO `imagetransformindex` VALUES
 (31,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_300x300_crop_center-center_none',1,0,0,'2022-10-03 21:38:29','2022-10-03 21:38:29','2022-10-03 21:41:49','5cf06df9-c1f8-4ba2-b0be-780e228832ba'),
 (32,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_666x1000_crop_center-center_none',1,0,0,'2022-10-04 15:15:09','2022-10-04 15:15:09','2022-10-04 15:15:09','1795a88d-e2cd-44f4-aaaf-4deaa8dc22f1'),
 (33,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_300xAUTO_crop_center-center_none',1,0,0,'2022-10-04 15:49:41','2022-10-04 15:49:41','2022-10-04 15:49:41','e5bc1e1d-09dc-4e1b-be58-8385286f0a26'),
-(34,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_20x30_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2025-07-18 18:45:45','36b1d84c-39d1-42c3-88df-3a6d4a46e7a3'),
-(35,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_40x60_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2025-07-18 18:45:45','502eeba7-2b68-4938-97dc-7cdc7de98593');
+(34,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_20x30_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2026-10-02 10:12:12','36b1d84c-39d1-42c3-88df-3a6d4a46e7a3'),
+(35,50,'craft\\imagetransforms\\ImageTransformer','Ts_paralax_191_Ts_a.jpg',NULL,'_40x60_crop_center-center_none',0,0,1,'2024-07-17 17:01:57','2024-07-17 17:01:57','2026-10-02 10:12:12','502eeba7-2b68-4938-97dc-7cdc7de98593');
 /*!40000 ALTER TABLE `imagetransformindex` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2231,8 +2683,46 @@ CREATE TABLE `info` (
 LOCK TABLES `info` WRITE;
 /*!40000 ALTER TABLE `info` DISABLE KEYS */;
 INSERT INTO `info` VALUES
-(1,'5.8.8','5.8.0.3',0,'hlnfrxzzczgp','3@qcgnfgfxgn','2022-09-28 08:08:17','2025-07-18 18:49:30','7e6daab9-2991-4d5f-bb87-ffbee2fc0cc5');
+(1,'5.11.4','5.11.0.2',0,'gwagrsnebiwk','3@yjbfnijisp','2022-09-28 08:08:17','2026-10-02 10:20:24','7e6daab9-2991-4d5f-bb87-ffbee2fc0cc5');
 /*!40000 ALTER TABLE `info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `maps`
+--
+
+DROP TABLE IF EXISTS `maps`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `maps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ownerId` int(11) NOT NULL,
+  `ownerSiteId` int(11) DEFAULT NULL,
+  `fieldId` int(11) NOT NULL,
+  `lat` decimal(11,9) DEFAULT NULL,
+  `lng` decimal(12,9) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_bwivwwycfowohwghjmgwoujkxqvqhejunvvi` (`ownerId`,`ownerSiteId`,`fieldId`),
+  KEY `idx_pvcgebmupffpjwqfwnqcdtcquzswxyohyzlr` (`lat`),
+  KEY `idx_imbiawvwlhepqfndjkstptsavueeqijnxmty` (`lng`),
+  KEY `fk_xntlgxsbdwhpnjhudbiesdhbmuvtihonbkev` (`ownerSiteId`),
+  KEY `fk_svkcuotqgmlencymtdlpirwaqijgqrwmukfw` (`fieldId`),
+  CONSTRAINT `fk_svkcuotqgmlencymtdlpirwaqijgqrwmukfw` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_wiswxjenmrtxwglxdcueymvhqqkjsdzqgmiq` FOREIGN KEY (`ownerId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_xntlgxsbdwhpnjhudbiesdhbmuvtihonbkev` FOREIGN KEY (`ownerSiteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `maps`
+--
+
+LOCK TABLES `maps` WRITE;
+/*!40000 ALTER TABLE `maps` DISABLE KEYS */;
+/*!40000 ALTER TABLE `maps` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2252,7 +2742,7 @@ CREATE TABLE `migrations` (
   `uid` char(36) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_uvdmqkcsluyfebluxvoxsgkdjswwdqoihest` (`track`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2337,7 +2827,39 @@ INSERT INTO `migrations` VALUES
 (76,'craft','m250512_164202_asset_mime_types','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','7cfa85fd-a602-429d-9a7a-e2cb86963ca9'),
 (77,'craft','m250522_090843_add_deleteEntriesForSite_and_deletePeerEntriesForSite_permissions','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','355d0d55-eaca-4a3f-ba06-c66837351a43'),
 (78,'craft','m250531_183058_content_blocks','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','d86d8cac-2d9e-402b-b1fe-3b1534d33af5'),
-(79,'craft','m250623_105031_entry_type_descriptions','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','854e446e-36fa-42e9-a16b-70a60b43b6ea');
+(79,'craft','m250623_105031_entry_type_descriptions','2025-07-18 18:49:05','2025-07-18 18:49:05','2025-07-18 18:49:05','854e446e-36fa-42e9-a16b-70a60b43b6ea'),
+(81,'plugin:simplemap','Install','2025-08-13 08:18:28','2025-08-13 08:18:28','2025-08-13 08:18:28','fe6cfd1a-98a7-4e3d-9f7f-f68ca9963f8c'),
+(82,'plugin:simplemap','m190226_143809_craft3_upgrade','2025-08-13 08:18:28','2025-08-13 08:18:28','2025-08-13 08:18:28','65909e92-d22a-4dbd-9ee1-783e0464fdce'),
+(83,'plugin:simplemap','m190325_130533_repair_map_elements','2025-08-13 08:18:28','2025-08-13 08:18:28','2025-08-13 08:18:28','a15ac206-0e5b-4da1-b4e8-d6b2b0dfb1c2'),
+(84,'plugin:simplemap','m190712_104805_new_data_format','2025-08-13 08:18:28','2025-08-13 08:18:28','2025-08-13 08:18:28','673e52d2-1772-408b-888e-435672bc00ad'),
+(85,'plugin:simplemap','m190723_105637_fix_map_field_column_type','2025-08-13 08:18:28','2025-08-13 08:18:28','2025-08-13 08:18:28','41432dd5-46ff-4556-b3b5-9f1526f34551'),
+(86,'craft','m250910_144630_add_elements_owners_sort_order_index','2026-02-14 19:41:15','2026-02-14 19:41:15','2026-02-14 19:41:15','222b6359-6a18-4661-ba84-b17ad79b4c2a'),
+(87,'craft','m251030_203440_drop_widgets_enabled_column','2026-02-14 19:41:15','2026-02-14 19:41:15','2026-02-14 19:41:15','bb0370ee-39c5-47ba-86aa-71afb642c9bd'),
+(88,'craft','m251110_192405_entry_type_ui_label_formats','2026-02-14 19:41:15','2026-02-14 19:41:15','2026-02-14 19:41:15','0ee5391c-3bbf-44e2-8eaa-d1a6d1d1ddad'),
+(89,'craft','m251205_190131_drop_searchindexqueue_fk','2026-02-14 19:41:15','2026-02-14 19:41:15','2026-02-14 19:41:15','e7489c49-4d7f-4cd2-ad98-d338105a2557'),
+(90,'craft','m251230_192239_update_field_layouts','2026-02-14 19:41:15','2026-02-14 19:41:15','2026-02-14 19:41:15','0c7cb9d9-232f-458f-ae4a-69fc8221d204'),
+(91,'craft','m260106_130629_directive_schema_components','2026-02-14 19:41:15','2026-02-14 19:41:15','2026-02-14 19:41:15','13a600c1-cb72-474d-9486-0316d8817231'),
+(92,'craft','m260120_120907_line_breaks_in_titles','2026-02-14 19:41:15','2026-02-14 19:41:15','2026-02-14 19:41:15','4c78562d-93fb-40e4-94ac-c456b1913815'),
+(93,'craft','m260125_233614_changeAuthorForPeerEntries_permission','2026-02-14 19:41:15','2026-02-14 19:41:15','2026-02-14 19:41:15','15a95b12-846e-4a33-b7f3-001d8a63cddf'),
+(94,'module:verbb-auth','m221127_000000_install','2026-02-21 17:02:42','2026-02-21 17:02:42','2026-02-21 17:02:42','c977941e-4a81-4c3f-bf2a-ecc2f5266d5f'),
+(121,'plugin:ckeditor','m260220_182920_drop_cke_configs','2026-05-12 20:21:24','2026-05-12 20:21:24','2026-05-12 20:21:24','8778cbae-ed55-4c02-a50c-0c6fab8c79b8'),
+(122,'craft','m260401_155236_min_authors_setting','2026-05-23 20:52:26','2026-05-23 20:52:26','2026-05-23 20:52:26','9c6033a3-7851-48a6-954b-550c38f72445'),
+(123,'plugin:ckeditor','m260427_230945_references','2026-05-23 20:52:26','2026-05-23 20:52:26','2026-05-23 20:52:26','ae1c7efc-3c69-4d45-a478-bf134090600b'),
+(124,'craft','m260610_065719_translatable_alt_text_content','2026-10-02 09:39:14','2026-10-02 09:39:14','2026-10-02 09:39:14','3febe137-3072-4d9e-b8f7-eed41cf95448'),
+(125,'craft','m260812_143000_drop_elementactivity_draftid_fk','2026-10-02 09:39:14','2026-10-02 09:39:14','2026-10-02 09:39:14','09f9609b-159b-43b8-a594-5c61b21f3680'),
+(126,'craft','m260817_012148_queue_reserve_index','2026-10-02 09:39:14','2026-10-02 09:39:14','2026-10-02 09:39:14','5e21f6d0-cb9d-43cd-aeea-723774ce0d40'),
+(127,'plugin:blitz','Install','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','6a86fc03-eb9f-4308-9726-03817ed8cebb'),
+(128,'plugin:blitz','m240719_120000_remove_legacy_settings','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','3a03361b-f3c6-461f-a9ab-969e76a1a04b'),
+(129,'plugin:blitz','m240731_120000_add_datecached_column','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','3e585fc5-570d-4a3a-b47c-f02c411db476'),
+(130,'plugin:blitz','m240820_120000_add_fieldinstanceuid_column','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','c4df0aca-df48-43ac-872c-a382afcca6d3'),
+(131,'plugin:blitz','m240826_120000_convert_cachecontrol_settings','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','4fa99827-09ec-4b29-b1dc-a2e6fa081afe'),
+(132,'plugin:blitz','m240905_120000_convert_enabled_settings','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','18bb45a3-f751-4f9d-8591-d9f6db5b9291'),
+(133,'plugin:blitz','m250314_120000_remove_hints_table','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','ebaeb7b8-9a14-4ad5-a756-d0fdf5a6627f'),
+(134,'plugin:blitz','m250510_120000_increase_uri_column_length','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','0d3543bd-e10c-43ef-86ee-d557832ba07b'),
+(135,'plugin:blitz','m250731_120000_add_element_query_backtrace_columns','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','e16e4166-90de-46d9-bb56-14dd2ec26f68'),
+(136,'plugin:blitz','m260911_120000_add_siteid_columns','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','c954ab6e-ecc4-425f-bcb5-0c141cfe7cb8'),
+(137,'plugin:blitz','m260913_120000_add_elementquerysites_table','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','f65e50d7-d33d-4f23-a749-a86f14649c53'),
+(138,'plugin:blitz','m260925_120000_fix_siteid_primary_keys','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','50160ea4-b18f-4b36-9170-719fdb0e1989');
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2359,7 +2881,7 @@ CREATE TABLE `plugins` (
   `uid` char(36) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_ddsqzsroivbxuxdmttstlobprwfbcdrgbzrg` (`handle`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2370,10 +2892,14 @@ LOCK TABLES `plugins` WRITE;
 /*!40000 ALTER TABLE `plugins` DISABLE KEYS */;
 INSERT INTO `plugins` VALUES
 (1,'password-policy','5.0.0-beta1','1.0.0','2022-09-28 12:22:49','2022-09-28 12:22:49','2024-10-04 17:42:05','d3414302-d559-47bd-ac22-135357cb9204'),
-(7,'content-security-policy','3.0.0','1.0.0','2024-10-04 19:57:43','2024-10-04 19:57:43','2024-10-04 19:57:43','186e1270-6c17-4a5c-b230-27cc4b8fdd15'),
-(8,'ckeditor','4.9.0','3.0.0.0','2024-10-04 19:59:35','2024-10-04 19:59:35','2025-07-18 18:41:00','0e2d0533-8a79-4601-ab08-def7bfd38e07'),
+(8,'ckeditor','5.8.0','5.6.0.0','2024-10-04 19:59:35','2024-10-04 19:59:35','2026-10-02 10:11:48','0e2d0533-8a79-4601-ab08-def7bfd38e07'),
 (9,'obfuscator','1.2.0','1.0.0','2024-10-06 07:56:12','2024-10-06 07:56:12','2024-10-06 07:56:12','8502b7fb-7387-45d0-b73f-32189c958484'),
-(10,'vite','5.0.1','1.0.0','2025-07-18 18:41:03','2025-07-18 18:41:03','2025-07-18 18:41:03','504498a2-8678-420c-a846-64a119d5ca44');
+(10,'vite','5.0.2','1.0.0','2025-07-18 18:41:03','2025-07-18 18:41:03','2026-10-02 10:11:48','504498a2-8678-420c-a846-64a119d5ca44'),
+(12,'imager-x','6.1.1','4.0.0','2025-07-20 12:11:46','2025-07-20 12:11:46','2026-10-02 09:39:13','eacb3ac2-bb52-4635-ab7e-81b4ac705648'),
+(13,'simplemap','5.0.4','3.4.2','2025-08-13 08:18:27','2025-08-13 08:18:27','2025-08-13 08:18:27','274e466d-2149-4cc3-bc33-b0deb8cdb601'),
+(15,'blitz','5.13.4','5.13.0','2026-10-02 09:39:15','2026-10-02 09:39:15','2026-10-02 09:39:15','c52d4564-aed7-47eb-9a52-2f0347c50d90'),
+(16,'seomate','3.3.1','1.0.0','2026-10-02 09:39:18','2026-10-02 09:39:18','2026-10-02 09:39:18','26704bd1-2a43-48c2-ab2e-e38e26d77402'),
+(17,'imager-x-power-pack','1.1.3','1.0.0','2026-10-02 09:39:21','2026-10-02 09:39:21','2026-10-02 09:39:21','c74aadae-5781-481d-a394-6f1009d0940c');
 /*!40000 ALTER TABLE `plugins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2398,23 +2924,14 @@ CREATE TABLE `projectconfig` (
 LOCK TABLES `projectconfig` WRITE;
 /*!40000 ALTER TABLE `projectconfig` DISABLE KEYS */;
 INSERT INTO `projectconfig` VALUES
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.headingLevels.0','1'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.headingLevels.1','2'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.headingLevels.2','3'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.headingLevels.3','4'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.headingLevels.4','5'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.headingLevels.5','6'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.name','\"Simple\"'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.0','\"heading\"'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.1','\"|\"'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.2','\"bold\"'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.3','\"italic\"'),
-('ckeditor.configs.c2146f3a-86c4-4929-ad3b-bfa61123b4c1.toolbar.4','\"link\"'),
-('dateModified','1752864545'),
+('dateModified','1790936424'),
 ('email.fromEmail','\"dev@profitlich.ch\"'),
 ('email.fromName','\"Profitlich DEV\"'),
 ('email.transportType','\"craft\\\\mail\\\\transportadapters\\\\Sendmail\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.allowLineBreaksInTitles','false'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.color','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.description','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.cardThumbAlignment','\"end\"'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elementCondition','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.autocapitalize','true'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.autocomplete','false'),
@@ -2424,7 +2941,6 @@ INSERT INTO `projectconfig` VALUES
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.disabled','false'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.elementCondition','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.id','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.includeInCards','false'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.inputType','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.instructions','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.label','null'),
@@ -2433,9 +2949,8 @@ INSERT INTO `projectconfig` VALUES
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.name','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.orientation','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.placeholder','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.providesThumbs','false'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.readonly','false'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.requirable','false'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.required','true'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.size','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.step','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.tip','null'),
@@ -2446,66 +2961,71 @@ INSERT INTO `projectconfig` VALUES
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.warning','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.0.width','100'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.dateAdded','\"2024-10-04T17:41:11+00:00\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.editCondition','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.elementCondition','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.fieldUid','\"0a064e6b-5fcd-4a2b-acb7-b46630ad5244\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.elementEditCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.fieldUid','\"12994855-fd13-4d38-8ad9-156bb1960e74\"'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.handle','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.includeInCards','false'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.instructions','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.label','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.providesThumbs','false'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.required','false'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.tip','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.uid','\"8e610b7c-7931-4225-a570-5057ec906e28\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.uid','\"2fef81bc-44ba-4070-967c-51790791d3b6\"'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.userCondition','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.warning','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.1.width','100'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.dateAdded','\"2024-10-04T17:41:11+00:00\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.elementCondition','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.fieldUid','\"12994855-fd13-4d38-8ad9-156bb1960e74\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.handle','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.includeInCards','false'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.instructions','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.label','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.providesThumbs','false'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.required','false'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.tip','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.uid','\"2fef81bc-44ba-4070-967c-51790791d3b6\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.userCondition','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.warning','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.2.width','100'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.dateAdded','\"2024-10-06T07:58:37+00:00\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.elementCondition','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.fieldUid','\"352e4f04-b337-41cf-a259-2df2eb9be025\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.handle','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.includeInCards','false'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.instructions','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.label','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.providesThumbs','false'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.required','false'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.tip','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.uid','\"b824efd1-e9f2-4916-9b35-fc51d38c9020\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.userCondition','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.warning','null'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.elements.3.width','100'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.name','\"Inhalt\"'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.uid','\"68594230-9efe-49da-80cf-dc0970f98312\"'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.0.userCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elementCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.dateAdded','\"2026-10-02T00:00:00+00:00\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.editCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.elementCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.elementEditCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.fieldUid','\"e667dda0-024e-49cf-b865-a2bb0a7c491e\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.handle','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.instructions','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.label','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.required','false'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.tip','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.uid','\"5f38c507-0ae3-4d62-b548-919e713c0ea6\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.userCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.warning','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.0.width','100'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.dateAdded','\"2026-10-02T00:00:00+00:00\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.editCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.elementCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.elementEditCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.fieldUid','\"e6ae2701-df0a-4888-9652-c27e703d3a04\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.handle','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.instructions','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.label','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.required','false'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.tip','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.type','\"craft\\\\fieldlayoutelements\\\\CustomField\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.uid','\"5f174405-7ebc-4db6-a429-a4949f1abfef\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.userCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.warning','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.elements.1.width','100'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.name','\"SEO\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.uid','\"b94d0d0f-17b3-419e-b00e-33fd90b947ee\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.tabs.1.userCondition','null'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.fieldLayouts.8b195686-1317-4797-8d9f-8106393d5d59.thumbFieldKey','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.handle','\"startseite\"'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.hasTitleField','true'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.icon','\"\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.icon','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.name','\"Startseite\"'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.showSlugField','true'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.showStatusField','true'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.slugTranslationKeyFormat','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.slugTranslationMethod','\"site\"'),
-('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.titleFormat','\"\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.titleFormat','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.titleTranslationKeyFormat','null'),
 ('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.titleTranslationMethod','\"site\"'),
+('entryTypes.0e793c4c-3298-4c14-a50e-fe050eeaee18.uiLabelFormat','\"{title}\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.columnSuffix','null'),
-('fields.12994855-fd13-4d38-8ad9-156bb1960e74.contentColumnType','\"string\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.handle','\"projektbilder\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.instructions','null'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.name','\"Projektbilder\"'),
@@ -2515,9 +3035,9 @@ INSERT INTO `projectconfig` VALUES
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.allowSubfolders','false'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.allowUploads','true'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.branchLimit','null'),
+('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.defaultPlacement','\"end\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.defaultUploadLocationSource','\"volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.defaultUploadLocationSubpath','null'),
-('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.localizeRelations','false'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.maintainHierarchy','false'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.maxRelations','null'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.minRelations','null'),
@@ -2528,6 +3048,7 @@ INSERT INTO `projectconfig` VALUES
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.restrictFiles','false'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.restrictLocation','false'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.selectionLabel','null'),
+('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.showSearchInput','true'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.showSiteMenu','true'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.showUnpermittedFiles','false'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.showUnpermittedVolumes','false'),
@@ -2536,7 +3057,7 @@ INSERT INTO `projectconfig` VALUES
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.validateRelatedElements','false'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.settings.viewMode','\"list\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.translationKeyFormat','null'),
-('fields.12994855-fd13-4d38-8ad9-156bb1960e74.translationMethod','\"site\"'),
+('fields.12994855-fd13-4d38-8ad9-156bb1960e74.translationMethod','\"none\"'),
 ('fields.12994855-fd13-4d38-8ad9-156bb1960e74.type','\"craft\\\\fields\\\\Assets\"'),
 ('fields.396abe4e-d4af-4c68-a2fb-7a3bce13f340.columnSuffix','\"dukgymih\"'),
 ('fields.396abe4e-d4af-4c68-a2fb-7a3bce13f340.handle','\"seoBildbeschreibung\"'),
@@ -2568,6 +3089,40 @@ INSERT INTO `projectconfig` VALUES
 ('fields.e667dda0-024e-49cf-b865-a2bb0a7c491e.translationKeyFormat','null'),
 ('fields.e667dda0-024e-49cf-b865-a2bb0a7c491e.translationMethod','\"none\"'),
 ('fields.e667dda0-024e-49cf-b865-a2bb0a7c491e.type','\"craft\\\\fields\\\\PlainText\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.columnSuffix','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.handle','\"openGraphBild\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.instructions','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.name','\"Open Graph Bild\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.searchable','false'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.allowedKinds.0','\"image\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.allowSelfRelations','false'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.allowSubfolders','false'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.allowUploads','true'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.branchLimit','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.defaultPlacement','\"end\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.defaultUploadLocationSource','\"volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.defaultUploadLocationSubpath','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.maintainHierarchy','false'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.maxRelations','1'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.minRelations','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.previewMode','\"full\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.restrictedDefaultUploadSubpath','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.restrictedLocationSource','\"volume:44fec1ae-cc09-42b5-b6a8-1c301d066c04\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.restrictedLocationSubpath','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.restrictFiles','true'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.restrictLocation','false'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.selectionLabel','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.showSearchInput','true'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.showSiteMenu','false'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.showUnpermittedFiles','false'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.showUnpermittedVolumes','false'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.sources','\"*\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.targetSiteId','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.validateRelatedElements','false'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.settings.viewMode','\"thumbs\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.translationKeyFormat','null'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.translationMethod','\"none\"'),
+('fields.e6ae2701-df0a-4888-9652-c27e703d3a04.type','\"craft\\\\fields\\\\Assets\"'),
 ('fs.lokal.hasUrls','true'),
 ('fs.lokal.name','\"Lokal\"'),
 ('fs.lokal.settings.path','\"@assetBasePath\"'),
@@ -2580,16 +3135,97 @@ INSERT INTO `projectconfig` VALUES
 ('meta.__names__.12994855-fd13-4d38-8ad9-156bb1960e74','\"Projektbilder\"'),
 ('meta.__names__.396abe4e-d4af-4c68-a2fb-7a3bce13f340','\"SEO Bildbeschreibung\"'),
 ('meta.__names__.44fec1ae-cc09-42b5-b6a8-1c301d066c04','\"Projektbilder\"'),
-('meta.__names__.c2146f3a-86c4-4929-ad3b-bfa61123b4c1','\"Simple\"'),
 ('meta.__names__.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8','\"Profitlich DEV\"'),
 ('meta.__names__.e667dda0-024e-49cf-b865-a2bb0a7c491e','\"SEO Meta Description\"'),
+('meta.__names__.e6ae2701-df0a-4888-9652-c27e703d3a04','\"Open Graph Bild\"'),
 ('meta.__names__.e814380a-f915-44b8-92b3-a767fa94f64a','\"Profitlich DEV\"'),
+('plugins.blitz.edition','\"standard\"'),
+('plugins.blitz.enabled','true'),
+('plugins.blitz.licenseKey','\"V3H5ID9GCYYDO5FL5ZQ6YE5S\"'),
+('plugins.blitz.schemaVersion','\"5.13.0\"'),
+('plugins.blitz.settings.apiKey','\"\"'),
+('plugins.blitz.settings.batchInsertSize','50'),
+('plugins.blitz.settings.cacheActionRequests','false'),
+('plugins.blitz.settings.cacheControlHeader','\"public, max-age=0, must-revalidate\"'),
+('plugins.blitz.settings.cacheControlHeaderExpired','\"public, s-maxage=5, max-age=0\"'),
+('plugins.blitz.settings.cachedIncludePathParam','\"p\"'),
+('plugins.blitz.settings.cacheDuration','null'),
+('plugins.blitz.settings.cacheGeneratorSettings.__assoc__.0.0','\"concurrency\"'),
+('plugins.blitz.settings.cacheGeneratorSettings.__assoc__.0.1','\"5\"'),
+('plugins.blitz.settings.cacheGeneratorSettings.__assoc__.1.0','\"useBasicAuth\"'),
+('plugins.blitz.settings.cacheGeneratorSettings.__assoc__.1.1','\"\"'),
+('plugins.blitz.settings.cacheGeneratorSettings.__assoc__.2.0','\"username\"'),
+('plugins.blitz.settings.cacheGeneratorSettings.__assoc__.2.1','\"\"'),
+('plugins.blitz.settings.cacheGeneratorSettings.__assoc__.3.0','\"password\"'),
+('plugins.blitz.settings.cacheGeneratorSettings.__assoc__.3.1','\"\"'),
+('plugins.blitz.settings.cacheGeneratorType','\"putyourlightson\\\\blitz\\\\drivers\\\\generators\\\\HttpGenerator\"'),
+('plugins.blitz.settings.cacheNonHtmlResponses','true'),
+('plugins.blitz.settings.cachePurgerType','\"putyourlightson\\\\blitz\\\\drivers\\\\purgers\\\\DummyPurger\"'),
+('plugins.blitz.settings.cacheStorageSettings.__assoc__.0.0','\"folderPath\"'),
+('plugins.blitz.settings.cacheStorageSettings.__assoc__.0.1','\"@webroot/cache/blitz\"'),
+('plugins.blitz.settings.cacheStorageSettings.__assoc__.1.0','\"compressCachedValues\"'),
+('plugins.blitz.settings.cacheStorageSettings.__assoc__.1.1','\"1\"'),
+('plugins.blitz.settings.cacheStorageType','\"putyourlightson\\\\blitz\\\\drivers\\\\storage\\\\FileStorage\"'),
+('plugins.blitz.settings.cachingEnabled','true'),
+('plugins.blitz.settings.debug','false'),
+('plugins.blitz.settings.defaultCacheControlHeader','\"no-store\"'),
+('plugins.blitz.settings.deployerType','\"putyourlightson\\\\blitz\\\\drivers\\\\deployers\\\\DummyDeployer\"'),
+('plugins.blitz.settings.detectSsiEnabled','false'),
+('plugins.blitz.settings.driverJobBatchSize','100'),
+('plugins.blitz.settings.driverJobPriority','100'),
+('plugins.blitz.settings.esiEnabled','false'),
+('plugins.blitz.settings.excludedQueryStringParams.0.__assoc__.0.0','\"enabled\"'),
+('plugins.blitz.settings.excludedQueryStringParams.0.__assoc__.0.1','\"1\"'),
+('plugins.blitz.settings.excludedQueryStringParams.0.__assoc__.1.0','\"queryStringParam\"'),
+('plugins.blitz.settings.excludedQueryStringParams.0.__assoc__.1.1','\"gclid\"'),
+('plugins.blitz.settings.excludedQueryStringParams.1.__assoc__.0.0','\"enabled\"'),
+('plugins.blitz.settings.excludedQueryStringParams.1.__assoc__.0.1','\"1\"'),
+('plugins.blitz.settings.excludedQueryStringParams.1.__assoc__.1.0','\"queryStringParam\"'),
+('plugins.blitz.settings.excludedQueryStringParams.1.__assoc__.1.1','\"fbclid\"'),
+('plugins.blitz.settings.generatePagesWithQueryStringParams','true'),
+('plugins.blitz.settings.hintsEnabled','false'),
+('plugins.blitz.settings.includedQueryStringParams.0.__assoc__.0.0','\"enabled\"'),
+('plugins.blitz.settings.includedQueryStringParams.0.__assoc__.0.1','\"1\"'),
+('plugins.blitz.settings.includedQueryStringParams.0.__assoc__.1.0','\"queryStringParam\"'),
+('plugins.blitz.settings.includedQueryStringParams.0.__assoc__.1.1','\".*\"'),
+('plugins.blitz.settings.includedUriPatterns.0.__assoc__.0.0','\"enabled\"'),
+('plugins.blitz.settings.includedUriPatterns.0.__assoc__.0.1','\"1\"'),
+('plugins.blitz.settings.includedUriPatterns.0.__assoc__.1.0','\"uriPattern\"'),
+('plugins.blitz.settings.includedUriPatterns.0.__assoc__.1.1','\".*\"'),
+('plugins.blitz.settings.injectScriptEvent','\"DOMContentLoaded\"'),
+('plugins.blitz.settings.injectScriptPosition','3'),
+('plugins.blitz.settings.maxRetryAttempts','10'),
+('plugins.blitz.settings.maxUriIndexLength','767'),
+('plugins.blitz.settings.maxUriLength','2048'),
+('plugins.blitz.settings.mutexTimeout','1'),
+('plugins.blitz.settings.onlyCacheLowercaseUris','false'),
+('plugins.blitz.settings.outputComments','false'),
+('plugins.blitz.settings.purgeAssetImagesWhenChanged','true'),
+('plugins.blitz.settings.queryStringCaching','2'),
+('plugins.blitz.settings.queueJobTtr','300'),
+('plugins.blitz.settings.refreshCacheAutomaticallyForGlobals','true'),
+('plugins.blitz.settings.refreshCacheEnabled','true'),
+('plugins.blitz.settings.refreshCacheJobPriority','10'),
+('plugins.blitz.settings.refreshCacheWhenElementMovedInStructure','true'),
+('plugins.blitz.settings.refreshCacheWhenElementSavedNotLive','false'),
+('plugins.blitz.settings.refreshCacheWhenElementSavedUnchanged','false'),
+('plugins.blitz.settings.refreshExpiredCacheAfterVisit','true'),
+('plugins.blitz.settings.refreshMode','2'),
+('plugins.blitz.settings.sendPoweredByHeader','false'),
+('plugins.blitz.settings.ssiEnabled','false'),
+('plugins.blitz.settings.ssiTagFormat','\"<!--#include virtual=\\\"{uri}\\\" -->\"'),
+('plugins.blitz.settings.trackElementQueries','true'),
+('plugins.blitz.settings.trackElements','true'),
 ('plugins.ckeditor.edition','\"standard\"'),
 ('plugins.ckeditor.enabled','true'),
-('plugins.ckeditor.schemaVersion','\"3.0.0.0\"'),
-('plugins.content-security-policy.edition','\"standard\"'),
-('plugins.content-security-policy.enabled','true'),
-('plugins.content-security-policy.schemaVersion','\"1.0.0\"'),
+('plugins.ckeditor.schemaVersion','\"5.6.0.0\"'),
+('plugins.imager-x-power-pack.edition','\"standard\"'),
+('plugins.imager-x-power-pack.enabled','true'),
+('plugins.imager-x-power-pack.schemaVersion','\"1.0.0\"'),
+('plugins.imager-x.edition','\"pro\"'),
+('plugins.imager-x.enabled','true'),
+('plugins.imager-x.licenseKey','\"OZMJ7IKPBXIGAQK6BA00OAVG\"'),
+('plugins.imager-x.schemaVersion','\"4.0.0\"'),
 ('plugins.obfuscator.edition','\"standard\"'),
 ('plugins.obfuscator.enabled','true'),
 ('plugins.obfuscator.schemaVersion','\"1.0.0\"'),
@@ -2602,21 +3238,26 @@ INSERT INTO `projectconfig` VALUES
 ('plugins.password-policy.settings.numbers','true'),
 ('plugins.password-policy.settings.showStrengthIndicator','true'),
 ('plugins.password-policy.settings.symbols','true'),
+('plugins.seomate.edition','\"standard\"'),
+('plugins.seomate.enabled','true'),
+('plugins.seomate.schemaVersion','\"1.0.0\"'),
+('plugins.simplemap.edition','\"pro\"'),
+('plugins.simplemap.enabled','true'),
+('plugins.simplemap.licenseKey','\"KW1SS54N2K3A6KBM3H0WKF4E\"'),
+('plugins.simplemap.schemaVersion','\"3.4.2\"'),
 ('plugins.vite.edition','\"standard\"'),
 ('plugins.vite.enabled','true'),
 ('plugins.vite.schemaVersion','\"1.0.0\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.defaultPlacement','\"end\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.enableVersioning','true'),
-('sections.10120e23-43ba-494f-ba6c-7241058df713.entryTypes.0','\"0e793c4c-3298-4c14-a50e-fe050eeaee18\"'),
+('sections.10120e23-43ba-494f-ba6c-7241058df713.entryTypes.0.uid','\"0e793c4c-3298-4c14-a50e-fe050eeaee18\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.handle','\"startseite\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.maxAuthors','1'),
+('sections.10120e23-43ba-494f-ba6c-7241058df713.minAuthors','1'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.name','\"Startseite\"'),
-('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.__assoc__.0.0','\"label\"'),
-('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.__assoc__.0.1','\"Primäre eintrag Seite\"'),
-('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.__assoc__.1.0','\"urlFormat\"'),
-('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.__assoc__.1.1','\"{url}\"'),
-('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.__assoc__.2.0','\"refresh\"'),
-('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.__assoc__.2.1','\"1\"'),
+('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.label','\"Primäre eintrag Seite\"'),
+('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.refresh','\"1\"'),
+('sections.10120e23-43ba-494f-ba6c-7241058df713.previewTargets.0.urlFormat','\"{url}\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.propagationMethod','\"all\"'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.enabledByDefault','true'),
 ('sections.10120e23-43ba-494f-ba6c-7241058df713.siteSettings.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.hasUrls','true'),
@@ -2635,19 +3276,24 @@ INSERT INTO `projectconfig` VALUES
 ('sites.c81f04dd-a4dc-4e6f-a97b-5ce6004b8cf8.sortOrder','1'),
 ('system.edition','\"pro\"'),
 ('system.live','true'),
-('system.name','\"Profitlich DEV\"'),
-('system.schemaVersion','\"5.8.0.3\"'),
+('system.name','\"Profitlich Template\"'),
+('system.retryDuration','null'),
+('system.schemaVersion','\"5.11.0.2\"'),
 ('system.timeZone','\"America/Los_Angeles\"'),
 ('users.allowPublicRegistration','false'),
 ('users.defaultGroup','null'),
 ('users.photoSubpath','null'),
 ('users.photoVolumeUid','null'),
 ('users.requireEmailVerification','true'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.altTranslationKeyFormat','null'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.altTranslationMethod','\"none\"'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.cardThumbAlignment','\"end\"'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elementCondition','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.autocapitalize','true'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.autocomplete','false'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.autocorrect','true'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.class','null'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.dateAdded','\"2024-10-04T17:41:11+00:00\"'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.disabled','false'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.elementCondition','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.id','null'),
@@ -2670,8 +3316,12 @@ INSERT INTO `projectconfig` VALUES
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.userCondition','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.warning','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.0.width','100'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.1.dateAdded','\"2024-10-04T17:41:11+00:00\"'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.1.editCondition','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.1.elementCondition','null'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.1.elementEditCondition','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.1.fieldUid','\"396abe4e-d4af-4c68-a2fb-7a3bce13f340\"'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.1.handle','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.1.instructions','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.1.label','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.elements.1.required','true'),
@@ -2684,10 +3334,12 @@ INSERT INTO `projectconfig` VALUES
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.name','\"Content\"'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.uid','\"6b9c9049-f380-4f5d-8db8-2e6fa1a74f1c\"'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.tabs.0.userCondition','null'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fieldLayouts.413aa4a6-e2a6-4c94-b2e0-08be3e37fc65.thumbFieldKey','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.fs','\"lokal\"'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.handle','\"projektbilder\"'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.name','\"Projektbilder\"'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.sortOrder','2'),
+('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.subpath','\"\"'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.titleTranslationKeyFormat','null'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.titleTranslationMethod','\"site\"'),
 ('volumes.44fec1ae-cc09-42b5-b6a8-1c301d066c04.transformFs','\"\"'),
@@ -2721,8 +3373,9 @@ CREATE TABLE `queue` (
   `error` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_sziryarwktdtumewknzytfdmynnofogwczsp` (`channel`,`fail`,`timeUpdated`,`timePushed`),
-  KEY `idx_adrmfafzrwbdpodfkvzdiwxjkqdwqersigyh` (`channel`,`fail`,`timeUpdated`,`delay`)
-) ENGINE=InnoDB AUTO_INCREMENT=376 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  KEY `idx_adrmfafzrwbdpodfkvzdiwxjkqdwqersigyh` (`channel`,`fail`,`timeUpdated`,`delay`),
+  KEY `idx_cvmklrvmpatffckpbcyjqrumhszkmbpinlor` (`channel`,`fail`,`timeUpdated`,`priority`,`id`,`timePushed`,`delay`)
+) ENGINE=InnoDB AUTO_INCREMENT=384 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2787,7 +3440,7 @@ CREATE TABLE `relations` (
   CONSTRAINT `fk_airkuqthylrqsyecxtbhwoohrvsqbwdkjsdh` FOREIGN KEY (`sourceSiteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_nsnondvsjuexfbyseuqrvrshjdcsbqosahsy` FOREIGN KEY (`sourceId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_pbeizbkjushnhdfswbumvghrnmqjaabjvetp` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2813,7 +3466,9 @@ INSERT INTO `relations` VALUES
 (19,10,67,NULL,50,1,'2024-11-02 09:12:42','2024-11-02 09:12:42','27664115-9abe-4303-ab92-5f92d22f1651'),
 (20,10,68,NULL,50,1,'2024-11-02 09:12:51','2024-11-02 09:12:51','6c6533ff-de99-4c44-a581-81da55f07932'),
 (22,10,70,NULL,50,1,'2024-11-02 09:15:27','2024-11-02 09:15:27','b788de4e-e4e6-4f63-95ed-871a5fa6fe93'),
-(24,10,72,NULL,50,1,'2024-11-02 09:16:40','2024-11-02 09:16:40','9f6f35ce-96a4-48d0-81f8-c48f27a24755');
+(24,10,72,NULL,50,1,'2024-11-02 09:16:40','2024-11-02 09:16:40','9f6f35ce-96a4-48d0-81f8-c48f27a24755'),
+(25,10,74,NULL,50,1,'2026-05-12 20:21:24','2026-05-12 20:21:24','6b75b431-2f9f-4d35-897a-bea2e8c09c6f'),
+(26,10,75,NULL,50,1,'2026-05-23 20:52:26','2026-05-23 20:52:26','7d02e6d1-1fbb-4389-a2f3-bb7fac3e6a13');
 /*!40000 ALTER TABLE `relations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2839,14 +3494,18 @@ LOCK TABLES `resourcepaths` WRITE;
 /*!40000 ALTER TABLE `resourcepaths` DISABLE KEYS */;
 INSERT INTO `resourcepaths` VALUES
 ('105651f2','@craft/web/assets/updater/dist'),
+('1080f527','@craft/web/assets/axios/dist'),
 ('119f7c1a','@craft/web/assets/elementresizedetector/dist'),
 ('12111b52','@craft/web/assets/datepickeri18n/dist'),
 ('1246b350','@craft/web/assets/cp/dist'),
 ('127b461a','@craft/web/assets/xregexp/dist'),
 ('12c7352f','@craft/web/assets/datepickeri18n/dist'),
 ('12f43057','@bower/jquery/dist'),
+('1314bae8','@craft/web/assets/selectize/dist'),
 ('13231297','@craft/web/assets/tailwindreset/dist'),
 ('136939d1','@craft/web/assets/datepickeri18n/dist'),
+('137a9add','@craft/web/assets/prismjs/dist'),
+('140100ca','@craft/web/assets/tailwindreset/dist'),
 ('1436a8b5','@craft/web/assets/selectize/dist'),
 ('147f63f2','@bower/jquery/dist'),
 ('15458015','@spicyweb/embeddedassets/assets/main/dist'),
@@ -2859,11 +3518,14 @@ INSERT INTO `resourcepaths` VALUES
 ('168ca9a6','@craft/web/assets/utilities/dist'),
 ('1813a041','@craft/web/assets/jqueryui/dist'),
 ('187e0afd','@craft/web/assets/cp/dist'),
+('18f2b9b4','@craft/web/assets/fileupload/dist'),
 ('18f5b2a1','@craft/web/assets/velocity/dist'),
 ('191bab3a','@craft/web/assets/tailwindreset/dist'),
 ('195bbe5f','@craft/web/assets/velocity/dist'),
 ('198d9022','@craft/web/assets/velocity/dist'),
 ('19c3fb1a','@craft/web/assets/picturefill/dist'),
+('1b2299ca','@craft/web/assets/utilities/dist'),
+('1b62621','@craft/web/assets/updater/dist'),
 ('1b973935','@craft/web/assets/jquerytouchevents/dist'),
 ('1bc4e657','@craft/web/assets/jquerypayment/dist'),
 ('1bf4d6b6','@craft/web/assets/garnish/dist'),
@@ -2875,29 +3537,39 @@ INSERT INTO `resourcepaths` VALUES
 ('1d316f74','@craft/web/assets/jquerytouchevents/dist'),
 ('1d62b016','@craft/web/assets/jquerypayment/dist'),
 ('1e0e1118','@craft/web/assets/selectize/dist'),
+('1e397570','@craft/web/assets/garnish/dist'),
 ('1e53e4e0','@craft/web/assets/velocity/dist'),
 ('1e66ceb','@craft/web/assets/craftsupport/dist'),
 ('1e727351','@craft/web/assets/fileupload/dist'),
 ('1e98f3e4','@craft/web/assets/jqueryui/dist'),
 ('1eb76f02','@craft/web/assets/updateswidget/dist'),
 ('1efc90da','@craft/web/assets/d3/dist'),
+('1f5c18a0','@craft/web/assets/cp/dist'),
 ('200d2d6c','@craft/web/assets/recententries/dist'),
 ('200d36c','@craft/web/assets/updateswidget/dist'),
 ('200f2373','@craft/web/assets/velocity/dist'),
 ('2021f168','@craft/web/assets/plugins/dist'),
 ('2041484b','@craft/web/assets/picturefill/dist'),
 ('20976636','@craft/web/assets/picturefill/dist'),
+('20f959c9','@craft/web/assets/selectize/dist'),
 ('21396ac8','@craft/web/assets/picturefill/dist'),
 ('223df65c','@craft/web/assets/fileupload/dist'),
+('22a97e8d','@craft/web/assets/vue/dist'),
 ('236c779f','@craft/web/assets/utilities/dist'),
+('236d1606','@craft/web/assets/axios/dist'),
+('23ba38e3','@craft/web/assets/garnish/dist'),
 ('244f045b','@craft/web/assets/axios/dist'),
 ('24b2cb4','@craft/web/assets/d3/dist'),
 ('259821c4','@craft/web/assets/jquerypayment/dist'),
 ('25cbfea6','@craft/web/assets/jquerytouchevents/dist'),
 ('26a05d25','@craft/web/assets/vue/dist'),
+('26a1d459','@craft/web/assets/utilities/dist'),
 ('2764aa1b','@craft/web/assets/d3/dist'),
 ('279f3c89','@craft/web/assets/picturefill/dist'),
+('27ece3eb','@craft/web/assets/tailwindreset/dist'),
+('27f74fd','@craft/web/assets/datepickeri18n/dist'),
 ('29037d3','@craft/web/assets/craftsupport/dist'),
+('2911ff54','@craft/web/assets/dashboard/dist'),
 ('294b0cf2','@craft/web/assets/craftsupport/dist'),
 ('299d228f','@craft/web/assets/craftsupport/dist'),
 ('2a0fefea','@craft/web/assets/updates/dist'),
@@ -2907,21 +3579,31 @@ INSERT INTO `resourcepaths` VALUES
 ('2bf9f54b','@craft/web/assets/xregexp/dist'),
 ('2c05a3ac','@craft/web/assets/iframeresizer/dist'),
 ('2c278189','@craft/web/assets/xregexp/dist'),
+('2cb1fb81','@craft/web/assets/cp/dist'),
 ('2e000198','@craft/web/assets/generalsettings/dist'),
 ('2e14088f','@craft/web/assets/garnish/dist'),
 ('2e77bdf6','@craft/web/assets/axios/dist'),
 ('2ec34228','@spicyweb/embeddedassets/assets/main/dist'),
 ('2f9135b1','@craft/web/assets/dashboard/dist'),
+('302f27e4','@craft/web/assets/picturefill/dist'),
 ('310063af','@craft/web/assets/dashboard/dist'),
 ('31192e1a','@craft/web/assets/selectize/dist'),
 ('3129cae','@craft/web/assets/iframeresizer/dist'),
 ('31f6de46','@craft/web/assets/velocity/dist'),
+('32347b1c','@craft/web/assets/admintable/dist'),
 ('3280857e','@craft/web/assets/velocity/dist'),
+('331ea461','@craft/web/assets/jquerypayment/dist'),
 ('3341af09','@craft/web/assets/elementresizedetector/dist'),
 ('3346e1a1','@craft/web/assets/fabric/dist'),
+('334d7b03','@craft/web/assets/jquerytouchevents/dist'),
+('33573409','@craft/web/assets/animationblocker/dist'),
 ('34320393','@craft/web/assets/jquerytouchevents/dist'),
 ('3461dcf1','@craft/web/assets/jquerypayment/dist'),
 ('360c9438','@craft/web/assets/tailwindreset/dist'),
+('36713de2','@craft/web/assets/picturefill/dist'),
+('3684ddc8','@craft/web/assets/d3/dist'),
+('3689a6d6','@craft/web/assets/velocity/dist'),
+('368b4267','@craft/web/assets/fabric/dist'),
 ('36a1b0e1','@bower/jquery/dist'),
 ('371787c9','@craft/web/assets/jquerypayment/dist'),
 ('374458ab','@craft/web/assets/jquerytouchevents/dist'),
@@ -2930,50 +3612,85 @@ INSERT INTO `resourcepaths` VALUES
 ('382bb2f','@craft/web/assets/xregexp/dist'),
 ('38f8b835','@craft/web/assets/axios/dist'),
 ('391c0e0e','@craft/web/assets/datepickeri18n/dist'),
+('398c293f','@craft/web/assets/feed/dist'),
 ('3a6a5536','@craft/web/assets/datepickeri18n/dist'),
+('3b979ae4','@craft/web/assets/xregexp/dist'),
 ('3c4620f7','@craft/web/assets/jqueryui/dist'),
 ('3cba9102','@craft/web/assets/recententries/dist'),
+('3d152da6','@craft/web/assets/datepickeri18n/dist'),
 ('3d518c52','@craft/web/assets/cp/dist'),
 ('3d850a97','@craft/web/assets/feed/dist'),
+('3dc980e2','@craft/web/assets/xregexp/dist'),
+('3de5d47f','@craft/web/assets/iframeresizer/dist'),
+('3e25a5de','@craft/icons/custom-icons'),
+('3e4781cd','@craft/web/assets/theme/dist'),
 ('3ef351af','@craft/web/assets/feed/dist'),
 ('3f9a4b70','@craft/web/assets/admintable/dist'),
+('3fad5726','@craft/web/assets/craftsupport/dist'),
+('3ffe247d','@craft/icons/custom-icons'),
+('402a13ff','@craft/web/assets/updates/dist'),
 ('40363324','@craft/web/assets/selectize/dist'),
 ('4053a94b','@craft/web/assets/jqueryui/dist'),
+('4062e235','@craft/web/assets/axios/dist'),
 ('40858736','@craft/web/assets/jqueryui/dist'),
+('40cf0ff4','@craft/web/assets/dashboard/dist'),
 ('412b8bc8','@craft/web/assets/jqueryui/dist'),
 ('41cd9928','@craft/web/assets/velocity/dist'),
+('41d0a100','@craft/web/assets/cp/dist'),
+('4216efb','@craft/web/assets/datepickeri18n/dist'),
 ('42821758','@craft/web/assets/jquerytouchevents/dist'),
 ('42d1c83a','@craft/web/assets/jquerypayment/dist'),
 ('440944fd','@craft/web/assets/jquerytouchevents/dist'),
 ('445a9b9f','@craft/web/assets/jquerypayment/dist'),
 ('44c62c5c','@craft/web/assets/dashboard/dist'),
+('45ae206a','@craft/web/assets/utilities/dist'),
 ('45af41f3','@craft/web/assets/axios/dist'),
+('467409f9','@craft/web/assets/updates/dist'),
 ('47238906','@craft/web/assets/tailwindreset/dist'),
 ('4746ca8d','@craft/web/assets/velocity/dist'),
 ('478ddd89','@craft/web/assets/jqueryui/dist'),
 ('47b07764','@craft/web/assets/dashboard/dist'),
+('48180a49','@craft/web/assets/fileupload/dist'),
 ('48434564','@craft/web/assets/feed/dist'),
 ('488a5277','@craft/web/assets/elementresizedetector/dist'),
+('48ab917d','@craft/web/assets/pluginstore/dist'),
 ('4a511258','@craft/web/assets/datepickeri18n/dist'),
 ('4a621720','@bower/jquery/dist'),
+('4a8db96a','@craft/web/assets/tailwindreset/dist'),
 ('4ab4395d','@bower/jquery/dist'),
+('4b0b6bc8','@craft/ckeditor/web/assets/ckeditor/dist'),
 ('4bcc1bde','@bower/jquery/dist'),
 ('4c0f410c','@craft/web/assets/animationblocker/dist'),
+('4c7269c8','@craft/ckeditor/web/assets/fieldsettings/dist'),
 ('4c7e916c','@craft/web/assets/cp/dist'),
 ('4c9b693','@craft/web/assets/cp/dist'),
 ('4cda41fd','@craft/web/assets/datepickeri18n/dist'),
 ('4d6a4d9f','@bower/jquery/dist'),
+('4d980348','@craft/web/assets/selectize/dist'),
+('4df62260','@craft/web/assets/plugins/dist'),
 ('4df744c8','@craft/web/assets/vue/dist'),
 ('4e111867','@craft/web/assets/fabric/dist'),
 ('4e2c0436','@craft/web/assets/elementresizedetector/dist'),
+('4e46104f','@craft/web/assets/fileupload/dist'),
 ('4ec816c1','@craft/web/assets/feed/dist'),
+('4edb6262','@craft/web/assets/garnish/dist'),
 ('4f5426b5','@craft/web/assets/elementresizedetector/dist'),
+('4fdc3bf','@craft/web/assets/xregexp/dist'),
+('503dc6e4','@craft/web/assets/jqueryui/dist'),
+('5052d99f','@craft/web/assets/feed/dist'),
+('50848efe','@craft/web/assets/iframeresizer/dist'),
 ('51c41294','@craft/web/assets/updates/dist'),
 ('524b17e3','@craft/web/assets/datepickeri18n/dist'),
 ('52a6a409','@craft/web/assets/fabric/dist'),
+('5326db4c','@craft/web/assets/theme/dist'),
+('54cbdd06','@craft/web/assets/datepickeri18n/dist'),
 ('557672f4','@craft/web/assets/prismjs/dist'),
+('5584b654','@craft/web/assets/fabric/dist'),
 ('561a6656','@craft/web/assets/updates/dist'),
 ('564bb725','@craft/web/assets/d3/dist'),
+('5663dce2','@craft/web/assets/jqueryui/dist'),
+('5666507','@verbb/formie/web/assets/forms/dist'),
+('5693ee9','@craft/web/assets/d3/dist'),
 ('56cc482b','@craft/web/assets/updates/dist'),
 ('56d2137a','@craft/web/assets/feed/dist'),
 ('576244d5','@craft/web/assets/updates/dist'),
@@ -2981,10 +3698,17 @@ INSERT INTO `resourcepaths` VALUES
 ('589e1da4','@craft/web/assets/fabric/dist'),
 ('59d79c93','@craft/web/assets/velocity/dist'),
 ('59f60b22','@craft/web/assets/fileupload/dist'),
+('5a89c4a9','@craft/web/assets/animationblocker/dist'),
+('5a938ba3','@craft/web/assets/jquerytouchevents/dist'),
+('5ac054c1','@craft/web/assets/jquerypayment/dist'),
+('5ada56f2','@bower/jquery/dist'),
 ('5b436ba4','@craft/web/assets/fieldsettings/dist'),
+('5bae7891','@craft/web/assets/updateswidget/dist'),
+('5be58749','@craft/web/assets/d3/dist'),
 ('5c134146','@craft/web/assets/jquerytouchevents/dist'),
 ('5c409e24','@craft/web/assets/jquerypayment/dist'),
 ('5c54c1f7','@craft/web/assets/picturefill/dist'),
+('5c844cf4','@bower/jquery/dist'),
 ('5d2abe92','@craft/web/assets/iframeresizer/dist'),
 ('5df6bc39','@craft/web/assets/animationblocker/dist'),
 ('5e287fe0','@craft/web/assets/fileupload/dist'),
@@ -2993,33 +3717,53 @@ INSERT INTO `resourcepaths` VALUES
 ('5f2f1ca6','@craft/web/assets/generalsettings/dist'),
 ('5f3b15b1','@craft/web/assets/garnish/dist'),
 ('5f505d63','@craft/web/assets/fileupload/dist'),
+('5f575676','@craft/web/assets/velocity/dist'),
 ('600f1b29','@craft/web/assets/jquerypayment/dist'),
 ('601b44fa','@craft/web/assets/picturefill/dist'),
 ('605cc44b','@craft/web/assets/jquerytouchevents/dist'),
 ('6083cfe6','@spicyweb/embeddedassets/assets/main/dist'),
+('60cab01d','@verbb/base/resources/dist'),
+('61729ddd','@craft/icons/custom-icons'),
 ('61b92c01','@bower/jquery/dist'),
 ('62cf7739','@bower/jquery/dist'),
 ('63ab691c','@craft/web/assets/d3/dist'),
+('63bd87f4','@craft/web/assets/animationblocker/dist'),
 ('645933e9','@craft/web/assets/elementresizedetector/dist'),
+('65143aff','@craft/web/assets/recententries/dist'),
 ('6598199e','@craft/web/assets/velocity/dist'),
+('65b00fa9','@bower/jquery/dist'),
+('65e39df2','@craft/web/assets/animationblocker/dist'),
+('6666cada','@craft/web/assets/d3/dist'),
+('66695575','@craft/web/assets/fabric/dist'),
 ('66876ea','@craft/web/assets/fileupload/dist'),
+('669b8e1f','@craft/web/assets/picturefill/dist'),
 ('66a32f70','@craft/web/assets/garnish/dist'),
 ('67a3b498','@craft/web/assets/utilities/dist'),
 ('67aaccb1','@craft/web/assets/fileupload/dist'),
 ('6828e72f','@craft/web/assets/jqueryui/dist'),
+('6896f1f','@craft/web/assets/jqueryui/dist'),
 ('68ca60ab','@craft/web/assets/iframeresizer/dist'),
+('699147b','@craft/web/assets/craftsupport/dist'),
 ('69c72e3e','@craft/web/assets/craftsupport/dist'),
 ('6a63f98','@craft/web/assets/fabric/dist'),
 ('6b3d62c7','@craft/web/assets/conditionbuilder/dist'),
 ('6b5ebc17','@craft/web/assets/jqueryui/dist'),
 ('6b683519','@craft/web/assets/theme/dist'),
 ('6ba3f9fa','@craft/web/assets/xregexp/dist'),
+('6cb8c2bc','@craft/web/assets/admintable/dist'),
+('6d07c36d','@craft/web/assets/iframeresizer/dist'),
+('6d23331f','@craft/web/assets/xregexp/dist'),
 ('6e0492ee','@craft/web/assets/datepickeri18n/dist'),
+('6ea596df','@craft/web/assets/theme/dist'),
 ('6f1d177d','@craft/web/assets/dashboard/dist'),
+('6f47e4db','@craft/web/assets/craftsupport/dist'),
+('6f579fbf','@craft/web/assets/jqueryui/dist'),
 ('6f98d507','@craft/web/assets/updates/dist'),
 ('6fcb3900','@craft/web/assets/dashboard/dist'),
+('701b4edb','@craft/web/assets/selectize/dist'),
 ('702c2ab3','@craft/web/assets/garnish/dist'),
 ('704f9fca','@craft/web/assets/axios/dist'),
+('712c4914','@craft/web/assets/fileupload/dist'),
 ('71dd2b85','@craft/web/assets/craftsupport/dist'),
 ('72c3573f','@craft/web/assets/tailwindreset/dist'),
 ('73368a0c','@bower/jquery/dist'),
@@ -3029,77 +3773,113 @@ INSERT INTO `resourcepaths` VALUES
 ('7532afe4','@craft/web/assets/xregexp/dist'),
 ('75d6ed1d','@craft/web/assets/selectize/dist'),
 ('76533184','@craft/web/assets/fileupload/dist'),
+('7693493b','@verbb/formie/web/assets/frontend/dist'),
+('770ef4f9','@craft/web/assets/tailwindreset/dist'),
 ('77567820','@craft/web/assets/craftsupport/dist'),
 ('778922a6','@craft/web/assets/fabric/dist'),
 ('78014141','@craft/web/assets/picturefill/dist'),
+('791e50a2','@craft/web/assets/updates/dist'),
 ('799e4f55','@craft/web/assets/cp/dist'),
 ('79d11a1a','@craft/web/assets/jqueryui/dist'),
+('79fb4ca9','@craft/web/assets/dashboard/dist'),
 ('7a14931e','@craft/web/assets/garnish/dist'),
 ('7b1dbb8f','@craft/web/assets/htmx/dist'),
+('7c53ec93','@craft/web/assets/cp/dist'),
+('7d368143','@craft/web/assets/garnish/dist'),
 ('7ddb12ed','@craft/web/assets/prismjs/dist'),
+('7de1afa6','@craft/web/assets/axios/dist'),
 ('7e612832','@craft/web/assets/updates/dist'),
 ('7e8a12e4','@craft/web/assets/picturefill/dist'),
 ('7ead49d5','@craft/web/assets/prismjs/dist'),
 ('80054dd5','@craft/web/assets/axios/dist'),
+('803ff09e','@craft/web/assets/prismjs/dist'),
+('803ff183','@craft/web/assets/plugins/dist'),
 ('805cf94c','@craft/web/assets/fabric/dist'),
 ('819c4f93','@craft/web/assets/vue/dist'),
+('827f78be','@craft/web/assets/cp/dist'),
 ('8297a0d6','@craft/web/assets/datepickeri18n/dist'),
 ('82c5562b','@craft/web/assets/iframeresizer/dist'),
 ('82e7740e','@craft/web/assets/xregexp/dist'),
 ('8372f7df','@craft/web/assets/fieldsettings/dist'),
 ('837316ed','@craft/web/assets/axios/dist'),
 ('837852a2','@craftpulse/passwordpolicy/assetbundles/PasswordPolicy/dist'),
+('8385ca41','@craft/web/assets/updates/dist'),
 ('83a062f','@craft/web/assets/picturefill/dist'),
 ('83a4d9a2','@craft/web/assets/fieldsettings/dist'),
+('842162b8','@craft/web/assets/cp/dist'),
 ('8463006a','@craft/web/assets/iframeresizer/dist'),
 ('851b22e9','@craft/web/assets/iframeresizer/dist'),
 ('85cd0c94','@craft/web/assets/iframeresizer/dist'),
 ('8619e39b','@craft/web/assets/fileupload/dist'),
+('86be5dce','@craft/web/assets/vue/dist'),
 ('86d7aae9','@craft/web/assets/fabric/dist'),
 ('8739519','@craft/web/assets/d3/dist'),
+('875607e','@craft/web/assets/recententries/dist'),
+('877a3545','@craft/web/assets/axios/dist'),
 ('88114db','@craft/web/assets/selectize/dist'),
+('8869c0f0','@craft/web/assets/selectize/dist'),
 ('88851407','@craft/web/assets/login/dist'),
 ('890b2ba6','@craft/web/assets/velocity/dist'),
+('892260d4','@craft/web/assets/tailwindreset/dist'),
 ('895fc90e','@craft/web/assets/picturefill/dist'),
+('8964bcb9','@cloudgrayau/utils/resources'),
 ('899676f7','@craft/ckeditor/web/assets/ckeditor/dist'),
 ('89a45f9c','@craft/web/assets/d3/dist'),
 ('8a301d48','@craft/web/assets/garnish/dist'),
 ('8a85073','@craft/ckeditor/web/assets/ckeditor/dist'),
+('8bb7d3f7','@craft/web/assets/fileupload/dist'),
 ('8c9c2911','@craft/web/assets/jquerypayment/dist'),
 ('8ccff673','@craft/web/assets/jquerytouchevents/dist'),
 ('8d13cf9','@craft/web/assets/updates/dist'),
 ('8d91c0f2','@craft/web/assets/prismjs/dist'),
 ('8e2bfa2d','@craft/web/assets/updates/dist'),
 ('8e31d486','@craft/web/assets/updateswidget/dist'),
+('8e37daf6','@craft/web/assets/selectize/dist'),
 ('8e7a2b5e','@craft/web/assets/d3/dist'),
 ('8eac0523','@craft/web/assets/d3/dist'),
 ('8ee7396c','@craft/web/assets/utilities/dist'),
 ('8ee7fafb','@craft/web/assets/updateswidget/dist'),
 ('8f0209dd','@craft/web/assets/d3/dist'),
 ('8f09f716','@spicyweb/embeddedassets/resources'),
+('8f7c7ad2','@craft/web/assets/tailwindreset/dist'),
 ('902b957f','@craft/web/assets/jquerypayment/dist'),
 ('903fab4f','@craft/web/assets/sites/dist'),
 ('90766f72','@craft/web/assets/utilities/dist'),
 ('90784a1d','@craft/web/assets/jquerytouchevents/dist'),
+('908902f2','@craft/web/assets/theme/dist'),
+('9163d419','@craft/web/assets/craftsupport/dist'),
 ('91fcb0e0','@craft/web/assets/axios/dist'),
 ('9245c5eb','@craft/web/assets/updater/dist'),
 ('9285a526','@bower/jquery/dist'),
+('929e8595','@craft/web/assets/velocity/dist'),
 ('92a2503','@craft/web/assets/iframeresizer/dist'),
+('930703dd','@craft/web/assets/xregexp/dist'),
+('932b5740','@craft/web/assets/iframeresizer/dist'),
 ('939179d5','@craft/web/assets/cp/dist'),
 ('9418a515','@craft/web/assets/datepickeri18n/dist'),
 ('944f0d17','@craft/web/assets/cp/dist'),
 ('9499236a','@craft/web/assets/cp/dist'),
 ('95372f94','@craft/web/assets/cp/dist'),
+('95754d46','@craft/web/assets/iframeresizer/dist'),
 ('95bc97c8','@craft/web/assets/velocity/dist'),
+('95cc055c','@craft/web/assets/jqueryui/dist'),
 ('96b4be8c','@craft/web/assets/focusvisible/dist'),
 ('96d1b769','@spicyweb/embeddedassets/resources'),
+('96d718f4','@craft/web/assets/theme/dist'),
 ('96fd3cd7','@craft/web/assets/utilities/dist'),
+('97098722','@craft/web/assets/jquerypayment/dist'),
+('975a5840','@craft/web/assets/jquerytouchevents/dist'),
+('9801a12f','@craft/web/assets/updateswidget/dist'),
 ('9807af5f','@craft/web/assets/selectize/dist'),
+('984a5ef7','@craft/web/assets/d3/dist'),
+('984d65b7','@craft/web/assets/fabric/dist'),
 ('985cb01f','@craft/web/assets/animationblocker/dist'),
 ('98623530','@craft/web/assets/jqueryui/dist'),
+('98bfbedd','@craft/web/assets/picturefill/dist'),
 ('98cc61bf','@craft/web/assets/tailwindreset/dist'),
 ('98d18122','@craft/web/assets/selectize/dist'),
 ('98f0d88c','@craft/web/assets/recententries/dist'),
+('99020ee5','@craft/web/assets/datepickeri18n/dist'),
 ('997f8ddc','@craft/web/assets/selectize/dist'),
 ('9a132cd2','@craft/web/assets/jquerypayment/dist'),
 ('9a40f3b0','@craft/web/assets/jquerytouchevents/dist'),
@@ -3107,19 +3887,33 @@ INSERT INTO `resourcepaths` VALUES
 ('9ab91821','@craft/web/assets/feed/dist'),
 ('9b8683b4','@craft/web/assets/recententries/dist'),
 ('9d343d6a','@craft/web/assets/pluginstore/dist'),
+('9d9113d9','@craft/web/assets/animationblocker/dist'),
+('9e1444f1','@craft/web/assets/d3/dist'),
 ('9e201cb8','@craft/web/assets/datepickeri18n/dist'),
+('9e3ff8d','@craft/web/assets/velocity/dist'),
 ('9e6a37fe','@craft/web/assets/tailwindreset/dist'),
 ('9ecdaf52','@craft/web/assets/fabric/dist'),
 ('9f12157d','@craft/web/assets/tailwindreset/dist'),
+('9f2b954a','@bower/jquery/dist'),
 ('9f842e65','@craft/web/assets/velocity/dist'),
+('9f8fa01c','@craft/web/assets/recententries/dist'),
 ('9fc43b00','@craft/web/assets/tailwindreset/dist'),
 ('9fd9db9d','@craft/web/assets/selectize/dist'),
+('a0125e4a','@craft/web/assets/animationblocker/dist'),
+('a0eae0fc','@craft/web/assets/xregexp/dist'),
+('a135e272','@craft/web/assets/updateswidget/dist'),
+('a17366b4','@craft/web/assets/velocity/dist'),
+('a17e1daa','@craft/web/assets/d3/dist'),
 ('a1851c0e','@craft/web/assets/selectize/dist'),
 ('a2326571','@craft/web/assets/plugins/dist'),
 ('a24d4dd6','@craft/ckeditor/web/assets/ckeditor/dist'),
 ('a2822a5f','@craft/web/assets/fabric/dist'),
+('a2a8d8d9','@bower/jquery/dist'),
+('a2ae73c','@craft/web/assets/jquerypayment/dist'),
 ('a32c27f4','@craft/web/assets/htmx/dist'),
 ('a4b3c93c','@craft/web/assets/vue/dist'),
+('a4b7bb61','@craft/web/assets/jquerytouchevents/dist'),
+('a4e46403','@craft/web/assets/jquerypayment/dist'),
 ('a53cc1da','@craft/web/assets/updateswidget/dist'),
 ('a54c6b7','@craft/web/assets/plugins/dist'),
 ('a5773e02','@craft/web/assets/d3/dist'),
@@ -3128,14 +3922,22 @@ INSERT INTO `resourcepaths` VALUES
 ('a648f60c','@craft/web/assets/picturefill/dist'),
 ('a64a9ae2','@craft/web/assets/updateswidget/dist'),
 ('a690a62c','@craft/web/assets/tailwindreset/dist'),
+('a6bbe341','@craft/web/assets/recententries/dist'),
 ('a733cbb','@craft/web/assets/vue/dist'),
 ('a7657b1f','@bower/jquery/dist'),
+('a79385e','@craft/web/assets/jquerytouchevents/dist'),
 ('a7c8f2a1','@craft/web/assets/xregexp/dist'),
+('a81ab629','@craft/web/assets/generalsettings/dist'),
+('a84f48cf','@craft/web/assets/jqueryui/dist'),
 ('a87e03b1','@craft/web/assets/axios/dist'),
 ('a8a82dcc','@craft/web/assets/axios/dist'),
 ('a8eece5b','@craft/web/assets/garnish/dist'),
 ('a9062132','@craft/web/assets/axios/dist'),
+('a9bd41af','@craft/web/assets/theme/dist'),
+('aa1f141d','@craft/web/assets/iframeresizer/dist'),
 ('aa5511c8','@nystudio107/codeeditor/web/assets/dist'),
+('aaefedc4','@craft/web/assets/datepickeri18n/dist'),
+('ab525dfc','@craft/web/assets/picturefill/dist'),
 ('ac704fa1','@craft/web/assets/picturefill/dist'),
 ('ad606c8d','@craft/web/assets/iframeresizer/dist'),
 ('ad82eb09','@craft/web/assets/jqueryui/dist'),
@@ -3143,43 +3945,64 @@ INSERT INTO `resourcepaths` VALUES
 ('adf04b0c','@craft/web/assets/xregexp/dist'),
 ('ae1637b5','@craft/web/assets/iframeresizer/dist'),
 ('ae659dfe','@craft/web/assets/garnish/dist'),
+('ae76e95d','@craft/web/assets/feed/dist'),
 ('aec2393f','@craft/web/assets/theme/dist'),
 ('aee35ec','@bower/jquery/dist'),
 ('afa07773','@craft/web/assets/axios/dist'),
+('b0162389','@craft/web/assets/tailwindreset/dist'),
 ('b05db895','@craft/web/assets/recententries/dist'),
 ('b07ce13b','@craft/web/assets/selectize/dist'),
+('b080ff4','@craft/web/assets/fabric/dist'),
 ('b08b96e8','@craft/web/assets/recententries/dist'),
 ('b0931167','@craft/web/assets/velocity/dist'),
 ('b0c7f3cf','@craft/web/assets/picturefill/dist'),
+('b0ff52a0','@craft/web/assets/garnish/dist'),
 ('b1b858c2','@craftpulse/passwordpolicy/assetbundles/PasswordPolicy/dist'),
 ('b2a8bc61','@craft/web/assets/utilities/dist'),
 ('b30aba03','@craft/web/assets/selectize/dist'),
 ('b30cfebc','@craft/web/assets/conditionbuilder/dist'),
+('b37bafe1','@craft/ckeditor/web/assets/fieldsettings/dist'),
 ('b37c2e82','@spicyweb/embeddedassets/resources'),
+('b3d212a2','@craft/web/assets/plugins/dist'),
 ('b3f93da2','@craft/web/assets/fileupload/dist'),
+('b402ade1','@craft/ckeditor/web/assets/ckeditor/dist'),
 ('b41f0021','@craft/web/assets/tailwindreset/dist'),
 ('b44c4415','@spicyweb/embeddedassets/resources'),
 ('b4c5d17','@craft/web/assets/picturefill/dist'),
 ('b50413d0','@craft/web/assets/jquerypayment/dist'),
 ('b557ccb2','@craft/web/assets/jquerytouchevents/dist'),
+('b6349e64','@craft/web/assets/fileupload/dist'),
 ('b6392836','@craft/web/assets/pluginstore/dist'),
 ('b67f9845','@craft/web/assets/garnish/dist'),
 ('b6edbc3','@spicyweb/embeddedassets/assets/main/dist'),
+('b70399ab','@craft/web/assets/selectize/dist'),
 ('b7695b19','@craft/web/assets/tailwindreset/dist'),
 ('b7f8980f','@craft/web/assets/d3/dist'),
+('b8106c1e','@craft/web/assets/axios/dist'),
+('b86a62','@craft/web/assets/feed/dist'),
 ('b91b990b','@craft/web/assets/craftsupport/dist'),
 ('b948d0b7','@craft/web/assets/updater/dist'),
+('ba549517','@craft/web/assets/dashboard/dist'),
 ('bb0f9a17','@craft/web/assets/datepickeri18n/dist'),
+('bb4b3be3','@craft/web/assets/cp/dist'),
 ('bb7f4ecf','@craft/web/assets/xregexp/dist'),
 ('bbcb2414','@craft/web/assets/updates/dist'),
 ('bc344373','@craft/web/assets/cp/dist'),
 ('bc598eb0','@craft/ckeditor/web/assets/ckeconfig/dist'),
 ('bc9991b8','@craft/web/assets/iframeresizer/dist'),
+('be0687d2','@craft/web/assets/updates/dist'),
+('be4e7618','@craft/web/assets/axios/dist'),
 ('bf3bc40a','@craft/web/assets/theme/dist'),
 ('bf42184b','@craft/web/assets/cp/dist'),
 ('c047a655','@craft/web/assets/selectize/dist'),
+('c063b10f','@craft/web/assets/theme/dist'),
+('c1a72cea','@bower/jquery/dist'),
 ('c1bc0c59','@craft/web/assets/velocity/dist'),
 ('c1d94fd2','@craft/web/assets/tailwindreset/dist'),
+('c272258','@craft/web/assets/jquerytouchevents/dist'),
+('c317b3dc','@craft/web/assets/feed/dist'),
+('c3c1e4bd','@craft/web/assets/iframeresizer/dist'),
+('c3e514cf','@craft/web/assets/xregexp/dist'),
 ('c40ecd47','@percipiolondon/passwordpolicy/assetbundles/PasswordPolicy/dist'),
 ('c42b0eee','@craft/web/assets/jquerypayment/dist'),
 ('c478d18c','@craft/web/assets/jquerytouchevents/dist'),
@@ -3190,21 +4013,34 @@ INSERT INTO `resourcepaths` VALUES
 ('c6853eb7','@bower/jquery/dist'),
 ('c69cddd2','@craft/web/assets/updates/dist'),
 ('c6ccf5f0','@craft/web/assets/selectize/dist'),
+('c6eff09','@bower/jquery/dist'),
 ('c7448c6c','@craft/web/assets/generalsettings/dist'),
+('c74fd3a','@craft/web/assets/jquerypayment/dist'),
 ('c7521c77','@craft/web/assets/tailwindreset/dist'),
+('c78eb745','@craft/web/assets/datepickeri18n/dist'),
+('c85da9cf','@craft/web/assets/picturefill/dist'),
+('c8a0ed0a','@craft/web/assets/d3/dist'),
+('c8a7d64a','@craft/web/assets/fabric/dist'),
+('c8eb12d2','@craft/web/assets/updateswidget/dist'),
 ('c963411f','@craft/web/assets/utilities/dist'),
+('c9853e82','@craft/web/assets/jquerypayment/dist'),
+('c9d6e1e0','@craft/web/assets/jquerytouchevents/dist'),
 ('ca208729','@craft/web/assets/datepickeri18n/dist'),
 ('ca8457b8','@craft/web/assets/cp/dist'),
+('cb40bcfc','@craft/web/assets/jqueryui/dist'),
 ('cc0f041d','@craft/web/assets/cp/dist'),
+('cc123c35','@craft/web/assets/velocity/dist'),
 ('cc62aea1','@craft/web/assets/jqueryui/dist'),
 ('cca6c257','@craft/web/assets/admintable/dist'),
 ('ccbd871a','@bower/jquery/dist'),
+('cd7304cb','@craft/web/assets/animationblocker/dist'),
 ('cd900a09','@craft/web/assets/picturefill/dist'),
 ('ce2027ef','@craft/web/assets/d3/dist'),
 ('ce6b1ba0','@craft/web/assets/utilities/dist'),
 ('ce6bd837','@craft/web/assets/updateswidget/dist'),
 ('ceaec464','@craft/web/assets/fileupload/dist'),
 ('cebd35dd','@craft/web/assets/utilities/dist'),
+('cef9cc4c','@craft/web/assets/fabric/dist'),
 ('cfa727a5','@craft/web/assets/garnish/dist'),
 ('cfc5175e','@craft/web/assets/utilities/dist'),
 ('d065a7fe','@craft/web/assets/sites/dist'),
@@ -3213,20 +4049,28 @@ INSERT INTO `resourcepaths` VALUES
 ('d0fa8e29','@craft/web/assets/updateswidget/dist'),
 ('d219780a','@craft/web/assets/fileupload/dist'),
 ('d23965b','@craft/web/assets/editsection/dist'),
+('d295cb43','@craft/web/assets/cp/dist'),
 ('d2ee59e8','@percipiolondon/passwordpolicy/assetbundles/PasswordPolicy/dist'),
 ('d31d784f','@craft/web/assets/plugins/dist'),
 ('d41501a6','@craft/web/assets/cp/dist'),
 ('d46b8a0d','@craft/web/assets/axios/dist'),
+('d53b6a57','@craft/web/assets/fileupload/dist'),
 ('d59cd402','@craft/web/assets/vue/dist'),
 ('d5c4245d','@craft/web/assets/editsection/dist'),
 ('d63a2254','@craft/web/assets/d3/dist'),
 ('d671dd8c','@craft/web/assets/updateswidget/dist'),
 ('d6eeb23d','@craft/web/assets/focusvisible/dist'),
+('d735cf96','@craft/web/assets/dashboard/dist'),
 ('d7b6604','@craft/web/assets/vue/dist'),
 ('d821c1a7','@craft/web/assets/fileupload/dist'),
+('d832e46e','@craft/web/assets/vue/dist'),
 ('d85da3ee','@craft/web/assets/selectize/dist'),
+('d88d4074','@craft/web/assets/utilities/dist'),
+('d921a200','@craft/web/assets/garnish/dist'),
 ('d949d721','@craft/web/assets/fabric/dist'),
+('d9c8d329','@craft/web/assets/tailwindreset/dist'),
 ('da3282d9','@bower/jquery/dist'),
+('daa62ec','@craft/web/assets/theme/dist'),
 ('dad4879','@craft/web/assets/vue/dist'),
 ('dbd07846','@craft/web/assets/iframeresizer/dist'),
 ('dbdb540','@craft/web/assets/authmethodsetup/dist'),
@@ -3236,10 +4080,15 @@ INSERT INTO `resourcepaths` VALUES
 ('de418d9e','@craft/web/assets/fabric/dist'),
 ('de5eda90','@craft/web/assets/garnish/dist'),
 ('de97a3e3','@craft/web/assets/fabric/dist'),
+('ded35a72','@craft/web/assets/utilities/dist'),
+('dedd690b','@craft/web/assets/selectize/dist'),
 ('df4819cc','@craft/web/assets/tailwindreset/dist'),
 ('df5b826','@craft/web/assets/editsection/dist'),
 ('dfef8160','@craft/web/assets/fabric/dist'),
+('e015e15d','@craft/web/assets/garnish/dist'),
 ('e075a3c9','@craft/web/assets/admintable/dist'),
+('e08375e','@craft/web/assets/iframeresizer/dist'),
+('e1b90329','@craft/web/assets/utilities/dist'),
 ('e212a94f','@craft/web/assets/focalpoint/dist'),
 ('e3079cc1','@craft/web/assets/tailwindreset/dist'),
 ('e3254f','@craft/web/assets/fileupload/dist'),
@@ -3248,7 +4097,9 @@ INSERT INTO `resourcepaths` VALUES
 ('e41226e3','@craft/web/assets/selectize/dist'),
 ('e5a6f5c','@craft/web/assets/updates/dist'),
 ('e64aa7f0','@craft/web/assets/elementresizedetector/dist'),
+('e64bfb5b','@craft/web/assets/garnish/dist'),
 ('e6c67bb9','@craft/web/assets/utilities/dist'),
+('e6d68976','@craft/web/assets/fileupload/dist'),
 ('e71510b2','@craft/web/assets/fabric/dist'),
 ('e77df976','@craft/web/assets/admintable/dist'),
 ('e8240f00','@craft/web/assets/axios/dist'),
@@ -3257,19 +4108,29 @@ INSERT INTO `resourcepaths` VALUES
 ('e94d280e','@craft/web/assets/jqueryui/dist'),
 ('eaa13730','@craft/web/assets/focusvisible/dist'),
 ('ee40cc47','@craft/web/assets/recententries/dist'),
+('eea4c5e5','@craft/web/assets/axios/dist'),
 ('efa52c10','@craftpulse/passwordpolicy/assetbundles/PasswordPolicy/dist'),
 ('f03e0abb','@craft/web/assets/axios/dist'),
 ('f0d19a59','@craft/web/assets/recententries/dist'),
 ('f0e2a04','@craft/web/assets/elementresizedetector/dist'),
+('f19171a6','@craft/web/assets/velocity/dist'),
+('f1939517','@craft/web/assets/fabric/dist'),
 ('f1980fb5','@craft/web/assets/jquerytouchevents/dist'),
 ('f1cbd0d7','@craft/web/assets/jquerypayment/dist'),
 ('f1fbe036','@craft/web/assets/garnish/dist'),
+('f237f79e','@craft/icons/custom-icons'),
+('f24acfcb','@bower/jquery/dist'),
 ('f26fa2e2','@craft/web/assets/d3/dist'),
 ('f3c86930','@craft/web/assets/xregexp/dist'),
+('f4067311','@craft/web/assets/jquerypayment/dist'),
+('f455ac73','@craft/web/assets/jquerytouchevents/dist'),
+('f457ebf','@craft/web/assets/picturefill/dist'),
 ('f45cd260','@craft/web/assets/velocity/dist'),
 ('f4e017','@craft/web/assets/xregexp/dist'),
 ('f59ab6bf','@craft/web/assets/fabric/dist'),
+('f5dee45c','@craft/web/assets/picturefill/dist'),
 ('f62594f4','@craft/web/assets/garnish/dist'),
+('f65150bc','@craft/web/assets/recententries/dist'),
 ('f6b5591e','@craft/web/assets/axios/dist'),
 ('f6eced87','@craft/web/assets/fabric/dist'),
 ('f6f3ba89','@craft/web/assets/garnish/dist'),
@@ -3277,9 +4138,16 @@ INSERT INTO `resourcepaths` VALUES
 ('f73f868c','@craft/web/assets/utilities/dist'),
 ('f75db677','@craft/web/assets/garnish/dist'),
 ('f870d430','@craft/web/assets/picturefill/dist'),
+('f8ad5fdd','@craft/web/assets/jqueryui/dist'),
 ('f90eab55','@craft/web/assets/iframeresizer/dist'),
 ('f912dc06','@craft/web/assets/updater/dist'),
 ('f94aef9','@craft/web/assets/tailwindreset/dist'),
+('fa0dfad6','@craft/web/assets/datepickeri18n/dist'),
+('faac14e0','@craft/web/assets/timepicker/dist'),
+('fbde58b','@craft/web/assets/velocity/dist'),
+('fc028e98','@craft/web/assets/craftsupport/dist'),
+('fe66595c','@craft/web/assets/xregexp/dist'),
+('fe9ee7ea','@craft/web/assets/animationblocker/dist'),
 ('ff04e713','@craft/web/assets/updates/dist'),
 ('ff4d8284','@craft/web/assets/dashboard/dist'),
 ('ffc05910','@craft/web/assets/datepickeri18n/dist');
@@ -3304,7 +4172,7 @@ CREATE TABLE `revisions` (
   KEY `fk_nhbxfjmmaexxkfbgzsdhhlrbpufntlwcieae` (`creatorId`),
   CONSTRAINT `fk_mzemovtlyzobnokbyngtuxhamicuzbxeygsm` FOREIGN KEY (`canonicalId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_nhbxfjmmaexxkfbgzsdhhlrbpufntlwcieae` FOREIGN KEY (`creatorId`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3356,7 +4224,9 @@ INSERT INTO `revisions` VALUES
 (40,2,1,40,'Applied “Draft 1”'),
 (41,2,1,41,''),
 (42,2,1,42,'Applied “Draft 1”'),
-(43,2,1,43,'Applied “Draft 1”');
+(43,2,1,43,'Applied “Draft 1”'),
+(44,2,NULL,44,NULL),
+(45,2,NULL,45,NULL);
 /*!40000 ALTER TABLE `revisions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3447,7 +4317,10 @@ INSERT INTO `searchindex` VALUES
 (50,'filename',0,1,' ts paralax 191 ts a jpg '),
 (50,'kind',0,1,' image '),
 (50,'slug',0,1,''),
-(50,'title',0,1,' ts paralax 191 ts a ');
+(50,'title',0,1,' ts paralax 191 ts a '),
+(73,'handle',0,1,' kontaktformular '),
+(73,'slug',0,1,''),
+(73,'title',0,1,' kontaktformular ');
 /*!40000 ALTER TABLE `searchindex` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3464,9 +4337,8 @@ CREATE TABLE `searchindexqueue` (
   `siteId` int(11) NOT NULL,
   `reserved` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  KEY `idx_eutllkzdkpucsthmoejaphnhgjeadjqmtfkv` (`elementId`,`siteId`,`reserved`),
-  CONSTRAINT `fk_zjjidpefpdfmlhpcjcdaozkfnqjvsegucncj` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `idx_eutllkzdkpucsthmoejaphnhgjeadjqmtfkv` (`elementId`,`siteId`,`reserved`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3517,6 +4389,7 @@ CREATE TABLE `sections` (
   `handle` varchar(255) NOT NULL,
   `type` enum('single','channel','structure') NOT NULL DEFAULT 'channel',
   `enableVersioning` tinyint(1) NOT NULL DEFAULT 0,
+  `minAuthors` smallint(6) unsigned NOT NULL DEFAULT 1,
   `maxAuthors` smallint(6) unsigned DEFAULT NULL,
   `propagationMethod` varchar(255) NOT NULL DEFAULT 'all',
   `defaultPlacement` enum('beginning','end') NOT NULL DEFAULT 'end',
@@ -3541,7 +4414,7 @@ CREATE TABLE `sections` (
 LOCK TABLES `sections` WRITE;
 /*!40000 ALTER TABLE `sections` DISABLE KEYS */;
 INSERT INTO `sections` VALUES
-(1,NULL,'Startseite','startseite','single',1,1,'all','end','[{\"label\":\"Primäre eintrag Seite\",\"urlFormat\":\"{url}\",\"refresh\":\"1\"}]','2022-09-28 12:24:11','2022-09-28 12:24:30',NULL,'10120e23-43ba-494f-ba6c-7241058df713');
+(1,NULL,'Startseite','startseite','single',1,1,1,'all','end','[{\"label\":\"Primäre eintrag Seite\",\"urlFormat\":\"{url}\",\"refresh\":\"1\"}]','2022-09-28 12:24:11','2022-09-28 12:24:30',NULL,'10120e23-43ba-494f-ba6c-7241058df713');
 /*!40000 ALTER TABLE `sections` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3657,7 +4530,7 @@ CREATE TABLE `sessions` (
   KEY `idx_cslgbqqcglkcjkvoqwyagkwzmuyibtyozqsu` (`dateUpdated`),
   KEY `idx_elfaknonyntxharvevkxelqijvgawxsfbezy` (`userId`),
   CONSTRAINT `fk_oevoxpcummfcdwyqehbkqpmiynnxmilnpcjt` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3667,7 +4540,11 @@ CREATE TABLE `sessions` (
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` VALUES
-(26,1,'UAoiPjM2DyrN26l3-Z6-mqJaBXgR9U_izIGdSiPBv6iZ5BcSqGvI2ZoTbVPlH2Hib9LmxfVDw6P-MymxqGMIxeLLe5kSIaCf8Kq_','2025-07-18 18:47:02','2025-07-18 18:49:32','ee10de44-601d-490c-a8a7-6d15c79993d2');
+(26,1,'UAoiPjM2DyrN26l3-Z6-mqJaBXgR9U_izIGdSiPBv6iZ5BcSqGvI2ZoTbVPlH2Hib9LmxfVDw6P-MymxqGMIxeLLe5kSIaCf8Kq_','2025-07-18 18:47:02','2025-07-18 18:49:32','ee10de44-601d-490c-a8a7-6d15c79993d2'),
+(31,1,'0qOJXF2XzObHeHYDj20nLOyqWc9tb9S6KVF-tsDChnvLaTmmxDV8JpehVyJTOTn0pXgNMA0lNPY6aQs8jo-6zJ1Qi_Bvzc4XBzNb','2026-02-17 18:16:07','2026-02-17 18:35:09','a23dc376-21b2-4909-8263-350d2395ffa1'),
+(32,1,'ZAerjQTVXtA5s4SliLwDZ33KhGKJ2pnv-70l6BtknF_pwXpdsGWHDbFDPg9vwzN0Naw8-2stg7DNqfvdXlz3eFgxFCTN991dZfv0','2026-02-21 17:01:19','2026-02-21 17:17:20','da42c992-6c0b-4a31-95c3-a3ecc1b560af'),
+(36,1,'d4ve1zQXTpIT1aI6rSNtbACBegnCMaZ6PWk8Icj_Muypa_tyB-4Q4J2jmchRI-Y-LchKd-3htJd4rExdR9LjBj41yFtVDIPs6mRK','2026-05-12 20:20:16','2026-05-12 20:23:09','31ceb2b9-43c3-41b6-9f61-a4fcb1d2ce2d'),
+(37,1,'TpTetcO7Lz-2bJppnD1x3BWjD_osFCgJ-wc8LREkvrTtZJBpvlBq50F3ULrvkx0-nVDYbInbH4ckz3fhi4oSHqA-bX7sHkZ06EaQ','2026-10-02 10:12:08','2026-10-02 11:14:00','e402c5b8-ec7f-4205-9f64-482b09960e34');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4228,7 +5105,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,NULL,NULL,1,0,0,0,1,'pro-dev-admin',NULL,NULL,NULL,'dev@profitlich.ch','$2y$13$Ly9i8Z0Ck3/PSL9RAYiMyOLXhYpWAPArHkAQpzKgjTtptLO1/OsOm','2025-07-18 18:47:02',NULL,NULL,NULL,'2022-09-28 12:08:05',NULL,1,NULL,NULL,NULL,0,'2025-07-18 18:46:55','2022-09-28 08:08:18','2025-07-18 18:47:02');
+(1,NULL,NULL,1,0,0,0,1,'pro-dev-admin',NULL,NULL,NULL,'dev@profitlich.ch','$2y$13$Ly9i8Z0Ck3/PSL9RAYiMyOLXhYpWAPArHkAQpzKgjTtptLO1/OsOm','2026-10-02 10:12:08',NULL,NULL,NULL,'2022-09-28 12:08:05',NULL,1,NULL,NULL,NULL,0,'2025-07-18 18:46:55','2022-09-28 08:08:18','2026-10-02 10:12:08');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4313,7 +5190,7 @@ LOCK TABLES `volumes` WRITE;
 /*!40000 ALTER TABLE `volumes` DISABLE KEYS */;
 INSERT INTO `volumes` VALUES
 (1,2,'Projektbilder','projektbilder','',NULL,'','','site',NULL,'site',NULL,1,'2022-10-03 14:52:04','2022-10-03 15:31:53','2022-10-03 17:07:18','f6e40493-74a7-4e2e-ac86-65f353155213'),
-(2,3,'Projektbilder','projektbilder','lokal',NULL,'','transforms','site',NULL,'none',NULL,2,'2022-10-03 17:08:22','2024-10-04 17:42:11',NULL,'44fec1ae-cc09-42b5-b6a8-1c301d066c04');
+(2,3,'Projektbilder','projektbilder','lokal','','','transforms','site',NULL,'none',NULL,2,'2022-10-03 17:08:22','2026-05-12 20:21:24',NULL,'44fec1ae-cc09-42b5-b6a8-1c301d066c04');
 /*!40000 ALTER TABLE `volumes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4363,7 +5240,6 @@ CREATE TABLE `widgets` (
   `sortOrder` smallint(6) unsigned DEFAULT NULL,
   `colspan` tinyint(3) DEFAULT NULL,
   `settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`settings`)),
-  `enabled` tinyint(1) NOT NULL DEFAULT 1,
   `dateCreated` datetime NOT NULL,
   `dateUpdated` datetime NOT NULL,
   `uid` char(36) NOT NULL DEFAULT '0',
@@ -4380,10 +5256,10 @@ CREATE TABLE `widgets` (
 LOCK TABLES `widgets` WRITE;
 /*!40000 ALTER TABLE `widgets` DISABLE KEYS */;
 INSERT INTO `widgets` VALUES
-(1,1,'craft\\widgets\\RecentEntries',1,NULL,'{\"siteId\":1,\"section\":\"*\",\"limit\":10}',1,'2022-09-28 12:12:59','2022-09-28 12:12:59','def7b0c4-c650-4d58-8c04-403e54ec55c2'),
-(2,1,'craft\\widgets\\CraftSupport',2,NULL,'[]',1,'2022-09-28 12:12:59','2022-09-28 12:12:59','66eea0d8-0993-4622-86f7-ca4b2f792a42'),
-(3,1,'craft\\widgets\\Updates',3,NULL,'[]',1,'2022-09-28 12:12:59','2022-09-28 12:12:59','c6f0d03c-0537-48bf-a29d-efcf0301288f'),
-(4,1,'craft\\widgets\\Feed',4,NULL,'{\"url\":\"https://craftcms.com/news.rss\",\"title\":\"Craft News\",\"limit\":5}',1,'2022-09-28 12:12:59','2022-09-28 12:12:59','62381c44-6e0d-4a2d-8b1c-16cc2cec4163');
+(1,1,'craft\\widgets\\RecentEntries',1,NULL,'{\"siteId\":1,\"section\":\"*\",\"limit\":10}','2022-09-28 12:12:59','2022-09-28 12:12:59','def7b0c4-c650-4d58-8c04-403e54ec55c2'),
+(2,1,'craft\\widgets\\CraftSupport',2,NULL,'[]','2022-09-28 12:12:59','2022-09-28 12:12:59','66eea0d8-0993-4622-86f7-ca4b2f792a42'),
+(3,1,'craft\\widgets\\Updates',3,NULL,'[]','2022-09-28 12:12:59','2022-09-28 12:12:59','c6f0d03c-0537-48bf-a29d-efcf0301288f'),
+(4,1,'craft\\widgets\\Feed',4,NULL,'{\"url\":\"https://craftcms.com/news.rss\",\"title\":\"Craft News\",\"limit\":5}','2022-09-28 12:12:59','2022-09-28 12:12:59','62381c44-6e0d-4a2d-8b1c-16cc2cec4163');
 /*!40000 ALTER TABLE `widgets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -4396,4 +5272,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-18 21:49:49
+-- Dump completed on 2026-10-02 13:14:15
