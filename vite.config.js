@@ -1,53 +1,22 @@
 import { defineConfig, loadEnv } from 'vite';
 import manifestSRI from 'vite-plugin-manifest-sri'
 import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap'
-import { jsonToScss } from '@profitlich/template-toolkit/vite/jsonToScss';
-import { createCapsizeFunctions } from '@profitlich/template-toolkit/vite/capsizeSassFunctions';
-import { NodePackageImporter } from 'sass';
+import { defineDebug, buildOptions, serverOptions, scssOptions } from '@profitlich/template-toolkit/vite/config';
 import * as fs from 'fs';
-import * as path from 'path';
 
-// Match ports in .ddev/config.yaml and config/vite.php
-const HTTPS_PORT = 5173;
 const configJson = JSON.parse(fs.readFileSync('./src/config.json', 'utf8'));
 
 export default defineConfig(async ({ command, mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
-    const capsizeFunctions = await createCapsizeFunctions(configJson.fonts ?? {});
 
     return {
-        root: './', // Standard ist das Projektverzeichnis
-        // In dev mode, we serve assets at the root of https://my.ddev.site:3000
+        root: './',
+        // In dev mode, we serve assets at the root of https://my.ddev.site:5173
         // In production, files live in the /dist directory
         base: command === 'serve' ? '' : '/dist/',
-        // Wird zur Bauzeit durch ein Literal ersetzt. Aus `if (__DEBUG__)` wird
-        // damit `if (false)`, und der Minifier entfernt den Zweig — Debug-Code
-        // bleibt im Quelltext, erreicht die Produktion aber nicht.
-        //
-        // An `mode` gehängt, nicht an `import.meta.env.DEV`: Letzteres wäre auf
-        // Staging bereits false und würde den Debug-Code dort verschlucken.
-        define: {
-            __DEBUG__: mode !== 'production',
-        },
+        define: defineDebug(mode),
         build: {
-            manifest: true,
-            outDir: './web/dist/',
-            sourcemap: mode === 'development',
-            // empty the out dir before writing new files
-            emptyOutDir: true,
-            // modulepreload können alle aktuellen Browser, das Polyfill wäre nur zusätzlicher Code
-            modulePreload: {
-                polyfill: false
-            },
-            // Activates terser for minification
-            minify: 'terser',
-            cssMinify: 'lightningcss',
-            terserOptions: {
-                compress: {
-                    // drops all console.log commands (nur bei Production-Builds)
-                    drop_console: mode === 'production',
-                },
-            },
+            ...buildOptions({ mode, outDir: './web/dist/' }),
             rollupOptions: {
                 input: {
                     app: 'src/App.js',
@@ -57,46 +26,11 @@ export default defineConfig(async ({ command, mode }) => {
                 },
             },
         },
-        server: {
-            host: '0.0.0.0',
-            port: HTTPS_PORT,
-            strictPort: true,
-            // origin: `${env.PRIMARY_SITE_URL.replace(/:\d+$/, "")}:${HTTPS_PORT}`,
-            origin: `${env.PRIMARY_SITE_URL.replace(/:\d+$/, "")}:${HTTPS_PORT}`,
-            cors: {
-                origin: /https?:\/\/([A-Za-z0-9\-.]+)?(\.ddev\.site)(?::\d+)?$/,
-            },
-            watch: {
-                paths: [
-                    'src/**',
-                ],
-                ignored: [
-                    '**/node_modules/**',
-                    '**/vendor/**',
-                ],
-            },
-        },
+        // Port muss zu .ddev/config.yaml und config/vite.php passen (Vorgabe 5173)
+        server: serverOptions({ env }),
         css: {
             preprocessorOptions: {
-                scss: {
-                    api: 'modern',
-                    importers: [
-                        new NodePackageImporter(),
-                        {
-                            canonicalize(url) {
-                                return url === 'config' ? new URL('custom:config') : null;
-                            },
-                            load(canonicalUrl) {
-                                if (canonicalUrl.toString() !== 'custom:config') return null;
-                                return { contents: jsonToScss(configJson), syntax: 'scss' };
-                            }
-                        }
-                    ],
-                    loadPaths: [
-                        path.resolve(__dirname, 'src/scss'),
-                    ],
-                    functions: capsizeFunctions,
-                },
+                scss: await scssOptions({ configJson }),
             },
         },
         plugins: [

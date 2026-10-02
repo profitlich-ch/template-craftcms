@@ -1,5 +1,4 @@
-import js from '@eslint/js';
-import globals from 'globals';
+import { eslintConfig } from '@profitlich/template-toolkit/eslint/config';
 
 export default [
     {
@@ -19,37 +18,5 @@ export default [
         ],
     },
 
-    js.configs.recommended,
-
-    {
-        // Frontend: läuft im Browser
-        files: ['src/**/*.js'],
-        languageOptions: {
-            ecmaVersion: 'latest',
-            sourceType: 'module',
-            globals: {
-                ...globals.browser,
-                // Von Vite per `define` zur Bauzeit ersetzt, siehe vite.config.js
-                __DEBUG__: 'readonly',
-            },
-        },
-        rules: {
-            // Der eigentliche Anlass für den Linter (QS-E3): zugewiesene Werte,
-            // die niemand liest. Ungenutzte Funktionsargumente bleiben erlaubt,
-            // solange danach noch benutzte folgen — Event-Handler mit
-            // (event, index) sind sonst nicht schreibbar.
-            'no-unused-vars': ['error', { args: 'after-used' }],
-            'no-unused-private-class-members': 'error',
-        },
-    },
-
-    {
-        // Build- und Deploy-Skripte: laufen in Node
-        files: ['scripts/**/*.js', '*.config.js'],
-        languageOptions: {
-            ecmaVersion: 'latest',
-            sourceType: 'module',
-            globals: globals.node,
-        },
-    },
+    ...eslintConfig(),
 ];
