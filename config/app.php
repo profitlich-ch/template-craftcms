@@ -19,10 +19,11 @@
 
 use craft\helpers\App;
 
-
 return [
     'id' => App::env('CRAFT_APP_ID') ?: 'CraftCMS',
     'modules' => [
+        'modul' => modules\Modul::class,
     ],
-    'bootstrap' => [],
+    // Erst der Bootstrap-Eintrag lässt `init()` bei jedem Aufruf laufen
+    'bootstrap' => ['modul'],
 ];

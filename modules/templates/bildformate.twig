@@ -1,0 +1,35 @@
+{% import "_includes/forms" as forms %}
+
+<h2>Bildformate vorgenerieren</h2>
+
+<p>
+    Speichert alle Einträge der gewählten Typen neu. Imager X legt dabei nach den Regeln in
+    <code>config/imager-x-generate.php</code> die Bildformate in die Queue; der Cronjob rechnet sie
+    im Hintergrund. Nötig nach dem Einrichten neuer Formate und für Einträge, die erst nachträglich
+    über ein Entries-Feld verknüpft wurden.
+</p>
+
+{% set options = [] %}
+{% for handle, angaben in entryTypes %}
+    {% set options = options|merge([{
+        label: "#{angaben.name} · #{angaben.kontext} · #{angaben.anzahl} #{angaben.anzahl == 1 ? 'Eintrag' : 'Einträge'}",
+        value: handle,
+    }]) %}
+{% endfor %}
+
+<form class="utility" method="post" accept-charset="UTF-8">
+    {{ actionInput('modul/bildformate/anstossen') }}
+    {{ csrfInput() }}
+
+    {{ forms.checkboxSelect({
+        name: 'entryTypes',
+        options: options,
+        showAllOption: true,
+        values: [],
+    }) }}
+
+    <div class="buttons">
+        <button type="submit" class="btn submit secondary">Bildformate vorgenerieren</button>
+        <div class="utility-status"></div>
+    </div>
+</form>
