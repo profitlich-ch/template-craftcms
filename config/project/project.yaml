@@ -1,4 +1,4 @@
-dateModified: 1790936424
+dateModified: 1791070780
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -182,7 +182,7 @@ system:
   name: 'Profitlich Template'
   retryDuration: null
   schemaVersion: 5.11.0.2
-  timeZone: America/Los_Angeles
+  timeZone: $TZ
 users:
   allowPublicRegistration: false
   defaultGroup: null
