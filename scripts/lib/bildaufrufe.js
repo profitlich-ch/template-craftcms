@@ -3,9 +3,9 @@ import { join, extname, relative, sep } from 'node:path';
 
 /**
  * Liest die Twig-Quellen unter src/: die macros.picture()-Aufrufe mit ihrer
- * Bildquellen-Deklaration, Standalone-Deklarationen ohne Aufruf, die Breiten
- * für die Transforms und die Kanten Template → Modul → Entry-Type für den
- * Renderbaum.
+ * Bildquellen-Deklaration, Standalone-Deklarationen ohne Aufruf, Breiten und
+ * Seitenverhältnis für die Transforms und die Kanten Template → Modul →
+ * Entry-Type für den Renderbaum.
  *
  * Deklarationsformen:
  *   {# bildquelle: entryType.feld #}                       Speicherort
@@ -15,7 +15,7 @@ import { join, extname, relative, sep } from 'node:path';
  */
 
 /** @typedef {{ entryType: string, feld: string, via: { entryType: string, feld: string } | null }} Quelle */
-/** @typedef {{ datei: string, zeile: number, modul: string, transform: string, sizes: string, quellen: Quelle[] }} Bildaufruf */
+/** @typedef {{ datei: string, zeile: number, modul: string, transform: string, sizes: string, verhaeltnis: string|null, quellen: Quelle[] }} Bildaufruf */
 /** @typedef {{ datei: string, zeile: number, entryType: string, feld: string, transforms: string[] }} StandaloneQuelle */
 /** @typedef {{ datei: string, includes: string[], matrixFeld: string|null, faelle: Array<{ entryType: string, include: string }> }} Renderkante */
 
@@ -23,7 +23,13 @@ const MIN_VIEWPORT = 375; // Kleinste CSS-Viewport-Breite eines aktuellen Highre
 const MIN_DPR = 2;        // Minimaler DPR für Highres-Phones
 const MAX_VIEWPORT = 4000;
 
-const pictureRegex = /macros\.picture\s*\(\s*[^,]+,\s*'([a-zA-Z][a-zA-Z0-9]*)'\s*,\s*'([^']*)'/;
+const aufrufRegex = /macros\.picture\s*\(/;
+const transformRegex = /^'([a-zA-Z][a-zA-Z0-9]*)'$/;
+const sizesRegex = /^'([^']*)'$/;
+// 'Breite / Höhe' oder eine einzelne Zahl. Der Wert landet unverändert als
+// Ausdruck in der PHP-Config und als CSS-Wert im Markup, deshalb nur Ziffern.
+const verhaeltnisRegex = /^'\s*(\d+(?:\.\d+)?(?:\s*\/\s*\d+(?:\.\d+)?)?)\s*'$/;
+const VERHAELTNIS_POSITION = 4; // picture(image, transform, sizes, alt, verhaeltnis, loading)
 const deklarationRegex = /\{#\s*bildquelle:\s*(.+?)\s*#\}/;
 const quelleRegex = /^([a-zA-Z][a-zA-Z0-9]*|\*)\.([a-zA-Z][a-zA-Z0-9]*)(?:\s+via\s+([a-zA-Z][a-zA-Z0-9]*)\.([a-zA-Z][a-zA-Z0-9]*))?$/;
 const handleRegex = /^[a-zA-Z][a-zA-Z0-9]*$/;
@@ -57,6 +63,72 @@ function alleTwigDateien(root) {
 function modulName(root, datei) {
     const rel = relative(join(root, 'src'), datei).split(sep);
     return rel[0] === 'modules' ? rel[1] : rel.join('/');
+}
+
+/**
+ * Zerlegt die Argumentliste eines Aufrufs an den Kommas der obersten Ebene.
+ * Nötig, weil `alt` vor `verhaeltnis` steht und ein beliebiger Twig-Ausdruck
+ * sein kann – mit Kommas in Strings, Funktionsaufrufen oder Arrays.
+ * @param {string} text Zeile ab dem ersten Zeichen nach der öffnenden Klammer
+ * @returns {string[]|null} Argumente, oder null, wenn die Klammer auf der Zeile nicht schliesst
+ */
+function zerlegeArgumente(text) {
+    const argumente = [];
+    let aktuell = '';
+    let tiefe = 0;
+    let quote = null;
+
+    for (let i = 0; i < text.length; i++) {
+        const zeichen = text[i];
+        if (quote) {
+            aktuell += zeichen;
+            if (zeichen === '\\') aktuell += text[++i] ?? '';
+            else if (zeichen === quote) quote = null;
+        } else if (zeichen === '\'' || zeichen === '"') {
+            quote = zeichen;
+            aktuell += zeichen;
+        } else if ('([{'.includes(zeichen)) {
+            tiefe++;
+            aktuell += zeichen;
+        } else if (')]}'.includes(zeichen)) {
+            if (tiefe === 0) return [...argumente, aktuell].map(a => a.trim());
+            tiefe--;
+            aktuell += zeichen;
+        } else if (zeichen === ',' && tiefe === 0) {
+            argumente.push(aktuell);
+            aktuell = '';
+        } else {
+            aktuell += zeichen;
+        }
+    }
+    return null;
+}
+
+/**
+ * Liest Transform, Sizes und Verhältnis aus einer Zeile mit macros.picture()-Aufruf.
+ * @param {string} zeile
+ * @returns {{ transform: string, sizes: string, verhaeltnis: string|null } | { fehler: string } | null} null ohne Aufruf auf der Zeile
+ */
+function liesAufruf(zeile) {
+    const start = zeile.match(aufrufRegex);
+    if (!start) return null;
+
+    const argumente = zerlegeArgumente(zeile.slice(start.index + start[0].length));
+    const transform = argumente?.[1]?.match(transformRegex);
+    const sizes = argumente?.[2]?.match(sizesRegex);
+    if (!transform || !sizes) {
+        return { fehler: 'macros.picture()-Aufruf nicht lesbar (einzeilig, Transform und Sizes als String-Literale erwartet)' };
+    }
+
+    const roh = argumente[VERHAELTNIS_POSITION];
+    if (roh === undefined || roh === 'null') {
+        return { transform: transform[1], sizes: sizes[1], verhaeltnis: null };
+    }
+    const verhaeltnis = roh.match(verhaeltnisRegex);
+    if (!verhaeltnis) {
+        return { fehler: `Verhältnis ${roh} nicht lesbar (String-Literal 'Breite / Höhe' oder null erwartet)` };
+    }
+    return { transform: transform[1], sizes: sizes[1], verhaeltnis: verhaeltnis[1].replace(/\s*\/\s*/, ' / ') };
 }
 
 function parseQuellen(text, ort, fehler) {
@@ -120,7 +192,7 @@ export function liesBildaufrufe(root) {
 
             const deklaration = zeile.match(deklarationRegex);
             if (deklaration) {
-                const folgtAufruf = pictureRegex.test(zeilen[index + 1] ?? '');
+                const folgtAufruf = aufrufRegex.test(zeilen[index + 1] ?? '');
                 const istStandalone = deklaration[1].includes('=');
                 if (!folgtAufruf && !istStandalone) {
                     fehler.push(`${ort} — Bildquellen-Deklaration ohne macros.picture()-Aufruf auf der Folgezeile (Standalone braucht „= transform“)`);
@@ -133,9 +205,9 @@ export function liesBildaufrufe(root) {
             }
 
             if (!zeile.includes('macros.picture')) return;
-            const match = zeile.match(pictureRegex);
-            if (!match) {
-                fehler.push(`${ort} — macros.picture()-Aufruf nicht lesbar (Transform und Sizes als einzeilige String-Literale erwartet)`);
+            const aufruf = liesAufruf(zeile);
+            if (!aufruf || aufruf.fehler) {
+                fehler.push(`${ort} — ${aufruf?.fehler ?? 'macros.picture ohne Aufrufklammer'}`);
                 return;
             }
 
@@ -150,11 +222,23 @@ export function liesBildaufrufe(root) {
                 datei: relDatei,
                 zeile: nr,
                 modul: modulName(root, datei),
-                transform: match[1],
-                sizes: match[2],
+                transform: aufruf.transform,
+                sizes: aufruf.sizes,
+                verhaeltnis: aufruf.verhaeltnis,
                 quellen: parseQuellen(davor[1], ort, fehler),
             });
         });
+    }
+
+    // Je Transform-Name gibt es nur eine Konfiguration, also auch nur einen Zuschnitt.
+    const erster = new Map();
+    for (const aufruf of aufrufe) {
+        const bisher = erster.get(aufruf.transform);
+        if (!bisher) {
+            erster.set(aufruf.transform, aufruf);
+        } else if (bisher.verhaeltnis !== aufruf.verhaeltnis) {
+            fehler.push(`${aufruf.datei}:${aufruf.zeile} — Transform „${aufruf.transform}“ hat hier das Verhältnis ${aufruf.verhaeltnis ?? 'ohne'}, in ${bisher.datei}:${bisher.zeile} ${bisher.verhaeltnis ?? 'ohne'}; eigenen Transform-Namen vergeben`);
+        }
     }
 
     return { aufrufe, standalone, fehler };
@@ -162,14 +246,14 @@ export function liesBildaufrufe(root) {
 
 /**
  * Kleinste und grösste Bildbreite je Transform, aus dem ersten und letzten
- * vw-Wert des sizes-Strings. Mehrere Aufrufe desselben Transforms werden
- * zur Gesamtspanne zusammengefasst.
+ * vw-Wert des sizes-Strings, dazu sein Seitenverhältnis. Mehrere Aufrufe
+ * desselben Transforms werden zur Gesamtspanne zusammengefasst.
  * @param {Bildaufruf[]} aufrufe
- * @returns {Map<string, { minWidth: number, maxWidth: number }>}
+ * @returns {Map<string, { minWidth: number, maxWidth: number, verhaeltnis: string|null }>}
  */
 export function transformBreiten(aufrufe) {
     const breiten = new Map();
-    for (const { transform, sizes } of aufrufe) {
+    for (const { transform, sizes, verhaeltnis } of aufrufe) {
         const vwValues = [...sizes.matchAll(/(\d+)vw/g)].map(m => parseInt(m[1]));
         if (vwValues.length === 0) continue;
 
@@ -178,7 +262,7 @@ export function transformBreiten(aufrufe) {
 
         const bisher = breiten.get(transform);
         if (!bisher) {
-            breiten.set(transform, { minWidth, maxWidth });
+            breiten.set(transform, { minWidth, maxWidth, verhaeltnis });
         } else {
             bisher.minWidth = Math.min(bisher.minWidth, minWidth);
             bisher.maxWidth = Math.max(bisher.maxWidth, maxWidth);

@@ -4,7 +4,7 @@ Generiert von `scripts/generate-transforms.js`, nicht bearbeiten. Zeigt, wo Bild
 
 ## Speicherbaum
 
-Section → Entry-Type → Feld. An jedem Assets-Feld der Transform und das Modul, die es rendern; `via` nennt das Entries-Feld, dessen Verknüpfung die Elemente eingrenzt.
+Section → Entry-Type → Feld. An jedem Assets-Feld der Transform und das Modul, die es rendern, in Klammern ein erzwungenes Seitenverhältnis; `via` nennt das Entries-Feld, dessen Verknüpfung die Elemente eingrenzt.
 
 ```
 startseite (single) · startseite/_entry.twig

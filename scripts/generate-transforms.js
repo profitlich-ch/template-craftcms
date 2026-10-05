@@ -9,7 +9,7 @@ import { SEOMATE_TRANSFORMS } from './lib/seomate.js';
 
 /**
  * Erzeugt aus den Bildquellen-Deklarationen in src/ drei Dateien:
- * config/imager-x-transforms.php (Breiten je Transform),
+ * config/imager-x-transforms.php (Breiten und Zuschnitt je Transform),
  * config/imager-x-generate.php (Vorgenerieren beim Speichern)
  * und docs/bildquellen.md (Speicher- und Renderbaum).
  *
@@ -33,14 +33,17 @@ function toDisplayName(camelCase) {
 // Dateinamen eingeht und die Vorgenerierung sonst SEOMates Datei verfehlt.
 function phpTransforms(breiten, seomateHandles) {
     const entries = [...breiten.entries()]
-        .map(([name, { minWidth, maxWidth }]) => `    '${name}' => [
+        // Ohne `ratio` lieferte Imager X das natürliche Verhältnis, und der
+        // Wrapper schnitte erst im Browser zu: ohne den Fokuspunkt des Assets
+        // und mit mehr Bilddaten als nötig. Der Wert bleibt als Ausdruck stehen.
+        .map(([name, { minWidth, maxWidth, verhaeltnis }]) => `    '${name}' => [
         'displayName' => '${toDisplayName(name)}',
         'transforms' => [
             ['width' => ${minWidth}],
             ['width' => ${maxWidth}],
         ],
         'defaults' => [
-            'format' => 'webp',
+            'format' => 'webp',${verhaeltnis ? `\n            'ratio' => ${verhaeltnis},` : ''}
         ],
         'configOverrides' => [
             'fillTransforms' => true,

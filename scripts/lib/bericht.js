@@ -35,6 +35,11 @@ function quelleText(q) {
     return `${q.entryType}.${q.feld}${q.via ? ` via ${q.via.entryType}.${q.via.feld}` : ''}`;
 }
 
+// Transform-Name, bei erzwungenem Zuschnitt mit dem Verhältnis dahinter.
+function transformText(a) {
+    return a.verhaeltnis ? `${a.transform} (${a.verhaeltnis})` : a.transform;
+}
+
 function templateLabel(datei) {
     return datei.replace(/^src\/templates\//, '');
 }
@@ -45,7 +50,7 @@ function assetsLabel(instanz, entryType, aufrufe, standalone) {
     const zeilen = [];
     for (const a of aufrufe) {
         const q = a.quellen.find(q => q.entryType === entryType.handle && q.feld === instanz.handle);
-        if (q) zeilen.push(`→ ${a.transform} · ${a.modul}${q.via ? ` (via ${q.via.entryType}.${q.via.feld})` : ''}`);
+        if (q) zeilen.push(`→ ${transformText(a)} · ${a.modul}${q.via ? ` (via ${q.via.entryType}.${q.via.feld})` : ''}`);
     }
     for (const s of standalone) {
         if (s.feld === instanz.handle) zeilen.push(`→ ${s.transforms.join(', ')} · ${templateLabel(s.datei)}`);
@@ -109,7 +114,7 @@ function dateiKnoten(pfad, kanten, aufrufe, besucht, labelPraefix = '') {
     const kinder = [];
 
     for (const a of aufrufe.filter(a => a.datei === pfad)) {
-        kinder.push({ label: `picture '${a.transform}' ← ${a.quellen.map(quelleText).join(', ')}`, kinder: [] });
+        kinder.push({ label: `picture '${a.transform}'${a.verhaeltnis ? ` (${a.verhaeltnis})` : ''} ← ${a.quellen.map(quelleText).join(', ')}`, kinder: [] });
     }
     for (const { entryType, include } of kante.faelle) {
         kinder.push(dateiKnoten(include, kanten, aufrufe, pfadMenge, `${entryType} → `));
@@ -168,7 +173,7 @@ Generiert von \`scripts/generate-transforms.js\`, nicht bearbeiten. Zeigt, wo Bi
 
 ## Speicherbaum
 
-Section → Entry-Type → Feld. An jedem Assets-Feld der Transform und das Modul, die es rendern; \`via\` nennt das Entries-Feld, dessen Verknüpfung die Elemente eingrenzt.
+Section → Entry-Type → Feld. An jedem Assets-Feld der Transform und das Modul, die es rendern, in Klammern ein erzwungenes Seitenverhältnis; \`via\` nennt das Entries-Feld, dessen Verknüpfung die Elemente eingrenzt.
 
 \`\`\`
 ${speicher}

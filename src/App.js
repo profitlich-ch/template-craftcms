@@ -2,6 +2,7 @@ import config from './config.json' with { type: "json" };
 import { MediaQueries } from '@profitlich/template-toolkit/utils/MediaQueries';
 import { VwBody } from '@profitlich/template-toolkit/utils/VwBody';
 import { BodyScrolled } from '@profitlich/template-toolkit/utils/BodyScrolled';
+import { ImagesLoaded } from '@profitlich/template-toolkit/utils/ImagesLoaded';
 import { MenuToggle } from '@profitlich/template-toolkit/components/menu-toggle/MenuToggle';
 import './scss/app.scss';
 
@@ -12,6 +13,10 @@ class App {
         MediaQueries.getInstance(config.breakpoints);
         BodyScrolled.getInstance();
         VwBody.getInstance();
+
+        // Setzt `data-loaded` am Bild; daran hängt das Ausblenden des
+        // Blurhash-Platzhalters aus dem picture-Makro.
+        new ImagesLoaded('img');
 
         MenuToggle.getInstance({
             menuButtonSelector: '#hamburger',

@@ -5,6 +5,57 @@
     position: relative;
 }
 
+// Wrapper des picture-Makros: hält den Platz frei und zeigt den Blurhash,
+// bis das Bild steht.
+:where([data-platzhalter]) {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: var(--verhaeltnis);
+    // Eigener Stapelkontext, damit der Platzhalter mit z-index -1 unter dem
+    // Bild liegt, aber nicht hinter den Hintergrund des Containers rutscht.
+    isolation: isolate;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--bg);
+        background-size: cover;
+        background-position: center;
+        // `cqw` misst am nächsten Container mit `container-type`, ohne einen
+        // solchen am Viewport. Der Wrapper ist selbst keiner: Sonst könnte er
+        // seine Breite nicht mehr aus dem Bild beziehen. Wo Bilder deutlich
+        // schmaler sind als der Viewport und der Radius sie auslöschte, macht
+        // das Modul seinen Bildcontainer zum Container.
+        filter: blur(4cqw);
+        transform: scale(1.1); // für ebenmässige Ränder
+        z-index: -1;
+    }
+
+    picture,
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    // Deckt die Fläche auch dort, wo ein Modul --verhaeltnis überschreibt
+    img {
+        object-fit: cover;
+    }
+
+    // Steht das Bild, verschwindet der Platzhalter: `visibility` nimmt ihn aus
+    // dem Malen, sonst bliebe der Weichzeichner dauerhaft gerastert und schiene
+    // durch transparente Bilder. Die Verzögerung deckt das Einblenden aus
+    // `images-loaded.scss` im Toolkit. Ohne JavaScript bleibt er stehen und
+    // wird vom Bild verdeckt.
+    &:where(:has(img[data-loaded="true"]))::before {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0s 0.3s;
+    }
+}
+
 @include mediaquery(smartphone) using ($layout) {
 
     .main {

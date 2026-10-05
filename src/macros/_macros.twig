@@ -1,12 +1,52 @@
-{% macro picture(image, transform, sizes, loading = 'lazy') %}
-    {# Ohne Alt-Text vom Asset bleibt der Dateititel die beste Beschreibung #}
-    {% set alt = image.alt is not empty ? image.alt : image.title %}
-    {{ pppicture([
-        [image, transform, 'webp'],
-    ], {
-        alt: alt,
-        style: 'aspect-ratio: ' ~ (image.getWidth() / image.getHeight()),
-        loading: loading,
-        sizes: sizes
-    }) }}
+{#
+    Bildausgabe über Imager X Power Pack.
+
+    Aufruf, mit der Bildquelle auf der Zeile davor:
+        {% import '_macros/_macros' as macros %}
+        {# bildquelle: entryType.feld #}
+        {{ macros.picture(image, 'transform', '(max-width: 799px) 88vw, 64vw') }}
+
+    `scripts/generate-transforms.js` liest die Aufrufe aus den Twig-Dateien:
+    Transform-Name und sizes-String ergeben die Breiten, `verhaeltnis` den
+    Zuschnitt. Der Aufruf steht deshalb auf einer Zeile, Transform, Sizes und
+    Verhältnis als String-Literale.
+
+    `alt` übersteuert den Alternativtext. Ohne Angabe gilt der Alt-Text des
+    Assets, sonst sein Titel.
+
+    `verhaeltnis` erzwingt ein Seitenverhältnis als 'Breite / Höhe', etwa
+    '3 / 2'. Imager X schneidet das Bild darauf zu. Ohne Angabe gilt das
+    natürliche Verhältnis des Bildes.
+
+    Um das Bild liegt ein `<div data-platzhalter>`: Es hält den Platz frei und
+    zeigt den Blurhash, bis das Bild geladen ist (`src/scss/project/main.scss`).
+    Das Verhältnis steht als Custom Property `--verhaeltnis` am Wrapper statt
+    als `aspect-ratio` im style-Attribut, damit ein Modul es im CSS
+    überschreiben kann – `--verhaeltnis: auto`, wo das Bild eine Fläche füllt.
+    Gestaltet wird über den umgebenden Container, das Makro vergibt keine Klasse.
+#}
+{% macro picture(image, transform, sizes, alt = null, verhaeltnis = null, loading = 'lazy') %}
+    {#
+        Fehlt die Datei auf der Platte, gibt Imager X nichts zurück, und das
+        Power Pack ruft darauf trotzdem getWidth() auf – ein einziges gelöschtes
+        Bild bräche die ganze Seite ab. Lieber fehlt an der Stelle das eine
+        Bild. Mit `fallbackImage` (config/imager-x.php, nur dev) springt
+        stattdessen Imager X ein.
+    #}
+    {% set ersatzbild = craft.app.plugins.getPlugin('imager-x').getSettings().fallbackImage %}
+    {% if image and (ersatzbild or image.getVolume().fileExists(image.getPath())) %}
+        {# Ohne Alt-Text vom Asset bleibt der Dateititel die beste Beschreibung #}
+        {% set alt = alt ?? (image.alt is not empty ? image.alt : image.title) %}
+        {# Das Power Pack liefert einen fertigen background-Wert; gebraucht wird nur die Data-URI darin #}
+        {% set blurhash = ppplaceholder(image, 'url', 'blurhash')|split('url(')|last|split(')')|first %}
+        <div data-platzhalter style="--verhaeltnis: {{ verhaeltnis ?? (image.getWidth() / image.getHeight()) }}; --bg: url('{{ blurhash }}')">
+            {{ pppicture([
+                [image, transform, 'webp'],
+            ], {
+                alt: alt,
+                loading: loading,
+                sizes: sizes
+            }) }}
+        </div>
+    {% endif %}
 {% endmacro %}
