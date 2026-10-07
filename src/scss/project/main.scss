@@ -39,7 +39,7 @@
         height: 100%;
     }
 
-    // Deckt die Fläche auch dort, wo ein Modul --verhaeltnis überschreibt
+    // Deckt die Fläche auch dort, wo ein Modul aspect-ratio überschreibt
     img {
         object-fit: cover;
     }

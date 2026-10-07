@@ -21,8 +21,9 @@
     Um das Bild liegt ein `<div data-platzhalter>`: Es hält den Platz frei und
     zeigt den Blurhash, bis das Bild geladen ist (`src/scss/project/main.scss`).
     Das Verhältnis steht als Custom Property `--verhaeltnis` am Wrapper statt
-    als `aspect-ratio` im style-Attribut, damit ein Modul es im CSS
-    überschreiben kann – `--verhaeltnis: auto`, wo das Bild eine Fläche füllt.
+    als `aspect-ratio` im style-Attribut: Ein Inline-Wert liesse sich im CSS
+    nur mit `!important` übersteuern. So setzt ein Modul am Wrapper schlicht
+    `aspect-ratio: auto`, wo das Bild eine Fläche füllt.
     Gestaltet wird über den umgebenden Container, das Makro vergibt keine Klasse.
 #}
 {% macro picture(image, transform, sizes, alt = null, verhaeltnis = null, loading = 'lazy') %}
