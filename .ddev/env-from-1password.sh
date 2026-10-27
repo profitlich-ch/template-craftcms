@@ -31,7 +31,14 @@ fi
 # Erst in eine Zwischendatei: Scheitert op, bleibt die bisherige .env erhalten.
 tmp=$(mktemp)
 trap 'rm -f "$tmp"' EXIT
-if op environment read "$id" > "$tmp"; then
+# op gibt die Werte ohne Anführungszeichen aus; phpdotenv bricht bei einem
+# Leerzeichen im Wert ab. Einfache Anführungszeichen übernimmt es wörtlich.
+quote='/^[A-Za-z_][A-Za-z0-9_]*=/ {
+    i = index($0, "="); v = substr($0, i + 1)
+    if (v ~ /[[:space:]]/ && v !~ /^["\047]/ && v !~ /\047/) $0 = substr($0, 1, i) "\047" v "\047"
+}
+{ print }'
+if op environment read "$id" | awk "$quote" > "$tmp"; then
     mv "$tmp" .env
     trap - EXIT
 elif [ -f .env ]; then
