@@ -42,7 +42,7 @@
         "yaml": "^2.9.1"
     },
     "dependencies": {
-        "@profitlich/template-toolkit": "^7.7.0",
+        "@profitlich/template-toolkit": "^7.8.0",
         "debounce": "^3.0.0",
         "pathe": "^2.0.3"
     }
