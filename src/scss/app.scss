@@ -8,5 +8,5 @@
 @use "./project/mixins";
 @use "./project/variables";
 
-// modules
-@use "../modules/modules";
+// Kein Sammel-Import der Modul-SCSS: Jedes Modul bringt sein CSS über das
+// eigene JS mit und lädt es nur auf Seiten, die es registrieren.
