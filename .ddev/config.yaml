@@ -16,7 +16,7 @@ use_dns_when_possible: false
 composer_version: "2"
 web_environment: []
 corepack_enable: false
-nodejs_version: '20'
+nodejs_version: '26'
 web_extra_exposed_ports:
 - name: craft-vite
   container_port: 5173
