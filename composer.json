@@ -23,8 +23,9 @@
   "config": {
     "allow-plugins": {
       "craftcms/plugin-installer": true,
-      "yiisoft/yii2-composer": true,
-      "treeware/plant": true
+      "php-http/discovery": true,
+      "treeware/plant": true,
+      "yiisoft/yii2-composer": true
     },
     "sort-packages": true,
     "optimize-autoloader": true,

@@ -1,4 +1,4 @@
-dateModified: 1791070780
+dateModified: 1793800484
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -31,7 +31,7 @@ plugins:
     edition: standard
     enabled: true
     licenseKey: V3H5ID9GCYYDO5FL5ZQ6YE5S
-    schemaVersion: 5.13.0
+    schemaVersion: 5.14.0
     settings:
       apiKey: ''
       batchInsertSize: 50
@@ -181,7 +181,7 @@ system:
   live: true
   name: 'Profitlich Template'
   retryDuration: null
-  schemaVersion: 5.11.0.2
+  schemaVersion: 5.12.0.1
   timeZone: $TZ
 users:
   allowPublicRegistration: false

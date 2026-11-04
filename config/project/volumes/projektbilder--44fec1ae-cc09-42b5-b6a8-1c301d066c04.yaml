@@ -58,6 +58,7 @@ fieldLayouts:
 fs: lokal
 handle: projektbilder
 name: Projektbilder
+propagationMethod: custom
 sortOrder: 2
 subpath: ''
 titleTranslationKeyFormat: null
