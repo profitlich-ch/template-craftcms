@@ -20,12 +20,6 @@ const copyTasks = [
         base: 'src/modules'
     },
     {
-        name: 'fonts',
-        src: ['src/fonts/**/*.*'],
-        dest: 'web/fonts',
-        base: 'src/fonts'
-    },
-    {
         name: 'favicon',
         src: ['src/favicon/**/*.*'],
         dest: 'web/favicon',
