@@ -54,8 +54,10 @@ return GeneralConfig::create()
     // Blitz does the caching, that’s why Craft’s own caching through {% cache %} is disabled
     ->enableTemplateCaching(false)
 
-    // Generate images before page load so hat they are ready when a page is called
-    -> generateTransformsBeforePageLoad(true)
+    // Betrifft nur Crafts eigene Transformationen. Die Bilder der Vorlage
+    // laufen ausschliesslich über Imager X (`macros.picture`), das davon
+    // unberührt bleibt; vorab gebaut wird dort über `config/imager-x-generate.php`.
+    -> generateTransformsBeforePageLoad(false)
 
     // For security do no send CMS information in the HTTP header
     ->sendPoweredByHeader(false)

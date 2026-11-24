@@ -25,6 +25,10 @@
     nur mit `!important` übersteuern. So setzt ein Modul am Wrapper schlicht
     `aspect-ratio: auto`, wo das Bild eine Fläche füllt.
     Gestaltet wird über den umgebenden Container, das Makro vergibt keine Klasse.
+
+    `loading` steht auf 'lazy'. 'eager' gehört nur an das Bild oben auf der
+    Seite, das LCP-Element; es bekommt dazu `fetchpriority="high"`, damit der
+    Browser es vor den Bildern weiter unten holt.
 #}
 {% macro picture(image, transform, sizes, alt = null, verhaeltnis = null, loading = 'lazy') %}
     {#
@@ -47,7 +51,7 @@
                 alt: alt,
                 loading: loading,
                 sizes: sizes
-            }) }}
+            }|merge(loading == 'eager' ? { fetchpriority: 'high' } : {})) }}
         </div>
     {% endif %}
 {% endmacro %}
