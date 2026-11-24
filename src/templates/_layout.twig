@@ -26,6 +26,11 @@
                 transition: transform 0s !important;
             }
         </style>
+
+        {# Vor jedem Modul registrieren: Die Reihenfolge der Registrierung ist die
+           der <link>-Tags. Stünde app.css hinter dem Modul-CSS, gewännen die
+           Basis-Regeln bei gleicher Spezifität gegen die Module. #}
+        {% do craft.vite.register("src/App.js", false) %}
     </head>
     {% if not craft.app.request.segment(1) %}
         {% set pagename = 'home' %}
@@ -57,8 +62,6 @@
             <main class="main">{% block content %}{% endblock %}</main>
         </div>
 
-        {# JS #}
-        {% do craft.vite.register("src/App.js", false) %}
         {% if craft.app.env != 'production' %}
             {% do craft.vite.register("src/Dev.js", false) %}
         {% endif %}
