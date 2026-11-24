@@ -2,11 +2,6 @@
 
 use craft\helpers\App;
 
-// Use the current host for dev server requests. Otherwise fall back to the primary site.
-$host = Craft::$app->getRequest()->getIsConsoleRequest()
-    ? App::env('PRIMARY_SITE_URL')
-    : Craft::$app->getRequest()->getHostInfo();
-
 return [
     'devServerInternal' => 'http://localhost:5173/',
     'devServerPublic' => preg_replace('/:\d+$/', '', App::env('PRIMARY_SITE_URL')) . ':5173',
