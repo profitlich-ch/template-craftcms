@@ -1,4 +1,4 @@
-dateModified: 1793800484
+dateModified: 1795536998
 email:
   fromEmail: dev@profitlich.ch
   fromName: 'Profitlich DEV'
@@ -139,6 +139,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 5.6.0.0
+  expanded-singles:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   imager-x:
     edition: pro
     enabled: true
